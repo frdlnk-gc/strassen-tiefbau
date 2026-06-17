@@ -244,6 +244,11 @@
   .job{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
        cursor:pointer;transition:.16s;display:flex;flex-direction:column;box-shadow:var(--shadow)}
   .job:hover{transform:translateY(-3px);border-color:var(--o);box-shadow:0 12px 36px rgba(255,107,26,.14)}
+  .job.tier-exc{border-color:#D7C4F5}
+  .job.tier-exc::before,.job.tier-prem::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;z-index:3}
+  .job{position:relative}
+  .job.tier-exc::before{background:linear-gradient(90deg,#7c3aed,#5b21b6)}
+  .job.tier-prem::before{background:var(--grad)}
   .jcover{position:relative;height:150px;background:var(--dark)}
   .jcover.noimg{background:var(--grad);display:grid;place-items:center;color:#fff;font-weight:820;font-size:24px}
   .jbody{padding:16px 18px 18px;display:flex;flex-direction:column;gap:11px;flex:1}
@@ -372,6 +377,37 @@
   .ap-card .row{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--ink2);margin-top:9px}
   .ap-card .row .d{color:var(--o);width:18px;text-align:center}
   .ap-card .row a{color:var(--o-dark)}
+  /* ---------- Tier (Smart / Premium / Exzellenz) ---------- */
+  .dt-tier{position:absolute;top:14px;right:14px;z-index:4;font-weight:800;font-size:12px;letter-spacing:.3px;
+        padding:6px 13px;border-radius:100px;background:#FFB020;color:#3a2600;
+        box-shadow:0 4px 14px rgba(0,0,0,.22);display:flex;align-items:center;gap:5px}
+  .dt-tier.exc{background:linear-gradient(135deg,#7c3aed,#5b21b6);color:#fff}
+  .dt-tier.prem{background:linear-gradient(135deg,#FFC24D,#FF9F1A);color:#3a2600}
+  .perk-card,.proc-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+        padding:20px;box-shadow:var(--shadow)}
+  .perk-card.exc{border-color:#D7C4F5;box-shadow:0 8px 28px rgba(124,58,237,.12)}
+  .perk-card.prem{border-color:#FAD9C2}
+  .perk-tier{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:800;letter-spacing:.4px;
+        text-transform:uppercase;padding:5px 11px;border-radius:100px;margin-bottom:14px;
+        background:#FFF3D6;color:#92600A}
+  .perk-card.exc .perk-tier{background:#F1EAFE;color:#5b21b6}
+  .perk-card.prem .perk-tier{background:var(--o-pale);color:var(--o-dark)}
+  .perk-tier.basis{background:var(--ok-bg);color:var(--ok)}
+  .perk-h{font-size:12.5px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--muted);margin-bottom:13px}
+  .perk-list{list-style:none;display:flex;flex-direction:column;gap:14px}
+  .perk-list li{display:flex;gap:12px;align-items:flex-start}
+  .perk-list .pk-i{flex:none;width:30px;height:30px;border-radius:9px;background:var(--bg);border:1px solid var(--line2);
+        display:grid;place-items:center;font-size:15px}
+  .perk-list li b{display:block;font-size:14px;font-weight:740;color:var(--ink);letter-spacing:-.1px}
+  .perk-list li span{display:block;font-size:12.8px;color:var(--muted);line-height:1.5;margin-top:2px}
+  .proc-list{list-style:none;display:flex;flex-direction:column;gap:4px;counter-reset:none}
+  .proc-list li{display:flex;gap:13px;align-items:flex-start;padding:9px 0;position:relative}
+  .proc-list li:not(:last-child)::after{content:"";position:absolute;left:14px;top:34px;bottom:-2px;width:2px;
+        background:var(--line2)}
+  .proc-list .ps-n{flex:none;width:29px;height:29px;border-radius:50%;background:var(--o-pale);color:var(--o-dark);
+        display:grid;place-items:center;font-weight:800;font-size:13.5px;border:1px solid #FAD9C2;z-index:1}
+  .proc-list li b{display:block;font-size:14px;font-weight:730;color:var(--ink)}
+  .proc-list li span{display:block;font-size:12.8px;color:var(--muted);line-height:1.5;margin-top:2px}
   .applied{text-align:center;padding:8px 0}
   .applied .big{width:58px;height:58px;border-radius:50%;background:var(--ok-bg);color:var(--ok);font-size:28px;
        display:grid;place-items:center;margin:0 auto 14px}
@@ -682,6 +718,13 @@ function tier(j){
   const p=(j.firma_produkt||'').toLowerCase();
   return (p==='premium'||p==='excellence')?p:'';
 }
+/* Stufe IMMER bestimmbar – Smart ist die Basis ohne firma_produkt. */
+function tierLevel(j){
+  const p=(j.firma_produkt||'').toLowerCase();
+  if(p==='excellence') return 'excellence';
+  if(p==='premium')    return 'premium';
+  return 'smart';
+}
 function tierBadge(j){
   const t=tier(j);
   if(!t) return '';
@@ -689,6 +732,30 @@ function tierBadge(j){
     ? '<span class="pbadge exc">★ Exzellenz</span>'
     : '<span class="pbadge">★ Premium</span>';
 }
+/* Was der Bewerber je Stufe sichtbar bekommt – Marketing- + Conversion-Hebel
+   und zugleich das Upsell-Argument im Arbeitgeber-Gespräch. */
+const TIER_PERKS={
+  excellence:[
+    ['☎️','Telefonische Vorqualifizierung','Unser Team meldet sich persönlich bei dir, klärt offene Fragen und stellt dich dem Betrieb vor.'],
+    ['💬','WhatsApp-Schnellbewerbung','Bewirb dich und stell Rückfragen bequem per WhatsApp – ohne Formular-Marathon.'],
+    ['⚡','Antwort-Garantie','Du bekommst eine verbindliche Rückmeldung. Keine Bewerbung, die im Nichts verschwindet.'],
+    ['🎯','Fester Ansprechpartner','Ein persönlicher Kontakt begleitet dich bis zum ersten Gespräch.']
+  ],
+  premium:[
+    ['✓','Verifizierter Betrieb','Identität und Seriosität dieses Bauunternehmens sind von GreyCareers geprüft.'],
+    ['⭐','Hervorgehobene Stelle','Diese Stelle wird passenden Fachkräften bevorzugt angezeigt.'],
+    ['⚡','Schnelle Rückmeldung','Der Betrieb meldet sich in der Regel innerhalb von 48 Stunden.']
+  ],
+  smart:[
+    ['✓','Geprüfter Betrieb','Ein echtes Bauunternehmen aus dem GreyCareers-Netzwerk – keine anonyme Anzeige.'],
+    ['⚡','Direkt-Bewerbung','Deine Bewerbung landet ohne Umweg beim Betrieb.']
+  ]
+};
+const TIER_META={
+  excellence:{label:'Exzellenz-Stelle',cls:'exc',sub:'Mit telefonischer Vorqualifizierung – unser Team meldet sich persönlich bei dir.'},
+  premium:{label:'Premium-Stelle',cls:'prem',sub:'Verifizierter Betrieb – Rückmeldung in der Regel innerhalb von 48 Stunden.'},
+  smart:{label:'',cls:'',sub:'Schnell &amp; ohne Anschreiben – der Betrieb meldet sich direkt bei dir.'}
+};
 
 /* ---------- Partner-Logo-Slider ---------- */
 function renderPartners(){
@@ -913,7 +980,8 @@ function applyFilter(){
 }
 
 function renderFeatured(){
-  const feat=JOBS.filter(tier);
+  const rank={excellence:0,premium:1};
+  const feat=JOBS.filter(tier).sort((a,b)=>(rank[tierLevel(a)]-rank[tierLevel(b)]) || new Date(b.published_at)-new Date(a.published_at));
   if(!feat.length){ $('featSec').style.display='none'; return; }
   $('featSec').style.display='';
   $('featRow').innerHTML=feat.map(j=>{
@@ -945,7 +1013,8 @@ function renderList(rows){
   $('list').innerHTML='<div class="grid">'+rows.map(j=>{
     const cov=coverUrl(j);
     const d=j._dist;
-    return `<div class="job" onclick="openJob('${esc(j.slug)}')">
+    const lv=tierLevel(j);
+    return `<div class="job ${lv==='excellence'?'tier-exc':lv==='premium'?'tier-prem':''}" onclick="openJob('${esc(j.slug)}')">
       <div class="jcover ${cov?'':'noimg'}">
         ${cov?`<img class="cf-bg" src="${esc(cov)}" alt="" aria-hidden="true"><img class="cf-fg" src="${esc(cov)}" alt="" loading="lazy">`:esc(initials(j.firma))}
         ${tierBadge(j)}
@@ -1048,6 +1117,23 @@ function renderDetail(j){
   $('home').style.display='none';
   $('detail').style.display='block';
 
+  const lvl=tierLevel(j), tm=TIER_META[lvl], perks=TIER_PERKS[lvl]||[];
+  const perksHtml=`<div class="perk-card ${tm.cls}">
+      ${tm.label?`<div class="perk-tier">★ ${tm.label}</div>`:'<div class="perk-tier basis">Geprüfter Betrieb</div>'}
+      <div class="perk-h">Was dich hier erwartet</div>
+      <ul class="perk-list">
+        ${perks.map(p=>`<li><span class="pk-i">${p[0]}</span><div><b>${p[1]}</b><span>${p[2]}</span></div></li>`).join('')}
+      </ul>
+    </div>`;
+  const stepperHtml=`<div class="proc-card">
+      <div class="perk-h">So läuft deine Bewerbung</div>
+      <ol class="proc-list">
+        <li><span class="ps-n">1</span><div><b>Formular absenden</b><span>Name &amp; Kontakt genügen – kein Anschreiben, keine Uploads.</span></div></li>
+        <li><span class="ps-n">2</span><div><b>${lvl==='excellence'?'Persönlicher Rückruf':'Betrieb erhält deine Bewerbung'}</b><span>${lvl==='excellence'?'Unser Team meldet sich, qualifiziert vor und stellt dich vor.':'Deine Bewerbung liegt sofort beim Bauunternehmen.'}</span></div></li>
+        <li><span class="ps-n">3</span><div><b>Direkter Kontakt</b><span>Der Betrieb meldet sich bei dir – oft schon am nächsten Werktag.</span></div></li>
+      </ol>
+    </div>`;
+
   const benefitsHtml = (asList(j.benefits_list).length? blockList('Das bieten wir dir',j.benefits_list) : blockList('Das bieten wir dir',j.benefits))
     || '<div class="block"><div class="body" style="color:var(--muted)">Keine Benefits hinterlegt.</div></div>';
 
@@ -1073,6 +1159,7 @@ function renderDetail(j){
     <div class="dt-grid">
       <div class="dt-main">
         <div class="dt-banner ${j.firma_titelbild?'':'noimg'}">${j.firma_titelbild?`<img class="cf-bg" src="${esc(j.firma_titelbild)}" alt="" aria-hidden="true"><img class="cf-fg" src="${esc(j.firma_titelbild)}" alt="">`:''}
+          ${tm.label?`<span class="dt-tier ${tm.cls}">★ ${tm.label}</span>`:''}
           <div class="dt-head">
             ${fav(j)}
             <div class="ht"><h1>${esc(j.titel)}</h1><div class="firma">${esc(j.firma)}${j.ort?' · '+esc(j.ort):''}</div></div>
@@ -1107,7 +1194,7 @@ function renderDetail(j){
       <div class="aside">
         <div class="apply-card" id="applyCard">
           <h3>Jetzt bewerben</h3>
-          <div class="sub">Schnell &amp; ohne Anschreiben – ${esc(j.firma)} meldet sich bei dir.</div>
+          <div class="sub">${tm.sub}</div>
           <div class="err" id="applyErr"></div>
           <div class="field"><label>Name *</label><input id="ap-name" placeholder="Vor- und Nachname"></div>
           <div class="field"><label>E-Mail</label><input id="ap-email" type="email" placeholder="dein@email.de"></div>
@@ -1126,6 +1213,8 @@ function renderDetail(j){
           ${j.kontakt_telefon?`<div class="row"><span class="d">📞</span> <a href="tel:${esc(j.kontakt_telefon)}">${esc(j.kontakt_telefon)}</a></div>`:''}
           ${j.kontakt_email?`<div class="row"><span class="d">✉️</span> <a href="mailto:${esc(j.kontakt_email)}">${esc(j.kontakt_email)}</a></div>`:''}
         </div>`:''}
+        ${perksHtml}
+        ${stepperHtml}
         <div class="firma-card">
           <b>${esc(j.firma)}</b>
           ${j.firma_ort?`<div class="row"><span class="d">📍</span> ${esc(j.firma_ort)}</div>`:''}

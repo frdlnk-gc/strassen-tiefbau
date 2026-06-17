@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bau-Magazin · Karriere, Gehalt &amp; Bewerbung im Straßen- &amp; Tiefbau · GreenCareers</title>
+<title>Bau-Magazin · Karriere, Gehalt &amp; Bewerbung im Straßen- &amp; Tiefbau · GreyCareers</title>
 <meta name="description" content="Das Karriere-Magazin für den Straßen-, Tief- und Kanalbau: Gehälter 2026, Berufsbilder, Quereinstieg, Bewerbung ohne Anschreiben, Weiterbildung zum Polier und deine Rechte im Bauvertrag.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://strassen-tiefbau.green-careers.de/magazin.html">
@@ -190,7 +190,7 @@
   <div class="wrap nav">
     <a class="brand" href="index.html">
       <div class="logo">GC</div>
-      <div class="bname">GreenCareers<small>Straßen- &amp; Tiefbau</small></div>
+      <div class="bname">GreyCareers<small>Straßen- &amp; Tiefbau</small></div>
     </a>
     <div class="sp"></div>
     <nav class="nav-links">
@@ -209,7 +209,7 @@
   <div class="drawer-head">
     <a class="brand" href="index.html">
       <div class="logo" style="width:34px;height:34px;font-size:16px">GC</div>
-      <div class="bname" style="font-size:15px">GreenCareers<small>Straßen- &amp; Tiefbau</small></div>
+      <div class="bname" style="font-size:15px">GreyCareers<small>Straßen- &amp; Tiefbau</small></div>
     </a>
     <button class="x" onclick="closeDrawer()" aria-label="Schließen">✕</button>
   </div>
@@ -227,7 +227,7 @@
 <div id="list-view">
   <section class="mhero">
     <div class="wrap">
-      <span class="kicker">● Bau-Magazin · powered by GreenCareers</span>
+      <span class="kicker">● Bau-Magazin · powered by GreyCareers</span>
       <h1>Karriere im Straßen-, Tief- &amp; Kanalbau.<br>Wissen, das dich weiterbringt.</h1>
       <p>Gehälter, Berufsbilder, Quereinstieg, Weiterbildung und deine Rechte im Bauvertrag – ehrlich erklärt, ohne Marketing-Sprech. Von Praktikern für Praktiker auf dem Bau.</p>
     </div>
@@ -276,8 +276,8 @@
 <footer>
   <div class="wrap">
     <div>
-      <div class="fbrand"><div class="logo" style="width:32px;height:32px;font-size:15px">GC</div> GreenCareers · Straßen- &amp; Tiefbau</div>
-      <div class="powered">Ein Angebot der GreenCareers / Greenfield Digital</div>
+      <div class="fbrand"><div class="logo" style="width:32px;height:32px;font-size:15px">GC</div> GreyCareers · Straßen- &amp; Tiefbau</div>
+      <div class="powered">Ein Angebot der GreyCareers / Greenfield Digital</div>
     </div>
     <div class="flinks">
       <a href="index.html#jobsAnchor">Stellen</a>
@@ -649,9 +649,9 @@ function openArticle(slug){
   $('artEmoji').textContent=a.emoji;
   $('artTag').textContent=catLabel(a.cat);
   $('artTitle').textContent=a.title;
-  $('artMeta').innerHTML=`<span>${fmtDate(a.date)}</span> · <span>${a.read} Min. Lesezeit</span> · <span>GreenCareers Redaktion</span>`;
+  $('artMeta').innerHTML=`<span>${fmtDate(a.date)}</span> · <span>${a.read} Min. Lesezeit</span> · <span>GreyCareers Redaktion</span>`;
   $('artContent').innerHTML=a.body;
-  document.title=`${a.title} · GreenCareers Bau-Magazin`;
+  document.title=`${a.title} · GreyCareers Bau-Magazin`;
   setMeta('description', a.excerpt);
   injectArticleSchema(a);
   // related: same cat first, then fill
@@ -666,7 +666,7 @@ function openArticle(slug){
 function goMagHome(){
   $('article').style.display='none';
   $('list-view').style.display='block';
-  document.title='Bau-Magazin · Karriere, Gehalt & Bewerbung im Straßen- & Tiefbau · GreenCareers';
+  document.title='Bau-Magazin · Karriere, Gehalt & Bewerbung im Straßen- & Tiefbau · GreyCareers';
   removeArticleSchema();
   history.replaceState(null,'','magazin.html');
   window.scrollTo(0,0);
@@ -680,8 +680,8 @@ function injectArticleSchema(a){
     "@context":"https://schema.org","@type":"BlogPosting",
     "headline":a.title,"description":a.excerpt,
     "datePublished":a.date,"dateModified":a.date,
-    "author":{"@type":"Organization","name":"GreenCareers"},
-    "publisher":{"@type":"Organization","name":"GreenCareers","logo":{"@type":"ImageObject","url":"https://strassen-tiefbau.green-careers.de/assets/favicon.svg"}},
+    "author":{"@type":"Organization","name":"GreyCareers"},
+    "publisher":{"@type":"Organization","name":"GreyCareers","logo":{"@type":"ImageObject","url":"https://strassen-tiefbau.green-careers.de/assets/favicon.svg"}},
     "articleSection":catLabel(a.cat),
     "mainEntityOfPage":{"@type":"WebPage","@id":"https://strassen-tiefbau.green-careers.de/magazin.html#"+a.slug}
   });
@@ -694,7 +694,7 @@ function removeArticleSchema(){const e=$('artLd');if(e)e.remove();}
   const s=document.createElement('script');s.type='application/ld+json';
   s.textContent=JSON.stringify({
     "@context":"https://schema.org","@type":"Blog",
-    "name":"GreenCareers Bau-Magazin",
+    "name":"GreyCareers Bau-Magazin",
     "description":"Karriere-Magazin für den Straßen-, Tief- und Kanalbau: Gehalt, Berufe, Bewerbung, Weiterbildung und Recht.",
     "url":"https://strassen-tiefbau.green-careers.de/magazin.html",
     "blogPost":ARTICLES.map(a=>({"@type":"BlogPosting","headline":a.title,"description":a.excerpt,"datePublished":a.date,

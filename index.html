@@ -140,12 +140,15 @@
         border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:.16s;box-shadow:var(--shadow);display:flex;flex-direction:column}
   .fcard:hover{transform:translateY(-3px);border-color:var(--o);box-shadow:0 12px 36px rgba(255,107,26,.16)}
   .fcover{position:relative;height:158px;background:var(--dark)}
-  .fcover img{width:100%;height:100%;object-fit:cover}
   .fcover.noimg{background:var(--grad);display:grid;place-items:center;color:#fff;font-weight:820;font-size:26px}
-  .pbadge{position:absolute;top:10px;right:10px;background:#FFB020;color:#3a2600;font-weight:800;font-size:11px;
+  /* Cover-Frame: ganzes Bild sichtbar (contain) auf unscharfer, abgedunkelter Fuellung */
+  .cf-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+        filter:blur(22px) brightness(.55) saturate(1.15);transform:scale(1.18);z-index:0}
+  .cf-fg{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:1}
+  .pbadge{position:absolute;top:10px;right:10px;z-index:2;background:#FFB020;color:#3a2600;font-weight:800;font-size:11px;
         letter-spacing:.3px;padding:4px 10px;border-radius:100px;display:flex;align-items:center;gap:4px;box-shadow:0 3px 10px rgba(0,0,0,.2)}
   .pbadge.exc{background:linear-gradient(135deg,#7c3aed,#5b21b6);color:#fff}
-  .datebadge{position:absolute;top:10px;left:10px;background:rgba(255,255,255,.92);color:var(--ink2);font-weight:700;
+  .datebadge{position:absolute;top:10px;left:10px;z-index:2;background:rgba(255,255,255,.92);color:var(--ink2);font-weight:700;
         font-size:11.5px;padding:4px 10px;border-radius:8px}
   .fbody{padding:16px 18px 18px;display:flex;flex-direction:column;gap:9px;flex:1}
   .fbody .ftop{display:flex;align-items:center;gap:11px}
@@ -188,7 +191,6 @@
        cursor:pointer;transition:.16s;display:flex;flex-direction:column;box-shadow:var(--shadow)}
   .job:hover{transform:translateY(-3px);border-color:var(--o);box-shadow:0 12px 36px rgba(255,107,26,.14)}
   .jcover{position:relative;height:150px;background:var(--dark)}
-  .jcover img{width:100%;height:100%;object-fit:cover}
   .jcover.noimg{background:var(--grad);display:grid;place-items:center;color:#fff;font-weight:820;font-size:24px}
   .jbody{padding:16px 18px 18px;display:flex;flex-direction:column;gap:11px;flex:1}
   .job-top{display:flex;align-items:center;gap:12px}
@@ -221,12 +223,11 @@
   .dt-grid{display:grid;grid-template-columns:1fr 340px;gap:26px;align-items:start}
   .dt-main{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
   .dt-banner{height:230px;background:var(--dark);position:relative;overflow:hidden}
-  .dt-banner img{width:100%;height:100%;object-fit:cover}
-  .dt-banner::after{content:"";position:absolute;inset:0;
+  .dt-banner::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
        background:linear-gradient(180deg,rgba(22,25,29,.12) 0%,rgba(22,25,29,.30) 42%,rgba(22,25,29,.82) 100%)}
   .dt-banner.noimg{background:var(--grad)}
   .dt-banner.noimg::after{background:linear-gradient(180deg,rgba(0,0,0,.04) 0%,rgba(0,0,0,.10) 40%,rgba(0,0,0,.34) 100%)}
-  .dt-head{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;gap:16px;align-items:flex-end;
+  .dt-head{position:absolute;left:0;right:0;bottom:0;z-index:3;display:flex;gap:16px;align-items:flex-end;
            padding:0 30px 22px}
   .dt-head .fav{width:72px;height:72px;font-size:28px;border-radius:16px;border:3px solid #fff;
        box-shadow:0 8px 22px rgba(0,0,0,.30)}
@@ -748,7 +749,7 @@ function renderFeatured(){
     const cov=coverUrl(j);
     return `<div class="fcard" onclick="openJob('${esc(j.slug)}')">
       <div class="fcover ${cov?'':'noimg'}">
-        ${cov?`<img src="${esc(cov)}" alt="" loading="lazy">`:esc(initials(j.firma))}
+        ${cov?`<img class="cf-bg" src="${esc(cov)}" alt="" aria-hidden="true"><img class="cf-fg" src="${esc(cov)}" alt="" loading="lazy">`:esc(initials(j.firma))}
         ${tierBadge(j)}
         <span class="datebadge">${ago(j.published_at)}</span>
       </div>
@@ -775,7 +776,7 @@ function renderList(rows){
     const d=j._dist;
     return `<div class="job" onclick="openJob('${esc(j.slug)}')">
       <div class="jcover ${cov?'':'noimg'}">
-        ${cov?`<img src="${esc(cov)}" alt="" loading="lazy">`:esc(initials(j.firma))}
+        ${cov?`<img class="cf-bg" src="${esc(cov)}" alt="" aria-hidden="true"><img class="cf-fg" src="${esc(cov)}" alt="" loading="lazy">`:esc(initials(j.firma))}
         ${tierBadge(j)}
         <span class="datebadge">${ago(j.published_at)}</span>
       </div>
@@ -900,7 +901,7 @@ function renderDetail(j){
     <div class="back" onclick="goHome()">← Alle Stellen</div>
     <div class="dt-grid">
       <div class="dt-main">
-        <div class="dt-banner ${j.firma_titelbild?'':'noimg'}">${j.firma_titelbild?`<img src="${esc(j.firma_titelbild)}" alt="">`:''}
+        <div class="dt-banner ${j.firma_titelbild?'':'noimg'}">${j.firma_titelbild?`<img class="cf-bg" src="${esc(j.firma_titelbild)}" alt="" aria-hidden="true"><img class="cf-fg" src="${esc(j.firma_titelbild)}" alt="">`:''}
           <div class="dt-head">
             ${fav(j)}
             <div class="ht"><h1>${esc(j.titel)}</h1><div class="firma">${esc(j.firma)}${j.ort?' · '+esc(j.ort):''}</div></div>

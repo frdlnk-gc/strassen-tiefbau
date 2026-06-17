@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fachkräfte für Ihren Straßen- &amp; Tiefbau-Betrieb gewinnen · GreenCareers</title>
+<meta name="description" content="Planbar qualifizierte Fachkräfte für Ihren Straßen-, Tief- und Kanalbau-Betrieb – aus Ihrer Region, per KI-Matching, ohne teure Agenturen. Das spezialisierte Karrierenetzwerk für die graue Branche.">
+<link rel="icon" href="https://www.green-careers.de/favicon-32.png">
+<style>
+  :root{
+    --o:#FF6B1A; --o-dark:#E55A0A; --o-glow:#FF8533; --o-pale:#FFF1E8;
+    --grad:linear-gradient(135deg,#FF6B1A 0%,#E55A0A 100%);
+    --ink:#16191D; --ink2:#3A4047; --muted:#6B7480;
+    --bg:#F6F5F2; --card:#FFFFFF; --line:#E6E3DD; --line2:#EFEDE8;
+    --dark:#16191D; --dark2:#1F242A;
+    --ok:#1e8449; --ok-bg:#e8f8ef;
+    --radius:16px; --shadow:0 1px 2px rgba(20,25,29,.04),0 8px 28px rgba(20,25,29,.06);
+    --maxw:1140px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  img{max-width:100%}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:50;background:rgba(246,245,242,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;gap:14px;height:64px}
+  .brand{display:flex;align-items:center;gap:11px;cursor:pointer}
+  .logo{width:40px;height:40px;border-radius:11px;background:var(--grad);display:grid;place-items:center;
+        color:#fff;font-weight:800;font-size:19px;box-shadow:0 4px 12px rgba(255,107,26,.35)}
+  .bname{font-weight:800;font-size:16px;letter-spacing:-.2px;line-height:1.05}
+  .bname small{display:block;font-weight:600;font-size:11.5px;color:var(--muted);letter-spacing:.3px;text-transform:uppercase}
+  .nav .sp{flex:1}
+  .nav-link{font-weight:650;font-size:14.5px;color:var(--ink2);padding:9px 13px;border-radius:9px;transition:.14s}
+  .nav-link:hover{color:var(--ink);background:rgba(20,25,29,.05)}
+  .nav-tel{font-weight:700;font-size:14.5px;color:var(--ink2)}
+  .nav-tel:hover{color:var(--o-dark)}
+  .nav-cta{background:var(--ink);color:#fff;font-weight:700;font-size:14px;padding:10px 18px;border-radius:10px;transition:.15s;white-space:nowrap}
+  .nav-cta:hover{background:#000}
+
+  /* Hero */
+  .hero{background:var(--dark);color:#fff;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:0;z-index:0;background:
+    radial-gradient(820px 380px at 84% -10%,rgba(255,107,26,.30),transparent 60%),
+    radial-gradient(620px 320px at 6% 110%,rgba(255,107,26,.14),transparent 60%);pointer-events:none}
+  .hero .wrap{position:relative;z-index:2;padding:70px 22px 66px}
+  .kicker{display:inline-flex;align-items:center;gap:8px;background:rgba(255,107,26,.16);
+          color:var(--o-glow);font-weight:700;font-size:12.5px;letter-spacing:.5px;text-transform:uppercase;
+          padding:7px 14px;border-radius:100px;border:1px solid rgba(255,107,26,.28)}
+  .hero h1{font-size:clamp(30px,5vw,50px);line-height:1.07;letter-spacing:-1px;margin:20px 0 18px;font-weight:830;max-width:880px}
+  .hero h1 b{color:var(--o-glow)}
+  .hero .sub{font-size:clamp(16px,2.2vw,19px);color:#C7CDD4;max-width:680px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px;align-items:center}
+  .btn-o{background:var(--grad);color:#fff;font-weight:740;font-size:15.5px;padding:15px 26px;border-radius:12px;
+        box-shadow:0 8px 22px rgba(255,107,26,.34);transition:.15s}
+  .btn-o:hover{filter:brightness(1.05)}
+  .btn-ghost-d{color:#fff;font-weight:700;font-size:15px;padding:15px 12px;border-bottom:2px solid transparent}
+  .btn-ghost-d:hover{border-bottom-color:var(--o-glow)}
+  .hero-stats{display:flex;gap:36px;margin-top:42px;flex-wrap:wrap}
+  .hs b{display:block;font-size:28px;font-weight:830;color:#fff;letter-spacing:-.4px}
+  .hs span{font-size:13px;color:#9AA2AB}
+
+  /* Trust logos strip */
+  .lstrip{background:#fff;border-bottom:1px solid var(--line);padding:18px 0}
+  .lstrip .wrap{display:flex;align-items:center;justify-content:center;gap:14px 30px;flex-wrap:wrap}
+  .lstrip .l{font-weight:730;color:var(--muted);font-size:14.5px;opacity:.8}
+  .lstrip .sep{color:var(--line);font-weight:400}
+
+  /* Section base */
+  section.s{padding:66px 0}
+  .sh{text-align:center;max-width:680px;margin:0 auto 42px}
+  .sh .tag{display:inline-block;background:var(--o-pale);color:var(--o-dark);font-weight:800;font-size:11.5px;
+        letter-spacing:.5px;text-transform:uppercase;padding:5px 13px;border-radius:100px;border:1px solid #FAD9C2;margin-bottom:14px}
+  .sh h2{font-size:clamp(25px,3.8vw,36px);font-weight:830;letter-spacing:-.7px;line-height:1.13}
+  .sh h2 b{color:var(--o-dark)}
+  .sh p{color:var(--muted);font-size:16.5px;margin-top:12px}
+
+  /* Pain row */
+  .pain{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+  .pcard{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:24px}
+  .pcard .n{font-size:30px;font-weight:830;color:var(--o-dark);letter-spacing:-.5px}
+  .pcard h3{font-size:16px;font-weight:760;margin:8px 0 6px}
+  .pcard p{color:var(--ink2);font-size:14.5px;line-height:1.6}
+
+  /* Steps */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 22px;box-shadow:var(--shadow);position:relative}
+  .step .num{width:40px;height:40px;border-radius:11px;background:var(--grad);color:#fff;font-weight:830;font-size:18px;
+        display:grid;place-items:center;box-shadow:0 5px 14px rgba(255,107,26,.3);margin-bottom:15px}
+  .step h3{font-size:17px;font-weight:780;margin-bottom:7px;letter-spacing:-.2px}
+  .step p{color:var(--ink2);font-size:14.5px;line-height:1.6}
+
+  /* Why grid */
+  .why{background:var(--dark2);color:#fff}
+  .why .sh h2{color:#fff}.why .sh p{color:#A8B0B9}
+  .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+  .wcard{background:#23292F;border:1px solid #2E353C;border-radius:16px;padding:26px 24px}
+  .wcard .ic{width:46px;height:46px;border-radius:12px;background:rgba(255,107,26,.16);color:var(--o-glow);
+        display:grid;place-items:center;font-size:22px;margin-bottom:14px}
+  .wcard h3{font-size:17px;font-weight:780;margin-bottom:8px;letter-spacing:-.2px}
+  .wcard p{color:#A8B0B9;font-size:14.5px;line-height:1.6}
+  .wcard p b{color:#fff;font-weight:700}
+
+  /* Pricing */
+  .price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;align-items:stretch}
+  .pl{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px 26px;display:flex;flex-direction:column;
+        box-shadow:var(--shadow);position:relative}
+  .pl.best{border-color:var(--o);box-shadow:0 16px 44px rgba(255,107,26,.18);transform:translateY(-6px)}
+  .pl .pop{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--grad);color:#fff;
+        font-weight:800;font-size:11.5px;letter-spacing:.4px;text-transform:uppercase;padding:5px 15px;border-radius:100px;
+        box-shadow:0 5px 14px rgba(255,107,26,.34);white-space:nowrap}
+  .pl .pname{font-size:14px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--o-dark)}
+  .pl.exc .pname{color:#7c3aed}
+  .pl .pprice{font-size:38px;font-weight:840;letter-spacing:-1px;margin:10px 0 2px}
+  .pl .pprice small{font-size:15px;font-weight:600;color:var(--muted);letter-spacing:0}
+  .pl .pnote{font-size:13px;color:var(--muted);margin-bottom:18px}
+  .pl ul{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:24px;flex:1}
+  .pl li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:var(--ink2);line-height:1.45}
+  .pl li .ck{flex:none;width:20px;height:20px;border-radius:6px;background:var(--o-pale);color:var(--o-dark);
+        display:grid;place-items:center;font-size:11px;font-weight:800;margin-top:1px}
+  .pl.exc li .ck{background:#f1eafe;color:#7c3aed}
+  .pl .pbtn{display:block;text-align:center;font-weight:740;font-size:15px;padding:14px;border-radius:11px;transition:.15s}
+  .pl .pbtn.solid{background:var(--grad);color:#fff;box-shadow:0 6px 18px rgba(255,107,26,.3)}
+  .pl .pbtn.solid:hover{filter:brightness(1.05)}
+  .pl .pbtn.outline{border:1px solid var(--line);color:var(--ink2)}
+  .pl .pbtn.outline:hover{border-color:var(--o);color:var(--o-dark)}
+  .price-note{text-align:center;color:var(--muted);font-size:13.5px;margin-top:22px}
+
+  /* Testimonials */
+  .tg{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px}
+  .tcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px;box-shadow:var(--shadow)}
+  .tcard .q{font-size:15.5px;color:var(--ink);line-height:1.6;font-weight:500}
+  .tcard .who{display:flex;align-items:center;gap:12px;margin-top:18px}
+  .tcard .av{width:44px;height:44px;border-radius:50%;background:var(--o-pale);color:var(--o-dark);font-weight:800;
+        display:grid;place-items:center;font-size:16px}
+  .tcard .who b{display:block;font-size:14.5px;font-weight:760}
+  .tcard .who span{font-size:13px;color:var(--muted)}
+
+  /* CTA band */
+  .cta-band{background:var(--grad);color:#fff;border-radius:22px;padding:54px 40px;text-align:center;position:relative;overflow:hidden}
+  .cta-band::after{content:"";position:absolute;inset:0;background:radial-gradient(500px 240px at 80% -30%,rgba(255,255,255,.22),transparent 60%)}
+  .cta-band>*{position:relative;z-index:2}
+  .cta-band h2{font-size:clamp(24px,3.6vw,34px);font-weight:830;letter-spacing:-.6px;line-height:1.15;max-width:680px;margin:0 auto}
+  .cta-band p{font-size:17px;opacity:.95;margin:14px auto 26px;max-width:560px}
+  .cta-band .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn-w{background:#fff;color:var(--o-dark);font-weight:760;font-size:15.5px;padding:15px 28px;border-radius:12px;transition:.15s}
+  .btn-w:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.2)}
+  .btn-dk{background:rgba(0,0,0,.18);color:#fff;font-weight:740;font-size:15.5px;padding:15px 28px;border-radius:12px;border:1px solid rgba(255,255,255,.3)}
+  .btn-dk:hover{background:rgba(0,0,0,.28)}
+
+  /* Kontakt-Formular */
+  .kontakt-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}
+  .kontakt-info h3{font-size:22px;font-weight:820;letter-spacing:-.4px;margin-bottom:8px}
+  .kontakt-info p{color:var(--ink2);font-size:15.5px;line-height:1.65;margin-bottom:18px}
+  .kontakt-info .row{display:flex;align-items:center;gap:11px;font-size:15.5px;color:var(--ink2);margin-bottom:12px}
+  .kontakt-info .row .d{width:38px;height:38px;border-radius:10px;background:var(--o-pale);color:var(--o-dark);
+        display:grid;place-items:center;font-size:17px;flex:none}
+  .kontakt-info .row a{font-weight:700;color:var(--ink)}
+  .kontakt-info .row a:hover{color:var(--o-dark)}
+  .kform{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:var(--shadow)}
+  .kfield{margin-bottom:14px}
+  .kfield label{display:block;font-size:13px;font-weight:650;color:var(--ink2);margin-bottom:6px}
+  .kfield input,.kfield textarea,.kfield select{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+        font-size:15px;font-family:inherit;color:var(--ink);background:#fff;outline:none;transition:.14s}
+  .kfield input:focus,.kfield textarea:focus,.kfield select:focus{border-color:var(--o);box-shadow:0 0 0 3px rgba(255,107,26,.12)}
+  .kfield textarea{min-height:90px;resize:vertical}
+  .krow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .kbtn{width:100%;background:var(--grad);color:#fff;font-weight:760;font-size:15.5px;border:0;border-radius:12px;
+        padding:15px;cursor:pointer;transition:.15s;box-shadow:0 6px 18px rgba(255,107,26,.3)}
+  .kbtn:hover{filter:brightness(1.05)}
+  .kconsent{font-size:11.5px;color:var(--muted);margin-top:12px;line-height:1.5}
+  .kconsent a{color:var(--o-dark);text-decoration:underline}
+
+  /* FAQ */
+  .faq-list{max-width:780px;margin:0 auto}
+  .faq-item{border:1px solid var(--line);border-radius:14px;margin-bottom:11px;overflow:hidden;background:var(--card);transition:.16s}
+  .faq-item.open{border-color:var(--o);box-shadow:0 6px 22px rgba(255,107,26,.1)}
+  .faq-q{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 20px;cursor:pointer;
+        font-weight:730;font-size:16px;color:var(--ink);user-select:none}
+  .faq-q .pm{flex:none;width:26px;height:26px;border-radius:8px;background:var(--o-pale);color:var(--o-dark);
+        display:grid;place-items:center;font-size:18px;font-weight:700;transition:.2s}
+  .faq-item.open .faq-q .pm{transform:rotate(45deg)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease}
+  .faq-a .inner{padding:0 20px 18px;color:var(--ink2);font-size:15px;line-height:1.65}
+
+  /* Footer */
+  footer{background:var(--dark);color:#9AA2AB;padding:40px 0;font-size:13.5px}
+  footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+  footer .fbrand{display:flex;align-items:center;gap:10px;color:#fff;font-weight:700}
+  footer .flinks{display:flex;gap:20px;flex-wrap:wrap}
+  footer .flinks a:hover{color:#fff}
+  .powered{font-size:12px;color:#6B7480;margin-top:6px}
+
+  @media(max-width:760px){
+    .nav-link,.nav-tel{display:none}
+    .kontakt-grid{grid-template-columns:1fr}
+    .cta-band{padding:42px 24px}
+  }
+  @media(max-width:480px){
+    .krow{grid-template-columns:1fr}
+    .hero-stats{gap:24px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html">
+      <div class="logo">GC</div>
+      <div class="bname">GreenCareers<small>Straßen- &amp; Tiefbau</small></div>
+    </a>
+    <div class="sp"></div>
+    <a class="nav-link" href="index.html">Stellenportal ansehen</a>
+    <a class="nav-tel" href="tel:+4922196882408">+49 221 9688 2408</a>
+    <a class="nav-cta" href="#kontakt">Erstgespräch sichern</a>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="wrap">
+    <span class="kicker">● Für Betriebe im Straßen-, Tief- &amp; Kanalbau</span>
+    <h1>Qualifizierte Fachkräfte für Ihren Bau-Betrieb – <b>planbar statt zufällig</b>, aus Ihrer Region.</h1>
+    <p class="sub">GreenCareers ist das spezialisierte Karrierenetzwerk für die grüne &amp; graue Branche. Per KI-Matching bringen wir Ihren Betrieb mit passenden Fachkräften zusammen – ohne teure Agenturen und ohne Anzeigen-Chaos.</p>
+    <div class="hero-cta">
+      <a class="btn-o" href="#kontakt">Kostenloses Erstgespräch sichern</a>
+      <a class="btn-ghost-d" href="#pakete">Pakete &amp; Preise ansehen ↓</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hs"><b>30.000+</b><span>Fachkräfte im Netzwerk</span></div>
+      <div class="hs"><b>1.200+</b><span>Betriebe vertrauen uns</span></div>
+      <div class="hs"><b>900+</b><span>erfolgreiche Platzierungen</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="lstrip">
+  <div class="wrap">
+    <span class="l">Straßenbau</span><span class="sep">·</span>
+    <span class="l">Tiefbau</span><span class="sep">·</span>
+    <span class="l">Kanalbau</span><span class="sep">·</span>
+    <span class="l">Rohrleitungsbau</span><span class="sep">·</span>
+    <span class="l">Hochbau</span><span class="sep">·</span>
+    <span class="l">GaLaBau</span>
+  </div>
+</div>
+
+<!-- Pain -->
+<section class="s pain">
+  <div class="wrap">
+    <div class="sh">
+      <span class="tag">Die Ausgangslage</span>
+      <h2>Der strukturelle Fachkräftemangel kostet Ihren Betrieb <b>jeden Monat</b> Geld.</h2>
+      <p>Unbesetzte Stellen bremsen Baustellen aus, überlasten das Team und verschieben Aufträge. Klassische Jobbörsen liefern Masse statt Passung.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pcard"><div class="n">90 Tage</div><h3>Durchschnittliche Vakanzzeit</h3><p>So lange bleibt eine Facharbeiter- oder Polierstelle im Bau oft unbesetzt – mit laufenden Kosten und verschobenen Projekten.</p></div>
+      <div class="pcard"><div class="n">5-stellig</div><h3>Vakanzkosten pro Stelle</h3><p>Eine offene Schlüsselposition kann pro Monat einen fünfstelligen Betrag an entgangener Wertschöpfung verursachen.</p></div>
+      <div class="pcard"><div class="n">Masse ≠ Passung</div><h3>Das Jobbörsen-Problem</h3><p>Mehr Bewerbungen sind kein Vorteil, wenn sie fachlich nicht passen. Vorauswahl kostet Sie Zeit, die Sie nicht haben.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Steps -->
+<section class="s">
+  <div class="wrap">
+    <div class="sh">
+      <span class="tag">So funktioniert es</span>
+      <h2>In vier Schritten zur passenden Fachkraft.</h2>
+      <p>Ein System statt Glückssache – von der Anzeige bis zur Einstellung.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><h3>Stelle anlegen</h3><p>Ihre Stelle erscheint im spezialisierten Karrierenetzwerk und auf dem Straßen- &amp; Tiefbau-Portal – sichtbar für genau die Fachkräfte, die Ihr Gewerk suchen.</p></div>
+      <div class="step"><div class="num">2</div><h3>KI-Matching</h3><p>Unser KI-Filtermechanismus gleicht Beruf, Qualifikation und Region ab. So erreichen wir auch den verdeckten Arbeitsmarkt – nicht nur aktiv Suchende.</p></div>
+      <div class="step"><div class="num">3</div><h3>Nur passende Bewerbungen</h3><p>Sie erhalten vorgefilterte, fachlich passende Bewerbungen direkt in Ihren Bewerber-Bereich – ohne Spam, ohne manuelle Vorauswahl.</p></div>
+      <div class="step"><div class="num">4</div><h3>Einstellen</h3><p>Sie führen die Gespräche, treffen die Entscheidung. Auf Wunsch übernehmen wir die telefonische Vorqualifizierung der Kandidaten.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Why -->
+<section class="s why">
+  <div class="wrap">
+    <div class="sh">
+      <span class="tag">Warum GreenCareers</span>
+      <h2>Spezialisierung schlägt Reichweite.</h2>
+      <p>Ein strukturell anderer Ansatz als generische Portale oder teure Agenturen.</p>
+    </div>
+    <div class="why-grid">
+      <div class="wcard"><div class="ic">🎯</div><h3>Auf die Branche fokussiert</h3><p>Kein fachfremdes Streuen. Auf GreenCareers suchen Menschen <b>genau Ihre Gewerke</b> – vom Baugeräteführer bis zum Bauleiter.</p></div>
+      <div class="wcard"><div class="ic">📍</div><h3>Regional ausgespielt</h3><p>Stellen werden nach Postleitzahl sortiert. <b>Fachkräfte aus Ihrer Region</b> sehen Ihren Betrieb zuerst.</p></div>
+      <div class="wcard"><div class="ic">🤖</div><h3>KI-Matching statt Masse</h3><p>Der Filter sortiert vor, damit Sie <b>nur passende Bewerbungen</b> sehen – weniger Arbeit, nicht mehr.</p></div>
+      <div class="wcard"><div class="ic">💶</div><h3>Feste Kosten statt Provision</h3><p>Keine 25–30 % vom Jahresgehalt wie bei Agenturen. <b>Planbare Festpreise</b> pro Paket, ohne versteckte Kosten.</p></div>
+      <div class="wcard"><div class="ic">⚡</div><h3>Bewerbung in 2 Minuten</h3><p>Ohne Anschreiben-Marathon. Weniger Hürden für Fachkräfte bedeuten <b>mehr echte Bewerbungen</b> für Sie.</p></div>
+      <div class="wcard"><div class="ic">🛠️</div><h3>Eigener Bewerber-Bereich</h3><p>Alle Bewerbungen gebündelt in Ihrem GreenCareers-OS-Account – <b>übersichtlich verwalten</b> statt im Postfach suchen.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="s" id="pakete">
+  <div class="wrap">
+    <div class="sh">
+      <span class="tag">Pakete &amp; Preise</span>
+      <h2>Transparente Preise – <b>Sie wissen genau, was Sie bekommen.</b></h2>
+      <p>Drei Pakete für jede Betriebsgröße. Keine versteckten Kosten, keine Provision pro Einstellung.</p>
+    </div>
+    <div class="price-grid">
+      <div class="pl">
+        <div class="pname">Smart</div>
+        <div class="pprice">1.790 €<small> einmalig</small></div>
+        <div class="pnote">Der solide Einstieg für einzelne Vakanzen.</div>
+        <ul>
+          <li><span class="ck">✓</span> Eine Stellenanzeige im Karrierenetzwerk</li>
+          <li><span class="ck">✓</span> Veröffentlichung auf dem Straßen- &amp; Tiefbau-Portal</li>
+          <li><span class="ck">✓</span> KI-Matching &amp; regionale Ausspielung</li>
+          <li><span class="ck">✓</span> Vorgefilterte Bewerbungen im eigenen Bewerber-Bereich</li>
+          <li><span class="ck">✓</span> Firmenprofil mit Logo &amp; Über-uns</li>
+        </ul>
+        <a class="pbtn outline" href="#kontakt">Smart anfragen</a>
+      </div>
+
+      <div class="pl best">
+        <div class="pop">Beliebteste Wahl</div>
+        <div class="pname">Premium</div>
+        <div class="pprice">2.890 €<small> einmalig</small></div>
+        <div class="pnote">Mehr Sichtbarkeit, mehr passende Fachkräfte.</div>
+        <ul>
+          <li><span class="ck">✓</span> Alles aus <b>Smart</b></li>
+          <li><span class="ck">✓</span> Platzierung im <b>Favoriten-Banner</b> ganz oben</li>
+          <li><span class="ck">✓</span> Erhöhte Sichtbarkeit &amp; Premium-Badge</li>
+          <li><span class="ck">✓</span> Ausspielung über Social-Media-Kanäle</li>
+          <li><span class="ck">✓</span> Erweitertes Firmenprofil mit Bildergalerie</li>
+        </ul>
+        <a class="pbtn solid" href="#kontakt">Premium anfragen</a>
+      </div>
+
+      <div class="pl exc">
+        <div class="pname">Exzellenz</div>
+        <div class="pprice">4.990 €<small> einmalig</small></div>
+        <div class="pnote">Rundum-Betreuung inkl. Vorqualifizierung.</div>
+        <ul>
+          <li><span class="ck">✓</span> Alles aus <b>Premium</b></li>
+          <li><span class="ck">✓</span> <b>Telefonische Vorqualifizierung</b> der Kandidaten</li>
+          <li><span class="ck">✓</span> Maximale Sichtbarkeit im Banner &amp; Netzwerk</li>
+          <li><span class="ck">✓</span> Persönliche Betreuung durch Ihr GreenCareers-Team</li>
+          <li><span class="ck">✓</span> Priorisierte Ausspielung Ihrer Stellen</li>
+        </ul>
+        <a class="pbtn outline" href="#kontakt">Exzellenz anfragen</a>
+      </div>
+    </div>
+    <p class="price-note">Alle Preise zzgl. MwSt. · Auch als Abo mit 6 oder 12 Monaten Laufzeit verfügbar · Individuelle Kontingente für mehrere Stellen auf Anfrage.</p>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="s pain">
+  <div class="wrap">
+    <div class="sh">
+      <span class="tag">Aus der Praxis</span>
+      <h2>Betriebe, die mit System einstellen.</h2>
+    </div>
+    <div class="tg">
+      <div class="tcard"><div class="q">„Endlich Bewerbungen, die fachlich passen – statt 40 Mails durchzuackern, von denen keine Hand und Fuß hat. Das spart uns jede Woche Zeit."</div><div class="who"><div class="av">MB</div><div><b>Marc B.</b><span>Geschäftsführer, Tiefbau-Betrieb</span></div></div></div>
+      <div class="tcard"><div class="q">„Die regionale Ausspielung ist Gold wert. Unsere Polierstelle war nach Jahren der Suche planbar besetzt – mit jemandem aus dem Umkreis."</div><div class="who"><div class="av">DH</div><div><b>Dirk H.</b><span>Bauleiter, Straßen- &amp; Kanalbau</span></div></div></div>
+      <div class="tcard"><div class="q">„Feste Kosten, keine Provision pro Kopf. Für uns als mittelständischen Betrieb war genau das der Unterschied zur Agentur."</div><div class="who"><div class="av">JA</div><div><b>Julia A.</b><span>Personalleitung, Bauunternehmen</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="s">
+  <div class="wrap">
+    <div class="sh">
+      <span class="tag">Häufige Fragen</span>
+      <h2>Was Betriebe vor dem Start wissen wollen.</h2>
+    </div>
+    <div class="faq-list" id="faqList"></div>
+  </div>
+</section>
+
+<!-- Kontakt -->
+<section class="s pain" id="kontakt">
+  <div class="wrap">
+    <div class="kontakt-grid">
+      <div class="kontakt-info">
+        <span class="tag" style="display:inline-block;background:var(--o-pale);color:var(--o-dark);font-weight:800;font-size:11.5px;letter-spacing:.5px;text-transform:uppercase;padding:5px 13px;border-radius:100px;border:1px solid #FAD9C2;margin-bottom:14px">Kostenloses Erstgespräch</span>
+        <h3>Lassen Sie uns über Ihren Personalbedarf sprechen.</h3>
+        <p>In 15 Minuten zeigen wir Ihnen, wie GreenCareers passende Fachkräfte für Ihren Betrieb gewinnt – unverbindlich und konkret auf Ihre offenen Stellen bezogen.</p>
+        <div class="row"><span class="d">📞</span> <a href="tel:+4922196882408">+49 221 9688 2408</a></div>
+        <div class="row"><span class="d">✉️</span> <a href="mailto:hello@green-careers.de">hello@green-careers.de</a></div>
+        <div class="row"><span class="d">🌐</span> <a href="https://www.green-careers.de" target="_blank" rel="noopener">green-careers.de</a></div>
+      </div>
+      <form class="kform" id="kform" onsubmit="return sendKontakt(event)">
+        <div class="krow">
+          <div class="kfield"><label>Ihr Name *</label><input id="k-name" required placeholder="Vor- und Nachname"></div>
+          <div class="kfield"><label>Betrieb *</label><input id="k-firma" required placeholder="Firmenname"></div>
+        </div>
+        <div class="krow">
+          <div class="kfield"><label>E-Mail *</label><input id="k-email" type="email" required placeholder="name@betrieb.de"></div>
+          <div class="kfield"><label>Telefon</label><input id="k-tel" type="tel" placeholder="0221 …"></div>
+        </div>
+        <div class="kfield"><label>Welches Paket interessiert Sie?</label>
+          <select id="k-paket">
+            <option value="">Noch unsicher – bitte beraten</option>
+            <option>Smart (1.790 €)</option>
+            <option>Premium (2.890 €)</option>
+            <option>Exzellenz (4.990 €)</option>
+          </select>
+        </div>
+        <div class="kfield"><label>Ihre offene(n) Stelle(n) / Nachricht</label><textarea id="k-msg" placeholder="Welche Position(en) möchten Sie besetzen?"></textarea></div>
+        <button class="kbtn" type="submit">Erstgespräch anfragen</button>
+        <div class="kconsent">Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Angaben zur Kontaktaufnahme zu. Details in der <a href="https://www.green-careers.de/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a>.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CTA band -->
+<section class="s">
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Besetzen Sie Ihre nächste Stelle mit System – nicht mit Glück.</h2>
+      <p>Über 1.200 Betriebe gewinnen mit GreenCareers planbar Fachkräfte aus der grünen &amp; grauen Branche.</p>
+      <div class="btns">
+        <a class="btn-w" href="#kontakt">Kostenloses Erstgespräch</a>
+        <a class="btn-dk" href="index.html">Zum Stellenportal</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="fbrand"><div class="logo" style="width:32px;height:32px;font-size:15px">GC</div> GreenCareers · Straßen- &amp; Tiefbau</div>
+      <div class="powered">Ein Angebot der GreenCareers / Greenfield Digital</div>
+    </div>
+    <div class="flinks">
+      <a href="index.html">Stellenportal</a>
+      <a href="magazin.html">Magazin</a>
+      <a href="https://www.green-careers.de/impressum" target="_blank" rel="noopener">Impressum</a>
+      <a href="https://www.green-careers.de/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
+      <a href="https://www.green-careers.de" target="_blank" rel="noopener">green-careers.de</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const $=id=>document.getElementById(id);
+
+/* FAQ (B2B) */
+const FAQ_DATA=[
+  {q:'Was kostet GreenCareers für meinen Betrieb?',a:'Sie zahlen einen festen Paketpreis – Smart 1.790 €, Premium 2.890 € oder Exzellenz 4.990 € (zzgl. MwSt.). Keine Provision pro Einstellung, keine versteckten Kosten. Für mehrere Stellen oder eine Abo-Laufzeit erstellen wir Ihnen ein individuelles Kontingent.'},
+  {q:'Wie unterscheidet sich das von einer Agentur?',a:'Agenturen rechnen meist 25–30 % des Jahresgehalts pro Platzierung ab und sind auf einzelne Einstellungen getaktet. GreenCareers arbeitet mit festen Kosten und einem System: Plattform, Marke und KI-Matching kontinuierlich – planbar statt pro Kopf.'},
+  {q:'Bekomme ich nicht einfach mehr Bewerbungen wie bei Jobbörsen?',a:'Die Frage ist nicht die Anzahl, sondern die Passung. Unser KI-Filtermechanismus spielt Ihre Stelle gezielt passenden Fachkräften in Ihrer Region aus – Sie sehen vorgefilterte, fachlich passende Bewerbungen statt Masse.'},
+  {q:'Für welche Berufe funktioniert das?',a:'Für alle Gewerke im Straßen-, Tief-, Kanal-, Rohrleitungs- und Hochbau: vom Baugeräteführer, Rohrleger und Facharbeiter über Vorarbeiter und Polier bis zu Bauleiter und Bauzeichner.'},
+  {q:'Was bedeutet „telefonische Vorqualifizierung" im Exzellenz-Paket?',a:'Auf Wunsch sprechen wir die eingehenden Kandidaten vorab telefonisch, prüfen Verfügbarkeit und Eignung und reichen Ihnen nur die relevanten Profile weiter. So sparen Sie zusätzlich Zeit in der Vorauswahl.'},
+  {q:'Wie schnell ist meine Stelle online?',a:'Nach dem Erstgespräch und der Freigabe wird Ihre Stelle zeitnah veröffentlicht und im Karrierenetzwerk sowie auf dem Straßen- & Tiefbau-Portal ausgespielt.'}
+];
+function renderFaq(){
+  $('faqList').innerHTML=FAQ_DATA.map((f,i)=>`
+    <div class="faq-item" id="faq${i}">
+      <div class="faq-q" onclick="toggleFaq(${i})"><span>${f.q}</span><span class="pm">+</span></div>
+      <div class="faq-a"><div class="inner">${f.a}</div></div>
+    </div>`).join('');
+  const strip=s=>s.replace(/<[^>]+>/g,'').replace(/&amp;/g,'&');
+  const ld={"@context":"https://schema.org","@type":"FAQPage","mainEntity":FAQ_DATA.map(f=>({
+    "@type":"Question","name":strip(f.q),"acceptedAnswer":{"@type":"Answer","text":strip(f.a)}}))};
+  const sc=document.createElement('script');sc.type='application/ld+json';
+  sc.textContent=JSON.stringify(ld);document.head.appendChild(sc);
+}
+function toggleFaq(i){
+  const item=$('faq'+i),a=item.querySelector('.faq-a');
+  const open=item.classList.toggle('open');
+  a.style.maxHeight=open?a.scrollHeight+'px':'0';
+}
+
+/* Kontakt-Formular -> öffnet vorbefüllte E-Mail an hello@green-careers.de
+   (statische Seite ohne Backend; reversibel, kein Datenverlust) */
+function sendKontakt(e){
+  e.preventDefault();
+  const name=$('k-name').value.trim(), firma=$('k-firma').value.trim();
+  const email=$('k-email').value.trim(), tel=$('k-tel').value.trim();
+  const paket=$('k-paket').value, msg=$('k-msg').value.trim();
+  const body=
+    `Name: ${name}\nBetrieb: ${firma}\nE-Mail: ${email}\nTelefon: ${tel}\n`+
+    `Interesse: ${paket||'Beratung'}\n\nNachricht:\n${msg}`;
+  const href='mailto:hello@green-careers.de'+
+    '?subject='+encodeURIComponent('Anfrage Erstgespräch · '+firma)+
+    '&body='+encodeURIComponent(body);
+  window.location.href=href;
+  return false;
+}
+
+renderFaq();
+</script>
+</body>
+</html>

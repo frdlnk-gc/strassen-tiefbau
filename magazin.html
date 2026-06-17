@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bau-Magazin · Karriere, Gehalt &amp; Bewerbung im Straßen- &amp; Tiefbau · GreenCareers</title>
+<meta name="description" content="Das Karriere-Magazin für den Straßen-, Tief- und Kanalbau: Gehälter 2026, Berufsbilder, Quereinstieg, Bewerbung ohne Anschreiben, Weiterbildung zum Polier und deine Rechte im Bauvertrag.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://strassen-tiefbau.green-careers.de/magazin.html">
+<link rel="icon" href="https://www.green-careers.de/favicon-32.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bau-Magazin · Karriere, Gehalt &amp; Bewerbung im Straßen- &amp; Tiefbau">
+<meta property="og:description" content="Gehälter 2026, Berufsbilder, Quereinstieg, Bewerbung ohne Anschreiben, Weiterbildung zum Polier – das Karriere-Magazin für den Bau.">
+<meta property="og:url" content="https://strassen-tiefbau.green-careers.de/magazin.html">
+<style>
+  :root{
+    --o:#FF6B1A; --o-dark:#E55A0A; --o-glow:#FF8533; --o-pale:#FFF1E8;
+    --grad:linear-gradient(135deg,#FF6B1A 0%,#E55A0A 100%);
+    --ink:#16191D; --ink2:#3A4047; --muted:#6B7480;
+    --bg:#F6F5F2; --card:#FFFFFF; --line:#E6E3DD; --line2:#EFEDE8;
+    --dark:#16191D; --dark2:#1F242A;
+    --ok:#1e8449; --ok-bg:#e8f8ef;
+    --radius:16px; --shadow:0 1px 2px rgba(20,25,29,.04),0 8px 28px rgba(20,25,29,.06);
+    --maxw:1140px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  img{max-width:100%}
+
+  /* ---------- Header ---------- */
+  header{position:sticky;top:0;z-index:50;background:rgba(246,245,242,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;gap:14px;height:64px}
+  .brand{display:flex;align-items:center;gap:11px;cursor:pointer}
+  .logo{width:40px;height:40px;border-radius:11px;background:var(--grad);display:grid;place-items:center;
+        color:#fff;font-weight:800;font-size:19px;box-shadow:0 4px 12px rgba(255,107,26,.35)}
+  .bname{font-weight:800;font-size:16px;letter-spacing:-.2px;line-height:1.05}
+  .bname small{display:block;font-weight:600;font-size:11.5px;color:var(--muted);letter-spacing:.3px;text-transform:uppercase}
+  .nav .sp{flex:1}
+  .nav-links{display:flex;align-items:center;gap:4px}
+  .nav-link{position:relative;font-weight:650;font-size:14.5px;color:var(--ink2);padding:9px 13px;border-radius:9px;cursor:pointer;transition:.14s;white-space:nowrap}
+  .nav-link:hover{color:var(--ink);background:rgba(20,25,29,.05)}
+  .nav-link.active{color:var(--o-dark);background:var(--o-pale)}
+  .nav-cta{background:var(--ink);color:#fff;font-weight:700;font-size:14px;padding:10px 18px;border-radius:10px;transition:.15s;white-space:nowrap}
+  .nav-cta:hover{background:#000}
+  .burger{display:none;width:42px;height:42px;border:1px solid var(--line);background:var(--card);border-radius:11px;
+        cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:4.5px;padding:0}
+  .burger span{display:block;width:19px;height:2px;background:var(--ink);border-radius:2px;transition:.22s}
+  .burger.on span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+  .burger.on span:nth-child(2){opacity:0}
+  .burger.on span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+  .scrim{position:fixed;inset:0;background:rgba(10,12,14,.5);backdrop-filter:blur(2px);opacity:0;visibility:hidden;
+        transition:.2s;z-index:90}
+  .scrim.on{opacity:1;visibility:visible}
+  .drawer{position:fixed;top:0;right:0;height:100%;width:min(86vw,340px);background:#fff;z-index:95;
+        transform:translateX(100%);transition:transform .26s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;
+        box-shadow:-10px 0 40px rgba(20,25,29,.2)}
+  .drawer.on{transform:none}
+  .drawer-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--line)}
+  .drawer-head .x{width:38px;height:38px;border:1px solid var(--line);background:var(--bg);border-radius:10px;font-size:18px;
+        cursor:pointer;color:var(--ink2)}
+  .drawer-body{flex:1;overflow-y:auto;padding:12px 14px 20px}
+  .drawer-body a,.drawer-sub a{display:flex;align-items:center;gap:12px;font-size:16px;font-weight:650;color:var(--ink);
+        padding:14px 14px;border-radius:11px;cursor:pointer}
+  .drawer-body a:hover{background:var(--o-pale)}
+  .drawer-body a .mi{width:22px;text-align:center;font-size:17px}
+  .drawer-lbl{font-size:11.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);padding:16px 14px 6px}
+  .drawer-sub a{font-size:15px;font-weight:600;color:var(--ink2);padding:11px 14px 11px 26px}
+  .drawer-sub a:hover{background:var(--bg);color:var(--o-dark)}
+  .drawer-cta{margin:8px 14px 4px;display:block;text-align:center;background:var(--grad);color:#fff;font-weight:740;
+        font-size:15.5px;padding:15px;border-radius:12px;box-shadow:0 6px 18px rgba(255,107,26,.3)}
+
+  /* ---------- Magazin Hero ---------- */
+  .mhero{background:var(--dark);color:#fff;position:relative;overflow:hidden}
+  .mhero::after{content:"";position:absolute;inset:0;background:radial-gradient(720px 320px at 86% -20%,rgba(255,107,26,.32),transparent 62%);pointer-events:none}
+  .mhero .wrap{position:relative;z-index:2;padding:56px 22px 50px}
+  .kicker{display:inline-flex;align-items:center;gap:8px;background:rgba(255,107,26,.16);
+          color:var(--o-glow);font-weight:700;font-size:12.5px;letter-spacing:.5px;text-transform:uppercase;
+          padding:7px 14px;border-radius:100px;border:1px solid rgba(255,107,26,.28)}
+  .mhero h1{font-size:clamp(28px,4.6vw,44px);line-height:1.08;letter-spacing:-.8px;margin:18px 0 14px;font-weight:830}
+  .mhero p{font-size:clamp(15.5px,2vw,18px);color:#C7CDD4;max-width:640px}
+
+  /* ---------- Category filter ---------- */
+  .catbar{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:64px;z-index:40}
+  .catbar .wrap{display:flex;gap:8px;overflow-x:auto;padding:14px 22px;-webkit-overflow-scrolling:touch}
+  .catbar .wrap::-webkit-scrollbar{display:none}
+  .chip{flex:none;border:1px solid var(--line);background:var(--card);color:var(--ink2);font-weight:650;font-size:14px;
+        padding:9px 16px;border-radius:100px;cursor:pointer;transition:.14s;white-space:nowrap}
+  .chip:hover{border-color:var(--o);color:var(--o-dark)}
+  .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  /* ---------- Article grid ---------- */
+  .mgrid{padding:38px 0 60px}
+  .feat-art{display:grid;grid-template-columns:1.15fr 1fr;gap:0;background:var(--card);border:1px solid var(--line);
+        border-radius:18px;overflow:hidden;box-shadow:var(--shadow);cursor:pointer;margin-bottom:34px;transition:.18s}
+  .feat-art:hover{box-shadow:0 14px 44px rgba(20,25,29,.12);transform:translateY(-2px)}
+  .feat-art .cover{min-height:300px;position:relative;display:grid;place-items:center}
+  .feat-art .cover .emoji{font-size:74px;filter:drop-shadow(0 8px 22px rgba(0,0,0,.25))}
+  .feat-art .fa-body{padding:34px 34px;display:flex;flex-direction:column;justify-content:center}
+  .feat-art .fa-body h2{font-size:clamp(22px,2.6vw,30px);font-weight:830;letter-spacing:-.5px;line-height:1.16;margin:12px 0 12px}
+  .feat-art .fa-body p{color:var(--ink2);font-size:15.5px;line-height:1.65}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);
+        cursor:pointer;display:flex;flex-direction:column;transition:.18s}
+  .card:hover{box-shadow:0 14px 40px rgba(20,25,29,.12);transform:translateY(-3px)}
+  .card .cover{height:172px;position:relative;display:grid;place-items:center}
+  .card .cover .emoji{font-size:50px;filter:drop-shadow(0 6px 16px rgba(0,0,0,.25))}
+  .card .c-body{padding:20px 20px 22px;display:flex;flex-direction:column;flex:1}
+  .card h3{font-size:18.5px;font-weight:790;letter-spacing:-.3px;line-height:1.25;margin:10px 0 9px}
+  .card .excerpt{color:var(--ink2);font-size:14.3px;line-height:1.6;flex:1}
+  .cat-tag{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;font-size:11.5px;font-weight:800;
+        letter-spacing:.4px;text-transform:uppercase;color:var(--o-dark);background:var(--o-pale);padding:5px 11px;border-radius:100px}
+  .meta{display:flex;align-items:center;gap:10px;margin-top:14px;font-size:12.5px;color:var(--muted);font-weight:600}
+  .meta .dot{width:3px;height:3px;border-radius:50%;background:var(--muted)}
+  .sec-lbl{font-size:13px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);margin:6px 0 18px}
+
+  /* ---------- Article detail ---------- */
+  .article{display:none;padding:0 0 60px}
+  .art-hero{position:relative;min-height:280px;display:grid;place-items:center;color:#fff;text-align:center}
+  .art-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,25,29,.28),rgba(20,25,29,.62))}
+  .art-hero .ah-in{position:relative;z-index:2;max-width:820px;padding:50px 22px}
+  .art-hero .emoji{font-size:60px;filter:drop-shadow(0 8px 22px rgba(0,0,0,.3))}
+  .art-hero h1{font-size:clamp(26px,4vw,40px);font-weight:840;letter-spacing:-.6px;line-height:1.12;margin:16px 0 12px}
+  .art-hero .a-meta{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:650;color:#E6E3DD}
+  .art-body{max-width:760px;margin:0 auto;padding:42px 22px 0}
+  .crumb{font-size:13.5px;color:var(--muted);font-weight:600;margin-bottom:24px;cursor:pointer;display:inline-flex;gap:7px;align-items:center}
+  .crumb:hover{color:var(--o-dark)}
+  .art-body .lead{font-size:18.5px;line-height:1.6;color:var(--ink);font-weight:560;margin-bottom:26px}
+  .art-body h2{font-size:25px;font-weight:820;letter-spacing:-.4px;line-height:1.2;margin:36px 0 14px}
+  .art-body h3{font-size:19px;font-weight:760;margin:26px 0 10px}
+  .art-body p{font-size:16.5px;line-height:1.75;color:var(--ink2);margin-bottom:16px}
+  .art-body ul,.art-body ol{margin:0 0 18px 4px;padding-left:22px;color:var(--ink2)}
+  .art-body li{font-size:16.5px;line-height:1.7;margin-bottom:9px}
+  .art-body strong{color:var(--ink);font-weight:720}
+  .art-body table{width:100%;border-collapse:collapse;margin:8px 0 24px;font-size:15.5px}
+  .art-body th,.art-body td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line)}
+  .art-body thead th{background:var(--o-pale);color:var(--ink);font-weight:780;border-bottom:0}
+  .art-body tbody tr:nth-child(even){background:#FAF9F6}
+  .callout{background:var(--o-pale);border:1px solid #FFD9BF;border-radius:14px;padding:20px 22px;margin:8px 0 26px}
+  .callout strong{color:var(--o-dark)}
+  .keyfacts{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin:0 0 28px;box-shadow:var(--shadow)}
+  .keyfacts h4{font-size:13px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+  .keyfacts li{list-style:none;padding:8px 0;border-bottom:1px solid var(--line2);font-size:15.5px;color:var(--ink2)}
+  .keyfacts li:last-child{border-bottom:0}
+  .keyfacts li b{color:var(--ink)}
+
+  /* ---------- Article CTA ---------- */
+  .art-cta{max-width:760px;margin:44px auto 0;padding:0 22px}
+  .art-cta-box{background:var(--dark);border-radius:18px;padding:34px 32px;color:#fff;position:relative;overflow:hidden}
+  .art-cta-box::after{content:"";position:absolute;inset:0;background:radial-gradient(420px 200px at 90% -30%,rgba(255,107,26,.4),transparent 60%);pointer-events:none}
+  .art-cta-box .in{position:relative;z-index:2}
+  .art-cta-box h3{font-size:22px;font-weight:820;letter-spacing:-.4px;margin-bottom:8px}
+  .art-cta-box p{color:#C7CDD4;font-size:15px;margin-bottom:18px;max-width:520px}
+  .btn-o{display:inline-flex;align-items:center;gap:9px;background:var(--grad);color:#fff;font-weight:740;font-size:15.5px;
+        padding:13px 24px;border-radius:11px;box-shadow:0 8px 22px rgba(255,107,26,.34);cursor:pointer}
+  .btn-o:hover{transform:translateY(-1px)}
+
+  /* related */
+  .related{max-width:760px;margin:44px auto 0;padding:0 22px}
+  .related h3{font-size:18px;font-weight:800;margin-bottom:16px}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--dark);color:#9AA2AB;padding:40px 0;font-size:13.5px}
+  footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+  footer .fbrand{display:flex;align-items:center;gap:10px;color:#fff;font-weight:700}
+  footer .flinks{display:flex;gap:20px;flex-wrap:wrap}
+  footer .flinks a:hover{color:#fff}
+  .powered{font-size:12px;color:#6B7480;margin-top:6px}
+
+  @media(max-width:860px){
+    .nav-links{display:none}
+    .burger{display:flex}
+    .feat-art{grid-template-columns:1fr}
+    .feat-art .cover{min-height:190px}
+    .catbar{top:64px}
+  }
+  @media(max-width:560px){
+    .mhero .wrap{padding:42px 22px 38px}
+    .nav-cta{display:none}
+    .art-body{padding-top:32px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html">
+      <div class="logo">GC</div>
+      <div class="bname">GreenCareers<small>Straßen- &amp; Tiefbau</small></div>
+    </a>
+    <div class="sp"></div>
+    <nav class="nav-links">
+      <a class="nav-link" href="index.html#jobsAnchor">Stellen</a>
+      <a class="nav-link active" href="magazin.html" onclick="goMagHome();return false;">Magazin</a>
+      <a class="nav-link" href="index.html#faqSec">FAQ</a>
+    </nav>
+    <a class="nav-cta" href="arbeitgeber.html">Für Arbeitgeber</a>
+    <button class="burger" id="burger" onclick="toggleDrawer()" aria-label="Menü"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- Mobile Drawer -->
+<div class="scrim" id="scrim" onclick="closeDrawer()"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-head">
+    <a class="brand" href="index.html">
+      <div class="logo" style="width:34px;height:34px;font-size:16px">GC</div>
+      <div class="bname" style="font-size:15px">GreenCareers<small>Straßen- &amp; Tiefbau</small></div>
+    </a>
+    <button class="x" onclick="closeDrawer()" aria-label="Schließen">✕</button>
+  </div>
+  <div class="drawer-body">
+    <a href="index.html#jobsAnchor"><span class="mi">📋</span> Alle Stellen</a>
+    <a href="magazin.html" onclick="closeDrawer();goMagHome();return false;"><span class="mi">📰</span> Magazin</a>
+    <a href="index.html#faqSec"><span class="mi">❓</span> FAQ</a>
+    <div class="drawer-lbl">Magazin-Rubriken</div>
+    <div class="drawer-sub" id="drawerCats"></div>
+    <a class="drawer-cta" href="arbeitgeber.html">Für Arbeitgeber →</a>
+  </div>
+</aside>
+
+<!-- ============ MAGAZIN LIST ============ -->
+<div id="list-view">
+  <section class="mhero">
+    <div class="wrap">
+      <span class="kicker">● Bau-Magazin · powered by GreenCareers</span>
+      <h1>Karriere im Straßen-, Tief- &amp; Kanalbau.<br>Wissen, das dich weiterbringt.</h1>
+      <p>Gehälter, Berufsbilder, Quereinstieg, Weiterbildung und deine Rechte im Bauvertrag – ehrlich erklärt, ohne Marketing-Sprech. Von Praktikern für Praktiker auf dem Bau.</p>
+    </div>
+  </section>
+
+  <div class="catbar">
+    <div class="wrap" id="catChips"></div>
+  </div>
+
+  <div class="mgrid">
+    <div class="wrap">
+      <div id="featSlot"></div>
+      <div class="sec-lbl" id="secLbl">Alle Beiträge</div>
+      <div class="cards" id="cards"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ARTICLE DETAIL ============ -->
+<article class="article" id="article">
+  <div class="art-hero" id="artHero">
+    <div class="ah-in">
+      <div class="emoji" id="artEmoji"></div>
+      <span class="cat-tag" id="artTag" style="background:rgba(255,255,255,.15);color:#fff"></span>
+      <h1 id="artTitle"></h1>
+      <div class="a-meta" id="artMeta"></div>
+    </div>
+  </div>
+  <div class="art-body">
+    <span class="crumb" onclick="goMagHome()">← Zurück zum Magazin</span>
+    <div id="artContent"></div>
+  </div>
+  <div class="art-cta">
+    <div class="art-cta-box"><div class="in">
+      <h3>Bereit für den nächsten Schritt?</h3>
+      <p>Auf dem Straßen- &amp; Tiefbau-Karrierenetzwerk findest du geprüfte Bauunternehmen in deiner Region. Ein Profil, direkt bewerben – ohne Anschreiben-Marathon.</p>
+      <a class="btn-o" href="index.html#jobsAnchor">Offene Stellen ansehen →</a>
+    </div></div>
+  </div>
+  <div class="related">
+    <h3>Das könnte dich auch interessieren</h3>
+    <div class="cards" id="relatedCards"></div>
+  </div>
+</article>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="fbrand"><div class="logo" style="width:32px;height:32px;font-size:15px">GC</div> GreenCareers · Straßen- &amp; Tiefbau</div>
+      <div class="powered">Ein Angebot der GreenCareers / Greenfield Digital</div>
+    </div>
+    <div class="flinks">
+      <a href="index.html#jobsAnchor">Stellen</a>
+      <a href="magazin.html">Magazin</a>
+      <a href="index.html#faqSec">FAQ</a>
+      <a href="arbeitgeber.html">Für Arbeitgeber</a>
+      <a href="https://www.green-careers.de/impressum" target="_blank" rel="noopener">Impressum</a>
+      <a href="https://www.green-careers.de/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
+      <a href="https://www.green-careers.de" target="_blank" rel="noopener">green-careers.de</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const $=id=>document.getElementById(id);
+
+/* ---------- Category gradients ---------- */
+const CATS=[
+  {key:'alle', label:'Alle Beiträge'},
+  {key:'gehalt', label:'Gehalt & Verdienst'},
+  {key:'berufe', label:'Berufe & Karriere'},
+  {key:'bewerbung', label:'Bewerbung & Jobwechsel'},
+  {key:'weiterbildung', label:'Aus- & Weiterbildung'},
+  {key:'recht', label:'Recht & Vertrag'}
+];
+const GRAD={
+  gehalt:'linear-gradient(135deg,#1F2A37 0%,#FF6B1A 130%)',
+  berufe:'linear-gradient(135deg,#16191D 0%,#E55A0A 140%)',
+  bewerbung:'linear-gradient(135deg,#243B53 0%,#FF8533 150%)',
+  weiterbildung:'linear-gradient(135deg,#1E3A2F 0%,#FF6B1A 150%)',
+  recht:'linear-gradient(135deg,#2A1F37 0%,#E55A0A 150%)'
+};
+const catLabel=k=>(CATS.find(c=>c.key===k)||{}).label||k;
+
+/* ---------- Articles ---------- */
+const ARTICLES=[
+{
+  slug:'gehalt-strassenbau-tiefbau-2026',
+  cat:'gehalt', emoji:'💶', featured:true,
+  title:'Was verdient man im Straßen- & Tiefbau? Gehälter 2026 nach Position',
+  date:'2026-06-10', read:8,
+  excerpt:'Vom Bauhelfer bis zum Bauleiter: Wie viel im Straßen-, Tief- und Kanalbau wirklich gezahlt wird – mit Brutto-Spannen, Zuschlägen und ehrlichen Verhandlungstipps.',
+  body:`
+  <p class="lead">Gehalt ist auf dem Bau kein Tabu – aber selten klar. Hier findest du realistische Brutto-Spannen für 2026, sortiert nach Position, plus die Zuschläge, die am Monatsende oft den Unterschied machen.</p>
+  <div class="keyfacts"><h4>Kurz & knapp</h4><ul>
+    <li><b>Einstieg (Bauhelfer):</b> ca. 2.300–2.900 € brutto/Monat</li>
+    <li><b>Facharbeiter (Straßenbauer, Rohrleger):</b> ca. 2.900–3.700 €</li>
+    <li><b>Vorarbeiter:</b> ca. 3.400–4.200 €</li>
+    <li><b>Polier:</b> ca. 3.900–4.900 €</li>
+    <li><b>Bauleiter:</b> ca. 4.500–6.500 €+</li>
+  </ul></div>
+  <h2>Was die Spanne wirklich bestimmt</h2>
+  <p>Drei Faktoren entscheiden, wo du in der Spanne landest: <strong>Qualifikation</strong> (Helfer, Geselle, Meister/Techniker), <strong>Berufserfahrung</strong> und die <strong>Region</strong>. In Ballungsräumen und im Süden wird tendenziell mehr gezahlt als in strukturschwachen Gegenden – aber auch die Lebenshaltungskosten sind höher.</p>
+  <p>Hinzu kommt der <strong>Tarifvertrag Bau</strong>: Viele Betriebe zahlen nach Bautarif, der jährlich verhandelt wird und Mindestlöhne nach Lohngruppen festlegt. Tarifgebundene Betriebe sind für Fachkräfte oft die sicherere Bank – Lohn, Urlaubsgeld und 13. Monatseinkommen sind dort geregelt.</p>
+  <h2>Gehalt nach Position im Überblick</h2>
+  <table><thead><tr><th>Position</th><th>Brutto/Monat 2026</th></tr></thead><tbody>
+    <tr><td>Bauhelfer / Quereinsteiger</td><td>2.300 – 2.900 €</td></tr>
+    <tr><td>Baugeräteführer</td><td>2.900 – 3.800 €</td></tr>
+    <tr><td>Straßenbauer / Kanalbauer (Geselle)</td><td>2.900 – 3.700 €</td></tr>
+    <tr><td>Rohrleitungsbauer</td><td>3.000 – 3.900 €</td></tr>
+    <tr><td>Vorarbeiter</td><td>3.400 – 4.200 €</td></tr>
+    <tr><td>Werkpolier / Polier</td><td>3.900 – 4.900 €</td></tr>
+    <tr><td>Bauleiter</td><td>4.500 – 6.500 €+</td></tr>
+  </tbody></table>
+  <p>Die Zahlen sind Orientierungswerte aus Stellenmärkten und Tarifübersichten – kein Anspruch auf den Cent. Im Einzelfall entscheidet immer der Betrieb.</p>
+  <h2>Die Zuschläge, die oft vergessen werden</h2>
+  <p>Das Grundgehalt ist nur die halbe Wahrheit. Im Bau kommen häufig dazu:</p>
+  <ul>
+    <li><strong>Auslöse / Verpflegungsmehraufwand</strong> bei Montage oder Baustellen fernab des Wohnorts</li>
+    <li><strong>Fahrtkosten</strong> bzw. Wegezeitentschädigung</li>
+    <li><strong>Überstunden- und Wochenendzuschläge</strong></li>
+    <li><strong>Winterbau-Regelungen</strong> (Saison-Kurzarbeitergeld, Wintergeld)</li>
+    <li><strong>Weihnachts- und Urlaubsgeld</strong> bei Tarifbindung</li>
+  </ul>
+  <div class="callout"><strong>Tipp:</strong> Frag im Gespräch nicht nur nach dem Monatsbrutto, sondern nach dem <strong>Jahresbrutto inklusive Zuschlägen und Sonderzahlungen</strong>. Zwei Angebote mit gleichem Grundlohn können sich aufs Jahr um mehrere tausend Euro unterscheiden.</p></div>
+  <h2>So verhandelst du fair und überzeugend</h2>
+  <p>Gehaltsverhandlung ist kein Pokern, sondern ein Abgleich von Leistung und Marktwert. Was funktioniert:</p>
+  <ol>
+    <li><strong>Belegbare Argumente:</strong> Maschinenscheine, Führerscheinklassen (C/CE), Schweißerprüfung, Erfahrung mit bestimmten Verfahren.</li>
+    <li><strong>Konkrete Zahl statt Spanne:</strong> Nenne einen klaren Wunsch, der zur Marktspanne passt.</li>
+    <li><strong>Gesamtpaket im Blick:</strong> Auch Firmenwagen, feste Kolonne, kurze Anfahrt oder geregelte Arbeitszeiten haben einen Wert.</li>
+  </ol>
+  <h2>Häufige Fragen</h2>
+  <h3>Verdient man im Tiefbau mehr als im Hochbau?</h3>
+  <p>Pauschal nein. Entscheidend sind Qualifikation und Spezialisierung. Spezialtiefbau (z. B. Spundwände, Bohrpfähle) und Kanalsanierung sind oft besser bezahlt, weil das Know-how knapp ist.</p>
+  <h3>Lohnt sich die Weiterbildung zum Polier finanziell?</h3>
+  <p>In der Regel ja. Der Sprung vom Facharbeiter zum Polier bedeutet häufig 800–1.200 € mehr im Monat – plus deutlich bessere Jobsicherheit.</p>
+  `
+},
+{
+  slug:'tiefbau-berufe-ueberblick',
+  cat:'berufe', emoji:'🏗️',
+  title:'Tiefbau-Berufe im Überblick: Vom Baugeräteführer bis zum Polier',
+  date:'2026-06-08', read:7,
+  excerpt:'Welche Berufe es im Tief-, Straßen- und Kanalbau gibt, was sie machen und wie der Aufstieg funktioniert – die Orientierung für alle, die in die Branche wollen.',
+  body:`
+  <p class="lead">Der Tiefbau ist mehr als „Buddeln". Vom Bedienen tonnenschwerer Maschinen bis zur Bauleitung gibt es klare Wege nach oben. Hier ist die Landkarte der wichtigsten Berufe.</p>
+  <h2>Die Einstiegsberufe</h2>
+  <h3>Bauhelfer / Tiefbaufacharbeiter</h3>
+  <p>Der klassische Einstieg, auch für Quereinsteiger. Du arbeitest in der Kolonne, lernst Verfahren und Sicherheit auf der Baustelle. Mit Erfahrung und Engagement wächst die Verantwortung schnell.</p>
+  <h3>Baugeräteführer</h3>
+  <p>Wer Bagger, Radlader oder Walze sicher beherrscht, ist gefragt. Baugeräteführer bedienen und warten Baumaschinen – ein eigener Ausbildungsberuf mit guten Verdienstaussichten und hoher Nachfrage.</p>
+  <h2>Die Facharbeiter-Berufe</h2>
+  <ul>
+    <li><strong>Straßenbauer:</strong> Baut Verkehrswege, Pflasterflächen und Tragschichten. Das Rückgrat jeder Straßenbaustelle.</li>
+    <li><strong>Kanalbauer:</strong> Verlegt und saniert Abwasserkanäle – körperlich anspruchsvoll, technisch komplex.</li>
+    <li><strong>Rohrleitungsbauer:</strong> Verlegt Versorgungsleitungen für Wasser, Gas und Fernwärme.</li>
+    <li><strong>Spezialtiefbauer:</strong> Gründungen, Spundwände, Bohrpfähle – Spezialwissen, das gut bezahlt wird.</li>
+  </ul>
+  <div class="callout"><strong>Gut zu wissen:</strong> Die meisten dieser Berufe basieren auf der gemeinsamen Stufenausbildung „Tiefbaufacharbeiter" im ersten Jahr und spezialisieren sich danach.</div>
+  <h2>Die Führungs- und Aufstiegspositionen</h2>
+  <h3>Vorarbeiter</h3>
+  <p>Der erfahrene Facharbeiter, der eine kleine Kolonne anleitet. Erster Schritt in die Verantwortung – mit einem Bein noch im Handwerk, mit dem anderen schon in der Organisation.</p>
+  <h3>Polier</h3>
+  <p>Die rechte Hand der Bauleitung auf der Baustelle. Der Polier koordiniert Personal, Material und Geräte, sorgt für Termine und Qualität. Erreichbar über die Weiterbildung zum „Geprüften Polier".</p>
+  <h3>Bauleiter</h3>
+  <p>Verantwortet die Baustelle wirtschaftlich und technisch – oft mit Meister-, Techniker- oder Studiumshintergrund (Bauingenieurwesen). Schnittstelle zwischen Büro, Kunde und Baustelle.</p>
+  <h2>Welcher Weg passt zu dir?</h2>
+  <p>Wer gerne Maschinen fährt, bleibt vielleicht langfristig Baugeräteführer – ein erfüllender, gut bezahlter Beruf. Wer Menschen führen und organisieren will, hat über Vorarbeiter und Polier einen klaren Pfad nach oben. Das Schöne am Bau: Diese Wege sind <strong>durchlässig und planbar</strong>, nicht zufällig.</p>
+  `
+},
+{
+  slug:'quereinstieg-tiefbau',
+  cat:'berufe', emoji:'🔄',
+  title:'Quereinstieg in den Tiefbau: So gelingt der Wechsel mit 30, 40 oder 50',
+  date:'2026-06-05', read:6,
+  excerpt:'Kein Bau-Hintergrund, aber Lust auf eine ehrliche Arbeit mit Zukunft? Warum der Tiefbau Quereinsteiger sucht – und wie du den Einstieg konkret angehst.',
+  body:`
+  <p class="lead">Der Fachkräftemangel im Bau ist real – und das ist deine Chance. Viele Betriebe nehmen heute gezielt Quereinsteiger, weil Zuverlässigkeit und Anpacken wichtiger sind als ein bestimmter Lebenslauf.</p>
+  <h2>Warum gerade jetzt der richtige Zeitpunkt ist</h2>
+  <p>Deutschland baut, saniert und modernisiert seine Infrastruktur – Straßen, Kanäle, Glasfaser, Versorgungsnetze. Gleichzeitig gehen erfahrene Fachkräfte in Rente. Das Ergebnis: <strong>krisensichere Jobs mit echter Perspektive</strong>, auch für Menschen ohne klassische Bau-Ausbildung.</p>
+  <h2>Was du wirklich mitbringen musst</h2>
+  <ul>
+    <li><strong>Körperliche Belastbarkeit</strong> und die Bereitschaft, bei Wind und Wetter draußen zu arbeiten</li>
+    <li><strong>Zuverlässigkeit</strong> – pünktlich, verbindlich, im Team</li>
+    <li><strong>Lernbereitschaft</strong> für Maschinen, Verfahren und Sicherheit</li>
+    <li>Häufig ein <strong>Führerschein</strong> (Klasse B, oft hilfreich: C/CE)</li>
+  </ul>
+  <p>Eine abgeschlossene Bau-Ausbildung ist ausdrücklich <strong>kein Muss</strong> für den Einstieg als Bauhelfer.</p>
+  <h2>Mit 40 oder 50 wechseln – geht das noch?</h2>
+  <p>Ja. Lebens- und Berufserfahrung sind auf der Baustelle wertvoll: Wer schon Verantwortung getragen, im Team gearbeitet oder selbst geführt hat, bringt genau die Eigenschaften mit, die Poliere und Bauleiter suchen. Viele Quereinsteiger steigen schneller auf, als sie denken.</p>
+  <div class="callout"><strong>Realistisch bleiben:</strong> Der Körper muss mitspielen. Probier es mit einem <strong>Probearbeitstag</strong> aus, bevor du komplett wechselst – seriöse Betriebe bieten das gerne an.</div>
+  <h2>Dein Fahrplan in 4 Schritten</h2>
+  <ol>
+    <li><strong>Richtung festlegen:</strong> Maschinen (Baugeräteführer), Erd-/Straßenbau oder Kanal-/Rohrleitungsbau?</li>
+    <li><strong>Quereinstieg als Helfer starten</strong> und im Betrieb lernen.</li>
+    <li><strong>Scheine sammeln:</strong> Maschinenscheine, ggf. C/CE, Schweißerprüfung – jeder Schein erhöht Lohn und Sicherheit.</li>
+    <li><strong>Nachqualifizieren:</strong> Über eine verkürzte Ausbildung oder Externenprüfung zum anerkannten Facharbeiter werden.</li>
+  </ol>
+  <h2>Wie du den passenden Betrieb findest</h2>
+  <p>Achte auf Betriebe, die ausdrücklich Quereinsteiger ansprechen, Einarbeitung bieten und regional zu dir passen – lange Anfahrten zermürben auf Dauer. Im Straßen- &amp; Tiefbau-Karrierenetzwerk siehst du geprüfte Arbeitgeber aus deiner Region und kannst dich in zwei Minuten bewerben, ganz ohne Anschreiben.</p>
+  `
+},
+{
+  slug:'bewerbung-bau-ohne-anschreiben',
+  cat:'bewerbung', emoji:'📝',
+  title:'Bewerbung im Bau ohne Anschreiben – worauf es wirklich ankommt',
+  date:'2026-06-03', read:5,
+  excerpt:'Auf dem Bau zählt, was du kannst – nicht das schönste Anschreiben. Was Personaler im Straßen- und Tiefbau wirklich sehen wollen und wie du dich in Minuten bewirbst.',
+  body:`
+  <p class="lead">Niemand auf der Baustelle hat je einen Job durch das perfekte Anschreiben bekommen. Im Bau zählen handfeste Dinge: Erfahrung, Scheine, Verfügbarkeit. Genau darauf solltest du deine Bewerbung ausrichten.</p>
+  <h2>Was Bau-Betriebe wirklich wissen wollen</h2>
+  <ul>
+    <li><strong>Was kannst du?</strong> Berufe, Tätigkeiten, Maschinen, Verfahren.</li>
+    <li><strong>Welche Scheine hast du?</strong> Führerscheinklassen, Maschinenscheine, Schweißerprüfung, Sicherheitsunterweisungen.</li>
+    <li><strong>Ab wann und wo?</strong> Verfügbarkeit und dein Einzugsgebiet.</li>
+    <li><strong>Bist du zuverlässig?</strong> Stationen ohne große Lücken sagen oft mehr als Worte.</li>
+  </ul>
+  <h2>Warum „ohne Anschreiben" kein Nachteil ist</h2>
+  <p>Ein klassisches Anschreiben kostet dich Stunden – und wird im Bau selten gelesen. Moderne Karrierenetzwerke setzen deshalb auf ein <strong>strukturiertes Profil</strong>: Du hinterlegst deine Qualifikationen einmal und bewirbst dich mit einem Klick. Das ist schneller für dich und aussagekräftiger für den Betrieb.</p>
+  <div class="callout"><strong>10 Sekunden, die zählen:</strong> Betriebe entscheiden in Sekunden, ob ein Profil passt. Halte deine Angaben deshalb <strong>vollständig und konkret</strong> – „Baggerführer, 6 Jahre, CE-Schein, Raum Köln" sagt mehr als ein halbseitiger Fließtext.</div>
+  <h2>Dein Profil in unter 2 Minuten</h2>
+  <ol>
+    <li><strong>Beruf & Erfahrung</strong> in Jahren angeben.</li>
+    <li><strong>Scheine & Führerscheinklassen</strong> auflisten – nichts weglassen.</li>
+    <li><strong>Region & Verfügbarkeit</strong> klar benennen.</li>
+    <li><strong>Kontakt</strong> hinterlegen, damit der Betrieb dich direkt erreicht.</li>
+  </ol>
+  <h2>Die häufigsten Fehler</h2>
+  <ul>
+    <li>Scheine vergessen, die den Lohn beeinflussen könnten.</li>
+    <li>Unklare Verfügbarkeit („irgendwann mal").</li>
+    <li>Zu großes oder zu kleines Einzugsgebiet angeben.</li>
+    <li>Auf Rückfragen tagelang nicht reagieren – im Bau wird schnell entschieden.</li>
+  </ul>
+  <p>Wer diese Punkte beachtet, hat im Bau einen klaren Vorteil: Hier zählt nicht die Bewerbungs-Show, sondern die ehrliche Qualifikation.</p>
+  `
+},
+{
+  slug:'polier-werden-weiterbildung',
+  cat:'weiterbildung', emoji:'🎓',
+  title:'Polier werden: Ausbildung, Weiterbildung & Aufstiegschancen',
+  date:'2026-05-29', read:7,
+  excerpt:'Der Polier ist die Schlüsselfigur auf jeder Baustelle. Wie du dorthin kommst, was die Weiterbildung kostet und wie viel sich dein Gehalt dadurch verändert.',
+  body:`
+  <p class="lead">Der Polier führt die Baustelle – und verdient entsprechend. Für viele Facharbeiter ist es der logische und lohnende nächste Schritt. So funktioniert der Weg nach oben.</p>
+  <div class="keyfacts"><h4>Auf einen Blick</h4><ul>
+    <li><b>Voraussetzung:</b> abgeschlossene Bau-Ausbildung + Berufserfahrung</li>
+    <li><b>Abschluss:</b> Geprüfter Polier (IHK/HWK)</li>
+    <li><b>Dauer:</b> berufsbegleitend ca. 1–2 Jahre</li>
+    <li><b>Gehaltssprung:</b> häufig +800 bis +1.200 € brutto/Monat</li>
+  </ul></div>
+  <h2>Was macht ein Polier eigentlich?</h2>
+  <p>Der Polier ist die <strong>rechte Hand der Bauleitung</strong> auf der Baustelle. Er setzt um, was geplant wurde: Er koordiniert die Kolonnen, plant Material und Maschinen, achtet auf Termine, Qualität und Arbeitssicherheit. Er ist Vorbild, Organisator und Vermittler zwischen Büro und Mannschaft.</p>
+  <h2>Der Weg zum geprüften Polier</h2>
+  <ol>
+    <li><strong>Ausbildung abschließen</strong> – z. B. Straßenbauer, Kanalbauer, Tiefbaufacharbeiter.</li>
+    <li><strong>Berufserfahrung sammeln</strong> – in der Regel mehrere Jahre, oft als Vorarbeiter.</li>
+    <li><strong>Vorbereitungslehrgang</strong> bei IHK, Handwerkskammer oder Bau-ABC – berufsbegleitend möglich.</li>
+    <li><strong>Prüfung ablegen</strong> – Teil „Basisqualifikation" + fachrichtungsspezifischer Teil (z. B. Tiefbau).</li>
+  </ol>
+  <div class="callout"><strong>Förderung nutzen:</strong> Die Weiterbildung lässt sich häufig über das <strong>Aufstiegs-BAföG</strong> fördern – das übernimmt einen erheblichen Teil der Lehrgangs- und Prüfungskosten.</div>
+  <h2>Lohnt sich der Aufwand?</h2>
+  <p>In aller Regel ja. Neben dem deutlichen Gehaltssprung steigt vor allem die <strong>Jobsicherheit</strong>: Geprüfte Poliere sind in jeder Baufirma gefragt und schwer zu ersetzen. Wer noch weiter will, kann anschließend Richtung Werkpolier, geprüfter Bautechniker oder sogar Bauleitung gehen.</p>
+  <h2>Und danach?</h2>
+  <p>Der Polier ist selten die Endstation. Viele nutzen ihn als Sprungbrett: über den <strong>Bautechniker</strong> oder ein berufsbegleitendes Studium bis zur <strong>Bauleitung</strong>. Der Bau bietet damit einen der durchlässigsten Aufstiegswege im Handwerk – planbar, Schritt für Schritt.</p>
+  `
+},
+{
+  slug:'befristeter-arbeitsvertrag-bau',
+  cat:'recht', emoji:'⚖️',
+  title:'Befristeter Arbeitsvertrag im Bau: Vor- und Nachteile',
+  date:'2026-05-26', read:6,
+  excerpt:'Befristung mit oder ohne Sachgrund, Probezeit, Kettenverträge: Was im Baugewerbe erlaubt ist und worauf du vor der Unterschrift achten solltest.',
+  body:`
+  <p class="lead">Befristete Verträge sind im Bau nichts Ungewöhnliches – gerade bei Projekt- oder Saisonarbeit. Wichtig ist, dass du deine Rechte kennst, bevor du unterschreibst.</p>
+  <h2>Mit oder ohne Sachgrund?</h2>
+  <p>Das Gesetz (TzBfG) unterscheidet zwei Fälle:</p>
+  <ul>
+    <li><strong>Sachgrundlose Befristung:</strong> bis zu <strong>2 Jahre</strong> möglich, in diesem Zeitraum maximal dreimal verlängerbar – aber nur, wenn du vorher noch nie bei diesem Arbeitgeber beschäftigt warst.</li>
+    <li><strong>Befristung mit Sachgrund:</strong> z. B. ein konkretes Bauprojekt, eine Vertretung oder Saisonarbeit. Hier sind unter Umständen auch längere Befristungen zulässig.</li>
+  </ul>
+  <h2>Die Vorteile einer Befristung</h2>
+  <ul>
+    <li>Schneller Einstieg, gerade für Quereinsteiger – der Betrieb geht weniger Risiko ein.</li>
+    <li>Gute Befristungen münden oft in eine <strong>Festanstellung</strong>, wenn die Zusammenarbeit passt.</li>
+    <li>Chance, mehrere Betriebe kennenzulernen und den besten zu finden.</li>
+  </ul>
+  <h2>Die Nachteile, die du kennen solltest</h2>
+  <ul>
+    <li><strong>Weniger Planungssicherheit</strong> – das Vertragsende steht fest.</li>
+    <li>Mögliche Auswirkungen bei <strong>Krediten oder Mietverträgen</strong>.</li>
+    <li>Kündigungsschutz greift während der Befristung meist nicht wie bei unbefristeten Verträgen.</li>
+  </ul>
+  <div class="callout"><strong>Vor der Unterschrift prüfen:</strong> Eine Befristung muss <strong>schriftlich</strong> vereinbart werden, und zwar <strong>vor</strong> Arbeitsbeginn. Eine mündliche oder nachträgliche Befristung ist unwirksam – dann gilt der Vertrag als unbefristet.</div>
+  <h2>Worauf du im Vertrag achten solltest</h2>
+  <ol>
+    <li><strong>Befristungsgrund und -ende</strong> klar benannt?</li>
+    <li><strong>Probezeit</strong> und Kündigungsfristen geregelt?</li>
+    <li><strong>Lohn, Zuschläge, Auslöse</strong> schriftlich fixiert?</li>
+    <li><strong>Tarifbindung</strong> – gilt der Bautarif?</li>
+  </ol>
+  <p class="lead" style="font-size:15px;color:var(--muted);font-weight:500;margin-top:24px">Hinweis: Dieser Beitrag ist eine allgemeine Orientierung und ersetzt keine Rechtsberatung. Im Zweifel hilft die Gewerkschaft IG BAU oder ein Fachanwalt für Arbeitsrecht.</p>
+  `
+},
+{
+  slug:'anzeichen-jobwechsel-bau',
+  cat:'bewerbung', emoji:'🚦',
+  title:'5 Anzeichen, dass du den Job wechseln solltest – ehrlich betrachtet',
+  date:'2026-05-22', read:5,
+  excerpt:'Nicht jeder schlechte Tag ist ein Grund zu gehen. Aber diese fünf Signale solltest du im Bau ernst nehmen – und drei, die dich nur scheinbar bremsen.',
+  body:`
+  <p class="lead">Ein voller Container, Regen und ein mieser Tag – das ist kein Grund zu kündigen. Aber es gibt Signale, die du nicht ignorieren solltest. Hier die ehrliche Einordnung.</p>
+  <h2>Die 5 echten Warnsignale</h2>
+  <h3>1. Dein Lohn hält mit dem Markt nicht mehr Schritt</h3>
+  <p>Wenn vergleichbare Betriebe in deiner Region für die gleiche Arbeit deutlich mehr zahlen und dein Betrieb nicht nachzieht, ist das ein handfester Grund, dich umzusehen.</p>
+  <h3>2. Es gibt keine Perspektive nach oben</h3>
+  <p>Du bist seit Jahren auf der Stelle, Weiterbildung wird blockiert, Verantwortung kommt nie. Wenn der Betrieb dich nicht wachsen lässt, tut es ein anderer.</p>
+  <h3>3. Sicherheit wird nicht ernst genommen</h3>
+  <p>Fehlende Schutzausrüstung, ignorierte Vorschriften, Druck trotz Gefahr – das ist nicht nur ein Kündigungsgrund, sondern manchmal überlebenswichtig.</p>
+  <h3>4. Lohn kommt unregelmäßig oder Überstunden verfallen</h3>
+  <p>Wenn du deinem Geld hinterherlaufen musst oder Überstunden nie ausgeglichen werden, stimmt etwas Grundlegendes nicht.</p>
+  <h3>5. Die Anfahrt frisst dein Leben auf</h3>
+  <p>Zwei Stunden täglich auf der Straße zermürben. Ein gleichwertiger Job <strong>in deiner Region</strong> kann deine Lebensqualität spürbar verbessern.</p>
+  <h2>Und 3 Gründe, die nur scheinbar zählen</h2>
+  <ul>
+    <li><strong>Ein einzelner Streit:</strong> Konflikte gibt es überall. Erst klären, dann entscheiden.</li>
+    <li><strong>Eine harte Phase:</strong> Großprojekte sind anstrengend – aber endlich.</li>
+    <li><strong>Das Wetter:</strong> Kein Betrieb der Welt schaltet den Winter ab.</li>
+  </ul>
+  <div class="callout"><strong>Der ehrliche Test:</strong> Frag dich, ob das Problem <strong>strukturell</strong> ist (ändert sich nie) oder <strong>situativ</strong> (geht vorbei). Nur Ersteres ist ein echter Wechselgrund.</div>
+  <h2>Wenn du wechseln willst – mach es klug</h2>
+  <p>Kündige nie aus dem Affekt. Schau dich zuerst in Ruhe um, vergleiche Betriebe in deiner Region und bewirb dich dort, wo Lohn, Weg und Perspektive stimmen. Mit einem Profil im Straßen- &amp; Tiefbau-Karrierenetzwerk bist du in zwei Minuten startklar – diskret und ohne Anschreiben.</p>
+  `
+},
+{
+  slug:'baugeraetefuehrer-gehalt-ausbildung',
+  cat:'gehalt', emoji:'🚜',
+  title:'Baugeräteführer: Gehalt, Ausbildung & Zukunft – der komplette Guide',
+  date:'2026-05-18', read:7,
+  excerpt:'Bagger, Radlader, Walze: Baugeräteführer sind extrem gefragt. Was du verdienst, wie die Ausbildung läuft und welche Scheine deinen Lohn nach oben treiben.',
+  body:`
+  <p class="lead">Wer die großen Maschinen sicher beherrscht, ist auf jeder Baustelle Gold wert. Der Baugeräteführer ist einer der gefragtesten und zukunftssichersten Berufe im Bau – hier der vollständige Überblick.</p>
+  <div class="keyfacts"><h4>Auf einen Blick</h4><ul>
+    <li><b>Ausbildung:</b> 3 Jahre, anerkannter Ausbildungsberuf</li>
+    <li><b>Einstieg:</b> ca. 2.900 € brutto/Monat</li>
+    <li><b>Mit Erfahrung:</b> 3.300 – 3.800 €+</li>
+    <li><b>Nachfrage:</b> sehr hoch, branchenübergreifend</li>
+  </ul></div>
+  <h2>Was ein Baugeräteführer macht</h2>
+  <p>Baugeräteführer bedienen, steuern und warten Baumaschinen: Bagger, Radlader, Planierraupen, Walzen, Krane. Sie heben aus, verfüllen, verdichten und transportieren – präzise, sicher und wirtschaftlich. Auch die <strong>tägliche Wartung und Pflege</strong> der Maschinen gehört dazu.</p>
+  <h2>So läuft die Ausbildung</h2>
+  <p>Die Ausbildung dauert <strong>drei Jahre</strong> und findet im Betrieb sowie in überbetrieblichen Bildungszentren statt. Du lernst nicht nur das Bedienen, sondern auch Vermessung, Bodenkunde, Maschinentechnik und Arbeitssicherheit. Ein Quereinstieg über Maschinenscheine und Praxis ist ebenfalls möglich.</p>
+  <h2>Was den Lohn nach oben treibt</h2>
+  <p>Mehrere Faktoren erhöhen dein Gehalt deutlich:</p>
+  <ul>
+    <li><strong>Führerschein C/CE</strong> – um Maschinen und Material selbst zu transportieren</li>
+    <li><strong>Spezialgerät-Erfahrung</strong> – z. B. große Kettenbagger, Spezialtiefbaugerät</li>
+    <li><strong>GPS-/3D-Maschinensteuerung</strong> – moderne Steuerungssysteme sind ein klarer Plus-Punkt</li>
+    <li><strong>Kran- oder Hebezeugscheine</strong></li>
+  </ul>
+  <div class="callout"><strong>Zukunftssicher:</strong> Während viele Berufe von Automatisierung betroffen sind, bleibt der erfahrene Maschinist gefragt – die Maschinen werden komplexer, nicht überflüssig. Wer mit moderner Steuerungstechnik umgehen kann, hat ausgesorgt.</div>
+  <h2>Karrierewege</h2>
+  <p>Vom Baugeräteführer führen mehrere Wege weiter: zum <strong>Vorarbeiter</strong> und <strong>Polier</strong>, in die <strong>Geräte-Disposition</strong> oder zum <strong>Ausbilder</strong>. Viele bleiben aber auch bewusst Maschinist – weil der Beruf gut bezahlt, abwechslungsreich und sicher ist.</p>
+  <h2>Häufige Fragen</h2>
+  <h3>Brauche ich einen besonderen Führerschein?</h3>
+  <p>Für das Bedienen auf der Baustelle nicht zwingend, aber C/CE für den Transport ist ein großer Vorteil und erhöht deinen Marktwert spürbar.</p>
+  <h3>Ist der Beruf auch für Quereinsteiger geeignet?</h3>
+  <p>Ja. Viele starten als Helfer, erwerben Maschinenscheine und qualifizieren sich nach. Wer Geschick und Verantwortungsbewusstsein mitbringt, hat gute Chancen.</p>
+  `
+}
+];
+
+/* ---------- State ---------- */
+let CUR_CAT='alle';
+
+/* ---------- Rendering ---------- */
+function coverStyle(cat){return `background:${GRAD[cat]||GRAD.berufe}`;}
+function fmtDate(d){const m=['Jan.','Feb.','März','Apr.','Mai','Juni','Juli','Aug.','Sep.','Okt.','Nov.','Dez.'];const[y,mo,da]=d.split('-');return `${+da}. ${m[+mo-1]} ${y}`;}
+
+function cardHTML(a){return `<div class="card" onclick="openArticle('${a.slug}')">
+  <div class="cover" style="${coverStyle(a.cat)}"><span class="emoji">${a.emoji}</span></div>
+  <div class="c-body">
+    <span class="cat-tag">${catLabel(a.cat)}</span>
+    <h3>${a.title}</h3>
+    <p class="excerpt">${a.excerpt}</p>
+    <div class="meta"><span>${fmtDate(a.date)}</span><span class="dot"></span><span>${a.read} Min. Lesezeit</span></div>
+  </div>
+</div>`;}
+
+function renderChips(){
+  $('catChips').innerHTML=CATS.map(c=>`<button class="chip ${c.key===CUR_CAT?'on':''}" onclick="setCat('${c.key}')">${c.label}</button>`).join('');
+  $('drawerCats').innerHTML=CATS.filter(c=>c.key!=='alle').map(c=>`<a onclick="closeDrawer();setCat('${c.key}');goMagHome()">${c.label}</a>`).join('');
+}
+
+function renderList(){
+  const feat=ARTICLES.find(a=>a.featured);
+  const showFeat=CUR_CAT==='alle'&&feat;
+  $('featSlot').innerHTML = showFeat ? `<div class="feat-art" onclick="openArticle('${feat.slug}')">
+      <div class="cover" style="${coverStyle(feat.cat)}"><span class="emoji">${feat.emoji}</span></div>
+      <div class="fa-body">
+        <span class="cat-tag">★ Empfohlen · ${catLabel(feat.cat)}</span>
+        <h2>${feat.title}</h2>
+        <p>${feat.excerpt}</p>
+        <div class="meta"><span>${fmtDate(feat.date)}</span><span class="dot"></span><span>${feat.read} Min. Lesezeit</span></div>
+      </div>
+    </div>` : '';
+  let pool=ARTICLES.filter(a=>CUR_CAT==='alle'?!a.featured:a.cat===CUR_CAT);
+  $('secLbl').textContent = CUR_CAT==='alle' ? 'Alle Beiträge' : catLabel(CUR_CAT);
+  $('cards').innerHTML = pool.map(cardHTML).join('') || '<p style="color:var(--muted)">In dieser Rubrik erscheinen bald Beiträge.</p>';
+}
+
+function setCat(k){CUR_CAT=k;renderChips();renderList();}
+
+/* ---------- Article view ---------- */
+function openArticle(slug){
+  const a=ARTICLES.find(x=>x.slug===slug);if(!a)return goMagHome();
+  $('artHero').style.background=GRAD[a.cat]||GRAD.berufe;
+  $('artEmoji').textContent=a.emoji;
+  $('artTag').textContent=catLabel(a.cat);
+  $('artTitle').textContent=a.title;
+  $('artMeta').innerHTML=`<span>${fmtDate(a.date)}</span> · <span>${a.read} Min. Lesezeit</span> · <span>GreenCareers Redaktion</span>`;
+  $('artContent').innerHTML=a.body;
+  document.title=`${a.title} · GreenCareers Bau-Magazin`;
+  setMeta('description', a.excerpt);
+  injectArticleSchema(a);
+  // related: same cat first, then fill
+  const rel=[...ARTICLES.filter(x=>x.slug!==slug&&x.cat===a.cat),...ARTICLES.filter(x=>x.slug!==slug&&x.cat!==a.cat)].slice(0,3);
+  $('relatedCards').innerHTML=rel.map(cardHTML).join('');
+  $('list-view').style.display='none';
+  $('article').style.display='block';
+  history.replaceState(null,'','#'+slug);
+  window.scrollTo(0,0);
+}
+
+function goMagHome(){
+  $('article').style.display='none';
+  $('list-view').style.display='block';
+  document.title='Bau-Magazin · Karriere, Gehalt & Bewerbung im Straßen- & Tiefbau · GreenCareers';
+  removeArticleSchema();
+  history.replaceState(null,'','magazin.html');
+  window.scrollTo(0,0);
+}
+
+function setMeta(name,val){let m=document.querySelector(`meta[name="${name}"]`);if(m)m.setAttribute('content',val);}
+function injectArticleSchema(a){
+  removeArticleSchema();
+  const s=document.createElement('script');s.type='application/ld+json';s.id='artLd';
+  s.textContent=JSON.stringify({
+    "@context":"https://schema.org","@type":"BlogPosting",
+    "headline":a.title,"description":a.excerpt,
+    "datePublished":a.date,"dateModified":a.date,
+    "author":{"@type":"Organization","name":"GreenCareers"},
+    "publisher":{"@type":"Organization","name":"GreenCareers","logo":{"@type":"ImageObject","url":"https://www.green-careers.de/favicon-32.png"}},
+    "articleSection":catLabel(a.cat),
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://strassen-tiefbau.green-careers.de/magazin.html#"+a.slug}
+  });
+  document.head.appendChild(s);
+}
+function removeArticleSchema(){const e=$('artLd');if(e)e.remove();}
+
+/* Blog-level ItemList schema (always present, good for SEO/GEO discovery) */
+(function blogSchema(){
+  const s=document.createElement('script');s.type='application/ld+json';
+  s.textContent=JSON.stringify({
+    "@context":"https://schema.org","@type":"Blog",
+    "name":"GreenCareers Bau-Magazin",
+    "description":"Karriere-Magazin für den Straßen-, Tief- und Kanalbau: Gehalt, Berufe, Bewerbung, Weiterbildung und Recht.",
+    "url":"https://strassen-tiefbau.green-careers.de/magazin.html",
+    "blogPost":ARTICLES.map(a=>({"@type":"BlogPosting","headline":a.title,"description":a.excerpt,"datePublished":a.date,
+      "url":"https://strassen-tiefbau.green-careers.de/magazin.html#"+a.slug}))
+  });
+  document.head.appendChild(s);
+})();
+
+/* ---------- Drawer ---------- */
+function toggleDrawer(){const d=$('drawer'),s=$('scrim'),b=$('burger');const on=d.classList.toggle('on');s.classList.toggle('on',on);b.classList.toggle('on',on);document.body.style.overflow=on?'hidden':'';}
+function closeDrawer(){$('drawer').classList.remove('on');$('scrim').classList.remove('on');$('burger').classList.remove('on');document.body.style.overflow='';}
+
+/* ---------- Init ---------- */
+renderChips();
+renderList();
+const h=location.hash.replace('#','');
+if(h && ARTICLES.some(a=>a.slug===h)){openArticle(h);}
+window.addEventListener('hashchange',()=>{const hh=location.hash.replace('#','');if(hh&&ARTICLES.some(a=>a.slug===hh))openArticle(hh);else if(!hh)goMagHome();});
+</script>
+</body>
+</html>

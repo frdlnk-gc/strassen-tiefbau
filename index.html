@@ -192,9 +192,10 @@
   .jcover.noimg{background:var(--grad);display:grid;place-items:center;color:#fff;font-weight:820;font-size:24px}
   .jbody{padding:16px 18px 18px;display:flex;flex-direction:column;gap:11px;flex:1}
   .job-top{display:flex;align-items:center;gap:12px}
-  .fav{width:44px;height:44px;border-radius:11px;flex:none;display:grid;place-items:center;overflow:hidden;
+  .fav{width:46px;height:46px;border-radius:11px;flex:none;display:grid;place-items:center;overflow:hidden;
        background:var(--o-pale);color:var(--o-dark);font-weight:800;font-size:17px;border:1px solid var(--line2)}
-  .fav img{width:100%;height:100%;object-fit:cover}
+  .fav:has(img){background:#fff}
+  .fav img{width:100%;height:100%;object-fit:contain;padding:5px;box-sizing:border-box}
   .job h3{font-size:16.5px;font-weight:780;letter-spacing:-.3px;line-height:1.25}
   .job .firma{font-size:13px;color:var(--muted);font-weight:600}
   .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto}
@@ -387,7 +388,7 @@
           <a onclick="filterBranche('Tiefbau')"><span class="mi">🏗️</span> Tiefbau</a>
           <a onclick="filterBranche('Kanalbau')"><span class="mi">🚧</span> Kanalbau</a>
           <a onclick="filterBranche('Rohrleitungsbau')"><span class="mi">🔧</span> Rohrleitungsbau</a>
-          <a onclick="filterBranche('Hochbau')"><span class="mi">🏢</span> Hochbau</a>
+          <a onclick="filterBranche('Erdbau')"><span class="mi">⛏️</span> Erdbau</a>
           <a onclick="goJobs()"><span class="mi">📋</span> Alle Stellen</a>
         </div>
       </div>
@@ -419,7 +420,7 @@
       <a onclick="closeDrawer();filterBranche('Tiefbau')">🏗️ Tiefbau</a>
       <a onclick="closeDrawer();filterBranche('Kanalbau')">🚧 Kanalbau</a>
       <a onclick="closeDrawer();filterBranche('Rohrleitungsbau')">🔧 Rohrleitungsbau</a>
-      <a onclick="closeDrawer();filterBranche('Hochbau')">🏢 Hochbau</a>
+      <a onclick="closeDrawer();filterBranche('Erdbau')">⛏️ Erdbau</a>
     </div>
     <a class="drawer-cta" href="arbeitgeber.html">Für Arbeitgeber →</a>
   </div>
@@ -542,11 +543,32 @@ const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
 let JOBS = [];                 // alle geladenen Stellen
 let SEL_BRANCHE = new Set();   // aktive Branchen-Filter
+let SEL_BERUF   = new Set();   // aktive Berufs-Filter
 let SEL_ART     = new Set();   // aktive Beschaeftigungsart-Filter
 let SEARCH_GEO  = null;        // {lat,lon} der gesuchten PLZ
 let RADIUS      = 0;           // km, 0 = ganz Deutschland
 
 const ART_STD = ['Vollzeit','Teilzeit','Minijob','Ausbildung'];
+
+/* Kanonische Sub-Branchen (Reihenfolge = Anzeige). Eine Stelle "gehoert" zu einer
+   Branche, wenn ihr branche-Feld passt ODER Titel/Beschreibung das Stichwort enthaelt.
+   So bleibt der Filter auch bei duennen branche-Feldern aussagekraeftig. */
+const BRANCHE_STD = ['Straßenbau','Tiefbau','Kanalbau','Rohrleitungsbau','Erdbau','Pflasterbau','Brückenbau','Asphaltbau'];
+const BRANCHE_KEYS = {
+  'Straßenbau':['straßenbau','strassenbau','straßen-','strassen-','straßenbauer'],
+  'Tiefbau':['tiefbau','tiefbauer'],
+  'Kanalbau':['kanalbau','kanal'],
+  'Rohrleitungsbau':['rohrleitung','leitungsbau','rohr','leitung'],
+  'Erdbau':['erdbau','erdarbeit','aushub','bagger'],
+  'Pflasterbau':['pflaster'],
+  'Brückenbau':['brückenbau','brueckenbau','brücke','bruecke'],
+  'Asphaltbau':['asphalt'],
+};
+function jobMatchesBranche(j,b){
+  if((j.branche||'').toLowerCase().includes(b.toLowerCase())) return true;
+  const hay=((j.titel||'')+' '+(j.branche||'')+' '+(j.beschreibung||'')).toLowerCase();
+  return (BRANCHE_KEYS[b]||[]).some(k=>hay.includes(k));
+}
 
 const esc = s => (s==null?'':String(s)).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const $  = id => document.getElementById(id);
@@ -583,13 +605,13 @@ function tierBadge(j){
 }
 
 /* ---------- Typewriter ---------- */
-const TW_WORDS=['Straßenbau','Tiefbau','Hochbau','Kanalbau','Rohrleitungsbau','Pflasterbau'];
+const TW_WORDS=['Tiefbau','Straßenbau','Kanalbau','Rohrleitungsbau','Erdbau','Pflasterbau','Brückenbau','Asphaltbau'];
 let twI=0;
 function typewriter(){
   const el=$('twWord'); if(!el) return;
-  const word=TW_WORDS[twI%TW_WORDS.length];
   let pos=0, deleting=false;
   function tick(){
+    const word=TW_WORDS[twI%TW_WORDS.length];   // jedes Mal frisch -> rotiert wirklich durch
     if(!deleting){
       pos++; el.textContent=word.slice(0,pos);
       if(pos===word.length){deleting=true;return setTimeout(tick,1500);}
@@ -643,11 +665,17 @@ async function load(){
 
 /* ---------- Filter-Sidebar ---------- */
 function buildFilters(){
-  const branchen = Array.from(new Set(JOBS.map(j=>j.branche).filter(Boolean))).sort();
+  // Branche: kanonische Liste, aber nur Branchen mit mind. 1 passenden Stelle
+  const branchen = BRANCHE_STD.filter(b=>JOBS.some(j=>jobMatchesBranche(j,b)));
+  // Beruf: distinkte Stellentitel
+  const berufe = Array.from(new Set(JOBS.map(j=>j.titel).filter(Boolean))).sort();
   const arten = Array.from(new Set([...ART_STD, ...JOBS.map(j=>j.beschaeftigungsart).filter(Boolean)]));
   $('fbar').innerHTML =
     (branchen.length?`<h4>Branche</h4><div class="fgroup">`+branchen.map(b=>
       `<label class="fchk"><input type="checkbox" ${SEL_BRANCHE.has(b)?'checked':''} onchange="toggleBranche('${esc(b)}')"> ${esc(b)}</label>`
+    ).join('')+`</div>`:'')
+    +(berufe.length?`<h4>Beruf</h4><div class="fgroup">`+berufe.map(b=>
+      `<label class="fchk"><input type="checkbox" ${SEL_BERUF.has(b)?'checked':''} onchange="toggleBeruf('${esc(b)}')"> ${esc(b)}</label>`
     ).join('')+`</div>`:'')
     +`<h4>Beschäftigung</h4><div class="fpills">`+arten.map(a=>
       `<div class="fpill ${SEL_ART.has(a)?'on':''}" onclick="toggleArt('${esc(a)}')">${esc(a)}</div>`
@@ -661,6 +689,7 @@ function buildFilters(){
       <button class="freset" onclick="resetFilters()">Filter zurücksetzen</button>`;
 }
 function toggleBranche(b){ SEL_BRANCHE.has(b)?SEL_BRANCHE.delete(b):SEL_BRANCHE.add(b); applyFilter(); }
+function toggleBeruf(b){ SEL_BERUF.has(b)?SEL_BERUF.delete(b):SEL_BERUF.add(b); applyFilter(); }
 function toggleArt(a){ SEL_ART.has(a)?SEL_ART.delete(a):SEL_ART.add(a); buildFilters(); applyFilter(); }
 let plzTimer=null;
 function onPlz(){
@@ -672,7 +701,7 @@ function onPlz(){
   },350);
 }
 function onRadius(){ RADIUS=+$('frad').value; $('fradv').textContent=RADIUS?RADIUS+' km':'ganz DE'; applyFilter(); }
-function resetFilters(){ SEL_BRANCHE.clear(); SEL_ART.clear(); SEARCH_GEO=null; RADIUS=0; if($('q'))$('q').value=''; buildFilters(); applyFilter(); }
+function resetFilters(){ SEL_BRANCHE.clear(); SEL_BERUF.clear(); SEL_ART.clear(); SEARCH_GEO=null; RADIUS=0; if($('q'))$('q').value=''; buildFilters(); applyFilter(); }
 
 function distOf(j){
   if(!SEARCH_GEO || !j.firma_plz) return null;
@@ -682,7 +711,8 @@ function distOf(j){
 function applyFilter(){
   const q=($('q')?.value||'').toLowerCase().trim();
   let rows=JOBS.filter(j=>{
-    if(SEL_BRANCHE.size && !SEL_BRANCHE.has(j.branche)) return false;
+    if(SEL_BRANCHE.size && ![...SEL_BRANCHE].some(b=>jobMatchesBranche(j,b))) return false;
+    if(SEL_BERUF.size && !SEL_BERUF.has(j.titel)) return false;
     if(SEL_ART.size && !SEL_ART.has(j.beschaeftigungsart)) return false;
     if(q){
       const hay=(j.titel+' '+j.firma+' '+(j.ort||'')+' '+(j.branche||'')+' '+(j.beschreibung||'')).toLowerCase();
@@ -791,8 +821,8 @@ function goMagazin(){ window.location.href='magazin.html'; }
 function filterBranche(b){
   if($('detail').style.display==='block')goHome();
   SEL_BRANCHE.clear();
-  // nur setzen, wenn diese Branche auch wirklich existiert – sonst zeigen wir alles
-  if(JOBS.some(j=>j.branche===b)) SEL_BRANCHE.add(b);
+  // nur setzen, wenn diese Branche auch wirklich passende Stellen hat – sonst alles zeigen
+  if(JOBS.some(j=>jobMatchesBranche(j,b))) SEL_BRANCHE.add(b);
   buildFilters(); applyFilter();
   setTimeout(()=>scrollToEl('jobsAnchor'),60);
 }

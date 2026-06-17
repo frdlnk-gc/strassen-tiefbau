@@ -567,7 +567,7 @@ renderFaq();
 /* Maya: KI-Beratung NUR für Arbeitgeber. Der Anthropic-API-Key liegt NICHT hier,
    sondern server-seitig in der Supabase Edge Function "maya-chat" (statische Seite
    kann keinen Key sicher halten). Diese Seite ruft nur die Function auf. */
-const MAYA_FN  = 'https://tfoopogxaqvfwbonabpi.supabase.co/functions/v1/maya-chat';
+const MAYA_FN  = 'https://tfoopogxaqvfwbonabpi.supabase.co/functions/v1/smooth-endpoint';
 const MAYA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRmb29wb2d4YXF2Zndib25hYnBpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEyNTQzMjQsImV4cCI6MjA5NjgzMDMyNH0.udWRPszXVOj7EG4bspmsU9HXbZYFRDn8QO9kZi2tw8M';
 let MAYA_HIST=[], MAYA_BUSY=false, MAYA_GREETED=false;
 const mayaB=()=>document.getElementById('maya-body');

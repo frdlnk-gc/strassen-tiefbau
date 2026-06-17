@@ -29,8 +29,13 @@
   header{position:sticky;top:0;z-index:50;background:rgba(246,245,242,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   .nav{display:flex;align-items:center;gap:14px;height:64px}
   .brand{display:flex;align-items:center;gap:11px;cursor:pointer}
-  .logo{width:40px;height:40px;border-radius:11px;background:var(--grad);display:grid;place-items:center;
-        color:#fff;font-weight:800;font-size:19px;box-shadow:0 4px 12px rgba(255,107,26,.35)}
+  .logo{width:40px;height:40px;border-radius:12px;position:relative;overflow:hidden;
+        background:linear-gradient(140deg,#FF8A3D 0%,#FF6B1A 46%,#E55A0A 100%);
+        display:grid;place-items:center;color:#fff;font-weight:850;font-size:18px;letter-spacing:-.6px;
+        box-shadow:0 4px 14px rgba(255,107,26,.42),inset 0 1px 0 rgba(255,255,255,.5),inset 0 -2px 6px rgba(170,58,0,.4)}
+  .logo::before{content:"";position:absolute;inset:0;
+        background:linear-gradient(135deg,rgba(255,255,255,.4),transparent 44%);pointer-events:none}
+  .logo>span,.logo{z-index:1}
   .bname{font-weight:800;font-size:16px;letter-spacing:-.2px;line-height:1.05}
   .bname small{display:block;font-weight:600;font-size:11.5px;color:var(--muted);letter-spacing:.3px;text-transform:uppercase}
   .nav .sp{flex:1}
@@ -88,6 +93,8 @@
           color:var(--o-glow);font-weight:700;font-size:12.5px;letter-spacing:.5px;text-transform:uppercase;
           padding:7px 14px;border-radius:100px;border:1px solid rgba(255,107,26,.28)}
   .hero h1{font-size:clamp(31px,5.2vw,52px);line-height:1.06;letter-spacing:-1px;margin:20px 0 16px;font-weight:830}
+  .mobr{display:none}
+  @media(max-width:600px){.mobr{display:inline}}
   .hero h1 .tw{color:var(--o-glow)}
   .hero h1 .caret{display:inline-block;width:3px;height:.92em;background:var(--o-glow);margin-left:2px;
         border-radius:2px;vertical-align:-.06em;animation:blink 1s steps(1) infinite}
@@ -101,6 +108,49 @@
   .hero-search input{flex:1;border:0;outline:0;font-size:15.5px;padding:12px 14px;color:var(--ink);background:transparent}
   .hero-search button{background:var(--grad);color:#fff;font-weight:700;font-size:15px;border:0;
                       border-radius:10px;padding:0 22px;cursor:pointer}
+  .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:46px;align-items:center}
+  .hero-left{min-width:0}
+
+  /* ---------- Animierte Ablauf-Karte ---------- */
+  .tl-card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.14);border-radius:18px;
+        padding:22px 22px 16px;backdrop-filter:blur(8px);box-shadow:0 20px 60px rgba(0,0,0,.42)}
+  .tl-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px}
+  .tl-head .tl-dot{width:9px;height:9px;border-radius:50%;background:var(--o-glow);
+        box-shadow:0 0 0 4px rgba(255,107,26,.18);flex:none;margin-top:5px}
+  .tl-title{font-weight:800;font-size:15.5px;color:#fff;letter-spacing:-.2px}
+  .tl-sub{font-size:12px;color:#9AA2AB;margin-top:2px}
+  .tl-list{display:flex;flex-direction:column;gap:2px}
+  .tl-step{display:flex;align-items:center;gap:13px;padding:11px 8px;border-radius:11px;position:relative;
+        opacity:.4;background:transparent;transition:opacity .45s ease,background .45s ease}
+  .tl-step.done{opacity:1;background:rgba(255,255,255,.05)}
+  .tl-step:not(:last-child)::after{content:"";position:absolute;left:19px;top:36px;width:2px;height:12px;
+        background:rgba(255,255,255,.13);transition:background .45s}
+  .tl-step.done:not(:last-child)::after{background:rgba(255,107,26,.5)}
+  .tl-check{width:24px;height:24px;border-radius:50%;flex:none;display:grid;place-items:center;
+        border:2px solid rgba(255,255,255,.28);color:transparent;font-size:12px;font-weight:900;transition:.35s}
+  .tl-step.done .tl-check{background:var(--o);border-color:var(--o);color:#fff;box-shadow:0 0 0 5px rgba(255,107,26,.16)}
+  .tl-txt{flex:1;display:flex;flex-direction:column;line-height:1.22}
+  .tl-txt b{font-size:14px;color:#fff;font-weight:700}
+  .tl-txt span{font-size:12px;color:#9AA2AB}
+  .tl-time{font-size:11.5px;font-weight:800;color:var(--o-glow);background:rgba(255,107,26,.12);
+        padding:5px 9px;border-radius:8px;flex:none;border:1px solid rgba(255,107,26,.22);white-space:nowrap}
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:30px}
+    .hero .wrap{padding:48px 22px 54px}
+  }
+
+  /* ---------- Partner-Logo-Slider ---------- */
+  .pslider{background:#fff;border-bottom:1px solid var(--line);padding:24px 0;overflow:hidden;position:relative}
+  .pslider::before,.pslider::after{content:"";position:absolute;top:0;bottom:0;width:90px;z-index:2;pointer-events:none}
+  .pslider::before{left:0;background:linear-gradient(90deg,#fff,transparent)}
+  .pslider::after{right:0;background:linear-gradient(270deg,#fff,transparent)}
+  .ptrack{display:flex;align-items:center;gap:62px;width:max-content;animation:pscroll 55s linear infinite}
+  .pslider:hover .ptrack{animation-play-state:paused}
+  .plogo{height:52px;display:flex;align-items:center;flex:none}
+  .plogo img{height:52px;width:auto;max-width:170px;object-fit:contain;filter:grayscale(1);opacity:.6;transition:.25s}
+  .plogo img:hover{filter:none;opacity:1}
+  .plogo .pname{font-weight:800;color:var(--muted);font-size:18px;white-space:nowrap;letter-spacing:-.2px}
+  @keyframes pscroll{to{transform:translateX(-50%)}}
 
   /* ---------- Trust strip ---------- */
   .trust{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 0}
@@ -181,6 +231,10 @@
   .frange{display:flex;align-items:center;gap:10px;margin-top:10px}
   .frange input[type=range]{flex:1;accent-color:var(--o)}
   .frange .rv{font-size:13px;font-weight:700;color:var(--ink2);white-space:nowrap;min-width:62px;text-align:right}
+  .fmap{margin-top:12px;border:1px solid var(--line);border-radius:11px;overflow:hidden;position:relative;background:#EEF1F0}
+  .fmap svg{display:block;width:100%;height:118px}
+  .fmaplbl{position:absolute;left:8px;bottom:8px;background:rgba(255,255,255,.92);border:1px solid var(--line);
+        font-size:11.5px;font-weight:700;color:var(--ink2);padding:4px 9px;border-radius:7px;backdrop-filter:blur(2px)}
   .freset{margin-top:18px;width:100%;background:none;border:1px solid var(--line);color:var(--ink2);font-weight:700;
         font-size:13.5px;padding:10px;border-radius:10px;cursor:pointer;font-family:inherit}
   .freset:hover{border-color:var(--o);color:var(--o-dark)}
@@ -436,26 +490,53 @@
   <section class="hero">
     <img class="hero-bg" src="assets/hero.jpg" alt="" loading="eager">
     <div class="wrap">
-      <span class="kicker">● Karrierenetzwerk für Straßen- &amp; Tiefbau</span>
-      <h1>Dein nächster Job im <span class="tw" id="twWord">Straßenbau</span><span class="caret"></span><br>Bei Betrieben, die zu dir passen.</h1>
-      <p>Aktuelle Stellen bei geprüften Straßen-, Tief- und Kanalbauunternehmen in deiner Region. Ein Profil, direkt bewerben – ohne Anschreiben-Marathon.</p>
-      <div class="hero-search">
-        <input id="q" type="text" placeholder="Beruf, Position oder Ort suchen…" oninput="applyFilter()">
-        <button onclick="document.getElementById('jobsAnchor').scrollIntoView({behavior:'smooth'})">Jobs ansehen</button>
-      </div>
-      <div class="stats">
-        <div class="stat"><b id="stCount">–</b><span>offene Stellen</span></div>
-        <div class="stat"><b id="stFirms">–</b><span>Bauunternehmen</span></div>
-        <div class="stat"><b>1.100+</b><span>Partnerbetriebe im Netzwerk</span></div>
+      <div class="hero-grid">
+        <div class="hero-left">
+          <span class="kicker">● Karrierenetzwerk für Straßen- &amp; Tiefbau</span>
+          <h1>Dein nächster Job im<br class="mobr"> <span class="tw" id="twWord">Straßenbau</span><span class="caret"></span><br>Bei Betrieben, die zu dir passen.</h1>
+          <p>Aktuelle Stellen bei geprüften Straßen-, Tief- und Kanalbauunternehmen in deiner Region. Ein Profil, direkt bewerben – ohne Anschreiben-Marathon.</p>
+          <div class="hero-search">
+            <input id="q" type="text" placeholder="Beruf, Position oder Ort suchen…" oninput="applyFilter()">
+            <button onclick="document.getElementById('jobsAnchor').scrollIntoView({behavior:'smooth'})">Jobs ansehen</button>
+          </div>
+          <div class="stats">
+            <div class="stat"><b>42.000+</b><span>monatliche Nutzer</span></div>
+            <div class="stat"><b>1.100+</b><span>Betriebe im Netzwerk</span></div>
+            <div class="stat"><b>1.600+</b><span>neue Nutzer / Monat</span></div>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="tl-card">
+            <div class="tl-head">
+              <span class="tl-dot"></span>
+              <div>
+                <div class="tl-title">Von der Anzeige zur Einstellung</div>
+                <div class="tl-sub">So schnell läuft Fachkräftegewinnung über GreenCareers</div>
+              </div>
+            </div>
+            <div class="tl-list" id="tlList">
+              <div class="tl-step"><span class="tl-check">✓</span><div class="tl-txt"><b>Stelle anlegen</b><span>Anzeige in Minuten erstellt</span></div><span class="tl-time">15 Min</span></div>
+              <div class="tl-step"><span class="tl-check">✓</span><div class="tl-txt"><b>Stelle live geschaltet</b><span>Sichtbar für passende Fachkräfte</span></div><span class="tl-time">15 Min</span></div>
+              <div class="tl-step"><span class="tl-check">✓</span><div class="tl-txt"><b>Erste Bewerbung</b><span>Direkt aus deiner Region</span></div><span class="tl-time">48 Std</span></div>
+              <div class="tl-step"><span class="tl-check">✓</span><div class="tl-txt"><b>Erste Gespräche</b><span>Vorqualifizierte Kandidaten</span></div><span class="tl-time">7–14 Tage</span></div>
+              <div class="tl-step"><span class="tl-check">✓</span><div class="tl-txt"><b>Einstellung</b><span>Neuer Mitarbeiter an Bord</span></div><span class="tl-time">30–60 Tage</span></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- Partner-Logo-Slider -->
+  <div class="pslider" id="pslider" style="display:none">
+    <div class="ptrack" id="ptrack"></div>
+  </div>
 
   <div class="trust">
     <div class="wrap">
       <div class="t-item"><span class="d">✓</span> <b>Geprüfte Arbeitgeber</b> aus dem Straßen-, Tief- &amp; Kanalbau</div>
       <div class="t-item"><span class="d">✓</span> Bewerbung in <b>2 Minuten</b>, ohne Anschreiben</div>
-      <div class="t-item"><span class="d">✓</span> <b>200.000+</b> monatliche Nutzer · <b>42.000+</b> Fachkräfte im Netzwerk</div>
+      <div class="t-item"><span class="d">✓</span> <b>42.000+</b> monatliche Nutzer · <b>1.100+</b> Partnerbetriebe</div>
     </div>
   </div>
 
@@ -483,7 +564,7 @@
   <!-- Premium/Excellence Banner -->
   <section class="feat" id="featSec" style="display:none">
     <div class="wrap">
-      <div class="feat-head"><h2>Unsere Favoriten</h2><span class="tg">Premium &amp; Excellence</span></div>
+      <div class="feat-head"><h2>Unsere Favoriten</h2><span class="tg">Premium &amp; Exzellenz</span></div>
       <div class="feat-row" id="featRow"></div>
     </div>
   </section>
@@ -605,8 +686,64 @@ function tierBadge(j){
   const t=tier(j);
   if(!t) return '';
   return t==='excellence'
-    ? '<span class="pbadge exc">★ Excellence</span>'
+    ? '<span class="pbadge exc">★ Exzellenz</span>'
     : '<span class="pbadge">★ Premium</span>';
+}
+
+/* ---------- Partner-Logo-Slider ---------- */
+function renderPartners(){
+  const seen=new Set(), items=[];
+  JOBS.forEach(j=>{
+    const key=j.firma_id||j.firma;
+    if(!key||seen.has(key)) return; seen.add(key);
+    if(j.firma_logo) items.push('<div class="plogo"><img src="'+esc(j.firma_logo)+'" alt="'+esc(j.firma)+'" loading="lazy"></div>');
+    else if(j.firma) items.push('<div class="plogo"><span class="pname">'+esc(j.firma)+'</span></div>');
+  });
+  if(items.length<2){ $('pslider').style.display='none'; return; }
+  // Set verdoppeln -> nahtloser -50%-Loop
+  $('ptrack').innerHTML = items.join('')+items.join('');
+  $('pslider').style.display='';
+}
+
+/* ---------- Animierte Ablauf-Karte ---------- */
+let tlTimer=null;
+function startTimeline(){
+  const steps=[...document.querySelectorAll('#tlList .tl-step')];
+  if(!steps.length) return;
+  clearTimeout(tlTimer);
+  let i=0;
+  (function cycle(){
+    if(i<steps.length){
+      steps[i].classList.add('done'); i++;
+      tlTimer=setTimeout(cycle,1100);
+    }else{
+      tlTimer=setTimeout(()=>{ steps.forEach(s=>s.classList.remove('done')); i=0; cycle(); },2800);
+    }
+  })();
+}
+
+/* ---------- Such-Normalisierung & Synonyme ---------- */
+function norm(s){
+  return (s||'').toLowerCase()
+    .replace(/ä/g,'a').replace(/ö/g,'o').replace(/ü/g,'u').replace(/ß/g,'ss')
+    .replace(/[^a-z0-9 ]+/g,' ').replace(/\s+/g,' ').trim();
+}
+function stem(w){
+  if(w.length<5) return w;
+  return w.replace(/(innen|ungen|ung|erin|euren|eure|er|en|in|es|e|s)$/,'');
+}
+// konservative Synonym-Cluster (auf Stamm-Ebene)
+const SYN=[
+  ['tiefbau','kanalbau','rohrleitungsbau','erdbau','strassenbau','pflasterbau','asphalt'],
+  ['bagger','baggerfahr','baugerat','baumaschin','maschinist'],
+  ['polier','vorarbeit','bauleit','kolonnenfuhr'],
+  ['rohrleg','kanalbau','rohrleitung'],
+  ['lkw','kraftfahr','fahrer','berufskraftfahr']
+];
+function expand(stemWord){
+  const set=new Set([stemWord]);
+  SYN.forEach(g=>{ if(g.some(t=>stemWord.includes(t)||t.includes(stemWord))) g.forEach(t=>set.add(t)); });
+  return [...set];
 }
 
 /* ---------- Typewriter ---------- */
@@ -659,12 +796,12 @@ async function load(){
     return;
   }
   JOBS = data||[];
-  $('stCount').textContent = JOBS.length;
-  $('stFirms').textContent = new Set(JOBS.map(j=>j.firma_id)).size;
   // Firmen-PLZ vorab geocoden (klein, einmalig)
   await Promise.all([...new Set(JOBS.map(j=>j.firma_plz).filter(Boolean))].map(geo));
   buildFilters();
   renderFeatured();
+  renderPartners();
+  startTimeline();
   route();
 }
 
@@ -691,7 +828,24 @@ function buildFilters(){
         <input type="range" id="frad" min="0" max="150" step="10" value="${RADIUS}" oninput="onRadius()">
         <span class="rv" id="fradv">${RADIUS?RADIUS+' km':'ganz DE'}</span>
       </div>
+      <div class="fmap">
+        <svg viewBox="0 0 220 150" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="220" height="150" fill="#EEF1F0"/>
+          <g stroke="#D9DEDC" stroke-width="3" fill="none">
+            <path d="M-10 40 L230 30"/><path d="M-10 95 L230 110"/>
+            <path d="M55 -10 L75 160"/><path d="M150 -10 L135 160"/>
+          </g>
+          <g stroke="#E3C9B4" stroke-width="2" fill="none">
+            <path d="M-10 70 L230 64"/><path d="M105 -10 L120 160"/>
+          </g>
+          <circle id="fmapCircle" cx="110" cy="75" r="30" fill="rgba(255,107,26,.14)" stroke="var(--o)" stroke-width="2"/>
+          <circle cx="110" cy="75" r="5.5" fill="var(--o-dark)"/>
+          <circle cx="110" cy="75" r="11" fill="none" stroke="var(--o)" stroke-width="1.5" opacity=".5"/>
+        </svg>
+        <span class="fmaplbl" id="fmapLbl">${RADIUS?'~'+RADIUS+' km Umkreis':'ganz Deutschland'}</span>
+      </div>
       <button class="freset" onclick="resetFilters()">Filter zurücksetzen</button>`;
+  updateMiniMap();
 }
 function toggleBranche(b){ SEL_BRANCHE.has(b)?SEL_BRANCHE.delete(b):SEL_BRANCHE.add(b); applyFilter(); }
 function toggleBeruf(b){ SEL_BERUF.has(b)?SEL_BERUF.delete(b):SEL_BERUF.add(b); applyFilter(); }
@@ -700,12 +854,24 @@ let plzTimer=null;
 function onPlz(){
   const v=$('fplz').value.trim();
   clearTimeout(plzTimer);
+  updateMiniMap();
   plzTimer=setTimeout(async()=>{
     SEARCH_GEO = /^\d{5}$/.test(v) ? await geo(v) : null;
     applyFilter();
   },350);
 }
-function onRadius(){ RADIUS=+$('frad').value; $('fradv').textContent=RADIUS?RADIUS+' km':'ganz DE'; applyFilter(); }
+function onRadius(){ RADIUS=+$('frad').value; $('fradv').textContent=RADIUS?RADIUS+' km':'ganz DE'; updateMiniMap(); applyFilter(); }
+function updateMiniMap(){
+  const c=$('fmapCircle'); if(!c) return;
+  c.setAttribute('r', 12 + (RADIUS/150)*62);
+  const lbl=$('fmapLbl');
+  if(lbl){
+    const plz=($('fplz')?.value||'').trim();
+    lbl.textContent = RADIUS
+      ? '~'+RADIUS+' km Umkreis'+(/^\d{5}$/.test(plz)?' um '+plz:'')
+      : (/^\d{5}$/.test(plz)?'um '+plz:'ganz Deutschland');
+  }
+}
 function resetFilters(){ SEL_BRANCHE.clear(); SEL_BERUF.clear(); SEL_ART.clear(); SEARCH_GEO=null; RADIUS=0; if($('q'))$('q').value=''; buildFilters(); applyFilter(); }
 
 function distOf(j){
@@ -720,13 +886,18 @@ function applyFilter(){
     if(SEL_BERUF.size && !SEL_BERUF.has(j.titel)) return false;
     if(SEL_ART.size && !SEL_ART.has(j.beschaeftigungsart)) return false;
     if(q){
-      const hay=(j.titel+' '+j.firma+' '+(j.ort||'')+' '+(j.branche||'')+' '+(j.beschreibung||'')).toLowerCase();
-      if(!hay.includes(q)) return false;
+      const hay=norm(j.titel+' '+j.firma+' '+(j.ort||'')+' '+(j.branche||'')+' '+(j.beschreibung||'')
+                     +' '+(j.aufgaben||'')+' '+(j.profil||''));
+      // pro Suchwort: Stamm + Synonyme; jedes Wort muss matchen
+      const ok = norm(q).split(' ').filter(Boolean).every(word=>{
+        const variants=expand(stem(word));
+        return variants.some(v=> v.length>=3 ? hay.includes(v) : hay.split(' ').includes(v));
+      });
+      if(!ok) return false;
     }
-    if(SEARCH_GEO && RADIUS){
-      const d=distOf(j);
-      if(d!=null && d>RADIUS) return false;
-    }
+    // Hinweis: Radius filtert bewusst (noch) nicht hart aus – bei aktuell wenigen
+    // Stellen würden Bewerber sonst leer ausgehen. Stattdessen wird nach Nähe sortiert.
+    // Sobald genug Stellen online sind, hier wieder den harten Cutoff aktivieren.
     return true;
   });
   if(SEARCH_GEO){
@@ -987,7 +1158,7 @@ const FAQ_DATA=[
   {q:'Welche Berufe finde ich hier?',a:'Alle Gewerke rund um Straßen-, Tief-, Kanal-, Rohrleitungs- und Hochbau: vom Baugeräteführer, Rohrleger und Facharbeiter über Vorarbeiter und Polier bis zu Bauleiter und Bauzeichner.'},
   {q:'Sind die Arbeitgeber geprüft?',a:'Ja. Auf dem Karrierenetzwerk erscheinen ausschließlich echte, geprüfte Bauunternehmen aus dem GreenCareers-Netzwerk – keine anonymen Anzeigen und keine Personalvermittler-Massenposts.'},
   {q:'Werden Stellen in meiner Nähe angezeigt?',a:'Ja. Gib einfach deine Postleitzahl ein und stelle den Umkreis ein – die nächstgelegenen Betriebe werden dir zuerst angezeigt und nach Entfernung sortiert.'},
-  {q:'Was ist GreenCareers?',a:'GreenCareers betreibt das Karrierenetzwerk für den Straßen-, Tief- und Kanalbau. Über 1.100 Betriebe und mehr als 42.000 Fachkräfte sind im Netzwerk – bei rund 200.000 monatlichen Nutzern findest du passende Stellen aus deiner Region.'},
+  {q:'Was ist GreenCareers?',a:'GreenCareers betreibt das Karrierenetzwerk für den Straßen-, Tief- und Kanalbau. Über 1.100 Betriebe sind im Netzwerk – bei rund 42.000 monatlichen Nutzern findest du passende Stellen aus deiner Region.'},
   {q:'Was passiert mit meinen Daten?',a:'Deine Angaben werden ausschließlich an den Betrieb weitergegeben, bei dem du dich bewirbst, und dienen nur der Bearbeitung deiner Bewerbung. Mehr dazu in der <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.'}
 ];
 function renderFaq(){

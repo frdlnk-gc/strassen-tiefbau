@@ -52,6 +52,10 @@
           padding:7px 14px;border-radius:100px;border:1px solid rgba(255,107,26,.28)}
   .hero h1{font-size:clamp(30px,5vw,50px);line-height:1.07;letter-spacing:-1px;margin:20px 0 18px;font-weight:830;max-width:880px}
   .hero h1 b{color:var(--o-glow)}
+  .hero h1 .tw{color:var(--o-glow)}
+  .hero h1 .caret{display:inline-block;width:3px;height:.86em;background:var(--o-glow);margin:0 1px 0 2px;
+        border-radius:2px;vertical-align:-.04em;animation:twblink 1s steps(1) infinite}
+  @keyframes twblink{50%{opacity:0}}
   .hero .sub{font-size:clamp(16px,2.2vw,19px);color:#C7CDD4;max-width:680px}
   .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px;align-items:center}
   .btn-o{background:var(--grad);color:#fff;font-weight:740;font-size:15.5px;padding:15px 26px;border-radius:12px;
@@ -85,6 +89,21 @@
   .pcard .n{font-size:30px;font-weight:830;color:var(--o-dark);letter-spacing:-.5px}
   .pcard h3{font-size:16px;font-weight:760;margin:8px 0 6px}
   .pcard p{color:var(--ink2);font-size:14.5px;line-height:1.6}
+
+  /* USP */
+  .usp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(265px,1fr));gap:18px}
+  .ucard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 24px;box-shadow:var(--shadow);position:relative}
+  .ucard .uic{width:50px;height:50px;border-radius:13px;background:var(--o-pale);display:grid;place-items:center;font-size:24px;margin-bottom:14px}
+  .ucard .ubadge{display:inline-block;background:var(--o-pale);color:var(--o-dark);font-weight:800;font-size:11.5px;
+        letter-spacing:.3px;padding:4px 11px;border-radius:100px;border:1px solid #FAD9C2;margin-bottom:10px}
+  .ucard h3{font-size:18px;font-weight:800;letter-spacing:-.3px;margin-bottom:8px;line-height:1.2}
+  .ucard p{color:var(--ink2);font-size:14.5px;line-height:1.62}
+  .ucard p b{color:var(--ink)}
+  .usp-out{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px 26px;margin-top:20px;
+        background:var(--dark);border-radius:16px;padding:24px 26px;color:#fff}
+  .uo{display:flex;flex-direction:column;gap:3px;padding:4px 2px}
+  .uo b{font-size:16px;font-weight:820;color:var(--o-glow);letter-spacing:-.2px}
+  .uo span{font-size:13.5px;color:#A8B0B9;line-height:1.5}
 
   /* Steps */
   .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
@@ -229,17 +248,16 @@
 <section class="hero">
   <div class="wrap">
     <span class="kicker">● Für Betriebe im Straßen-, Tief- &amp; Kanalbau</span>
-    <h1>Qualifizierte Fachkräfte für Ihren Bau-Betrieb – <b>planbar statt zufällig</b>, aus Ihrer Region.</h1>
+    <h1>Qualifizierte Fachkräfte für Ihren <span class="tw" id="twWord">Straßenbau</span><span class="caret"></span>betrieb – <b>planbar statt zufällig</b>, aus Ihrer Region.</h1>
     <p class="sub">GreenCareers ist das spezialisierte Karrierenetzwerk für den Straßen-, Tief- &amp; Kanalbau. Per KI-Matching bringen wir Ihren Betrieb mit passenden Fachkräften zusammen – ohne teure Agenturen und ohne Anzeigen-Chaos.</p>
     <div class="hero-cta">
       <a class="btn-o" href="#kontakt">Kostenloses Erstgespräch sichern</a>
       <a class="btn-ghost-d" href="#pakete">Pakete &amp; Preise ansehen ↓</a>
     </div>
     <div class="hero-stats">
-      <div class="hs"><b>42.000+</b><span>Fachkräfte im Netzwerk</span></div>
-      <div class="hs"><b>1.100+</b><span>Betriebe vertrauen uns</span></div>
-      <div class="hs"><b>1.600+</b><span>erfolgreiche Platzierungen</span></div>
-      <div class="hs"><b>200.000+</b><span>monatliche Nutzer</span></div>
+      <div class="hs"><b>42.000+</b><span>monatliche Nutzer</span></div>
+      <div class="hs"><b>1.100+</b><span>Partnerbetriebe</span></div>
+      <div class="hs"><b>1.600+</b><span>neue Fachkräfte / Monat</span></div>
     </div>
   </div>
 </section>
@@ -254,6 +272,42 @@
     <span class="l">Erdbau</span>
   </div>
 </div>
+
+<!-- USP -->
+<section class="s">
+  <div class="wrap">
+    <div class="sh">
+      <span class="tag">Was uns unterscheidet</span>
+      <h2>Drei Gründe, warum Betriebe mit uns <b>schneller und günstiger</b> einstellen.</h2>
+      <p>Spezialisiert auf den Straßen-, Tief- &amp; Kanalbau – kein generisches Portal, sondern ein System für genau Ihre Gewerke.</p>
+    </div>
+    <div class="usp-grid">
+      <div class="ucard">
+        <div class="uic">👷</div>
+        <span class="ubadge">Über 30.000 Kandidaten</span>
+        <h3>Direkter Zugriff auf unseren Bewerberpool</h3>
+        <p>Über <b>30.000 Fachkräfte</b> aus der Branche im deutschsprachigen Raum, die offen für ein attraktives Jobangebot sind. Sobald Sie im Karrierenetzwerk sind, werden Ihnen passende Kandidaten bei einem Match <b>automatisch zugespielt</b> – Sie warten nicht, Sie greifen sofort zu.</p>
+      </div>
+      <div class="ucard">
+        <div class="uic">🎯</div>
+        <span class="ubadge">100 % Branche</span>
+        <h3>Spezialisiert auf Ihre Branche</h3>
+        <p>Wir arbeiten ausschließlich <b>mit, für und aus der Branche</b>: Straßen-, Tief-, Kanal-, Rohrleitungs- und Hochbau. Keine fachfremde Streuung – die Fachkräfte, die Sie erreichen, suchen genau Ihre Gewerke.</p>
+      </div>
+      <div class="ucard">
+        <div class="uic">🤖</div>
+        <span class="ubadge">KI-Matching &amp; Marketing Intelligence</span>
+        <h3>Reichweite trifft Vorqualifizierung</h3>
+        <p>Hohe Reichweite – aber Sie bekommen nicht 200 Bewerbungen, von denen 180 unpassend sind und Sie trotzdem alle anrufen müssen. Unser KI-Matching leitet <b>überwiegend passende Kandidaten</b> weiter. Das spart Ihrem Team genau die Zeit, die heute in Anrufe ins Leere fließt.</p>
+      </div>
+    </div>
+    <div class="usp-out">
+      <div class="uo"><b>Niedrigere Time-to-Hire</b><span>Passende Kandidaten schneller am Tisch – statt monatelanger Suche.</span></div>
+      <div class="uo"><b>Niedrigere Cost-per-Hire</b><span>Deutlich günstiger als Headhunter, Social-Recruiting-Agenturen oder große Stellenportale.</span></div>
+      <div class="uo"><b>Weniger Vorauswahl</b><span>Ihre Personalabteilung selektiert nicht mehr vor – Sie erhalten die passenden Profile.</span></div>
+    </div>
+  </div>
+</section>
 
 <!-- Pain -->
 <section class="s pain">
@@ -513,6 +567,20 @@ function sendKontakt(e){
 }
 
 renderFaq();
+
+/* Typewriter im Hero-H1: rotierende Branche vor „betrieb" */
+(function(){
+  const WORDS=['Straßenbau','Tiefbau','Kanalbau','Rohrleitungsbau','Erdbau','Hochbau'];
+  const el=$('twWord'); if(!el) return;
+  let wi=0,pos=0,del=false;
+  (function tick(){
+    const w=WORDS[wi%WORDS.length];
+    if(!del){ pos++; el.textContent=w.slice(0,pos);
+      if(pos===w.length){del=true;return setTimeout(tick,1600);} return setTimeout(tick,80); }
+    else{ pos--; el.textContent=w.slice(0,pos);
+      if(pos===0){del=false;wi++;return setTimeout(tick,260);} return setTimeout(tick,42); }
+  })();
+})();
 </script>
 
 <!-- ===================== MAYA · KI-Beratung für Arbeitgeber ===================== -->

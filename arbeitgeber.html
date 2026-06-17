@@ -500,5 +500,131 @@ function sendKontakt(e){
 
 renderFaq();
 </script>
+
+<!-- ===================== MAYA · KI-Beratung für Arbeitgeber ===================== -->
+<style>
+  #maya-fab{position:fixed;right:20px;bottom:20px;z-index:900;display:flex;align-items:center;gap:9px;
+    background:linear-gradient(135deg,var(--o),var(--o-dark));color:#fff;border:none;cursor:pointer;
+    padding:13px 18px 13px 15px;border-radius:100px;font-weight:760;font-size:14.5px;font-family:inherit;
+    box-shadow:0 10px 30px rgba(255,107,26,.42);transition:transform .15s,box-shadow .15s}
+  #maya-fab:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(255,107,26,.5)}
+  #maya-fab svg{flex:none}
+  #maya-fab.hide{display:none}
+  #maya-panel{position:fixed;right:20px;bottom:20px;z-index:901;width:380px;max-width:calc(100vw - 32px);
+    height:580px;max-height:calc(100vh - 40px);background:#fff;border:1px solid var(--line,#EAE6E1);
+    border-radius:20px;box-shadow:0 24px 70px rgba(20,12,4,.28);display:none;flex-direction:column;overflow:hidden}
+  #maya-panel.open{display:flex}
+  .maya-head{display:flex;align-items:center;gap:11px;padding:15px 16px;
+    background:linear-gradient(135deg,var(--o),var(--o-dark));color:#fff}
+  .maya-av{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.2);display:grid;place-items:center;
+    font-weight:800;font-size:16px;flex:none;border:2px solid rgba(255,255,255,.5)}
+  .maya-ht b{font-size:15px;font-weight:800;display:block;line-height:1.1}
+  .maya-ht span{font-size:11.5px;opacity:.92}
+  .maya-x{margin-left:auto;background:rgba(255,255,255,.18);border:none;color:#fff;width:30px;height:30px;
+    border-radius:9px;cursor:pointer;font-size:18px;line-height:1;transition:.15s}
+  .maya-x:hover{background:rgba(255,255,255,.32)}
+  .maya-body{flex:1;overflow-y:auto;padding:16px;background:#FBF9F7;display:flex;flex-direction:column;gap:11px}
+  .maya-msg{max-width:84%;padding:10px 13px;border-radius:14px;font-size:14px;line-height:1.5;white-space:pre-wrap;word-wrap:break-word}
+  .maya-msg.bot{align-self:flex-start;background:#fff;border:1px solid var(--line,#EAE6E1);color:#2A2622;border-bottom-left-radius:5px}
+  .maya-msg.user{align-self:flex-end;background:linear-gradient(135deg,var(--o),var(--o-dark));color:#fff;border-bottom-right-radius:5px}
+  .maya-typing{align-self:flex-start;display:flex;gap:4px;padding:12px 14px;background:#fff;border:1px solid var(--line,#EAE6E1);border-radius:14px}
+  .maya-typing span{width:7px;height:7px;border-radius:50%;background:#C9C2BA;animation:mayaBlink 1.2s infinite}
+  .maya-typing span:nth-child(2){animation-delay:.2s}.maya-typing span:nth-child(3){animation-delay:.4s}
+  @keyframes mayaBlink{0%,60%,100%{opacity:.3}30%{opacity:1}}
+  .maya-foot{padding:11px;border-top:1px solid var(--line,#EAE6E1);background:#fff;display:flex;gap:8px;align-items:flex-end}
+  .maya-foot textarea{flex:1;resize:none;border:1px solid var(--line,#EAE6E1);border-radius:12px;padding:10px 12px;
+    font-family:inherit;font-size:14px;max-height:96px;line-height:1.4;outline:none;transition:border-color .15s}
+  .maya-foot textarea:focus{border-color:var(--o)}
+  .maya-send{flex:none;width:42px;height:42px;border-radius:12px;border:none;cursor:pointer;
+    background:linear-gradient(135deg,var(--o),var(--o-dark));color:#fff;display:grid;place-items:center;transition:.15s}
+  .maya-send:disabled{opacity:.45;cursor:default}
+  .maya-disc{font-size:10.5px;color:#A89E94;text-align:center;padding:0 12px 9px;background:#fff}
+  @media(max-width:480px){#maya-panel{right:8px;bottom:8px;height:calc(100vh - 16px)}#maya-fab{right:14px;bottom:14px}}
+</style>
+
+<button id="maya-fab" onclick="mayaOpen()" aria-label="Beratungs-Chat öffnen">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3C6.9 3 3 6.4 3 10.7c0 2.3 1.2 4.4 3.1 5.8-.1.9-.5 2.1-1.4 3.2 1.6-.2 3-.8 4-1.6 1 .3 2.1.5 3.3.5 5.1 0 9-3.4 9-7.6S17.1 3 12 3Z" fill="#fff"/></svg>
+  <span>Fragen? Maya berät Sie</span>
+</button>
+
+<div id="maya-panel" role="dialog" aria-label="Maya Beratung">
+  <div class="maya-head">
+    <div class="maya-av">M</div>
+    <div class="maya-ht"><b>Maya</b><span>Arbeitgeber-Beratung · GreenCareers</span></div>
+    <button class="maya-x" onclick="mayaClose()" aria-label="Schließen">×</button>
+  </div>
+  <div class="maya-body" id="maya-body"></div>
+  <div class="maya-foot">
+    <textarea id="maya-in" rows="1" placeholder="Ihre Frage an Maya …" oninput="mayaGrow(this)" onkeydown="mayaKey(event)"></textarea>
+    <button class="maya-send" id="maya-send" onclick="mayaSend()" aria-label="Senden">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 12 20 4l-4 16-4-7-8-1Z" fill="#fff"/></svg>
+    </button>
+  </div>
+  <div class="maya-disc">KI-Assistentin · Für verbindliche Angebote: +49 221 9688 2408</div>
+</div>
+
+<script>
+/* Maya: KI-Beratung NUR für Arbeitgeber. Der Anthropic-API-Key liegt NICHT hier,
+   sondern server-seitig in der Supabase Edge Function "maya-chat" (statische Seite
+   kann keinen Key sicher halten). Diese Seite ruft nur die Function auf. */
+const MAYA_FN  = 'https://tfoopogxaqvfwbonabpi.supabase.co/functions/v1/maya-chat';
+const MAYA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRmb29wb2d4YXF2Zndib25hYnBpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEyNTQzMjQsImV4cCI6MjA5NjgzMDMyNH0.udWRPszXVOj7EG4bspmsU9HXbZYFRDn8QO9kZi2tw8M';
+let MAYA_HIST=[], MAYA_BUSY=false, MAYA_GREETED=false;
+const mayaB=()=>document.getElementById('maya-body');
+
+function mayaOpen(){
+  document.getElementById('maya-panel').classList.add('open');
+  document.getElementById('maya-fab').classList.add('hide');
+  if(!MAYA_GREETED){
+    MAYA_GREETED=true;
+    mayaPush('bot','Guten Tag, ich bin Maya von GreenCareers. Ich berate Bau- und Tiefbau-Betriebe, die zuverlässig an qualifizierte Fachkräfte kommen möchten. Wonach suchen Sie aktuell?');
+  }
+  setTimeout(()=>document.getElementById('maya-in').focus(),120);
+}
+function mayaClose(){
+  document.getElementById('maya-panel').classList.remove('open');
+  document.getElementById('maya-fab').classList.remove('hide');
+}
+function mayaGrow(t){t.style.height='auto';t.style.height=Math.min(t.scrollHeight,96)+'px';}
+function mayaKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();mayaSend();}}
+function mayaPush(role,text){
+  const d=document.createElement('div');
+  d.className='maya-msg '+(role==='user'?'user':'bot');
+  d.textContent=text;
+  mayaB().appendChild(d); mayaB().scrollTop=mayaB().scrollHeight;
+}
+function mayaTyping(on){
+  let t=document.getElementById('maya-typing');
+  if(on){ if(!t){t=document.createElement('div');t.id='maya-typing';t.className='maya-typing';
+    t.innerHTML='<span></span><span></span><span></span>';mayaB().appendChild(t);mayaB().scrollTop=mayaB().scrollHeight;} }
+  else if(t){t.remove();}
+}
+async function mayaSend(){
+  if(MAYA_BUSY)return;
+  const inp=document.getElementById('maya-in');
+  const msg=inp.value.trim(); if(!msg)return;
+  inp.value=''; mayaGrow(inp);
+  mayaPush('user',msg); MAYA_HIST.push({role:'user',content:msg});
+  MAYA_BUSY=true; document.getElementById('maya-send').disabled=true; mayaTyping(true);
+  try{
+    const r=await fetch(MAYA_FN,{method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+MAYA_KEY,'apikey':MAYA_KEY},
+      body:JSON.stringify({messages:MAYA_HIST})});
+    const data=await r.json().catch(()=>({}));
+    mayaTyping(false);
+    if(!r.ok||!data.reply){
+      mayaPush('bot','Entschuldigen Sie, gerade ist die Verbindung gestört. Rufen Sie uns gern direkt an: +49 221 9688 2408 oder schreiben Sie an hello@green-careers.de.');
+    }else{
+      mayaPush('bot',data.reply); MAYA_HIST.push({role:'assistant',content:data.reply});
+    }
+  }catch(err){
+    mayaTyping(false);
+    mayaPush('bot','Entschuldigen Sie, gerade ist die Verbindung gestört. Rufen Sie uns gern direkt an: +49 221 9688 2408 oder schreiben Sie an hello@green-careers.de.');
+  }finally{
+    MAYA_BUSY=false; document.getElementById('maya-send').disabled=false;
+    document.getElementById('maya-in').focus();
+  }
+}
+</script>
 </body>
 </html>

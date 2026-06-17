@@ -310,6 +310,15 @@ const GRAD={
   weiterbildung:'linear-gradient(135deg,#1E3A2F 0%,#FF6B1A 150%)',
   recht:'linear-gradient(135deg,#2A1F37 0%,#E55A0A 150%)'
 };
+/* Foto-Titelbilder pro Rubrik (mit Marken-Overlay für Lesbarkeit) */
+const IMG={
+  gehalt:'assets/magazin/gehalt.jpg',
+  berufe:'assets/magazin/berufe.jpg',
+  bewerbung:'assets/magazin/bewerbung.jpg',
+  weiterbildung:'assets/magazin/weiterbildung.jpg',
+  recht:'assets/magazin/recht.jpg'
+};
+const IMG_OVERLAY='linear-gradient(140deg,rgba(20,25,29,.62) 0%,rgba(20,25,29,.30) 55%,rgba(229,90,10,.50) 100%)';
 const catLabel=k=>(CATS.find(c=>c.key===k)||{}).label||k;
 
 /* ---------- Articles ---------- */
@@ -759,7 +768,11 @@ const ARTICLES=[
 let CUR_CAT='alle';
 
 /* ---------- Rendering ---------- */
-function coverStyle(cat){return `background:${GRAD[cat]||GRAD.berufe}`;}
+function coverStyle(cat){
+  const img=IMG[cat];
+  if(img) return `background:${IMG_OVERLAY},${GRAD[cat]||GRAD.berufe};background-image:${IMG_OVERLAY},url('${img}');background-size:cover;background-position:center`;
+  return `background:${GRAD[cat]||GRAD.berufe}`;
+}
 function fmtDate(d){const m=['Jan.','Feb.','März','Apr.','Mai','Juni','Juli','Aug.','Sep.','Okt.','Nov.','Dez.'];const[y,mo,da]=d.split('-');return `${+da}. ${m[+mo-1]} ${y}`;}
 
 function cardHTML(a){return `<div class="card" onclick="openArticle('${a.slug}')">
@@ -799,7 +812,7 @@ function setCat(k){CUR_CAT=k;renderChips();renderList();}
 /* ---------- Article view ---------- */
 function openArticle(slug){
   const a=ARTICLES.find(x=>x.slug===slug);if(!a)return goMagHome();
-  $('artHero').style.background=GRAD[a.cat]||GRAD.berufe;
+  $('artHero').style.cssText=`${coverStyle(a.cat)}`;
   $('artEmoji').textContent=a.emoji;
   $('artTag').textContent=catLabel(a.cat);
   $('artTitle').textContent=a.title;

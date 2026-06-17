@@ -102,20 +102,70 @@
   /* ---------- Detail ---------- */
   .detail{display:none}
   .back{display:inline-flex;align-items:center;gap:7px;color:var(--ink2);font-weight:600;font-size:14px;
-        cursor:pointer;margin-bottom:20px}
+        cursor:pointer;margin-bottom:18px}
   .back:hover{color:var(--o-dark)}
   .dt-grid{display:grid;grid-template-columns:1fr 340px;gap:26px;align-items:start}
-  .dt-main{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow)}
-  .dt-head{display:flex;gap:16px;align-items:flex-start;padding-bottom:22px;border-bottom:1px solid var(--line2);margin-bottom:22px}
-  .dt-head .fav{width:62px;height:62px;font-size:24px;border-radius:14px}
-  .dt-head h1{font-size:27px;font-weight:820;letter-spacing:-.6px;line-height:1.15}
-  .dt-head .firma{color:var(--muted);font-weight:600;margin-top:3px;font-size:15px}
-  .dt-tags{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 4px}
-  .block{margin-top:26px}
-  .block h4{font-size:16px;font-weight:780;margin-bottom:10px;display:flex;align-items:center;gap:9px}
+  .dt-main{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+
+  /* Banner */
+  .dt-banner{height:200px;background:var(--dark);position:relative;overflow:hidden}
+  .dt-banner img{width:100%;height:100%;object-fit:cover}
+  .dt-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,25,29,.05),rgba(22,25,29,.55))}
+  .dt-banner.noimg{background:var(--grad)}
+  .dt-banner.noimg::after{background:radial-gradient(600px 240px at 85% -20%,rgba(255,255,255,.25),transparent 60%)}
+  .dt-inner{padding:0 30px 30px}
+  .dt-head{display:flex;gap:16px;align-items:flex-end;margin-top:-34px;position:relative;z-index:2;
+           padding-bottom:20px;border-bottom:1px solid var(--line2);margin-bottom:0}
+  .dt-head .fav{width:74px;height:74px;font-size:28px;border-radius:16px;border:3px solid #fff;box-shadow:0 6px 18px rgba(0,0,0,.12)}
+  .dt-head .ht{padding-bottom:4px}
+  .dt-head h1{font-size:26px;font-weight:820;letter-spacing:-.6px;line-height:1.15}
+  .dt-head .firma{color:var(--muted);font-weight:600;margin-top:3px;font-size:14.5px}
+  .dt-tags{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 2px}
+
+  /* Tabs */
+  .tabs{display:flex;gap:4px;border-bottom:1px solid var(--line2);margin:20px 0 4px}
+  .tab{background:none;border:0;font-family:inherit;font-size:14.5px;font-weight:700;color:var(--muted);
+       padding:12px 16px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:.14s}
+  .tab:hover{color:var(--ink2)}
+  .tab.on{color:var(--o-dark);border-bottom-color:var(--o)}
+  .tabpane{display:none;padding-top:6px}
+  .tabpane.on{display:block;animation:fade .2s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+  .block{margin-top:24px}
+  .block:first-child{margin-top:14px}
+  .block h4{font-size:16px;font-weight:780;margin-bottom:11px;display:flex;align-items:center;gap:9px}
   .block h4::before{content:"";width:4px;height:18px;border-radius:3px;background:var(--grad)}
-  .block .body{color:var(--ink2);font-size:15px;white-space:pre-wrap}
+  .block .body{color:var(--ink2);font-size:15px;white-space:pre-wrap;line-height:1.6}
   .block .body ul{margin:0;padding-left:20px}
+
+  /* Checklist (Aufgaben/Profil/Benefits) */
+  .clist{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .clist li{display:flex;gap:11px;align-items:flex-start;color:var(--ink2);font-size:14.5px;line-height:1.5}
+  .clist li .ck{flex:none;width:21px;height:21px;border-radius:6px;background:var(--o-pale);color:var(--o-dark);
+       display:grid;place-items:center;font-size:12px;font-weight:800;margin-top:1px}
+
+  /* Image gallery */
+  .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:6px}
+  .gallery img{width:100%;height:120px;object-fit:cover;border-radius:12px;border:1px solid var(--line2);cursor:pointer;transition:.15s}
+  .gallery img:hover{transform:scale(1.02);border-color:var(--o)}
+
+  /* Über uns stats */
+  .ustats{display:flex;gap:12px;flex-wrap:wrap;margin:4px 0 6px}
+  .ustat{flex:1;min-width:130px;background:var(--bg);border:1px solid var(--line2);border-radius:12px;padding:14px 16px}
+  .ustat b{display:block;font-size:21px;font-weight:820;color:var(--ink);letter-spacing:-.3px}
+  .ustat span{font-size:12.5px;color:var(--muted);font-weight:600}
+  .karriere-btn{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;font-weight:700;
+       font-size:14px;padding:11px 18px;border-radius:10px;margin-top:8px;transition:.15s}
+  .karriere-btn:hover{background:#000}
+  .dt-map{margin-top:14px;border-radius:12px;overflow:hidden;border:1px solid var(--line2);height:240px}
+  .dt-map iframe{width:100%;height:100%;border:0;display:block}
+
+  /* Lightbox */
+  .lb{position:fixed;inset:0;background:rgba(10,12,14,.88);display:none;align-items:center;justify-content:center;
+      z-index:100;padding:30px;cursor:zoom-out}
+  .lb.on{display:flex}
+  .lb img{max-width:92vw;max-height:90vh;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
 
   .aside{position:sticky;top:84px;display:flex;flex-direction:column;gap:16px}
   .apply-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
@@ -136,6 +186,16 @@
   .firma-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
   .firma-card .row{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink2);margin-top:8px}
   .firma-card .row .d{color:var(--o);width:18px;text-align:center}
+  .ap-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+  .ap-card .ap-h{font-size:12.5px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .ap-top{display:flex;align-items:center;gap:13px}
+  .ap-foto{width:54px;height:54px;border-radius:50%;object-fit:cover;flex:none;background:var(--o-pale);
+       color:var(--o-dark);display:grid;place-items:center;font-weight:800;font-size:18px;border:1px solid var(--line2)}
+  .ap-card .ap-name{font-weight:780;font-size:15.5px;letter-spacing:-.2px}
+  .ap-card .ap-rolle{color:var(--muted);font-size:13px;font-weight:600}
+  .ap-card .row{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--ink2);margin-top:9px}
+  .ap-card .row .d{color:var(--o);width:18px;text-align:center}
+  .ap-card .row a{color:var(--o-dark)}
   .applied{text-align:center;padding:8px 0}
   .applied .big{width:58px;height:58px;border-radius:50%;background:var(--ok-bg);color:var(--ok);font-size:28px;
        display:grid;place-items:center;margin:0 auto 14px}
@@ -219,6 +279,9 @@
 
 <!-- ============ DETAIL ============ -->
 <div class="detail" id="detail"><div class="wrap" id="detailInner"></div></div>
+
+<!-- Lightbox -->
+<div class="lb" id="lb" onclick="closeLb()"><img id="lbImg" src="" alt=""></div>
 
 <footer>
   <div class="wrap">
@@ -327,32 +390,92 @@ function goHome(){history.pushState({},'',location.pathname);showHome();}
 function showHome(){$('detail').style.display='none';$('home').style.display='';applyFilter();}
 window.addEventListener('popstate',route);
 
-function block(title,txt){
-  if(!txt||!txt.trim()) return '';
+function asList(v){
+  // jsonb-Array ODER Freitext (Zeilen / Aufzaehlung) -> Array sauberer Eintraege
+  if(Array.isArray(v)) return v.map(x=>String(x).trim()).filter(Boolean);
+  if(!v||!String(v).trim()) return [];
+  return String(v).split(/\r?\n|;|•|·/).map(s=>s.replace(/^[-–•*\s]+/,'').trim()).filter(Boolean);
+}
+function blockText(title,txt){
+  if(!txt||!String(txt).trim()) return '';
   return '<div class="block"><h4>'+title+'</h4><div class="body">'+esc(txt)+'</div></div>';
 }
+function blockList(title,v){
+  const items=asList(v); if(!items.length) return '';
+  return '<div class="block"><h4>'+title+'</h4><ul class="clist">'+
+    items.map(t=>'<li><span class="ck">✓</span><span>'+esc(t)+'</span></li>').join('')+'</ul></div>';
+}
+function gallery(arr){
+  const imgs=(Array.isArray(arr)?arr:[]).map(u=>String(u).trim()).filter(Boolean);
+  if(!imgs.length) return '';
+  return '<div class="gallery">'+imgs.map(u=>'<img src="'+esc(u)+'" alt="" loading="lazy" onclick="openLb(\''+esc(u).replace(/'/g,"\\'")+'\')">').join('')+'</div>';
+}
+function switchTab(name){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.tab===name));
+  document.querySelectorAll('.tabpane').forEach(p=>p.classList.toggle('on',p.dataset.tab===name));
+}
+function openLb(src){$('lbImg').src=src;$('lb').classList.add('on');}
+function closeLb(){$('lb').classList.remove('on');}
 
 function renderDetail(j){
   $('home').style.display='none';
   $('detail').style.display='block';
+
+  const benefitsHtml = (asList(j.benefits_list).length? blockList('Das bieten wir dir',j.benefits_list) : blockList('Das bieten wir dir',j.benefits))
+    || '<div class="block"><div class="body" style="color:var(--muted)">Keine Benefits hinterlegt.</div></div>';
+
+  const hasUeber = j.firma_ueber_uns || j.firma_mitarbeiter || j.firma_gruendung || (Array.isArray(j.firma_bilder)&&j.firma_bilder.length);
+  const mapQuery = encodeURIComponent((j.firma||'')+' '+(j.firma_ort||j.ort||''));
+  const ueberHtml = `
+    ${gallery(j.firma_bilder)}
+    ${(j.firma_mitarbeiter||j.firma_gruendung)?`<div class="ustats">
+        ${j.firma_mitarbeiter?`<div class="ustat"><b>${esc(j.firma_mitarbeiter)}</b><span>Mitarbeitende</span></div>`:''}
+        ${j.firma_gruendung?`<div class="ustat"><b>${esc(j.firma_gruendung)}</b><span>gegründet</span></div>`:''}
+        ${j.firma_ort?`<div class="ustat"><b>${esc(j.firma_ort)}</b><span>Standort</span></div>`:''}
+      </div>`:''}
+    ${blockText('Über '+(j.firma||'das Unternehmen'),j.firma_ueber_uns)}
+    ${j.firma_karriere_url?`<a class="karriere-btn" href="${esc(j.firma_karriere_url)}" target="_blank" rel="noopener">Zur Karriereseite →</a>`:''}
+    ${(j.firma_ort||j.ort)?`<div class="dt-map"><iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=${mapQuery}&output=embed"></iframe></div>`:''}`;
+
+  const apFoto = j.ansprechpartner_foto
+    ? `<img class="ap-foto" src="${esc(j.ansprechpartner_foto)}" alt="">`
+    : `<div class="ap-foto">${esc(initials(j.ansprechpartner||j.firma))}</div>`;
+
   $('detailInner').innerHTML=`
     <div class="back" onclick="goHome()">← Alle Stellen</div>
     <div class="dt-grid">
       <div class="dt-main">
-        <div class="dt-head">
-          ${fav(j)}
-          <div><h1>${esc(j.titel)}</h1><div class="firma">${esc(j.firma)}${j.ort?' · '+esc(j.ort):''}</div>
+        <div class="dt-banner ${j.firma_titelbild?'':'noimg'}">${j.firma_titelbild?`<img src="${esc(j.firma_titelbild)}" alt="">`:''}</div>
+        <div class="dt-inner">
+          <div class="dt-head">
+            ${fav(j)}
+            <div class="ht"><h1>${esc(j.titel)}</h1><div class="firma">${esc(j.firma)}${j.ort?' · '+esc(j.ort):''}</div></div>
+          </div>
           <div class="dt-tags">
             ${j.beschaeftigungsart?`<span class="tag">🕒 ${esc(j.beschaeftigungsart)}</span>`:''}
-            ${j.gehalt?`<span class="tag sal">💶 ${esc(j.gehalt)}</span>`:''}
+            ${j.vertragsart?`<span class="tag">📄 ${esc(j.vertragsart)}</span>`:''}
             ${j.eintritt?`<span class="tag">📅 ${esc(j.eintritt)}</span>`:''}
-          </div></div>
+            ${j.gehalt?`<span class="tag sal">💶 ${esc(j.gehalt)}</span>`:''}
+          </div>
+
+          <div class="tabs">
+            <button class="tab on" data-tab="job" onclick="switchTab('job')">Jobbeschreibung</button>
+            <button class="tab" data-tab="benefits" onclick="switchTab('benefits')">Benefits</button>
+            ${hasUeber?`<button class="tab" data-tab="ueber" onclick="switchTab('ueber')">Über uns</button>`:''}
+          </div>
+
+          <div class="tabpane on" data-tab="job">
+            ${blockText('Über die Stelle',j.beschreibung)}
+            ${blockList('Deine Aufgaben',j.aufgaben)}
+            ${blockList('Dein Profil',j.profil)}
+            ${gallery(j.stellen_bilder)}
+            ${(!j.beschreibung&&!asList(j.aufgaben).length&&!asList(j.profil).length)?'<div class="block"><div class="body" style="color:var(--muted)">Keine Beschreibung hinterlegt.</div></div>':''}
+          </div>
+          <div class="tabpane" data-tab="benefits">${benefitsHtml}</div>
+          ${hasUeber?`<div class="tabpane" data-tab="ueber">${ueberHtml}</div>`:''}
         </div>
-        ${block('Über die Stelle',j.beschreibung)}
-        ${block('Deine Aufgaben',j.aufgaben)}
-        ${block('Dein Profil',j.profil)}
-        ${block('Wir bieten dir',j.benefits)}
       </div>
+
       <div class="aside">
         <div class="apply-card" id="applyCard">
           <h3>Jetzt bewerben</h3>
@@ -365,10 +488,19 @@ function renderDetail(j){
           <button class="btn-apply" id="apBtn" onclick="submitApply('${esc(j.slug)}')">Bewerbung absenden</button>
           <div class="consent">Mit dem Absenden stimmst du der Verarbeitung deiner Daten zur Bearbeitung der Bewerbung zu. Details in der <a href="https://www.green-careers.de/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a>.</div>
         </div>
+        ${(j.ansprechpartner||j.kontakt_email||j.kontakt_telefon)?`
+        <div class="ap-card">
+          <div class="ap-h">Dein Ansprechpartner</div>
+          <div class="ap-top">${apFoto}
+            <div>${j.ansprechpartner?`<div class="ap-name">${esc(j.ansprechpartner)}</div>`:`<div class="ap-name">${esc(j.firma)}</div>`}
+            ${j.ansprechpartner_rolle?`<div class="ap-rolle">${esc(j.ansprechpartner_rolle)}</div>`:''}</div>
+          </div>
+          ${j.kontakt_telefon?`<div class="row"><span class="d">📞</span> <a href="tel:${esc(j.kontakt_telefon)}">${esc(j.kontakt_telefon)}</a></div>`:''}
+          ${j.kontakt_email?`<div class="row"><span class="d">✉️</span> <a href="mailto:${esc(j.kontakt_email)}">${esc(j.kontakt_email)}</a></div>`:''}
+        </div>`:''}
         <div class="firma-card">
           <b>${esc(j.firma)}</b>
           ${j.firma_ort?`<div class="row"><span class="d">📍</span> ${esc(j.firma_ort)}</div>`:''}
-          ${j.ansprechpartner?`<div class="row"><span class="d">👤</span> ${esc(j.ansprechpartner)}</div>`:''}
           ${j.firma_website?`<div class="row"><span class="d">🔗</span> <a href="${esc(j.firma_website)}" target="_blank" rel="noopener" style="color:var(--o-dark)">Website</a></div>`:''}
         </div>
       </div>

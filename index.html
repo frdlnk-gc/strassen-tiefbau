@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Straßen- & Tiefbau Karrierenetzwerk · GreenCareers</title>
+<meta name="description" content="Das Stellennetzwerk für Straßen- und Tiefbau. Aktuelle Jobs bei geprüften Bauunternehmen in deiner Region – direkt bewerben.">
+<link rel="icon" href="https://www.green-careers.de/favicon-32.png">
+<style>
+  :root{
+    --o:#FF6B1A; --o-dark:#E55A0A; --o-glow:#FF8533; --o-pale:#FFF1E8;
+    --grad:linear-gradient(135deg,#FF6B1A 0%,#E55A0A 100%);
+    --ink:#16191D; --ink2:#3A4047; --muted:#6B7480;
+    --bg:#F6F5F2; --card:#FFFFFF; --line:#E6E3DD; --line2:#EFEDE8;
+    --dark:#16191D; --dark2:#1F242A;
+    --ok:#1e8449; --ok-bg:#e8f8ef;
+    --radius:16px; --shadow:0 1px 2px rgba(20,25,29,.04),0 8px 28px rgba(20,25,29,.06);
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  img{max-width:100%}
+
+  /* ---------- Header ---------- */
+  header{position:sticky;top:0;z-index:50;background:rgba(246,245,242,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;gap:14px;height:64px}
+  .brand{display:flex;align-items:center;gap:11px;cursor:pointer}
+  .logo{width:40px;height:40px;border-radius:11px;background:var(--grad);display:grid;place-items:center;
+        color:#fff;font-weight:800;font-size:19px;box-shadow:0 4px 12px rgba(255,107,26,.35)}
+  .bname{font-weight:800;font-size:16px;letter-spacing:-.2px;line-height:1.05}
+  .bname small{display:block;font-weight:600;font-size:11.5px;color:var(--muted);letter-spacing:.3px;text-transform:uppercase}
+  .nav .sp{flex:1}
+  .nav-cta{background:var(--ink);color:#fff;font-weight:700;font-size:14px;padding:10px 18px;border-radius:10px;transition:.15s}
+  .nav-cta:hover{background:#000}
+
+  /* ---------- Hero ---------- */
+  .hero{background:var(--dark);color:#fff;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:0;background:
+    radial-gradient(800px 360px at 82% -8%,rgba(255,107,26,.30),transparent 60%);pointer-events:none}
+  .hero .wrap{position:relative;z-index:1;padding:62px 22px 70px}
+  .kicker{display:inline-flex;align-items:center;gap:8px;background:rgba(255,107,26,.14);
+          color:var(--o-glow);font-weight:700;font-size:12.5px;letter-spacing:.5px;text-transform:uppercase;
+          padding:7px 14px;border-radius:100px;border:1px solid rgba(255,107,26,.25)}
+  .hero h1{font-size:clamp(30px,5vw,50px);line-height:1.05;letter-spacing:-1px;margin:20px 0 16px;font-weight:830}
+  .hero h1 b{color:var(--o-glow)}
+  .hero p{font-size:clamp(16px,2.2vw,19px);color:#C7CDD4;max-width:620px}
+  .stats{display:flex;gap:34px;margin-top:34px;flex-wrap:wrap}
+  .stat b{display:block;font-size:26px;font-weight:820;color:#fff}
+  .stat span{font-size:13px;color:#9AA2AB}
+  .hero-search{margin-top:34px;background:#fff;border-radius:14px;padding:8px;display:flex;gap:8px;
+               max-width:560px;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+  .hero-search input{flex:1;border:0;outline:0;font-size:15.5px;padding:12px 14px;color:var(--ink);background:transparent}
+  .hero-search button{background:var(--grad);color:#fff;font-weight:700;font-size:15px;border:0;
+                      border-radius:10px;padding:0 22px;cursor:pointer}
+
+  /* ---------- Listing ---------- */
+  main{padding:46px 0 70px}
+  .secthead{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:22px;flex-wrap:wrap}
+  .secthead h2{font-size:23px;font-weight:800;letter-spacing:-.4px}
+  .secthead p{color:var(--muted);font-size:14px}
+  .filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:24px}
+  .chip{background:var(--card);border:1px solid var(--line);color:var(--ink2);font-weight:600;font-size:13.5px;
+        padding:9px 16px;border-radius:100px;cursor:pointer;transition:.14s;white-space:nowrap}
+  .chip:hover{border-color:var(--o);color:var(--o-dark)}
+  .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px}
+  .job{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;
+       cursor:pointer;transition:.16s;display:flex;flex-direction:column;gap:13px;box-shadow:var(--shadow)}
+  .job:hover{transform:translateY(-3px);border-color:var(--o);box-shadow:0 12px 36px rgba(255,107,26,.14)}
+  .job-top{display:flex;align-items:center;gap:13px}
+  .fav{width:46px;height:46px;border-radius:12px;flex:none;display:grid;place-items:center;overflow:hidden;
+       background:var(--o-pale);color:var(--o-dark);font-weight:800;font-size:18px;border:1px solid var(--line2)}
+  .fav img{width:100%;height:100%;object-fit:cover}
+  .job h3{font-size:17px;font-weight:780;letter-spacing:-.3px;line-height:1.25}
+  .job .firma{font-size:13.5px;color:var(--muted);font-weight:600}
+  .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto}
+  .tag{display:inline-flex;align-items:center;gap:5px;background:var(--bg);border:1px solid var(--line2);
+       color:var(--ink2);font-size:12.5px;font-weight:600;padding:5px 11px;border-radius:8px}
+  .tag.sal{background:var(--o-pale);border-color:#FAD9C2;color:var(--o-dark)}
+  .job-foot{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line2);padding-top:12px}
+  .job-foot .more{color:var(--o-dark);font-weight:700;font-size:13.5px}
+  .ago{font-size:12px;color:var(--muted)}
+
+  .empty,.loading{text-align:center;padding:70px 20px;color:var(--muted)}
+  .empty .ico{font-size:38px;margin-bottom:12px}
+  .spinner{width:34px;height:34px;border:3px solid var(--line);border-top-color:var(--o);border-radius:50%;
+           margin:0 auto 14px;animation:spin .8s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* ---------- Trust strip ---------- */
+  .trust{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:30px 0}
+  .trust .wrap{display:flex;align-items:center;gap:24px;flex-wrap:wrap;justify-content:center;text-align:center}
+  .trust b{color:var(--ink)}
+  .trust .t-item{font-size:14px;color:var(--ink2);display:flex;align-items:center;gap:9px}
+  .trust .t-item .d{color:var(--o)}
+
+  /* ---------- Detail ---------- */
+  .detail{display:none}
+  .back{display:inline-flex;align-items:center;gap:7px;color:var(--ink2);font-weight:600;font-size:14px;
+        cursor:pointer;margin-bottom:20px}
+  .back:hover{color:var(--o-dark)}
+  .dt-grid{display:grid;grid-template-columns:1fr 340px;gap:26px;align-items:start}
+  .dt-main{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow)}
+  .dt-head{display:flex;gap:16px;align-items:flex-start;padding-bottom:22px;border-bottom:1px solid var(--line2);margin-bottom:22px}
+  .dt-head .fav{width:62px;height:62px;font-size:24px;border-radius:14px}
+  .dt-head h1{font-size:27px;font-weight:820;letter-spacing:-.6px;line-height:1.15}
+  .dt-head .firma{color:var(--muted);font-weight:600;margin-top:3px;font-size:15px}
+  .dt-tags{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 4px}
+  .block{margin-top:26px}
+  .block h4{font-size:16px;font-weight:780;margin-bottom:10px;display:flex;align-items:center;gap:9px}
+  .block h4::before{content:"";width:4px;height:18px;border-radius:3px;background:var(--grad)}
+  .block .body{color:var(--ink2);font-size:15px;white-space:pre-wrap}
+  .block .body ul{margin:0;padding-left:20px}
+
+  .aside{position:sticky;top:84px;display:flex;flex-direction:column;gap:16px}
+  .apply-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+  .apply-card h3{font-size:18px;font-weight:800;letter-spacing:-.3px}
+  .apply-card .sub{color:var(--muted);font-size:13.5px;margin:4px 0 16px}
+  .field{margin-bottom:12px}
+  .field label{display:block;font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:5px}
+  .field input,.field textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px 13px;
+       font-size:14.5px;font-family:inherit;color:var(--ink);background:#fff;outline:none;transition:.14s}
+  .field input:focus,.field textarea:focus{border-color:var(--o);box-shadow:0 0 0 3px rgba(255,107,26,.12)}
+  .field textarea{min-height:80px;resize:vertical}
+  .btn-apply{width:100%;background:var(--grad);color:#fff;font-weight:740;font-size:15.5px;border:0;
+            border-radius:11px;padding:14px;cursor:pointer;transition:.15s;box-shadow:0 6px 18px rgba(255,107,26,.3)}
+  .btn-apply:hover{filter:brightness(1.05)}
+  .btn-apply:disabled{opacity:.6;cursor:default}
+  .consent{font-size:11.5px;color:var(--muted);margin-top:11px;line-height:1.45}
+  .consent a{color:var(--o-dark);text-decoration:underline}
+  .firma-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+  .firma-card .row{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink2);margin-top:8px}
+  .firma-card .row .d{color:var(--o);width:18px;text-align:center}
+  .applied{text-align:center;padding:8px 0}
+  .applied .big{width:58px;height:58px;border-radius:50%;background:var(--ok-bg);color:var(--ok);font-size:28px;
+       display:grid;place-items:center;margin:0 auto 14px}
+  .applied h3{font-size:19px;font-weight:800;margin-bottom:6px}
+  .applied p{color:var(--muted);font-size:14px}
+  .err{background:var(--o-pale);border:1px solid #FAD9C2;color:var(--o-dark);font-size:13px;font-weight:600;
+       padding:10px 13px;border-radius:9px;margin-bottom:12px;display:none}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--dark);color:#9AA2AB;padding:40px 0;font-size:13.5px}
+  footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+  footer .fbrand{display:flex;align-items:center;gap:10px;color:#fff;font-weight:700}
+  footer .flinks{display:flex;gap:20px;flex-wrap:wrap}
+  footer .flinks a:hover{color:#fff}
+  .powered{font-size:12px;color:#6B7480;margin-top:6px}
+
+  @media(max-width:880px){
+    .dt-grid{grid-template-columns:1fr}
+    .aside{position:static}
+  }
+  @media(max-width:560px){
+    .hero .wrap{padding:46px 22px 54px}
+    .stats{gap:22px}
+    .nav-cta{display:none}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand" onclick="goHome()">
+      <div class="logo">GC</div>
+      <div class="bname">GreenCareers<small>Straßen- &amp; Tiefbau</small></div>
+    </div>
+    <div class="sp"></div>
+    <a class="nav-cta" href="https://www.green-careers.de" target="_blank" rel="noopener">Für Arbeitgeber</a>
+  </div>
+</header>
+
+<!-- ============ HOME ============ -->
+<div id="home">
+  <section class="hero">
+    <div class="wrap">
+      <span class="kicker">● Karrierenetzwerk für Straßen- &amp; Tiefbau</span>
+      <h1>Dein nächster Job im <b>Tiefbau.</b><br>Bei Betrieben, die zu dir passen.</h1>
+      <p>Aktuelle Stellen bei geprüften Straßen- und Tiefbauunternehmen in deiner Region. Ein Profil, direkt bewerben – ohne Anschreiben-Marathon.</p>
+      <div class="hero-search">
+        <input id="q" type="text" placeholder="Beruf, Position oder Ort suchen…" oninput="applyFilter()">
+        <button onclick="document.getElementById('jobsAnchor').scrollIntoView({behavior:'smooth'})">Jobs ansehen</button>
+      </div>
+      <div class="stats">
+        <div class="stat"><b id="stCount">–</b><span>offene Stellen</span></div>
+        <div class="stat"><b id="stFirms">–</b><span>Bauunternehmen</span></div>
+        <div class="stat"><b>500+</b><span>Betriebe im GreenCareers-Netzwerk</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="trust">
+    <div class="wrap">
+      <div class="t-item"><span class="d">✓</span> <b>Geprüfte Arbeitgeber</b> aus dem Straßen- &amp; Tiefbau</div>
+      <div class="t-item"><span class="d">✓</span> Bewerbung in <b>2 Minuten</b>, ohne Anschreiben</div>
+      <div class="t-item"><span class="d">✓</span> Powered by <b>GreenCareers</b> – Deutschlands Stellennetzwerk für die grüne &amp; graue Branche</div>
+    </div>
+  </div>
+
+  <main>
+    <div class="wrap">
+      <span id="jobsAnchor"></span>
+      <div class="secthead">
+        <div><h2>Aktuelle Stellen</h2><p id="resultInfo">Lädt…</p></div>
+      </div>
+      <div class="filters" id="filters"></div>
+      <div id="list">
+        <div class="loading"><div class="spinner"></div>Stellen werden geladen…</div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- ============ DETAIL ============ -->
+<div class="detail" id="detail"><div class="wrap" id="detailInner"></div></div>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="fbrand"><div class="logo" style="width:32px;height:32px;font-size:15px">GC</div> GreenCareers · Straßen- &amp; Tiefbau</div>
+      <div class="powered">Ein Angebot der GreenCareers / Greenfield Digital</div>
+    </div>
+    <div class="flinks">
+      <a href="https://www.green-careers.de/impressum" target="_blank" rel="noopener">Impressum</a>
+      <a href="https://www.green-careers.de/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
+      <a href="https://www.green-careers.de" target="_blank" rel="noopener">green-careers.de</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+const SUPABASE_URL  = 'https://tfoopogxaqvfwbonabpi.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRmb29wb2d4YXF2Zndib25hYnBpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEyNTQzMjQsImV4cCI6MjA5NjgzMDMyNH0.udWRPszXVOj7EG4bspmsU9HXbZYFRDn8QO9kZi2tw8M';
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+let JOBS = [];        // alle geladenen Stellen
+let FILTER = 'alle';  // aktive Rubrik
+
+const esc = s => (s==null?'':String(s)).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $  = id => document.getElementById(id);
+
+function initials(name){return (name||'?').trim().split(/\s+/).slice(0,2).map(w=>w[0]).join('').toUpperCase();}
+function ago(ts){
+  if(!ts) return '';
+  const d=Math.floor((Date.now()-new Date(ts))/86400000);
+  if(d<=0) return 'heute';
+  if(d===1) return 'gestern';
+  if(d<7) return 'vor '+d+' Tagen';
+  if(d<14) return 'vor 1 Woche';
+  return 'vor '+Math.floor(d/7)+' Wochen';
+}
+function fav(j){
+  return j.firma_logo
+    ? '<div class="fav"><img src="'+esc(j.firma_logo)+'" alt=""></div>'
+    : '<div class="fav">'+esc(initials(j.firma))+'</div>';
+}
+
+async function load(){
+  const {data,error} = await sb.from('public_jobs').select('*').order('published_at',{ascending:false});
+  if(error){
+    $('list').innerHTML='<div class="empty"><div class="ico">⚠️</div>Stellen konnten nicht geladen werden.<br><small>'+esc(error.message)+'</small></div>';
+    $('resultInfo').textContent='';
+    return;
+  }
+  JOBS = data||[];
+  $('stCount').textContent = JOBS.length;
+  $('stFirms').textContent = new Set(JOBS.map(j=>j.firma_id)).size;
+  buildFilters();
+  route();
+}
+
+function buildFilters(){
+  const cats = ['alle', ...Array.from(new Set(JOBS.map(j=>j.branche).filter(Boolean)))];
+  $('filters').innerHTML = cats.map(c=>
+    '<div class="chip'+(c===FILTER?' on':'')+'" onclick="setFilter(\''+esc(c)+'\')">'+(c==='alle'?'Alle Stellen':esc(c))+'</div>'
+  ).join('');
+}
+function setFilter(c){FILTER=c;buildFilters();applyFilter();}
+
+function applyFilter(){
+  const q=($('q')?.value||'').toLowerCase().trim();
+  const rows=JOBS.filter(j=>{
+    const catOk = FILTER==='alle' || j.branche===FILTER;
+    const hay = (j.titel+' '+j.firma+' '+(j.ort||'')+' '+(j.branche||'')).toLowerCase();
+    return catOk && (!q || hay.includes(q));
+  });
+  renderList(rows);
+}
+
+function renderList(rows){
+  $('resultInfo').textContent = rows.length+' '+(rows.length===1?'offene Stelle':'offene Stellen');
+  if(!rows.length){
+    $('list').innerHTML='<div class="empty"><div class="ico">🔍</div><b>Keine passenden Stellen gefunden.</b><br>Versuch es mit einem anderen Suchbegriff.</div>';
+    return;
+  }
+  $('list').innerHTML='<div class="grid">'+rows.map(j=>`
+    <div class="job" onclick="openJob('${esc(j.slug)}')">
+      <div class="job-top">${fav(j)}<div><h3>${esc(j.titel)}</h3><div class="firma">${esc(j.firma)}</div></div></div>
+      <div class="tags">
+        ${j.ort?`<span class="tag">📍 ${esc(j.ort)}</span>`:''}
+        ${j.beschaeftigungsart?`<span class="tag">🕒 ${esc(j.beschaeftigungsart)}</span>`:''}
+        ${j.gehalt?`<span class="tag sal">💶 ${esc(j.gehalt)}</span>`:''}
+      </div>
+      <div class="job-foot"><span class="ago">${ago(j.published_at)}</span><span class="more">Details ansehen →</span></div>
+    </div>`).join('')+'</div>';
+}
+
+/* ---------- Routing ---------- */
+function route(){
+  const slug=new URLSearchParams(location.search).get('job');
+  if(slug){const j=JOBS.find(x=>x.slug===slug); if(j){return renderDetail(j);}}
+  showHome();
+}
+function openJob(slug){
+  history.pushState({},'', '?job='+encodeURIComponent(slug));
+  const j=JOBS.find(x=>x.slug===slug);
+  if(j) renderDetail(j); window.scrollTo(0,0);
+}
+function goHome(){history.pushState({},'',location.pathname);showHome();}
+function showHome(){$('detail').style.display='none';$('home').style.display='';applyFilter();}
+window.addEventListener('popstate',route);
+
+function block(title,txt){
+  if(!txt||!txt.trim()) return '';
+  return '<div class="block"><h4>'+title+'</h4><div class="body">'+esc(txt)+'</div></div>';
+}
+
+function renderDetail(j){
+  $('home').style.display='none';
+  $('detail').style.display='block';
+  $('detailInner').innerHTML=`
+    <div class="back" onclick="goHome()">← Alle Stellen</div>
+    <div class="dt-grid">
+      <div class="dt-main">
+        <div class="dt-head">
+          ${fav(j)}
+          <div><h1>${esc(j.titel)}</h1><div class="firma">${esc(j.firma)}${j.ort?' · '+esc(j.ort):''}</div>
+          <div class="dt-tags">
+            ${j.beschaeftigungsart?`<span class="tag">🕒 ${esc(j.beschaeftigungsart)}</span>`:''}
+            ${j.gehalt?`<span class="tag sal">💶 ${esc(j.gehalt)}</span>`:''}
+            ${j.eintritt?`<span class="tag">📅 ${esc(j.eintritt)}</span>`:''}
+          </div></div>
+        </div>
+        ${block('Über die Stelle',j.beschreibung)}
+        ${block('Deine Aufgaben',j.aufgaben)}
+        ${block('Dein Profil',j.profil)}
+        ${block('Wir bieten dir',j.benefits)}
+      </div>
+      <div class="aside">
+        <div class="apply-card" id="applyCard">
+          <h3>Jetzt bewerben</h3>
+          <div class="sub">Schnell &amp; ohne Anschreiben – ${esc(j.firma)} meldet sich bei dir.</div>
+          <div class="err" id="applyErr"></div>
+          <div class="field"><label>Name *</label><input id="ap-name" placeholder="Vor- und Nachname"></div>
+          <div class="field"><label>E-Mail</label><input id="ap-email" type="email" placeholder="dein@email.de"></div>
+          <div class="field"><label>Telefon</label><input id="ap-tel" type="tel" placeholder="0151 …"></div>
+          <div class="field"><label>Nachricht (optional)</label><textarea id="ap-msg" placeholder="Kurz: Warum passt du? Wann verfügbar?"></textarea></div>
+          <button class="btn-apply" id="apBtn" onclick="submitApply('${esc(j.slug)}')">Bewerbung absenden</button>
+          <div class="consent">Mit dem Absenden stimmst du der Verarbeitung deiner Daten zur Bearbeitung der Bewerbung zu. Details in der <a href="https://www.green-careers.de/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a>.</div>
+        </div>
+        <div class="firma-card">
+          <b>${esc(j.firma)}</b>
+          ${j.firma_ort?`<div class="row"><span class="d">📍</span> ${esc(j.firma_ort)}</div>`:''}
+          ${j.ansprechpartner?`<div class="row"><span class="d">👤</span> ${esc(j.ansprechpartner)}</div>`:''}
+          ${j.firma_website?`<div class="row"><span class="d">🔗</span> <a href="${esc(j.firma_website)}" target="_blank" rel="noopener" style="color:var(--o-dark)">Website</a></div>`:''}
+        </div>
+      </div>
+    </div>`;
+}
+
+async function submitApply(slug){
+  const name=$('ap-name').value.trim();
+  const email=$('ap-email').value.trim();
+  const tel=$('ap-tel').value.trim();
+  const msg=$('ap-msg').value.trim();
+  const err=$('applyErr'); err.style.display='none';
+  if(!name){return showErr('Bitte gib deinen Namen an.');}
+  if(!email && !tel){return showErr('Bitte gib E-Mail oder Telefon an, damit der Betrieb dich erreichen kann.');}
+  const btn=$('apBtn'); btn.disabled=true; btn.textContent='Wird gesendet…';
+  const {error}=await sb.rpc('apply_to_job',{p_slug:slug,p_name:name,p_email:email,p_telefon:tel,p_nachricht:msg});
+  if(error){btn.disabled=false;btn.textContent='Bewerbung absenden';return showErr(error.message);}
+  $('applyCard').innerHTML='<div class="applied"><div class="big">✓</div><h3>Bewerbung gesendet!</h3><p>Der Betrieb hat deine Bewerbung erhalten und meldet sich bei dir. Viel Erfolg!</p></div>';
+}
+function showErr(m){const e=$('applyErr');e.textContent=m;e.style.display='block';}
+
+load();
+</script>
+</body>
+</html>

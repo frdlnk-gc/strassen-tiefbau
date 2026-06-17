@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Straßen-, Tiefbau- &amp; Kanalbau-Jobs · GreyCareers Karrierenetzwerk</title>
 <meta name="description" content="Das Stellennetzwerk für Straßen-, Tief-, Kanal- und Hochbau. Aktuelle Jobs bei geprüften Bauunternehmen in deiner Region – ein Profil, direkt bewerben, ohne Anschreiben-Marathon.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" id="canonical" href="https://strassen-tiefbau.green-careers.de/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GreyCareers Straßen- &amp; Tiefbau">
+<meta property="og:title" id="og-title" content="Straßen-, Tiefbau- &amp; Kanalbau-Jobs · GreyCareers Karrierenetzwerk">
+<meta property="og:description" id="og-desc" content="Aktuelle Jobs bei geprüften Bauunternehmen in deiner Region – ein Profil, direkt bewerben, ohne Anschreiben-Marathon.">
+<meta property="og:url" id="og-url" content="https://strassen-tiefbau.green-careers.de/">
+<meta property="og:image" id="og-image" content="https://strassen-tiefbau.green-careers.de/assets/hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" id="tw-title" content="Straßen-, Tiefbau- &amp; Kanalbau-Jobs · GreyCareers">
+<meta name="twitter:description" id="tw-desc" content="Aktuelle Jobs bei geprüften Bauunternehmen in deiner Region.">
+<meta name="twitter:image" id="tw-image" content="https://strassen-tiefbau.green-careers.de/assets/hero.jpg">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <style>
   :root{
@@ -277,8 +289,34 @@
   /* ---------- Detail ---------- */
   .detail{display:none}
   .back{display:inline-flex;align-items:center;gap:7px;color:var(--ink2);font-weight:600;font-size:14px;
-        cursor:pointer;margin-bottom:18px}
+        cursor:pointer}
   .back:hover{color:var(--o-dark)}
+  .dt-topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+  .share-row{display:flex;align-items:center;gap:8px}
+  .share-msg{font-size:13px;font-weight:650;color:var(--ok);opacity:0;transition:.2s;white-space:nowrap}
+  .share-msg.on{opacity:1}
+  .share-btn{display:inline-flex;align-items:center;gap:6px;font-family:inherit;font-weight:700;font-size:13px;
+        color:var(--ink2);background:var(--card);border:1px solid var(--line);border-radius:9px;padding:8px 13px;cursor:pointer;transition:.14s}
+  .share-btn:hover{border-color:var(--o);color:var(--o-dark);background:var(--o-pale)}
+  .share-btn.wa{color:#fff;background:#25D366;border-color:#25D366}
+  .share-btn.wa:hover{background:#1ebe5a;border-color:#1ebe5a;color:#fff}
+  /* Ähnliche Stellen */
+  .related{margin-top:34px}
+  .rel-h{font-size:20px;font-weight:820;letter-spacing:-.4px;color:var(--ink);margin-bottom:16px}
+  .rel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+  .rel-card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;
+        box-shadow:var(--shadow);transition:.16s;position:relative}
+  .rel-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(20,25,29,.11)}
+  .rel-card.tier-exc::before,.rel-card.tier-prem::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;z-index:3}
+  .rel-card.tier-exc::before{background:linear-gradient(180deg,#7C3AED,#5b21b6)}
+  .rel-card.tier-prem::before{background:var(--grad)}
+  .rel-cover{height:108px;position:relative;display:grid;place-items:center;background:var(--dark);color:#fff;font-weight:800;font-size:24px;overflow:hidden}
+  .rel-cover.noimg{background:var(--grad)}
+  .rel-cover img{width:100%;height:100%;object-fit:cover}
+  .rel-cover .pbadge{position:absolute;top:9px;left:9px;z-index:4}
+  .rel-body{padding:13px 15px 15px}
+  .rel-body h3{font-size:15.5px;font-weight:780;letter-spacing:-.2px;line-height:1.25;margin-bottom:3px}
+  .rel-body .firma{font-size:13px;color:var(--muted);font-weight:600;margin-bottom:9px}
   .dt-grid{display:grid;grid-template-columns:1fr 340px;gap:26px;align-items:start}
   .dt-main{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
   .dt-banner{height:230px;background:var(--dark);position:relative;overflow:hidden}
@@ -647,6 +685,7 @@
       <div class="powered">Ein Angebot der GreyCareers / Greenfield Digital</div>
     </div>
     <div class="flinks">
+      <a href="standorte.html">Standorte</a>
       <a href="magazin.html">Magazin</a>
       <a href="#faqSec" onclick="goFaq();return false;">FAQ</a>
       <a href="arbeitgeber.html">Für Arbeitgeber</a>
@@ -1045,7 +1084,7 @@ function openJob(slug){
   if(j) renderDetail(j); window.scrollTo(0,0);
 }
 function goHome(){history.pushState({},'',location.pathname);showHome();}
-function showHome(){$('detail').style.display='none';$('home').style.display='';applyFilter();}
+function showHome(){$('detail').style.display='none';$('home').style.display='';resetSeo();applyFilter();}
 window.addEventListener('popstate',route);
 
 /* ---------- Menü / Drawer ---------- */
@@ -1076,6 +1115,132 @@ function asList(v){
   if(Array.isArray(v)) return v.map(x=>String(x).trim()).filter(Boolean);
   if(!v||!String(v).trim()) return [];
   return String(v).split(/\r?\n|;|•|·/).map(s=>s.replace(/^[-–•*\s]+/,'').trim()).filter(Boolean);
+}
+
+/* ---------- SEO / Sharing / Ähnliche Stellen ---------- */
+const SITE='https://strassen-tiefbau.green-careers.de';
+function setMeta(sel,attr,val){ const el=document.querySelector(sel); if(el&&val!=null) el.setAttribute(attr,val); }
+function jobUrl(slug){ return SITE+'/?job='+encodeURIComponent(slug); }
+function plain(s,max){ s=(s==null?'':String(s)).replace(/<[^>]+>/g,' ').replace(/&[a-z]+;/gi,' ').replace(/\s+/g,' ').trim(); if(max&&s.length>max) s=s.slice(0,max-1).trim()+'…'; return s; }
+
+function applyJobSeo(j){
+  const url=jobUrl(j.slug);
+  const loc=j.firma_ort||j.ort;
+  const title=`${plain(j.titel)} bei ${plain(j.firma)}${loc?' · '+plain(loc):''} · GreyCareers`;
+  const body=plain(j.beschreibung||j.aufgaben||'',150);
+  const desc=plain(`${plain(j.titel)} bei ${plain(j.firma)}${loc?' in '+plain(loc):''}.${body?' '+body:''} Jetzt direkt bewerben – ohne Anschreiben.`,300);
+  const img=coverUrl(j)||SITE+'/assets/hero.jpg';
+  document.title=title;
+  setMeta('meta[name="description"]','content',desc);
+  setMeta('#canonical','href',url);
+  setMeta('#og-title','content',title); setMeta('#tw-title','content',title);
+  setMeta('#og-desc','content',desc); setMeta('#tw-desc','content',desc);
+  setMeta('#og-url','content',url);
+  setMeta('#og-image','content',img); setMeta('#tw-image','content',img);
+  injectJobPosting(j);
+}
+function resetSeo(){
+  const url=SITE+'/', img=SITE+'/assets/hero.jpg';
+  const title='Straßen-, Tiefbau- & Kanalbau-Jobs · GreyCareers Karrierenetzwerk';
+  const desc='Aktuelle Jobs bei geprüften Bauunternehmen in deiner Region – ein Profil, direkt bewerben, ohne Anschreiben-Marathon.';
+  document.title=title;
+  setMeta('meta[name="description"]','content',desc);
+  setMeta('#canonical','href',url);
+  setMeta('#og-title','content',title); setMeta('#tw-title','content',title);
+  setMeta('#og-desc','content',desc); setMeta('#tw-desc','content',desc);
+  setMeta('#og-url','content',url);
+  setMeta('#og-image','content',img); setMeta('#tw-image','content',img);
+  removeJobPosting();
+}
+
+const EMP_MAP={vollzeit:'FULL_TIME',teilzeit:'PART_TIME',minijob:'PART_TIME',aushilfe:'PART_TIME',ausbildung:'INTERN',praktikum:'INTERN',werkstudent:'PART_TIME',freelance:'CONTRACTOR'};
+function empType(s){ const k=(s||'').toLowerCase(); for(const key in EMP_MAP){ if(k.includes(key)) return EMP_MAP[key]; } return 'FULL_TIME'; }
+function parseSalary(s){
+  if(!s) return null;
+  const cleaned=String(s).replace(/\./g,'');
+  const nums=(cleaned.match(/\d{3,6}/g)||[]).map(Number).filter(n=>n>=1000&&n<=200000);
+  if(!nums.length) return null;
+  const unit=/jahr|p\.?a\.?|annum/i.test(s)?'YEAR':'MONTH';
+  const v= nums.length>1
+    ? {"@type":"QuantitativeValue","minValue":Math.min(...nums),"maxValue":Math.max(...nums),"unitText":unit}
+    : {"@type":"QuantitativeValue","value":nums[0],"unitText":unit};
+  return {"@type":"MonetaryAmount","currency":"EUR","value":v};
+}
+function removeJobPosting(){ const e=document.getElementById('ld-jobposting'); if(e) e.remove(); }
+function injectJobPosting(j){
+  removeJobPosting();
+  const ul=arr=>asList(arr).length?'<ul>'+asList(arr).map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>':'';
+  const descHtml=[
+    j.beschreibung?'<p>'+esc(plain(j.beschreibung))+'</p>':'',
+    asList(j.aufgaben).length?'<p><strong>Deine Aufgaben:</strong></p>'+ul(j.aufgaben):'',
+    asList(j.profil).length?'<p><strong>Dein Profil:</strong></p>'+ul(j.profil):''
+  ].join('') || ('<p>'+esc(plain(j.titel))+' bei '+esc(plain(j.firma))+'.</p>');
+  const ld={
+    "@context":"https://schema.org/","@type":"JobPosting",
+    "title":plain(j.titel),
+    "description":descHtml,
+    "employmentType":empType(j.beschaeftigungsart),
+    "directApply":true,
+    "url":jobUrl(j.slug),
+    "identifier":{"@type":"PropertyValue","name":plain(j.firma)||"GreyCareers","value":j.slug},
+    "hiringOrganization":{"@type":"Organization","name":plain(j.firma)||"GreyCareers"},
+    "jobLocation":{"@type":"Place","address":{"@type":"PostalAddress","addressCountry":"DE"}}
+  };
+  if(j.published_at){ try{ ld.datePosted=new Date(j.published_at).toISOString().slice(0,10); }catch(e){} }
+  if(j.firma_website) ld.hiringOrganization.sameAs=j.firma_website;
+  if(j.firma_logo) ld.hiringOrganization.logo=j.firma_logo;
+  const locality=plain(j.firma_ort||j.ort);
+  if(locality) ld.jobLocation.address.addressLocality=locality;
+  if(j.firma_plz) ld.jobLocation.address.postalCode=String(j.firma_plz);
+  const sal=parseSalary(j.gehalt); if(sal) ld.baseSalary=sal;
+  const sc=document.createElement('script'); sc.type='application/ld+json'; sc.id='ld-jobposting';
+  sc.textContent=JSON.stringify(ld); document.head.appendChild(sc);
+}
+
+function shareWhatsApp(slug){
+  const j=JOBS.find(x=>x.slug===slug)||{};
+  const text=encodeURIComponent(`${plain(j.titel)||'Diese Stelle'} bei ${plain(j.firma)||''} – jetzt bewerben: ${jobUrl(slug)}`);
+  window.open('https://wa.me/?text='+text,'_blank','noopener');
+}
+function shareJob(slug){
+  const j=JOBS.find(x=>x.slug===slug)||{};
+  const url=jobUrl(slug);
+  if(navigator.share){ navigator.share({title:plain(j.titel)||'Stelle',text:`${plain(j.titel)} bei ${plain(j.firma)}`,url}).catch(()=>{}); return; }
+  if(navigator.clipboard){ navigator.clipboard.writeText(url).then(()=>flashShare('Link kopiert ✓')).catch(()=>flashShare(url)); }
+  else { window.prompt('Link kopieren:',url); }
+}
+function flashShare(msg){ const el=$('shareMsg'); if(!el) return; el.textContent=msg; el.classList.add('on'); setTimeout(()=>el.classList.remove('on'),1800); }
+
+function relatedJobs(j){
+  const others=JOBS.filter(x=>x.slug!==j.slug);
+  const loc=j.firma_ort||j.ort;
+  const scored=others.map(x=>{
+    let s=0;
+    if(BRANCHE_STD.some(b=>jobMatchesBranche(j,b)&&jobMatchesBranche(x,b))) s+=3;
+    if(x.titel&&x.titel===j.titel) s+=2;
+    const xloc=x.firma_ort||x.ort;
+    if(loc&&xloc&&xloc===loc) s+=1;
+    return {x,s};
+  }).filter(o=>o.s>0).sort((a,b)=>b.s-a.s||new Date(b.x.published_at)-new Date(a.x.published_at));
+  const list=scored.slice(0,3).map(o=>o.x);
+  if(list.length<3){
+    for(const x of [...others].sort((a,b)=>new Date(b.published_at)-new Date(a.published_at))){
+      if(list.length>=3) break; if(!list.includes(x)) list.push(x);
+    }
+  }
+  return list;
+}
+function relatedHtml(j){
+  const rel=relatedJobs(j); if(!rel.length) return '';
+  return `<div class="related"><h2 class="rel-h">Ähnliche Stellen</h2><div class="rel-grid">`+
+    rel.map(x=>{ const cov=coverUrl(x), lv=tierLevel(x);
+      return `<div class="rel-card ${lv==='excellence'?'tier-exc':lv==='premium'?'tier-prem':''}" onclick="openJob('${esc(x.slug)}')">
+        <div class="rel-cover ${cov?'':'noimg'}">${cov?`<img src="${esc(cov)}" alt="" loading="lazy">`:esc(initials(x.firma))}${tierBadge(x)}</div>
+        <div class="rel-body"><h3>${esc(x.titel)}</h3><div class="firma">${esc(x.firma)}</div>
+          <div class="tags">${(x.firma_ort||x.ort)?`<span class="tag">📍 ${esc(x.firma_ort||x.ort)}</span>`:''}${x.beschaeftigungsart?`<span class="tag">🕒 ${esc(x.beschaeftigungsart)}</span>`:''}</div>
+        </div>
+      </div>`;
+    }).join('')+`</div></div>`;
 }
 function blockText(title,txt){
   if(!txt||!String(txt).trim()) return '';
@@ -1116,6 +1281,7 @@ function closeLb(){$('lb').classList.remove('on');}
 function renderDetail(j){
   $('home').style.display='none';
   $('detail').style.display='block';
+  applyJobSeo(j);
 
   const lvl=tierLevel(j), tm=TIER_META[lvl], perks=TIER_PERKS[lvl]||[];
   const perksHtml=`<div class="perk-card ${tm.cls}">
@@ -1155,7 +1321,14 @@ function renderDetail(j){
     : `<div class="ap-foto">${esc(initials(j.ansprechpartner||j.firma))}</div>`;
 
   $('detailInner').innerHTML=`
-    <div class="back" onclick="goHome()">← Alle Stellen</div>
+    <div class="dt-topbar">
+      <div class="back" onclick="goHome()">← Alle Stellen</div>
+      <div class="share-row">
+        <span class="share-msg" id="shareMsg"></span>
+        <button class="share-btn" onclick="shareJob('${esc(j.slug)}')" title="Stelle teilen">🔗 Teilen</button>
+        <button class="share-btn wa" onclick="shareWhatsApp('${esc(j.slug)}')" title="Per WhatsApp teilen">WhatsApp</button>
+      </div>
+    </div>
     <div class="dt-grid">
       <div class="dt-main">
         <div class="dt-banner ${j.firma_titelbild?'':'noimg'}">${j.firma_titelbild?`<img class="cf-bg" src="${esc(j.firma_titelbild)}" alt="" aria-hidden="true"><img class="cf-fg" src="${esc(j.firma_titelbild)}" alt="">`:''}
@@ -1221,7 +1394,8 @@ function renderDetail(j){
           ${j.firma_website?`<div class="row"><span class="d">🔗</span> <a href="${esc(j.firma_website)}" target="_blank" rel="noopener" style="color:var(--o-dark)">Website</a></div>`:''}
         </div>
       </div>
-    </div>`;
+    </div>
+    ${relatedHtml(j)}`;
 }
 
 async function submitApply(slug){

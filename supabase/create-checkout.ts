@@ -55,10 +55,10 @@ const supa = createClient(
   Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
 );
 
-// Rabattcode "Sale 40,7" -> 40.7 ; sonst 0 (Geheimwort case-insensitive)
+// Rabattcode "SALE40,7" -> 40.7 ; sonst 0 (Geheimwort case-insensitive, Leerzeichen optional)
 function parseCodePct(raw: string): number {
   if (!raw) return 0;
-  const re = new RegExp('^\\s*' + RABATT_PREFIX + '\\s+([0-9]{1,2}(?:[.,][0-9]{1,2})?)\\s*$', 'i');
+  const re = new RegExp('^\\s*' + RABATT_PREFIX + '\\s*([0-9]{1,2}(?:[.,][0-9]{1,2})?)\\s*$', 'i');
   const m = raw.match(re);
   if (!m) return 0;
   const pct = parseFloat(m[1].replace(',', '.'));

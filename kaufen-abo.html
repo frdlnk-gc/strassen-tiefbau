@@ -180,10 +180,6 @@
       <div class="bname">GreyCareers<small>Straßen- &amp; Tiefbau</small></div>
     </a>
     <div class="sp"></div>
-    <div class="modeswitch">
-      <a href="kaufen-einmal.html">Einmalzahlung</a>
-      <a class="active" href="kaufen-abo.html">Im Abo</a>
-    </div>
     <a class="nav-tel" href="tel:+4922196882408">+49 221 9688 2408</a>
   </div>
 </header>
@@ -408,7 +404,7 @@ $('qPlus').onclick =()=>{if(state.qty<QTY_MAX){state.qty++;update();}};
 function applyPromo(){
   const raw=$('promoInput').value.trim();const msg=$('promoMsg');
   if(!raw){state.codePct=0;state.codeRaw='';msg.className='promo-msg';msg.textContent='';update();return;}
-  const re=new RegExp('^\\s*'+RABATT_PREFIX+'\\s+([0-9]{1,2}(?:[.,][0-9]{1,2})?)\\s*$','i');
+  const re=new RegExp('^\\s*'+RABATT_PREFIX+'\\s*([0-9]{1,2}(?:[.,][0-9]{1,2})?)\\s*$','i');
   const m=raw.match(re);
   if(m){
     const pct=parseFloat(m[1].replace(',','.'));

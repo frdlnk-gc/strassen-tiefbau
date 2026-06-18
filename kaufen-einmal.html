@@ -185,10 +185,6 @@
       <div class="bname">GreyCareers<small>Straßen- &amp; Tiefbau</small></div>
     </a>
     <div class="sp"></div>
-    <div class="modeswitch">
-      <a class="active" href="kaufen-einmal.html">Einmalzahlung</a>
-      <a href="kaufen-abo.html">Im Abo</a>
-    </div>
     <a class="nav-tel" href="tel:+4922196882408">+49 221 9688 2408</a>
   </div>
 </header>
@@ -420,8 +416,8 @@ function applyPromo(){
   const raw=$('promoInput').value.trim();
   const msg=$('promoMsg');
   if(!raw){state.codePct=0;state.codeRaw='';msg.className='promo-msg';msg.textContent='';update();return;}
-  // Muss mit Geheimwort beginnen, dann eine Zahl (Komma oder Punkt).
-  const re=new RegExp('^\\s*'+RABATT_PREFIX+'\\s+([0-9]{1,2}(?:[.,][0-9]{1,2})?)\\s*$','i');
+  // Muss mit Geheimwort beginnen, direkt gefolgt von einer Zahl (Leerzeichen optional). z.B. SALE15,2
+  const re=new RegExp('^\\s*'+RABATT_PREFIX+'\\s*([0-9]{1,2}(?:[.,][0-9]{1,2})?)\\s*$','i');
   const m=raw.match(re);
   if(m){
     const pct=parseFloat(m[1].replace(',','.'));

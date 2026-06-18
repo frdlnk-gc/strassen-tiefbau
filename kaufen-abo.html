@@ -356,6 +356,8 @@ const fmt=n=>n.toLocaleString('de-DE',{minimumFractionDigits:n%1?2:0,maximumFrac
 
 const state = { pkg:'premium', term:'6m', qty:1, codePct:0, codeRaw:'', method:'card', ref:'' };
 
+(function(){const pk=new URLSearchParams(location.search).get('pkg');if(pk&&PACKAGES[pk])state.pkg=pk;})();
+
 (function(){
   const ref=new URLSearchParams(location.search).get('ref');
   if(ref){state.ref=ref.trim().slice(0,40);try{localStorage.setItem('gc_ref',state.ref);}catch(e){}}

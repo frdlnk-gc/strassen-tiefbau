@@ -361,6 +361,12 @@ const fmt=n=>n.toLocaleString('de-DE',{minimumFractionDigits:n%1?2:0,maximumFrac
 
 const state = { pkg:'premium', qty:1, codePct:0, codeRaw:'', method:'card', ref:'' };
 
+/* --- Paket-Vorauswahl aus URL (?pkg=smart) --- */
+(function(){
+  const pk=new URLSearchParams(location.search).get('pkg');
+  if(pk && PACKAGES[pk]) state.pkg=pk;
+})();
+
 /* --- Referral aus URL (?ref=julian) --- */
 (function(){
   const ref=new URLSearchParams(location.search).get('ref');

@@ -320,10 +320,11 @@
 
   /* ---------- Detail ---------- */
   .detail{display:none}
+  .detail .wrap{padding-top:26px;padding-bottom:48px}
   .back{display:inline-flex;align-items:center;gap:7px;color:var(--ink2);font-weight:600;font-size:14px;
         cursor:pointer}
   .back:hover{color:var(--o-dark)}
-  .dt-topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+  .dt-topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:14px;flex-wrap:wrap}
   .share-row{display:flex;align-items:center;gap:8px}
   .share-msg{font-size:13px;font-weight:650;color:var(--ok);opacity:0;transition:.2s;white-space:nowrap}
   .share-msg.on{opacity:1}
@@ -1191,7 +1192,8 @@ function applyJobSeo(j){
   const title=`${plain(j.titel)} bei ${plain(j.firma)}${loc?' · '+plain(loc):''} · GreyCareers`;
   const body=plain(j.beschreibung||j.aufgaben||'',150);
   const desc=plain(`${plain(j.titel)} bei ${plain(j.firma)}${loc?' in '+plain(loc):''}.${body?' '+body:''} Jetzt direkt bewerben – ohne Anschreiben.`,300);
-  const img=coverUrl(j)||SITE+'/assets/hero.jpg';
+  // WhatsApp/OG-Vorschau zeigt das Titelbild des Betriebs (wie im Banner), nicht ein zufälliges Stellenbild
+  const img=j.firma_titelbild||coverUrl(j)||SITE+'/assets/hero.jpg';
   document.title=title;
   setMeta('meta[name="description"]','content',desc);
   setMeta('#canonical','href',url);

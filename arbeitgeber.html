@@ -42,15 +42,18 @@
   .nav-cta:hover{background:#000}
 
   /* Hero */
-  .hero{background:var(--dark);color:#fff;position:relative;overflow:hidden}
-  .hero::after{content:"";position:absolute;inset:0;z-index:0;background:
+  .hero{background:var(--dark) url('assets/hero.jpg') center/cover no-repeat;color:#fff;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:0;z-index:1;background:
     radial-gradient(820px 380px at 84% -10%,rgba(255,107,26,.30),transparent 60%),
-    radial-gradient(620px 320px at 6% 110%,rgba(255,107,26,.14),transparent 60%);pointer-events:none}
+    radial-gradient(620px 320px at 6% 110%,rgba(255,107,26,.14),transparent 60%),
+    linear-gradient(180deg,rgba(16,19,22,.78),rgba(16,19,22,.88));pointer-events:none}
   .hero .wrap{position:relative;z-index:2;padding:70px 22px 66px}
   .kicker{display:inline-flex;align-items:center;gap:8px;background:rgba(255,107,26,.16);
           color:var(--o-glow);font-weight:700;font-size:12.5px;letter-spacing:.5px;text-transform:uppercase;
           padding:7px 14px;border-radius:100px;border:1px solid rgba(255,107,26,.28)}
-  .hero h1{font-size:clamp(30px,5vw,50px);line-height:1.07;letter-spacing:-1px;margin:20px 0 18px;font-weight:830;max-width:880px}
+  .hero h1{font-size:clamp(30px,5vw,50px);line-height:1.1;letter-spacing:-1px;margin:20px 0 18px;font-weight:830;max-width:880px}
+  .hero h1 .h1-lead,.hero h1 .h1-line2,.hero h1 .h1-rest{display:block}
+  .hero h1 .h1-line2{white-space:nowrap}
   .hero h1 b{color:var(--o-glow)}
   .hero h1 .tw{color:var(--o-glow)}
   .hero h1 .caret{display:inline-block;width:3px;height:.86em;background:var(--o-glow);margin:0 1px 0 2px;
@@ -226,6 +229,7 @@
   @media(max-width:480px){
     .krow{grid-template-columns:1fr}
     .hero-stats{gap:24px}
+    .hero h1{font-size:25px;letter-spacing:-.5px}
   }
 </style>
 </head>
@@ -248,7 +252,7 @@
 <section class="hero">
   <div class="wrap">
     <span class="kicker">● Für Betriebe im Straßen-, Tief- &amp; Kanalbau</span>
-    <h1>Qualifizierte Fachkräfte für Ihren <span class="tw" id="twWord">Straßenbau</span><span class="caret"></span>betrieb – <b>planbar statt zufällig</b>, aus Ihrer Region.</h1>
+    <h1><span class="h1-lead">Qualifizierte Fachkräfte für Ihren</span><span class="h1-line2"><span class="tw" id="twWord">Straßenbau</span><span class="caret"></span>betrieb</span><span class="h1-rest">– <b>planbar statt zufällig</b>, aus Ihrer Region.</span></h1>
     <p class="sub">GreyCareers ist das spezialisierte Karrierenetzwerk für den Straßen-, Tief- &amp; Kanalbau. Per KI-Matching bringen wir Ihren Betrieb mit passenden Fachkräften zusammen – ohne teure Agenturen und ohne Anzeigen-Chaos.</p>
     <div class="hero-cta">
       <a class="btn-o" href="#kontakt">Kostenloses Erstgespräch sichern</a>

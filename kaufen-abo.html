@@ -311,26 +311,28 @@
    KONFIGURATION  ·  >>> FREDDY: DIESE WERTE ANPASSEN <<<
    ================================================================= */
 const MODE = 'abo';
-const RABATT_PREFIX = 'GEHEIM';
+const RABATT_PREFIX = 'Sale';   // case-insensitive (Regex hat 'i'-Flag)
 const CHECKOUT_FN = 'https://tfoopogxaqvfwbonabpi.supabase.co/functions/v1/create-checkout';
 const SUPA_ANON   = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRmb29wb2d4YXF2Zndib25hYnBpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEyNTQzMjQsImV4cCI6MjA5NjgzMDMyNH0.udWRPszXVOj7EG4bspmsU9HXbZYFRDn8QO9kZi2tw8M';
 
-// Abo-Pakete: MONATSPREIS netto (6-Monats-Tarif). >>> PLATZHALTER – ANPASSEN <<<
+// Abo-Pakete: MONATSPREIS netto (6-Monats-Tarif). Preise + Leistungen identisch
+// zu abo.green-careers.de, nur die Formulierung auf GreyCareers Straßen-/Tiefbau adaptiert.
+// 12-Monats-Tarif = automatisch −20 % (siehe TERM_DISCOUNT) -> 319 / 479 / 639 € / Mt.
 const PACKAGES = {
   smart: {
-    name:'Smart', price:319, best:false,
+    name:'Smart', price:399, best:false,
     desc:'Eine Position laufend besetzen.',
-    feats:['Dauerhaft sichtbare Stellenanzeige','Zugang zu über 42.000 Fachkräften','KI-gestützte Vorfilterung','Bewerber gebündelt im GreyCareers-OS','Monatlich kündbar nach Laufzeit']
+    feats:['Dauerhaft sichtbare Stellenanzeige mit Bildern &amp; Videos','Zugang zu über 42.000 Fachkräften','KI-gestützte Vorfilterung qualifizierter Bewerber','Bewerber-Benachrichtigung per E-Mail &amp; WhatsApp','30-Tage-Zufriedenheitsgarantie','Fester Ansprechpartner']
   },
   premium: {
-    name:'Premium', price:449, best:true,
+    name:'Premium', price:599, best:true,
     desc:'Mehr Reichweite, laufender Bewerberstrom.',
-    feats:['Alles aus Smart','Premium-Platzierung ganz oben','Bis zu 3× höhere Sichtbarkeit','Einbindung in Social-Media-Kampagnen','Einbindung Ihrer Karriereseite']
+    feats:['Alles aus Smart','Verteilung über alle Social-Media-Kanäle','Bis zu 3× höhere Sichtbarkeit durch Premium-Platzierung','Hervorgehobene Darstellung Ihrer Anzeige','Einbindung Ihrer Karriereseite','Erweiterte Bewerberansprache im DACH-Raum']
   },
   exzellenz: {
-    name:'Exzellenz', price:749, best:false,
+    name:'Exzellenz', price:799, best:false,
     desc:'Volle Betreuung, maximale Pipeline.',
-    feats:['Alles aus Premium','Direkte Bewerberansprache im Namen Ihres Betriebs','Vorqualifizierung aller Bewerber','Kooperation mit Recruiting-Partnern','Fester Ansprechpartner']
+    feats:['Alles aus Premium','Direkte Bewerberansprache in Premium-Netzwerken','Kooperation mit branchenspezifischen Recruiting-Partnern','Vorqualifizierung aller Bewerber','Senior-Recruiter als fester Ansprechpartner','Zugang zum GreyCareers-Netzwerk']
   }
 };
 

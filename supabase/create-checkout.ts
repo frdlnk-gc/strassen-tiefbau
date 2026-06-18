@@ -7,12 +7,12 @@
 //  2. Rabattcode validieren (Geheimwort-Prefix + Dezimal-Prozent, gedeckelt).
 //  3. Sofortzahlung (Karte/PayPal/SEPA) -> Stripe-Checkout-Session -> checkoutUrl zurück.
 //  4. Kauf auf Rechnung -> Bestellung mit status 'wartet_zahlung' speichern
-//     + Freigabe-Mail an frederik.linke@greenfield-digital.de -> { pending:true } zurück.
+//     -> { pending:true } zurück. Benachrichtigung an Freddy läuft über Make,
+//        das die Tabelle `bestellungen` beobachtet (kein Resend/E-Mail-Dienst hier).
 //  5. Referral (?ref=) wird in Bestellung + Stripe-Metadaten mitgeführt.
 //
 // DEPLOY:  supabase functions deploy create-checkout --no-verify-jwt
 // SECRETS: supabase secrets set STRIPE_SECRET_KEY=sk_live_...
-//          supabase secrets set RESEND_API_KEY=re_...           (für Rechnung-Mail)
 //          (SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY sind automatisch gesetzt)
 // =============================================================================
 
@@ -20,10 +20,9 @@ import Stripe from 'https://esm.sh/stripe@14?target=deno';
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
 // ---- KONFIG (muss zu den Frontend-Seiten passen) ---------------------------
-const RABATT_PREFIX = 'GEHEIM';          // Geheimwort vor dem Rabatt-Prozentwert
+const RABATT_PREFIX = 'Sale';            // Geheimwort vor dem Rabatt-Prozentwert (case-insensitive)
 const CODE_MAX_PCT  = 60;                // Maximal erlaubter Code-Rabatt
 const VAT           = 0.19;              // 19 % USt. – auf Netto aufgeschlagen
-const APPROVAL_MAIL = 'frederik.linke@greenfield-digital.de';
 const SITE          = 'https://strassen-tiefbau.green-careers.de';
 
 // Einmal-Pakete: Netto-Einmalpreis
@@ -32,11 +31,11 @@ const PKG_EINMAL: Record<string, { name: string; price: number; days: number }> 
   premium:   { name: 'Premium',   price: 3190, days: 60 },
   exzellenz: { name: 'Exzellenz', price: 5490, days: 90 },
 };
-// Abo-Pakete: Netto-Monatspreis (6-Monats-Basistarif)  >>> ggf. anpassen <<<
+// Abo-Pakete: Netto-Monatspreis (6-Monats-Basistarif). Identisch zu abo.green-careers.de.
 const PKG_ABO: Record<string, { name: string; price: number }> = {
-  smart:     { name: 'Smart',     price: 319 },
-  premium:   { name: 'Premium',   price: 449 },
-  exzellenz: { name: 'Exzellenz', price: 749 },
+  smart:     { name: 'Smart',     price: 399 },
+  premium:   { name: 'Premium',   price: 599 },
+  exzellenz: { name: 'Exzellenz', price: 799 },
 };
 const QTY_DISCOUNT: Record<number, number>  = { 1: 0, 2: 10, 3: 20, 4: 30 };
 const TERM_DISCOUNT: Record<string, number> = { '6m': 0, '12m': 20 };
@@ -56,7 +55,7 @@ const supa = createClient(
   Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
 );
 
-// Rabattcode "GEHEIM 40,7" -> 40.7 ; sonst 0
+// Rabattcode "Sale 40,7" -> 40.7 ; sonst 0 (Geheimwort case-insensitive)
 function parseCodePct(raw: string): number {
   if (!raw) return 0;
   const re = new RegExp('^\\s*' + RABATT_PREFIX + '\\s+([0-9]{1,2}(?:[.,][0-9]{1,2})?)\\s*$', 'i');
@@ -126,31 +125,9 @@ Deno.serve(async (req) => {
     const { data: ins, error } = await supa.from('bestellungen').insert(order).select('id').single();
     if (error) return json({ error: 'DB: ' + error.message }, 500);
 
-    // Freigabe-Mail an Freddy (Resend). Schlägt das fehl, bleibt die Bestellung trotzdem gespeichert.
-    try {
-      const total = (mode === 'abo' ? finalNet * months : finalNet).toFixed(2);
-      await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: { 'Authorization': 'Bearer ' + (Deno.env.get('RESEND_API_KEY') ?? ''), 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          from: 'GreyCareers Bestellungen <bestellungen@green-careers.de>',
-          to: [APPROVAL_MAIL],
-          subject: `Neue Rechnungs-Bestellung · ${c.firma} · ${pkgName} (${mode})`,
-          html: `<h2>Neue Bestellung auf Rechnung</h2>
-            <p><b>Betrieb:</b> ${c.firma}<br><b>Ansprechpartner:</b> ${c.name}<br>
-            <b>E-Mail:</b> ${c.email}<br><b>Telefon:</b> ${c.tel || '–'}<br><b>USt-IdNr.:</b> ${c.vat || '–'}</p>
-            <p><b>Produkt:</b> ${pkgName} (${mode}${p.term ? ', ' + p.term : ''})<br>
-            <b>Anzahl Stellen:</b> ${qty}<br>
-            <b>Mengenrabatt:</b> ${qtyPct} %<br><b>Code-Rabatt:</b> ${codePct} %<br>
-            <b>${mode === 'abo' ? 'Monatlich netto' : 'Netto'}:</b> ${finalNet.toFixed(2)} €<br>
-            <b>Gesamt netto:</b> ${total} €<br>
-            <b>Empfehlung (ref):</b> ${ref || '–'}</p>
-            <p><b>Bestell-ID:</b> ${ins?.id}</p>
-            <p>Nach Zahlungseingang Kontingent im GC-OS-Backend freischalten (später automatisch via Qonto-Abgleich).</p>`,
-        }),
-      });
-    } catch (_) { /* Mailfehler ignorieren, Bestellung ist gesichert */ }
-
+    // Benachrichtigung an Freddy: Make beobachtet die Tabelle `bestellungen`
+    // (status='wartet_zahlung') und verschickt die Info-/Freigabe-Mail.
+    // Kein E-Mail-Versand direkt aus der Edge Function.
     return json({ pending: true, orderId: ins?.id });
   }
 

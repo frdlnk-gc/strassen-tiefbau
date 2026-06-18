@@ -304,27 +304,24 @@
   .btn-o:hover{filter:brightness(1.05)}
   .btn-ghost{color:var(--ink2);font-weight:700;font-size:15px;padding:13px 6px}
 
-  /* ---------- Berufe-Showcase ---------- */
+  /* ---------- Gewerke-Showcase ---------- */
   .berufe{padding:46px 0 14px}
-  .berufe-head{max-width:700px;margin-bottom:26px}
+  .berufe-head{max-width:700px;margin-bottom:24px}
   .berufe-head .eyebrow{display:inline-block;color:var(--o-dark);font-weight:800;font-size:12.5px;
         letter-spacing:.6px;text-transform:uppercase;margin-bottom:10px}
   .berufe-head h2{font-size:clamp(23px,3.4vw,32px);font-weight:830;letter-spacing:-.6px;line-height:1.15}
   .berufe-head p{color:var(--ink2);font-size:16px;line-height:1.6;margin-top:10px}
-  .berufe-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  .beruf{position:relative;display:block;border-radius:16px;overflow:hidden;aspect-ratio:3/2;
-        box-shadow:var(--shadow);cursor:pointer;border:1px solid var(--line)}
-  .beruf img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
-  .beruf:hover img{transform:scale(1.05)}
-  .beruf::after{content:"";position:absolute;inset:0;
-        background:linear-gradient(180deg,transparent 38%,rgba(16,19,22,.5) 66%,rgba(16,19,22,.86))}
-  .beruf-label{position:absolute;left:18px;right:16px;bottom:15px;z-index:2;color:#fff;padding-left:11px}
-  .beruf-label::before{content:"";position:absolute;left:0;top:3px;width:3px;height:calc(100% - 4px);
-        background:var(--o);border-radius:2px}
-  .beruf-label b{display:block;font-size:18px;font-weight:830;letter-spacing:-.3px}
-  .beruf-label small{display:block;font-size:12.5px;color:rgba(255,255,255,.85);margin-top:2px;font-weight:650}
-  @media(max-width:860px){.berufe-grid{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:520px){.berufe-grid{grid-template-columns:1fr;gap:13px}}
+  .gewerke-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+  .gewerk{display:flex;align-items:center;gap:11px;background:var(--card);border:1px solid var(--line);
+        border-radius:13px;padding:14px 15px;cursor:pointer;transition:.15s;box-shadow:var(--shadow);
+        font-weight:740;font-size:14.5px;color:var(--ink);letter-spacing:-.2px}
+  .gewerk:hover{border-color:var(--o);background:var(--o-pale);transform:translateY(-2px)}
+  .gewerk .gw-ic{flex:none;font-size:19px;line-height:1}
+  .gewerk .gw-arrow{margin-left:auto;color:var(--o);font-weight:800;opacity:0;transform:translateX(-4px);transition:.15s}
+  .gewerk:hover .gw-arrow{opacity:1;transform:translateX(0)}
+  @media(max-width:980px){.gewerke-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:720px){.gewerke-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:460px){.gewerke-grid{grid-template-columns:1fr}}
 
   /* ---------- So funktioniert's (3 Schritte) ---------- */
   .steps{padding:54px 0 14px}
@@ -737,16 +734,25 @@
     <div class="quiz-step" data-step="1">
       <span class="quiz-eyebrow">Frage 1 von 3</span>
       <h3>Welcher Beruf passt zu dir?</h3>
-      <p class="quiz-sub">Wähle dein Handwerk – wir suchen passende Stellen dafür.</p>
+      <p class="quiz-sub">Wähle deinen Beruf – wir suchen passende Stellen dafür. Nichts Passendes dabei? Tippe ihn einfach unten ein.</p>
       <div class="quiz-chips" id="quizBerufe">
+        <button class="qchip" onclick="quizPickBeruf(this,'Bauhelfer')">🧰 Bauhelfer / Hilfsarbeiter</button>
         <button class="qchip" onclick="quizPickBeruf(this,'Straßenbauer')">🛣️ Straßenbauer</button>
         <button class="qchip" onclick="quizPickBeruf(this,'Tiefbauer')">🏗️ Tiefbauer / Rohrleger</button>
-        <button class="qchip" onclick="quizPickBeruf(this,'Baugeräteführer')">🚜 Baumaschinenführer</button>
-        <button class="qchip" onclick="quizPickBeruf(this,'Kraftfahrer')">🚛 Berufskraftfahrer</button>
-        <button class="qchip" onclick="quizPickBeruf(this,'Polier')">📐 Polier / Vorarbeiter</button>
-        <button class="qchip" onclick="quizPickBeruf(this,'Bauleiter')">📋 Bauleiter</button>
         <button class="qchip" onclick="quizPickBeruf(this,'Kanalbauer')">🚧 Kanalbauer</button>
+        <button class="qchip" onclick="quizPickBeruf(this,'Rohrleitungsbauer')">🔧 Rohrleitungsbauer</button>
         <button class="qchip" onclick="quizPickBeruf(this,'Pflasterer')">🧱 Pflasterer</button>
+        <button class="qchip" onclick="quizPickBeruf(this,'Asphaltbauer')">🌡️ Asphaltbauer</button>
+        <button class="qchip" onclick="quizPickBeruf(this,'Baugeräteführer')">🚜 Baugeräte-/Baumaschinenführer</button>
+        <button class="qchip" onclick="quizPickBeruf(this,'Baggerfahrer')">⛏️ Baggerfahrer</button>
+        <button class="qchip" onclick="quizPickBeruf(this,'Kraftfahrer')">🚛 Berufskraftfahrer / LKW-Fahrer</button>
+        <button class="qchip" onclick="quizPickBeruf(this,'Kranführer')">🏗️ Kranführer</button>
+        <button class="qchip" onclick="quizPickBeruf(this,'Maschinist')">⚙️ Maschinist</button>
+        <button class="qchip" onclick="quizPickBeruf(this,'Vorarbeiter')">📐 Vorarbeiter / Kolonnenführer</button>
+        <button class="qchip" onclick="quizPickBeruf(this,'Polier')">📋 Polier</button>
+        <button class="qchip" onclick="quizPickBeruf(this,'Bauleiter')">🗂️ Bauleiter</button>
+        <button class="qchip" onclick="quizPickBeruf(this,'Bauingenieur')">📊 Bauingenieur / Bautechniker</button>
+        <button class="qchip" onclick="quizPickBeruf(this,'Vermessungstechniker')">📏 Vermessungstechniker</button>
       </div>
       <div class="quiz-other">
         <input id="quizBerufOther" type="text" placeholder="Anderer Beruf? Hier eintippen…" oninput="quizOtherBeruf(this.value)">
@@ -913,39 +919,29 @@
     </div>
   </section>
 
-  <!-- Berufe im Straßen- & Tiefbau -->
+  <!-- Gewerke im Straßen-, Tief- & Kanalbau -->
   <section class="berufe">
     <div class="wrap">
       <div class="berufe-head">
-        <span class="eyebrow">Berufe im Straßen-, Tief- &amp; Kanalbau</span>
-        <h2>Für diese Gewerke findest du hier Jobs</h2>
-        <p>Vom Baugeräteführer bis zum Bauleiter – geprüfte Betriebe aus deiner Region suchen genau dein Handwerk. Tippe auf einen Beruf und sieh passende Stellen.</p>
+        <span class="eyebrow">Gewerke im Straßen-, Tief- &amp; Kanalbau</span>
+        <h2>In welchem Gewerk suchst du einen Job?</h2>
+        <p>Wähle dein Gewerk – wir zeigen dir sofort die passenden Stellen von geprüften Betrieben aus deiner Region, die nächstgelegenen zuerst.</p>
       </div>
-      <div class="berufe-grid">
-        <a class="beruf" onclick="berufSuche('Straßenbauer')">
-          <img src="assets/berufe/strassenbauer.jpg" alt="Straßenbauer beim Asphaltieren" loading="lazy">
-          <span class="beruf-label"><b>Straßenbauer</b><small>Asphalt · Pflaster · Wegebau</small></span>
-        </a>
-        <a class="beruf" onclick="berufSuche('Tiefbauer')">
-          <img src="assets/berufe/tiefbauer.jpg" alt="Tiefbauer beim Verlegen einer Rohrleitung" loading="lazy">
-          <span class="beruf-label"><b>Tiefbauer / Rohrleger</b><small>Kanal · Rohrleitung · Erdbau</small></span>
-        </a>
-        <a class="beruf" onclick="berufSuche('Baugeräteführer')">
-          <img src="assets/berufe/baumaschinenfuehrer.jpg" alt="Baumaschinenführer im Bagger" loading="lazy">
-          <span class="beruf-label"><b>Baumaschinenführer</b><small>Bagger · Radlader · Walze</small></span>
-        </a>
-        <a class="beruf" onclick="berufSuche('Kraftfahrer')">
-          <img src="assets/berufe/kraftfahrer.jpg" alt="Berufskraftfahrer vor LKW und Kran" loading="lazy">
-          <span class="beruf-label"><b>Berufskraftfahrer</b><small>LKW · Kran · Transport</small></span>
-        </a>
-        <a class="beruf" onclick="berufSuche('Polier')">
-          <img src="assets/berufe/polier.jpg" alt="Polier auf der Baustelle" loading="lazy">
-          <span class="beruf-label"><b>Polier / Vorarbeiter</b><small>Bauleitung direkt vor Ort</small></span>
-        </a>
-        <a class="beruf" onclick="berufSuche('Bauleiter')">
-          <img src="assets/berufe/bauleiter.jpg" alt="Bauleiter mit Plänen und Tablet" loading="lazy">
-          <span class="beruf-label"><b>Bauleiter</b><small>Planung · Steuerung · Abnahme</small></span>
-        </a>
+      <div class="gewerke-grid">
+        <a class="gewerk" onclick="filterBranche('Straßenbau')"><span class="gw-ic">🛣️</span>Straßenbau<span class="gw-arrow">→</span></a>
+        <a class="gewerk" onclick="filterBranche('Tiefbau')"><span class="gw-ic">🏗️</span>Tiefbau<span class="gw-arrow">→</span></a>
+        <a class="gewerk" onclick="filterBranche('Kanalbau')"><span class="gw-ic">🚧</span>Kanalbau<span class="gw-arrow">→</span></a>
+        <a class="gewerk" onclick="filterBranche('Rohrleitungsbau')"><span class="gw-ic">🔧</span>Rohrleitungsbau<span class="gw-arrow">→</span></a>
+        <a class="gewerk" onclick="filterBranche('Erdbau')"><span class="gw-ic">⛏️</span>Erdbau<span class="gw-arrow">→</span></a>
+        <a class="gewerk" onclick="filterBranche('Asphaltbau')"><span class="gw-ic">🌡️</span>Asphaltbau<span class="gw-arrow">→</span></a>
+        <a class="gewerk" onclick="filterBranche('Pflasterbau')"><span class="gw-ic">🧱</span>Pflasterbau<span class="gw-arrow">→</span></a>
+        <a class="gewerk" onclick="filterBranche('Spezialtiefbau')"><span class="gw-ic">🪨</span>Spezialtiefbau<span class="gw-arrow">→</span></a>
+        <a class="gewerk" onclick="filterBranche('Gleisbau')"><span class="gw-ic">🚆</span>Gleis- &amp; Bahnbau<span class="gw-arrow">→</span></a>
+        <a class="gewerk" onclick="filterBranche('Brückenbau')"><span class="gw-ic">🌉</span>Brücken- &amp; Ingenieurbau<span class="gw-arrow">→</span></a>
+        <a class="gewerk" onclick="filterBranche('Verkehrswegebau')"><span class="gw-ic">🚦</span>Verkehrswegebau<span class="gw-arrow">→</span></a>
+        <a class="gewerk" onclick="filterBranche('Leitungsbau')"><span class="gw-ic">🔌</span>Leitungs- &amp; Versorgungsbau<span class="gw-arrow">→</span></a>
+        <a class="gewerk" onclick="filterBranche('Hochbau')"><span class="gw-ic">🏢</span>Hoch- &amp; Rohbau<span class="gw-arrow">→</span></a>
+        <a class="gewerk" onclick="filterBranche('Abbruch')"><span class="gw-ic">🧨</span>Abbruch &amp; Rückbau<span class="gw-arrow">→</span></a>
       </div>
     </div>
   </section>
@@ -1451,14 +1447,6 @@ function filterBranche(b){
   SEL_BRANCHE.clear();
   // nur setzen, wenn diese Branche auch wirklich passende Stellen hat – sonst alles zeigen
   if(JOBS.some(j=>jobMatchesBranche(j,b))) SEL_BRANCHE.add(b);
-  buildFilters(); applyFilter();
-  setTimeout(()=>scrollToEl('jobsAnchor'),60);
-}
-
-function berufSuche(t){
-  if($('detail').style.display==='block')goHome();
-  const q=$('q'); if(q) q.value=t;
-  SEL_BRANCHE.clear(); SEL_BERUF.clear(); SEL_ART.clear();
   buildFilters(); applyFilter();
   setTimeout(()=>scrollToEl('jobsAnchor'),60);
 }

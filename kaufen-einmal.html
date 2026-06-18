@@ -313,9 +313,9 @@
 const MODE = 'einmal';
 
 // Geheimwort, hinter dem die Vertriebs-Rabattcodes liegen (Julian/Liam).
-// Kunde gibt z. B. "GEHEIM 40,7" ein  ->  40,7 % Rabatt.
+// Kunde gibt z. B. "Sale 40,7" ein  ->  40,7 % Rabatt (Groß-/Kleinschreibung egal).
 // Nur was mit diesem Wort beginnt + gültige Zahl wird akzeptiert.
-const RABATT_PREFIX = 'GEHEIM';
+const RABATT_PREFIX = 'Sale';
 
 // Supabase Edge Function, die Stripe-Checkout erstellt bzw. Rechnung-Bestellung
 // (mit Freigabe-Mail an frederik.linke@greenfield-digital.de) anlegt.

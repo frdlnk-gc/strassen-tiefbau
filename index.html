@@ -351,6 +351,10 @@
   .rel-body h3{font-size:15.5px;font-weight:780;letter-spacing:-.2px;line-height:1.25;margin-bottom:3px}
   .rel-body .firma{font-size:13px;color:var(--muted);font-weight:600;margin-bottom:9px}
   .dt-grid{display:grid;grid-template-columns:1fr 340px;gap:26px;align-items:start}
+  /* Ähnliche Stellen füllen die linke Spalte unter der Beschreibung, Info-Spalte spannt rechts daneben */
+  .dt-grid>.dt-main{grid-column:1;grid-row:1}
+  .dt-grid>.aside{grid-column:2;grid-row:1 / span 2}
+  .dt-grid>.related{grid-column:1;grid-row:2;margin-top:6px}
   .dt-main{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
   .dt-banner{height:230px;background:var(--dark);position:relative;overflow:hidden}
   .dt-banner::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
@@ -523,6 +527,8 @@
   @media(max-width:880px){
     .dt-grid{grid-template-columns:1fr}
     .aside{position:static}
+    .dt-grid>.dt-main,.dt-grid>.aside,.dt-grid>.related{grid-column:1;grid-row:auto}
+    .dt-grid>.related{margin-top:18px}
   }
   @media(max-width:860px){
     .nav-links{display:none}
@@ -1458,8 +1464,8 @@ function renderDetail(j){
           ${j.firma_website?`<div class="row"><span class="d">🔗</span> <a href="${esc(j.firma_website)}" target="_blank" rel="noopener" style="color:var(--o-dark)">Website</a></div>`:''}
         </div>
       </div>
-    </div>
-    ${relatedHtml(j)}`;
+      ${relatedHtml(j)}
+    </div>`;
 }
 
 async function submitApply(slug){

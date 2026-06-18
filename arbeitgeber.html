@@ -155,6 +155,8 @@
   .pay-label{color:var(--muted);font-size:13px;font-weight:600;margin-right:4px}
   .pay{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:12.5px;
        font-weight:700;color:var(--ink2);box-shadow:0 1px 2px rgba(20,25,29,.04)}
+  .pay.logo{display:inline-flex;align-items:center;justify-content:center;padding:6px 11px;line-height:0;min-height:32px}
+  .pay.logo svg{display:block;flex:none}
 
   /* Testimonials */
   .tg{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px}
@@ -421,10 +423,10 @@
     <p class="price-note">Alle Preise zzgl. MwSt. · Individuelle Kontingente für mehrere Stellen auf Anfrage.</p>
     <div class="pay-row">
       <span class="pay-label">Zahlungsarten:</span>
-      <span class="pay">Visa</span>
-      <span class="pay">Mastercard</span>
-      <span class="pay">American Express</span>
-      <span class="pay">PayPal</span>
+      <span class="pay logo" title="Visa"><svg width="46" height="16" viewBox="0 0 46 16" role="img" aria-label="Visa"><text x="0" y="14" font-family="Arial,Helvetica,sans-serif" font-style="italic" font-weight="800" font-size="16" letter-spacing="-0.5" fill="#1434CB">VISA</text></svg></span>
+      <span class="pay logo" title="Mastercard"><svg width="26" height="16" viewBox="0 0 36 24" role="img" aria-label="Mastercard"><circle cx="14" cy="12" r="9" fill="#EB001B"/><circle cx="22" cy="12" r="9" fill="#F79E1B"/><path d="M18 5.2a9 9 0 0 0 0 13.6 9 9 0 0 0 0-13.6z" fill="#FF5F00"/></svg></span>
+      <span class="pay logo" title="American Express"><svg width="28" height="16" viewBox="0 0 40 24" role="img" aria-label="American Express"><rect width="40" height="24" rx="3" fill="#006FCF"/><text x="20" y="10.5" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="6" fill="#fff" text-anchor="middle" letter-spacing="0.2">AMERICAN</text><text x="20" y="18.5" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="6" fill="#fff" text-anchor="middle" letter-spacing="0.2">EXPRESS</text></svg></span>
+      <span class="pay logo" title="PayPal"><svg width="56" height="16" viewBox="0 0 58 16" role="img" aria-label="PayPal"><text x="0" y="13" font-family="Arial,Helvetica,sans-serif" font-style="italic" font-weight="800" font-size="15" letter-spacing="-0.5"><tspan fill="#003087">Pay</tspan><tspan fill="#009CDE">Pal</tspan></text></svg></span>
       <span class="pay">Kauf auf Rechnung</span>
     </div>
   </div>

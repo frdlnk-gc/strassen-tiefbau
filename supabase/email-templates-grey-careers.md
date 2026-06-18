@@ -2,7 +2,7 @@
 
 Diese Templates ersetzen die unbrandeten „Supabase Auth"-Standardmails durch
 GreyCareers-gebrandete Mails (Orange `#EA580C`, Wordmark, deutscher Text,
-Rechts-Footer „Marke der Green Careers GmbH").
+Rechts-Footer „Marke der GreenCareers GmbH").
 
 > **Wichtig – Multi-Brand-Hinweis:** Ein Supabase-Projekt hat **nur EINEN**
 > globalen Satz E-Mail-Templates. Solange nur GreyCareers / Tiefbau über dieses
@@ -82,7 +82,7 @@ der Bestätigungs-/Reset-Link führt ins Leere.
         <!-- Footer -->
         <tr><td style="padding:22px 32px 28px;border-top:1px solid #f0f0f0;">
           <p style="margin:0;font-size:12px;line-height:1.6;color:#a1a1aa;">
-            GreyCareers ist eine Marke der <strong style="color:#71717a;">Green Careers GmbH</strong>.<br>
+            GreyCareers ist eine Marke der <strong style="color:#71717a;">GreenCareers GmbH</strong>.<br>
             Diese Nachricht wurde automatisch versendet.
           </p>
         </td></tr>
@@ -137,7 +137,7 @@ der Bestätigungs-/Reset-Link führt ins Leere.
         </td></tr>
         <tr><td style="padding:22px 32px 28px;border-top:1px solid #f0f0f0;">
           <p style="margin:0;font-size:12px;line-height:1.6;color:#a1a1aa;">
-            GreyCareers ist eine Marke der <strong style="color:#71717a;">Green Careers GmbH</strong>.<br>
+            GreyCareers ist eine Marke der <strong style="color:#71717a;">GreenCareers GmbH</strong>.<br>
             Diese Nachricht wurde automatisch versendet.
           </p>
         </td></tr>
@@ -190,7 +190,7 @@ der Bestätigungs-/Reset-Link führt ins Leere.
         </td></tr>
         <tr><td style="padding:22px 32px 28px;border-top:1px solid #f0f0f0;">
           <p style="margin:0;font-size:12px;line-height:1.6;color:#a1a1aa;">
-            GreyCareers ist eine Marke der <strong style="color:#71717a;">Green Careers GmbH</strong>.<br>
+            GreyCareers ist eine Marke der <strong style="color:#71717a;">GreenCareers GmbH</strong>.<br>
             Diese Nachricht wurde automatisch versendet.
           </p>
         </td></tr>
@@ -243,7 +243,7 @@ der Bestätigungs-/Reset-Link führt ins Leere.
         </td></tr>
         <tr><td style="padding:22px 32px 28px;border-top:1px solid #f0f0f0;">
           <p style="margin:0;font-size:12px;line-height:1.6;color:#a1a1aa;">
-            GreyCareers ist eine Marke der <strong style="color:#71717a;">Green Careers GmbH</strong>.<br>
+            GreyCareers ist eine Marke der <strong style="color:#71717a;">GreenCareers GmbH</strong>.<br>
             Diese Nachricht wurde automatisch versendet.
           </p>
         </td></tr>
@@ -298,7 +298,7 @@ der Bestätigungs-/Reset-Link führt ins Leere.
         </td></tr>
         <tr><td style="padding:22px 32px 28px;border-top:1px solid #f0f0f0;">
           <p style="margin:0;font-size:12px;line-height:1.6;color:#a1a1aa;">
-            GreyCareers ist eine Marke der <strong style="color:#71717a;">Green Careers GmbH</strong>.<br>
+            GreyCareers ist eine Marke der <strong style="color:#71717a;">GreenCareers GmbH</strong>.<br>
             Diese Nachricht wurde automatisch versendet.
           </p>
         </td></tr>
@@ -344,7 +344,7 @@ der Bestätigungs-/Reset-Link führt ins Leere.
         </td></tr>
         <tr><td style="padding:22px 32px 28px;border-top:1px solid #f0f0f0;">
           <p style="margin:0;font-size:12px;line-height:1.6;color:#a1a1aa;">
-            GreyCareers ist eine Marke der <strong style="color:#71717a;">Green Careers GmbH</strong>.<br>
+            GreyCareers ist eine Marke der <strong style="color:#71717a;">GreenCareers GmbH</strong>.<br>
             Diese Nachricht wurde automatisch versendet.
           </p>
         </td></tr>

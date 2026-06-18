@@ -241,24 +241,15 @@
         <div class="promo-msg" id="promoMsg"></div>
       </div>
 
-      <!-- 4. Zahlart -->
+      <!-- 4. Nächster Schritt: Konto + Zahlung -->
       <div class="block">
-        <h2>4 · Zahlungsart</h2>
-        <div class="bsub">Bei sofortiger Zahlung startet das Abo direkt. Auf Rechnung prüfen wir den Zahlungseingang.</div>
-        <div class="pm-grid" id="pmGrid"></div>
-      </div>
-
-      <!-- 5. Kontakt -->
-      <div class="block">
-        <h2>5 · Ihre Angaben</h2>
-        <div class="bsub">Für Rechnung, Bestätigung und die Zuordnung zu Ihrem GreyCareers-OS-Konto.</div>
-        <div class="fields">
-          <div class="field"><label>Ansprechpartner *</label><input id="f-name" placeholder="Vor- und Nachname"></div>
-          <div class="field"><label>Betrieb *</label><input id="f-firma" placeholder="Firmenname"></div>
-          <div class="field"><label>E-Mail *</label><input id="f-email" type="email" placeholder="name@betrieb.de"></div>
-          <div class="field"><label>Telefon</label><input id="f-tel" type="tel" placeholder="0221 …"></div>
-          <div class="field full" id="vatField"><label>USt-IdNr. (für Rechnung)</label><input id="f-vat" placeholder="DE…"></div>
-        </div>
+        <h2>4 · Nächster Schritt</h2>
+        <div class="bsub">Sie legen gleich in einem kurzen Schritt Ihr <b>GreyCareers-OS-Konto</b> an. Direkt danach wählen Sie dort Ihre Zahlungsart (Kreditkarte, PayPal, SEPA oder Kauf auf Rechnung) und starten das Abo – Ihr Paket ist bereits vorausgewählt.</div>
+        <ul class="pk-feats" style="margin-top:12px">
+          <li><span class="ck">1</span><span>Konto anlegen &amp; E-Mail bestätigen</span></li>
+          <li><span class="ck">2</span><span>Betriebsdaten ergänzen</span></li>
+          <li><span class="ck">3</span><span>Zahlung abschließen – Abo startet</span></li>
+        </ul>
       </div>
     </div>
 
@@ -435,7 +426,6 @@ function update(){
   $('qMinus').disabled=state.qty<=1;$('qPlus').disabled=state.qty>=QTY_MAX;
   if(c.qPct>0){$('qtyDisc').classList.add('show');$('qtyDiscTxt').textContent=c.qPct+' % Mengenrabatt – Sie sparen '+fmt(c.qtyDiscAmt)+' € / Monat.';}
   else $('qtyDisc').classList.remove('show');
-  $('vatField').style.opacity = state.method==='rechnung' ? '1' : '.6';
 
   $('sumPkgName').textContent=c.p.name;
   $('sumPkgBase').textContent=fmt(c.p.price)+' € / Mt';
@@ -454,44 +444,33 @@ function update(){
   $('sumVat').textContent='zzgl. '+fmt(vat)+' € USt. / Monat';
   $('sumTotal').textContent=fmt(c.total)+' € netto';
 
-  const m=PAYMENT_METHODS.find(x=>x.id===state.method);
-  $('buyLabel').textContent = m && !m.fast ? 'Abo auf Rechnung starten' : 'Abo kostenpflichtig starten';
+  $('buyLabel').textContent='Weiter zur Registrierung';
 }
 
 $('agb').addEventListener('change',e=>{$('buyBtn').disabled=!e.target.checked;});
-$('buyBtn').addEventListener('click',submitOrder);
-async function submitOrder(){
-  $('noteErr').classList.remove('show');$('notePend').classList.remove('show');
-  const name=$('f-name').value.trim(), firma=$('f-firma').value.trim(), email=$('f-email').value.trim();
-  if(!name||!firma||!email){showErr('Bitte füllen Sie Name, Betrieb und E-Mail aus.');return;}
-  const c=calc();
-  const payload={
-    mode:MODE, pkg:state.pkg, term:state.term, qty:state.qty,
-    termDiscountPct:TERM_DISCOUNT[state.term]||0, qtyDiscountPct:c.qPct,
-    codePct:state.codePct, codeRaw:state.codeRaw,
-    method:state.method, ref:state.ref,
-    customer:{name,firma,email,tel:$('f-tel').value.trim(),vat:$('f-vat').value.trim()}
-  };
-  const btn=$('buyBtn');btn.disabled=true;$('buyLabel').textContent='Wird verarbeitet …';
-  try{
-    const r=await fetch(CHECKOUT_FN,{method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':'Bearer '+SUPA_ANON,'apikey':SUPA_ANON},
-      body:JSON.stringify(payload)});
-    const data=await r.json().catch(()=>({}));
-    if(!r.ok){throw new Error(data.error||'Serverfehler');}
-    if(data.checkoutUrl){location.href=data.checkoutUrl;return;}
-    if(data.pending){
-      $('notePend').innerHTML='<b>Bestellung eingegangen.</b> Sie erhalten die erste Rechnung per E-Mail. Sobald der Zahlungseingang bestätigt ist, startet Ihr Abo automatisch.';
-      $('notePend').classList.add('show');btn.style.display='none';return;
-    }
-    throw new Error('Unerwartete Antwort');
-  }catch(err){
-    showErr('Die Bestellung konnte nicht verarbeitet werden ('+(err.message||'Fehler')+'). Rufen Sie uns gern an: +49 221 9688 2408 oder schreiben Sie an hello@green-careers.de.');
-  }finally{btn.disabled=$('agb').checked?false:true;update();}
+
+/* --- Weiter zur Registrierung im GreyCareers OS --------------------------
+   Option B: Erst Konto + Registrierung, dann Zahlung. Das Portal reicht nur die
+   Paket-Konfiguration per URL ans OS weiter (?brand=grey&flow=buy…). Zahlart +
+   Betriebsdaten + Abschluss laufen anschließend IM OS. */
+const OS_BASE = 'https://os.green-careers.de/';
+$('buyBtn').addEventListener('click',goToRegistration);
+function goToRegistration(){
+  if(!$('agb').checked){ showErr('Bitte bestätigen Sie AGB und Datenschutz.'); return; }
+  const q=new URLSearchParams();
+  q.set('brand','grey');
+  q.set('flow','buy');
+  q.set('pkg',state.pkg);
+  q.set('mode',MODE);
+  q.set('qty',String(state.qty));
+  q.set('term',state.term);
+  if(state.codeRaw) q.set('code',state.codeRaw);
+  if(state.ref)     q.set('ref',state.ref);
+  location.href = OS_BASE + '?' + q.toString();
 }
 function showErr(t){$('noteErr').textContent=t;$('noteErr').classList.add('show');}
 
-renderPkgs();renderPM();update();
+renderPkgs();update();
 </script>
 </body>
 </html>

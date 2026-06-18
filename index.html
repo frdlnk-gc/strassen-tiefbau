@@ -104,10 +104,11 @@
   .kicker{display:inline-flex;align-items:center;gap:8px;background:rgba(255,107,26,.16);
           color:var(--o-glow);font-weight:700;font-size:12.5px;letter-spacing:.5px;text-transform:uppercase;
           padding:7px 14px;border-radius:100px;border:1px solid rgba(255,107,26,.28)}
-  .hero h1{font-size:clamp(31px,5.2vw,52px);line-height:1.06;letter-spacing:-1px;margin:20px 0 16px;font-weight:830}
-  .mobr{display:none}
-  @media(max-width:600px){.mobr{display:inline}}
-  .hero h1 .tw{color:var(--o-glow)}
+  .hero h1{font-size:clamp(31px,5.2vw,52px);line-height:1.12;letter-spacing:-1px;margin:20px 0 16px;font-weight:830}
+  .mobr{display:inline}
+  .hero h1 .twline{display:inline-block;white-space:nowrap;line-height:1.12}
+  .hero h1 .tw{color:var(--o-glow);
+       text-shadow:0 0 22px rgba(255,107,26,.55),0 0 44px rgba(255,107,26,.32)}
   .hero h1 .caret{display:inline-block;width:3px;height:.92em;background:var(--o-glow);margin-left:2px;
         border-radius:2px;vertical-align:-.06em;animation:blink 1s steps(1) infinite}
   @keyframes blink{50%{opacity:0}}
@@ -164,18 +165,27 @@
   .plogo .pname{font-weight:800;color:var(--muted);font-size:18px;white-space:nowrap;letter-spacing:-.2px}
   @keyframes pscroll{to{transform:translateX(-50%)}}
 
-  /* ---------- Trust strip ---------- */
-  .trust{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 0}
-  .trust .wrap{display:flex;align-items:center;gap:24px;flex-wrap:wrap;justify-content:center;text-align:center}
-  .trust b{color:var(--ink)}
-  .trust .t-item{font-size:14px;color:var(--ink2);display:flex;align-items:center;gap:9px}
-  .trust .t-item .d{color:var(--o)}
+  /* ---------- Trust pillars ---------- */
+  .trust{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:30px 0}
+  .trust .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:center}
+  .t-pill{display:flex;align-items:center;gap:14px;text-align:left}
+  .t-pill .t-ic{width:46px;height:46px;border-radius:12px;flex:none;display:grid;place-items:center;
+        font-size:21px;background:var(--o-pale);border:1px solid rgba(255,107,26,.2)}
+  .t-pill .t-tx b{display:block;font-size:15px;color:var(--ink);font-weight:800;letter-spacing:-.2px}
+  .t-pill .t-tx span{font-size:13px;color:var(--muted);line-height:1.35}
+  @media(max-width:680px){
+    .trust{padding:18px 0}
+    .trust .wrap{grid-template-columns:1fr;gap:13px}
+    .t-pill .t-ic{width:40px;height:40px;font-size:18px}
+  }
 
   /* ---------- SEO intro ---------- */
   .seo{padding:56px 0 10px}
   .seo .lead{max-width:780px}
   .seo h2{font-size:clamp(23px,3.4vw,32px);font-weight:830;letter-spacing:-.6px;line-height:1.15;margin-bottom:14px}
   .seo h2 b{color:var(--o-dark)}
+  .seo h2 .dbr{display:none}
+  @media(min-width:760px){.seo h2 .dbr{display:inline}}
   .seo p{color:var(--ink2);font-size:16px;line-height:1.7;margin-bottom:14px}
   .seo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:30px}
   .seo-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--shadow)}
@@ -188,6 +198,28 @@
         box-shadow:0 6px 18px rgba(255,107,26,.3);transition:.15s}
   .btn-o:hover{filter:brightness(1.05)}
   .btn-ghost{color:var(--ink2);font-weight:700;font-size:15px;padding:13px 6px}
+
+  /* ---------- So funktioniert's (3 Schritte) ---------- */
+  .steps{padding:54px 0 14px}
+  .steps-head{max-width:680px;margin-bottom:30px}
+  .steps-head .eyebrow{display:inline-block;color:var(--o-dark);font-weight:800;font-size:12.5px;
+        letter-spacing:.6px;text-transform:uppercase;margin-bottom:10px}
+  .steps-head h2{font-size:clamp(23px,3.4vw,32px);font-weight:830;letter-spacing:-.6px;line-height:1.15}
+  .steps-head p{color:var(--ink2);font-size:16px;line-height:1.6;margin-top:10px}
+  .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .step-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;
+        padding:26px 22px 22px;box-shadow:var(--shadow);overflow:hidden}
+  .step-card::before{content:"";position:absolute;left:0;top:0;height:4px;width:100%;background:var(--grad)}
+  .step-num{width:42px;height:42px;border-radius:12px;background:var(--grad);color:#fff;font-weight:850;
+        font-size:18px;display:grid;place-items:center;box-shadow:0 6px 16px rgba(255,107,26,.3);margin-bottom:16px}
+  .step-card h3{font-size:17px;font-weight:800;letter-spacing:-.2px;margin-bottom:7px}
+  .step-card p{font-size:14.5px;color:var(--muted);line-height:1.55;margin:0}
+  @media(max-width:760px){
+    .steps{padding:40px 0 6px}
+    .steps-grid{grid-template-columns:1fr;gap:14px}
+    .step-card{padding:22px 20px 18px}
+    .step-num{width:38px;height:38px;font-size:16px;margin-bottom:12px}
+  }
 
   /* ---------- Premium banner ---------- */
   .feat{padding:30px 0 8px}
@@ -497,7 +529,9 @@
   }
   @media(max-width:560px){
     .hero .wrap{padding:48px 22px 56px}
-    .stats{gap:22px}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:28px}
+    .stat b{font-size:clamp(17px,5.6vw,24px)}
+    .stat span{font-size:clamp(9.5px,2.7vw,12px);line-height:1.2;display:block}
     .nav-cta{display:none}
     .fcard{flex-basis:280px}
   }
@@ -567,7 +601,7 @@
       <div class="hero-grid">
         <div class="hero-left">
           <span class="kicker">● Karrierenetzwerk für Straßen- &amp; Tiefbau</span>
-          <h1>Dein nächster Job im<br class="mobr"> <span class="tw" id="twWord">Straßenbau</span><span class="caret"></span><br>Bei Betrieben, die zu dir passen.</h1>
+          <h1>Dein nächster Job im<br class="mobr"><span class="twline"><span class="tw" id="twWord">Straßenbau</span><span class="caret"></span></span><br>Bei Betrieben, die zu dir passen.</h1>
           <p>Aktuelle Stellen bei geprüften Straßen-, Tief- und Kanalbauunternehmen in deiner Region. Ein Profil, direkt bewerben – ohne Anschreiben-Marathon.</p>
           <div class="hero-search">
             <input id="q" type="text" placeholder="Beruf, Position oder Ort suchen…" oninput="applyFilter()">
@@ -608,9 +642,9 @@
 
   <div class="trust">
     <div class="wrap">
-      <div class="t-item"><span class="d">✓</span> <b>Geprüfte Arbeitgeber</b> aus dem Straßen-, Tief- &amp; Kanalbau</div>
-      <div class="t-item"><span class="d">✓</span> Bewerbung in <b>2 Minuten</b>, ohne Anschreiben</div>
-      <div class="t-item"><span class="d">✓</span> <b>42.000+</b> monatliche Nutzer · <b>1.100+</b> Partnerbetriebe</div>
+      <div class="t-pill"><span class="t-ic">🔒</span><span class="t-tx"><b>Kostenlos &amp; anonym</b><span>Dein Profil sehen nur Betriebe, die zu dir passen.</span></span></div>
+      <div class="t-pill"><span class="t-ic">🛡️</span><span class="t-tx"><b>Nur geprüfte Betriebe</b><span>Echte Arbeitgeber aus dem Straßen-, Tief- &amp; Kanalbau.</span></span></div>
+      <div class="t-pill"><span class="t-ic">📩</span><span class="t-tx"><b>Betriebe melden sich</b><span>Du wartest nicht – passende Firmen schreiben dich an.</span></span></div>
     </div>
   </div>
 
@@ -618,7 +652,7 @@
   <section class="seo">
     <div class="wrap">
       <div class="lead">
-        <h2>Das Stellennetzwerk für den <b>Straßen-, Tief- &amp; Kanalbau</b>.</h2>
+        <h2>Das Stellennetzwerk<br class="dbr"> für den <b>Straßen-, Tief- &amp; Kanalbau</b>.</h2>
         <p>Ob Erdbau, Kanalbau, Rohrleitungsbau, Pflasterarbeiten oder Hochbau: Auf Baustellen entscheidet das Team. Wir bringen Bauunternehmen mit den Fachkräften zusammen, die wirklich anpacken – vom Baugeräteführer und Rohrleger über den Vorarbeiter bis zum Polier und Bauleiter.</p>
         <p>Für Betriebe heißt das: qualifizierte Bewerbungen aus der eigenen Region, ohne monatelange Suche und ohne Anzeigen-Chaos. Für Fachkräfte heißt es: ein Profil, geprüfte Arbeitgeber und eine Bewerbung, die in zwei Minuten raus ist – ganz ohne Anschreiben-Marathon.</p>
       </div>
@@ -631,6 +665,34 @@
       <div class="seo-cta">
         <a class="btn-o" href="arbeitgeber.html">Als Arbeitgeber Stellen schalten</a>
         <a class="btn-ghost" href="#jobsAnchor" onclick="document.getElementById('jobsAnchor').scrollIntoView({behavior:'smooth'});return false;">Offene Stellen ansehen ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- So funktioniert's: 3 Schritte für Bewerber -->
+  <section class="steps">
+    <div class="wrap">
+      <div class="steps-head">
+        <span class="eyebrow">So einfach geht's</span>
+        <h2>In 3 Schritten zu deinem neuen Job</h2>
+        <p>Kein Anschreiben, kein wochenlanges Suchen. Du legst einmal dein Profil an – den Rest übernehmen wir und die Betriebe.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3>Profil in 2 Minuten anlegen</h3>
+          <p>Beruf, Erfahrung und deine Region eintragen. Ohne Lebenslauf-Marathon, ohne Anschreiben – einmal ausfüllen, fertig.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3>Passende Betriebe finden dich</h3>
+          <p>Geprüfte Straßen-, Tief- und Kanalbaubetriebe aus deiner Nähe sehen dein Profil und melden sich direkt bei dir.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3>Kennenlernen &amp; durchstarten</h3>
+          <p>Du entscheidest, mit wem du sprichst. Vom ersten Kontakt bis zum Vertrag – alles ohne Bewerbungsstress.</p>
+        </div>
       </div>
     </div>
   </section>

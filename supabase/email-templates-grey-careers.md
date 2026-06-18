@@ -150,11 +150,210 @@ der Bestätigungs-/Reset-Link führt ins Leere.
 
 ---
 
-## 3) Optional: Magic Link / Invite / Change Email
+## 3) Magic Link (Anmelde-Link)
 
-Falls du diese Auth-Mails ebenfalls aktiv hast, denselben Header/Footer-Block
-verwenden und nur Überschrift + Fließtext + Button-Label anpassen. Variable
-bleibt jeweils `{{ .ConfirmationURL }}`.
+**Authentication → Emails → Templates → „Magic Link"**
+
+- **Subject:** `Dein Anmelde-Link – Grey Careers OS`
+- **Message body (HTML):**
+
+```html
+<!DOCTYPE html>
+<html lang="de">
+<body style="margin:0;padding:0;background:#f4f4f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f5;padding:32px 0;">
+    <tr><td align="center">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:480px;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #ececec;">
+        <tr><td style="background:linear-gradient(135deg,#EA580C,#C2410C);padding:26px 32px;">
+          <span style="font-size:21px;font-weight:700;color:#ffffff;letter-spacing:-.01em;">Grey Careers<span style="color:#FFD9C2;"> OS</span></span>
+        </td></tr>
+        <tr><td style="padding:32px 32px 8px;">
+          <h1 style="margin:0 0 14px;font-size:22px;font-weight:700;color:#18181b;letter-spacing:-.01em;">Dein Anmelde-Link</h1>
+          <p style="margin:0 0 22px;font-size:15px;line-height:1.6;color:#3f3f46;">
+            Klick auf den Button, um dich ohne Passwort bei Grey Careers OS
+            anzumelden. Der Link ist nur kurze Zeit gültig.
+          </p>
+          <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 24px;">
+            <tr><td style="border-radius:11px;background:#EA580C;">
+              <a href="{{ .ConfirmationURL }}" style="display:inline-block;padding:14px 30px;font-size:15px;font-weight:600;color:#ffffff;text-decoration:none;border-radius:11px;">Jetzt anmelden</a>
+            </td></tr>
+          </table>
+          <p style="margin:0 0 6px;font-size:13px;line-height:1.6;color:#71717a;">
+            Falls der Button nicht funktioniert, kopiere diesen Link in deinen Browser:
+          </p>
+          <p style="margin:0 0 22px;font-size:12px;line-height:1.5;word-break:break-all;">
+            <a href="{{ .ConfirmationURL }}" style="color:#C2410C;">{{ .ConfirmationURL }}</a>
+          </p>
+          <p style="margin:0;font-size:13px;line-height:1.6;color:#a1a1aa;">
+            Du hast keine Anmeldung angefordert? Dann ignoriere diese E-Mail einfach.
+          </p>
+        </td></tr>
+        <tr><td style="padding:22px 32px 28px;border-top:1px solid #f0f0f0;">
+          <p style="margin:0;font-size:12px;line-height:1.6;color:#a1a1aa;">
+            Grey Careers ist eine Marke der <strong style="color:#71717a;">Green Careers GmbH</strong>.<br>
+            Diese Nachricht wurde automatisch versendet.
+          </p>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>
+```
+
+---
+
+## 4) Invite user (Einladung ins Team)
+
+**Authentication → Emails → Templates → „Invite user"**
+
+- **Subject:** `Du wurdest zu Grey Careers OS eingeladen`
+- **Message body (HTML):**
+
+```html
+<!DOCTYPE html>
+<html lang="de">
+<body style="margin:0;padding:0;background:#f4f4f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f5;padding:32px 0;">
+    <tr><td align="center">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:480px;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #ececec;">
+        <tr><td style="background:linear-gradient(135deg,#EA580C,#C2410C);padding:26px 32px;">
+          <span style="font-size:21px;font-weight:700;color:#ffffff;letter-spacing:-.01em;">Grey Careers<span style="color:#FFD9C2;"> OS</span></span>
+        </td></tr>
+        <tr><td style="padding:32px 32px 8px;">
+          <h1 style="margin:0 0 14px;font-size:22px;font-weight:700;color:#18181b;letter-spacing:-.01em;">Du bist eingeladen</h1>
+          <p style="margin:0 0 22px;font-size:15px;line-height:1.6;color:#3f3f46;">
+            Dein Betrieb arbeitet mit Grey Careers OS – dem Tool für Bewerber,
+            Team und Baustellen. Richte jetzt deinen Zugang ein und leg los.
+          </p>
+          <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 24px;">
+            <tr><td style="border-radius:11px;background:#EA580C;">
+              <a href="{{ .ConfirmationURL }}" style="display:inline-block;padding:14px 30px;font-size:15px;font-weight:600;color:#ffffff;text-decoration:none;border-radius:11px;">Zugang einrichten</a>
+            </td></tr>
+          </table>
+          <p style="margin:0 0 6px;font-size:13px;line-height:1.6;color:#71717a;">
+            Falls der Button nicht funktioniert, kopiere diesen Link in deinen Browser:
+          </p>
+          <p style="margin:0 0 22px;font-size:12px;line-height:1.5;word-break:break-all;">
+            <a href="{{ .ConfirmationURL }}" style="color:#C2410C;">{{ .ConfirmationURL }}</a>
+          </p>
+          <p style="margin:0;font-size:13px;line-height:1.6;color:#a1a1aa;">
+            Du kennst den Absender nicht? Dann ignoriere diese E-Mail einfach.
+          </p>
+        </td></tr>
+        <tr><td style="padding:22px 32px 28px;border-top:1px solid #f0f0f0;">
+          <p style="margin:0;font-size:12px;line-height:1.6;color:#a1a1aa;">
+            Grey Careers ist eine Marke der <strong style="color:#71717a;">Green Careers GmbH</strong>.<br>
+            Diese Nachricht wurde automatisch versendet.
+          </p>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>
+```
+
+---
+
+## 5) Change Email Address (E-Mail-Adresse ändern)
+
+**Authentication → Emails → Templates → „Change Email Address"**
+
+- **Subject:** `Bestätige deine neue E-Mail – Grey Careers OS`
+- **Message body (HTML):**
+
+```html
+<!DOCTYPE html>
+<html lang="de">
+<body style="margin:0;padding:0;background:#f4f4f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f5;padding:32px 0;">
+    <tr><td align="center">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:480px;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #ececec;">
+        <tr><td style="background:linear-gradient(135deg,#EA580C,#C2410C);padding:26px 32px;">
+          <span style="font-size:21px;font-weight:700;color:#ffffff;letter-spacing:-.01em;">Grey Careers<span style="color:#FFD9C2;"> OS</span></span>
+        </td></tr>
+        <tr><td style="padding:32px 32px 8px;">
+          <h1 style="margin:0 0 14px;font-size:22px;font-weight:700;color:#18181b;letter-spacing:-.01em;">Neue E-Mail bestätigen</h1>
+          <p style="margin:0 0 22px;font-size:15px;line-height:1.6;color:#3f3f46;">
+            Du möchtest die E-Mail-Adresse deines Grey-Careers-OS-Kontos auf
+            <strong style="color:#18181b;">{{ .Email }}</strong> ändern.
+            Bitte bestätige das mit einem Klick.
+          </p>
+          <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 24px;">
+            <tr><td style="border-radius:11px;background:#EA580C;">
+              <a href="{{ .ConfirmationURL }}" style="display:inline-block;padding:14px 30px;font-size:15px;font-weight:600;color:#ffffff;text-decoration:none;border-radius:11px;">E-Mail-Änderung bestätigen</a>
+            </td></tr>
+          </table>
+          <p style="margin:0 0 6px;font-size:13px;line-height:1.6;color:#71717a;">
+            Falls der Button nicht funktioniert, kopiere diesen Link in deinen Browser:
+          </p>
+          <p style="margin:0 0 22px;font-size:12px;line-height:1.5;word-break:break-all;">
+            <a href="{{ .ConfirmationURL }}" style="color:#C2410C;">{{ .ConfirmationURL }}</a>
+          </p>
+          <p style="margin:0;font-size:13px;line-height:1.6;color:#a1a1aa;">
+            Du hast das nicht angefordert? Dann ignoriere diese E-Mail – deine
+            Adresse bleibt unverändert.
+          </p>
+        </td></tr>
+        <tr><td style="padding:22px 32px 28px;border-top:1px solid #f0f0f0;">
+          <p style="margin:0;font-size:12px;line-height:1.6;color:#a1a1aa;">
+            Grey Careers ist eine Marke der <strong style="color:#71717a;">Green Careers GmbH</strong>.<br>
+            Diese Nachricht wurde automatisch versendet.
+          </p>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>
+```
+
+---
+
+## 6) Reauthentication (Identität bestätigen, OTP-Code)
+
+**Authentication → Emails → Templates → „Reauthentication"**
+
+> Diese Mail nutzt **keinen** Link, sondern den 6-stelligen Code `{{ .Token }}`.
+
+- **Subject:** `Dein Bestätigungscode – Grey Careers OS`
+- **Message body (HTML):**
+
+```html
+<!DOCTYPE html>
+<html lang="de">
+<body style="margin:0;padding:0;background:#f4f4f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f5;padding:32px 0;">
+    <tr><td align="center">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:480px;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #ececec;">
+        <tr><td style="background:linear-gradient(135deg,#EA580C,#C2410C);padding:26px 32px;">
+          <span style="font-size:21px;font-weight:700;color:#ffffff;letter-spacing:-.01em;">Grey Careers<span style="color:#FFD9C2;"> OS</span></span>
+        </td></tr>
+        <tr><td style="padding:32px 32px 8px;">
+          <h1 style="margin:0 0 14px;font-size:22px;font-weight:700;color:#18181b;letter-spacing:-.01em;">Dein Bestätigungscode</h1>
+          <p style="margin:0 0 22px;font-size:15px;line-height:1.6;color:#3f3f46;">
+            Bitte gib diesen Code ein, um deine Identität zu bestätigen:
+          </p>
+          <div style="margin:0 0 24px;padding:18px 0;text-align:center;background:#FFF4ED;border:1px solid #FFD9C2;border-radius:12px;">
+            <span style="font-size:32px;font-weight:700;letter-spacing:.18em;color:#C2410C;">{{ .Token }}</span>
+          </div>
+          <p style="margin:0;font-size:13px;line-height:1.6;color:#a1a1aa;">
+            Du hast das nicht angefordert? Dann ignoriere diese E-Mail.
+          </p>
+        </td></tr>
+        <tr><td style="padding:22px 32px 28px;border-top:1px solid #f0f0f0;">
+          <p style="margin:0;font-size:12px;line-height:1.6;color:#a1a1aa;">
+            Grey Careers ist eine Marke der <strong style="color:#71717a;">Green Careers GmbH</strong>.<br>
+            Diese Nachricht wurde automatisch versendet.
+          </p>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>
+```
 
 ---
 

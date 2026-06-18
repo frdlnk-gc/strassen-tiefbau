@@ -24,6 +24,7 @@ const RABATT_PREFIX = 'Sale';            // Geheimwort vor dem Rabatt-Prozentwer
 const CODE_MAX_PCT  = 60;                // Maximal erlaubter Code-Rabatt
 const VAT           = 0.19;              // 19 % USt. – auf Netto aufgeschlagen
 const SITE          = 'https://strassen-tiefbau.green-careers.de';
+const OS            = 'https://os.green-careers.de';   // Rückkehr-Ziel nach Zahlung (Option B: Kauf läuft im OS)
 
 // Einmal-Pakete: Netto-Einmalpreis
 const PKG_EINMAL: Record<string, { name: string; price: number; days: number }> = {
@@ -80,6 +81,9 @@ Deno.serve(async (req) => {
   const method = String(p.method || 'card');
   const ref    = String(p.ref || '').slice(0, 40);
   const c      = p.customer || {};
+  // Option B: Account existiert bereits -> Bestellung mit Account verknüpfen
+  const customerId = p.customerId ? String(p.customerId) : null;   // customers.id (aus create_my_company)
+  const authUserId = p.authUserId ? String(p.authUserId) : null;   // auth.users.id (eingeloggter Nutzer)
   if (!c.name || !c.firma || !c.email) return json({ error: 'Fehlende Pflichtfelder' }, 400);
 
   // ---- Preis server-seitig (autoritativ) berechnen -------------------------
@@ -109,6 +113,7 @@ Deno.serve(async (req) => {
     mode, pkg: pkgKey, qty: String(qty), term: p.term || '', ref,
     qty_pct: String(qtyPct), code_pct: String(codePct),
     net_per_unit: finalNet.toFixed(2), firma: c.firma, name: c.name, email: c.email,
+    customer_id: customerId || '', auth_user_id: authUserId || '',   // Account-Verknüpfung (für Webhook-Auto-Freigabe)
   };
 
   // ---- KAUF AUF RECHNUNG: Bestellung + Freigabe-Mail -----------------------
@@ -121,6 +126,7 @@ Deno.serve(async (req) => {
       zahlungsart: 'rechnung', status: 'wartet_zahlung',
       kunde_name: c.name, kunde_firma: c.firma, kunde_email: c.email,
       kunde_tel: c.tel || null, kunde_ustid: c.vat || null,
+      customer_id: customerId, auth_user_id: authUserId,
     };
     const { data: ins, error } = await supa.from('bestellungen').insert(order).select('id').single();
     if (error) return json({ error: 'DB: ' + error.message }, 500);
@@ -141,8 +147,8 @@ Deno.serve(async (req) => {
       payment_method_types: [pmType] as any,
       client_reference_id: ref || undefined,
       metadata: meta,
-      success_url: `${SITE}/danke-kauf.html?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${SITE}/kaufen-${mode}.html`,
+      success_url: `${OS}/?paid=1&session_id={CHECKOUT_SESSION_ID}`,   // zurück ins OS -> Erfolgs-View + Einrichtung
+      cancel_url: `${OS}/?flow=buy`,                                   // Abbruch -> OS zeigt Checkout erneut
     };
 
     let session;

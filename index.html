@@ -124,6 +124,111 @@
   .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:46px;align-items:center}
   .hero-left{min-width:0}
 
+  /* ---------- Quiz-Launcher im Hero ---------- */
+  .quiz-launch{margin-top:14px;width:100%;max-width:580px;display:flex;align-items:center;gap:14px;
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:14px;
+    padding:14px 16px;cursor:pointer;text-align:left;color:#fff;transition:background .2s,transform .15s,border-color .2s}
+  .quiz-launch:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.4);transform:translateY(-1px)}
+  .quiz-launch .ql-ic{font-size:24px;flex:0 0 auto}
+  .quiz-launch .ql-tx{flex:1;min-width:0}
+  .quiz-launch .ql-tx b{display:block;font-size:15px;font-weight:780;line-height:1.25}
+  .quiz-launch .ql-tx small{display:block;font-size:12.5px;color:rgba(255,255,255,.74);margin-top:2px}
+  .quiz-launch .ql-arrow{font-size:20px;flex:0 0 auto;opacity:.8;transition:transform .2s}
+  .quiz-launch:hover .ql-arrow{transform:translateX(3px)}
+
+  /* ---------- Quiz-Overlay ---------- */
+  .quiz-ov{position:fixed;inset:0;z-index:120;background:rgba(16,19,22,.62);backdrop-filter:blur(4px);
+    display:none;align-items:center;justify-content:center;padding:20px}
+  .quiz-ov.on{display:flex}
+  .quiz-box{position:relative;width:100%;max-width:540px;max-height:92vh;overflow-y:auto;
+    background:var(--card);border-radius:22px;padding:30px 30px 22px;
+    box-shadow:0 30px 80px rgba(0,0,0,.35);animation:quizIn .28s cubic-bezier(.2,.8,.25,1)}
+  @keyframes quizIn{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
+  .quiz-x{position:absolute;top:16px;right:16px;width:34px;height:34px;border:0;border-radius:50%;
+    background:var(--bg);color:var(--ink2);font-size:15px;cursor:pointer;line-height:34px;text-align:center}
+  .quiz-x:hover{background:var(--line)}
+  .quiz-prog{height:5px;border-radius:99px;background:var(--line2);margin:6px 0 22px;overflow:hidden}
+  .quiz-prog-bar{display:block;height:100%;width:25%;border-radius:99px;background:var(--grad);transition:width .3s ease}
+  .quiz-eyebrow{display:inline-block;color:var(--o-dark);font-weight:800;font-size:11.5px;
+    text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
+  .quiz-step h3{font-size:22px;font-weight:820;letter-spacing:-.4px;line-height:1.2;margin-bottom:6px}
+  .quiz-sub{color:var(--ink2);font-size:14.5px;margin-bottom:18px}
+  .quiz-chips{display:flex;flex-wrap:wrap;gap:9px}
+  .qchip{border:1.5px solid var(--line);background:#fff;border-radius:11px;padding:11px 15px;
+    font-size:14.5px;font-weight:640;color:var(--ink);cursor:pointer;transition:all .15s}
+  .qchip:hover{border-color:var(--o-glow);background:var(--o-pale)}
+  .qchip.sel{border-color:var(--o);background:var(--o-pale);color:var(--o-dark);font-weight:760}
+  .quiz-other{margin-top:14px}
+  .quiz-other input,.quiz-plz,.quiz-input{width:100%;border:1.5px solid var(--line);border-radius:11px;
+    padding:13px 15px;font-size:15px;color:var(--ink);outline:0;transition:border-color .15s}
+  .quiz-other input:focus,.quiz-plz:focus,.quiz-input:focus{border-color:var(--o)}
+  .quiz-plz{text-align:center;font-size:24px;font-weight:760;letter-spacing:4px;padding:16px}
+  .quiz-plz-hint{text-align:center;font-size:12.5px;color:var(--muted);margin-top:9px}
+  .quiz-plz-hint.ok{color:#1B6B33;font-weight:700}
+  .quiz-nav{display:flex;align-items:center;gap:10px;margin-top:24px}
+  .quiz-back{margin-right:auto;background:none;border:0;color:var(--muted);font-size:14px;font-weight:640;cursor:pointer;padding:8px 4px}
+  .quiz-back:hover{color:var(--ink)}
+  .quiz-skip{background:none;border:0;color:var(--muted);font-size:14px;font-weight:640;cursor:pointer;padding:11px 14px}
+  .quiz-skip:hover{color:var(--ink)}
+  .quiz-next{background:var(--grad);color:#fff;border:0;border-radius:11px;padding:13px 26px;
+    font-size:15px;font-weight:760;cursor:pointer;box-shadow:0 8px 22px rgba(255,107,26,.28)}
+  .quiz-next:disabled{opacity:.4;cursor:not-allowed;box-shadow:none}
+  /* Ergebnis */
+  .quiz-result-head{margin-bottom:14px}
+  .quiz-result-head .quiz-eyebrow{margin-bottom:6px}
+  .quiz-result h3{font-size:21px}
+  .quiz-jobs{display:flex;flex-direction:column;gap:9px;margin-bottom:12px}
+  .qjob{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:13px;
+    padding:11px 13px;cursor:pointer;background:#fff;transition:border-color .15s,transform .15s}
+  .qjob:hover{border-color:var(--o-glow);transform:translateY(-1px)}
+  .qjob-ic{width:40px;height:40px;border-radius:10px;background:var(--o-pale);color:var(--o-dark);
+    display:grid;place-items:center;font-size:18px;flex:0 0 auto;font-weight:800}
+  .qjob-tx{flex:1;min-width:0}
+  .qjob-tx b{display:block;font-size:14.5px;font-weight:760;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .qjob-tx small{display:block;font-size:12.5px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .qjob-dist{font-size:12px;font-weight:700;color:var(--o-dark);background:var(--o-pale);
+    border-radius:8px;padding:4px 8px;flex:0 0 auto;white-space:nowrap}
+  .quiz-allbtn{width:100%;background:none;border:1.5px solid var(--line);color:var(--ink);border-radius:11px;
+    padding:11px;font-size:14px;font-weight:720;cursor:pointer;margin-bottom:18px;transition:border-color .15s}
+  .quiz-allbtn:hover{border-color:var(--ink2)}
+  .quiz-abo{border:1.5px solid var(--o);border-radius:16px;padding:18px;
+    background:linear-gradient(180deg,var(--o-pale),#fff)}
+  .quiz-abo-head{display:flex;gap:12px;margin-bottom:12px}
+  .quiz-abo-ic{font-size:24px;flex:0 0 auto}
+  .quiz-abo-head b{display:block;font-size:15.5px;font-weight:840;line-height:1.3}
+  .quiz-abo-head small{display:block;font-size:13px;color:var(--ink2);margin-top:4px;line-height:1.5}
+  .quiz-abo-head small strong{color:var(--o-dark);font-weight:800}
+  .quiz-perks{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .qperk{font-size:11.5px;font-weight:700;color:var(--ink2);background:#fff;border:1px solid var(--line);
+    border-radius:99px;padding:5px 10px}
+  .quiz-row{display:flex;gap:9px}
+  .quiz-row .quiz-input{flex:1;min-width:0}
+  .quiz-kanal{margin:4px 0 2px}
+  .quiz-kanal-lbl{display:block;font-size:12.5px;font-weight:700;color:var(--ink2);margin:6px 0 7px}
+  .quiz-kanal-opts{display:flex;gap:8px}
+  .qkanal{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:11px;padding:11px 8px;
+    font-size:13.5px;font-weight:700;color:var(--ink);cursor:pointer;transition:all .15s}
+  .qkanal:hover{border-color:var(--o-glow)}
+  .qkanal.sel{border-color:var(--o);background:var(--o-pale);color:var(--o-dark)}
+  .quiz-abo .quiz-input{margin-bottom:9px;background:#fff}
+  .quiz-consent{display:flex;gap:9px;align-items:flex-start;font-size:12.5px;color:var(--ink2);
+    line-height:1.45;margin:4px 0 12px;cursor:pointer}
+  .quiz-consent input{margin-top:2px;flex:0 0 auto;width:16px;height:16px;accent-color:var(--o)}
+  .quiz-consent a{color:var(--o-dark)}
+  .quiz-abo-btn{width:100%;background:var(--ink);color:#fff;border:0;border-radius:11px;padding:13px;
+    font-size:14.5px;font-weight:740;cursor:pointer;transition:background .15s}
+  .quiz-abo-btn:hover{background:#000}
+  .quiz-abo-btn:disabled{opacity:.55;cursor:not-allowed}
+  .quiz-abo-msg{font-size:13.5px;margin-top:10px;text-align:center;line-height:1.45}
+  .quiz-abo-msg.ok{color:#1B6B33;font-weight:700}
+  .quiz-abo-msg.err{color:#C0392B;font-weight:640}
+  .quiz-abo.done .quiz-abo-head{margin-bottom:0}
+  @media(max-width:560px){
+    .quiz-box{padding:26px 20px 18px;border-radius:18px;max-height:94vh}
+    .quiz-step h3{font-size:20px}
+    .quiz-plz{font-size:21px;letter-spacing:3px}
+  }
+
   /* ---------- Animierte Ablauf-Karte ---------- */
   .tl-card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.14);border-radius:18px;
         padding:22px 22px 16px;backdrop-filter:blur(8px);box-shadow:0 20px 60px rgba(0,0,0,.42)}
@@ -622,6 +727,111 @@
   </div>
 </aside>
 
+<!-- ============ JOB-QUIZ ============ -->
+<div class="quiz-ov" id="quizOv" onclick="if(event.target===this)quizClose()">
+  <div class="quiz-box" role="dialog" aria-modal="true" aria-label="Job-Finder">
+    <button class="quiz-x" onclick="quizClose()" aria-label="Schließen">✕</button>
+    <div class="quiz-prog"><span class="quiz-prog-bar" id="quizBar"></span></div>
+
+    <!-- Schritt 1: Beruf -->
+    <div class="quiz-step" data-step="1">
+      <span class="quiz-eyebrow">Frage 1 von 3</span>
+      <h3>Welcher Beruf passt zu dir?</h3>
+      <p class="quiz-sub">Wähle dein Handwerk – wir suchen passende Stellen dafür.</p>
+      <div class="quiz-chips" id="quizBerufe">
+        <button class="qchip" onclick="quizPickBeruf(this,'Straßenbauer')">🛣️ Straßenbauer</button>
+        <button class="qchip" onclick="quizPickBeruf(this,'Tiefbauer')">🏗️ Tiefbauer / Rohrleger</button>
+        <button class="qchip" onclick="quizPickBeruf(this,'Baugeräteführer')">🚜 Baumaschinenführer</button>
+        <button class="qchip" onclick="quizPickBeruf(this,'Kraftfahrer')">🚛 Berufskraftfahrer</button>
+        <button class="qchip" onclick="quizPickBeruf(this,'Polier')">📐 Polier / Vorarbeiter</button>
+        <button class="qchip" onclick="quizPickBeruf(this,'Bauleiter')">📋 Bauleiter</button>
+        <button class="qchip" onclick="quizPickBeruf(this,'Kanalbauer')">🚧 Kanalbauer</button>
+        <button class="qchip" onclick="quizPickBeruf(this,'Pflasterer')">🧱 Pflasterer</button>
+      </div>
+      <div class="quiz-other">
+        <input id="quizBerufOther" type="text" placeholder="Anderer Beruf? Hier eintippen…" oninput="quizOtherBeruf(this.value)">
+      </div>
+    </div>
+
+    <!-- Schritt 2: PLZ -->
+    <div class="quiz-step" data-step="2" hidden>
+      <span class="quiz-eyebrow">Frage 2 von 3</span>
+      <h3>Wo suchst du?</h3>
+      <p class="quiz-sub">Deine Postleitzahl – wir zeigen dir die Stellen, die am nächsten an dir dran sind.</p>
+      <input class="quiz-plz" id="quizPlz" type="text" inputmode="numeric" maxlength="5" placeholder="z.B. 06108" oninput="quizPlzInput(this.value)">
+      <div class="quiz-plz-hint" id="quizPlzHint">5-stellige PLZ eingeben</div>
+    </div>
+
+    <!-- Schritt 3: Erfahrung -->
+    <div class="quiz-step" data-step="3" hidden>
+      <span class="quiz-eyebrow">Frage 3 von 3 · optional</span>
+      <h3>Wie viel Erfahrung bringst du mit?</h3>
+      <p class="quiz-sub">Hilft uns, dich noch besser einzuordnen. Kannst du auch überspringen.</p>
+      <div class="quiz-chips">
+        <button class="qchip" onclick="quizPickErf(this,'Berufseinsteiger / Azubi')">Berufseinsteiger / Azubi</button>
+        <button class="qchip" onclick="quizPickErf(this,'1–3 Jahre')">1–3 Jahre</button>
+        <button class="qchip" onclick="quizPickErf(this,'3–10 Jahre')">3–10 Jahre</button>
+        <button class="qchip" onclick="quizPickErf(this,'10+ Jahre / Meister')">10+ Jahre / Meister</button>
+      </div>
+    </div>
+
+    <!-- Schritt 4: Ergebnis + Bewerberpool/Job-Abo -->
+    <div class="quiz-step quiz-result" data-step="4" hidden>
+      <div class="quiz-result-head">
+        <span class="quiz-eyebrow" id="quizResultEyebrow">Deine Treffer</span>
+        <h3 id="quizResultTitle">Die perfekten Jobs in deiner Nähe</h3>
+        <p class="quiz-sub" id="quizResultSub">Nach Nähe sortiert – die nächstgelegene zuerst.</p>
+      </div>
+
+      <div class="quiz-jobs" id="quizJobs"></div>
+      <button class="quiz-allbtn" onclick="quizShowJobs()" id="quizAllBtn">Alle Stellen im Portal ansehen →</button>
+
+      <div class="quiz-abo" id="quizAbo">
+        <div class="quiz-abo-head">
+          <span class="quiz-abo-ic">⚡</span>
+          <div>
+            <b>Nichts Passendes dabei? Sei beim nächsten Mal der Erste.</b>
+            <small>Erhalte <strong>sofort nach Erscheinen</strong> die besten Jobangebote von exklusiven, geprüften Top-Arbeitgebern aus deiner Region – <strong>bevor es alle anderen erfahren.</strong> Kostenlos, direkt aufs Handy.</small>
+          </div>
+        </div>
+        <div class="quiz-perks">
+          <span class="qperk">🔒 Exklusiv &amp; geprüft</span>
+          <span class="qperk">⏱️ Als Erster informiert</span>
+          <span class="qperk">📲 Direkt aufs Handy</span>
+          <span class="qperk">🎁 100% kostenlos</span>
+        </div>
+        <div id="quizAboForm">
+          <div class="quiz-row">
+            <input class="quiz-input" id="quizVorname" type="text" placeholder="Vorname">
+            <input class="quiz-input" id="quizNachname" type="text" placeholder="Nachname">
+          </div>
+          <input class="quiz-input" id="quizEmail" type="email" placeholder="E-Mail-Adresse">
+          <input class="quiz-input" id="quizTel" type="tel" placeholder="Telefon- / WhatsApp-Nummer">
+          <div class="quiz-kanal">
+            <span class="quiz-kanal-lbl">Wie sollen wir dir die Jobs schicken?</span>
+            <div class="quiz-kanal-opts">
+              <button type="button" class="qkanal sel" id="qkEmail" onclick="quizPickKanal('email')">✉️ Per E-Mail</button>
+              <button type="button" class="qkanal" id="qkWa" onclick="quizPickKanal('whatsapp')">💬 Per WhatsApp</button>
+            </div>
+          </div>
+          <label class="quiz-consent">
+            <input type="checkbox" id="quizConsent">
+            <span>Ich möchte kostenlos passende Top-Jobangebote erhalten und stimme der <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a> zu. Abmeldung jederzeit möglich.</span>
+          </label>
+          <button class="quiz-abo-btn" id="quizAboBtn" onclick="quizSubmitAbo()">Ja, ich will die besten Jobs zuerst →</button>
+          <div class="quiz-abo-msg" id="quizAboMsg"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quiz-nav">
+      <button class="quiz-back" id="quizBack" onclick="quizPrev()" hidden>← Zurück</button>
+      <button class="quiz-next" id="quizNext" onclick="quizNext()" disabled>Weiter →</button>
+      <button class="quiz-skip" id="quizSkip" onclick="quizNext(true)" hidden>Überspringen</button>
+    </div>
+  </div>
+</div>
+
 <!-- ============ HOME ============ -->
 <div id="home">
   <section class="hero">
@@ -636,6 +846,11 @@
             <input id="q" type="text" placeholder="Beruf, Position oder Ort suchen…" oninput="applyFilter()">
             <button onclick="document.getElementById('jobsAnchor').scrollIntoView({behavior:'smooth'})">Jobs ansehen</button>
           </div>
+          <button class="quiz-launch" onclick="quizOpen()">
+            <span class="ql-ic">🎯</span>
+            <span class="ql-tx"><b>Finde deinen Job in 30 Sekunden</b><small>3 kurze Fragen – wir zeigen dir passende Stellen in deiner Nähe</small></span>
+            <span class="ql-arrow">→</span>
+          </button>
           <div class="stats">
             <div class="stat"><b>42.000+</b><span>monatliche Nutzer</span></div>
             <div class="stat"><b>1.100+</b><span>Betriebe im Netzwerk</span></div>
@@ -1007,10 +1222,11 @@ async function geo(plz){
   if(!/^\d{5}$/.test(plz)) return null;
   if(plz in GEO) return GEO[plz];
   try{
-    const r=await fetch('https://api.zippopotam.us/de/'+plz);
+    // Nominatim/OSM: zuverlässige PLZ-Koordinaten (zippopotam liefert für DE z.T. korrupte Daten)
+    const r=await fetch('https://nominatim.openstreetmap.org/search?postalcode='+plz+'&country=Germany&format=json&limit=1',{headers:{'Accept':'application/json'}});
     if(!r.ok){GEO[plz]=null;return null;}
-    const d=await r.json(); const p=d.places&&d.places[0];
-    GEO[plz]= p? {lat:+p.latitude,lon:+p.longitude} : null;
+    const d=await r.json(); const p=d&&d[0];
+    GEO[plz]= p? {lat:+p.lat,lon:+p.lon} : null;
   }catch(e){GEO[plz]=null;}
   return GEO[plz];
 }
@@ -1246,6 +1462,166 @@ function berufSuche(t){
   buildFilters(); applyFilter();
   setTimeout(()=>scrollToEl('jobsAnchor'),60);
 }
+
+/* ============ JOB-QUIZ ============ */
+const QUIZ={step:1,beruf:'',erfahrung:'',plz:'',kanal:'email'};
+function quizOpen(){
+  QUIZ.step=1; QUIZ.beruf=''; QUIZ.erfahrung=''; QUIZ.plz=''; QUIZ.kanal='email';
+  $('quizOv').classList.add('on'); document.body.style.overflow='hidden';
+  // Reset UI
+  document.querySelectorAll('#quizOv .qchip').forEach(c=>c.classList.remove('sel'));
+  $('quizBerufOther').value=''; $('quizPlz').value='';
+  $('quizPlzHint').textContent='5-stellige PLZ eingeben'; $('quizPlzHint').classList.remove('ok');
+  const m=$('quizAboMsg'); m.textContent=''; m.className='quiz-abo-msg';
+  $('quizVorname').value=''; $('quizNachname').value=''; $('quizEmail').value=''; $('quizTel').value='';
+  $('quizConsent').checked=false; quizPickKanal('email');
+  $('quizAboForm').style.display=''; $('quizAboBtn').disabled=false;
+  $('quizAbo').classList.remove('done');
+  quizRender();
+}
+function quizPickKanal(k){
+  QUIZ.kanal=k;
+  $('qkEmail').classList.toggle('sel', k==='email');
+  $('qkWa').classList.toggle('sel', k==='whatsapp');
+}
+function quizClose(){ $('quizOv').classList.remove('on'); document.body.style.overflow=''; }
+function quizRender(){
+  document.querySelectorAll('#quizOv .quiz-step').forEach(s=>{
+    s.hidden = (+s.dataset.step !== QUIZ.step);
+  });
+  $('quizBar').style.width = (QUIZ.step*25)+'%';
+  const isResult = QUIZ.step===4;
+  $('quizBack').hidden = (QUIZ.step===1 || isResult);
+  $('quizNext').hidden = isResult;
+  $('quizSkip').hidden = (QUIZ.step!==3);
+  document.querySelector('.quiz-nav').style.display = isResult ? 'none' : 'flex';
+  quizValidate();
+}
+function quizValidate(){
+  let ok=false;
+  if(QUIZ.step===1) ok = !!QUIZ.beruf;
+  else if(QUIZ.step===2) ok = /^\d{5}$/.test(QUIZ.plz);
+  else if(QUIZ.step===3) ok = true;
+  $('quizNext').disabled = !ok;
+}
+function quizPickBeruf(btn,val){
+  document.querySelectorAll('#quizBerufe .qchip').forEach(c=>c.classList.remove('sel'));
+  btn.classList.add('sel');
+  $('quizBerufOther').value='';
+  QUIZ.beruf=val; quizValidate();
+}
+function quizOtherBeruf(v){
+  if(v.trim()){
+    document.querySelectorAll('#quizBerufe .qchip').forEach(c=>c.classList.remove('sel'));
+    QUIZ.beruf=v.trim();
+  }else{ QUIZ.beruf=''; }
+  quizValidate();
+}
+function quizPlzInput(v){
+  const clean=v.replace(/\D/g,'').slice(0,5);
+  if($('quizPlz').value!==clean)$('quizPlz').value=clean;
+  QUIZ.plz=clean;
+  const h=$('quizPlzHint');
+  if(/^\d{5}$/.test(clean)){ h.textContent='Passt – weiter geht\u2019s'; h.classList.add('ok'); }
+  else{ h.textContent='5-stellige PLZ eingeben'; h.classList.remove('ok'); }
+  quizValidate();
+}
+function quizPickErf(btn,val){
+  const was=btn.classList.contains('sel');
+  document.querySelectorAll('.quiz-step[data-step="3"] .qchip').forEach(c=>c.classList.remove('sel'));
+  if(!was){ btn.classList.add('sel'); QUIZ.erfahrung=val; } else { QUIZ.erfahrung=''; }
+}
+function quizPrev(){ if(QUIZ.step>1){ QUIZ.step--; quizRender(); } }
+async function quizNext(skip){
+  if(QUIZ.step<3){ QUIZ.step++; quizRender(); return; }
+  if(QUIZ.step===3){ if(skip)QUIZ.erfahrung=''; await quizFinish(); }
+}
+async function quizFinish(){
+  // Filter-Engine ansteuern (nächstgelegene Stellen, abgestuft – kein "keine Treffer"-Disclaimer)
+  if($('detail').style.display==='block')goHome();
+  if($('q')) $('q').value = QUIZ.beruf;
+  SEL_BRANCHE.clear(); SEL_BERUF.clear(); SEL_ART.clear();
+  buildFilters();
+  if($('fplz')) $('fplz').value = QUIZ.plz;
+  SEARCH_GEO = /^\d{5}$/.test(QUIZ.plz) ? await geo(QUIZ.plz) : null;
+  updateMiniMap();
+  applyFilter();
+  // Top-Treffer fürs Quiz-Ergebnis berechnen (gleiche Sortierung wie applyFilter)
+  let rows=[...JOBS];
+  if(SEARCH_GEO){
+    rows.forEach(j=>j._dist=distOf(j));
+    rows.sort((a,b)=>{const da=a._dist==null?1e9:a._dist,db=b._dist==null?1e9:b._dist;
+      return da-db || new Date(b.published_at)-new Date(a.published_at);});
+  }else{
+    rows.sort((a,b)=>new Date(b.published_at)-new Date(a.published_at));
+  }
+  const top=rows.slice(0,3);
+  const ttl=$('quizResultTitle'), sub=$('quizResultSub'), eye=$('quizResultEyebrow');
+  if(top.length){
+    eye.textContent = 'Deine Treffer';
+    ttl.textContent = QUIZ.plz ? 'Die besten Jobs rund um '+QUIZ.plz : 'Die besten Jobs für dich';
+    sub.textContent = SEARCH_GEO
+      ? 'Nach Nähe sortiert – die nächstgelegene zuerst. Tippe auf einen Job, um dich direkt zu bewerben.'
+      : 'Tippe auf einen Job, um dich direkt zu bewerben.';
+  }else{
+    eye.textContent = 'Noch frisch hier';
+    ttl.textContent = 'Bald die ersten Top-Jobs für dich';
+    sub.textContent = 'Sei von Anfang an dabei und erhalte neue Stellen als Erster – siehe unten.';
+  }
+  $('quizJobs').innerHTML = top.map(j=>{
+    const d=j._dist;
+    const meta = (d!=null)?(d+' km · '+esc(j.firma)) : ((j.ort?esc(j.ort)+' · ':'')+esc(j.firma));
+    const badge = (d!=null)? d+' km' : (j.ort?esc(j.ort):'');
+    return `<div class="qjob" onclick="quizClose();openJob('${esc(j.slug)}')">
+      <span class="qjob-ic">${esc(initials(j.firma))}</span>
+      <span class="qjob-tx"><b>${esc(j.titel)}</b><small>${meta}</small></span>
+      ${badge?`<span class="qjob-dist">${badge}</span>`:''}
+    </div>`;
+  }).join('');
+  $('quizAllBtn').style.display = top.length ? '' : 'none';
+  QUIZ.step=4; quizRender();
+}
+function quizShowJobs(){
+  quizClose();
+  setTimeout(()=>scrollToEl('jobsAnchor'),120);
+}
+async function quizSubmitAbo(){
+  const vorname=$('quizVorname').value.trim();
+  const nachname=$('quizNachname').value.trim();
+  const email=$('quizEmail').value.trim();
+  const tel=$('quizTel').value.trim();
+  const msg=$('quizAboMsg');
+  if(!vorname||!nachname){ msg.className='quiz-abo-msg err'; msg.textContent='Bitte Vor- und Nachnamen eingeben.'; return; }
+  const emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if(!emailOk){ msg.className='quiz-abo-msg err'; msg.textContent='Bitte gib eine gültige E-Mail-Adresse ein.'; return; }
+  if(QUIZ.kanal==='whatsapp' && !tel){ msg.className='quiz-abo-msg err'; msg.textContent='Für WhatsApp brauchen wir deine Nummer.'; return; }
+  if(!$('quizConsent').checked){ msg.className='quiz-abo-msg err'; msg.textContent='Bitte stimme der Datenschutzerklärung zu.'; return; }
+  const btn=$('quizAboBtn'); btn.disabled=true; btn.textContent='Wird gespeichert…';
+  const payload={
+    vorname, nachname, email,
+    telefon: tel || null,
+    kanal: QUIZ.kanal,                 // 'email' oder 'whatsapp'
+    beruf: QUIZ.beruf || null,
+    plz: QUIZ.plz || null,
+    erfahrung: QUIZ.erfahrung || null,
+    quelle: 'portal_quiz'
+  };
+  try{
+    const {error}=await sb.from('job_abo').insert(payload);
+    if(error) throw error;
+    $('quizAboForm').style.display='none';
+    $('quizAbo').classList.add('done');
+    msg.className='quiz-abo-msg ok';
+    msg.textContent = QUIZ.kanal==='whatsapp'
+      ? '✓ Geschafft! Du bekommst die besten Jobs ab jetzt direkt per WhatsApp.'
+      : '✓ Geschafft! Du bekommst die besten Jobs ab jetzt direkt per E-Mail.';
+  }catch(e){
+    btn.disabled=false; btn.textContent='Ja, ich will die besten Jobs zuerst →';
+    msg.className='quiz-abo-msg err';
+    msg.textContent='Hat nicht geklappt. Bitte versuch es gleich nochmal oder schreib uns an hello@green-careers.de.';
+  }
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape' && $('quizOv').classList.contains('on'))quizClose(); });
 
 function asList(v){
   if(Array.isArray(v)) return v.map(x=>String(x).trim()).filter(Boolean);

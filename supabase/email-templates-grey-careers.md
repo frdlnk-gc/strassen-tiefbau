@@ -1,11 +1,11 @@
-# Grey Careers OS – E-Mail-Templates für Supabase Auth
+# GreyCareers OS – E-Mail-Templates für Supabase Auth
 
 Diese Templates ersetzen die unbrandeten „Supabase Auth"-Standardmails durch
-Grey-Careers-gebrandete Mails (Orange `#EA580C`, Wordmark, deutscher Text,
+GreyCareers-gebrandete Mails (Orange `#EA580C`, Wordmark, deutscher Text,
 Rechts-Footer „Marke der Green Careers GmbH").
 
 > **Wichtig – Multi-Brand-Hinweis:** Ein Supabase-Projekt hat **nur EINEN**
-> globalen Satz E-Mail-Templates. Solange nur Grey Careers / Tiefbau über dieses
+> globalen Satz E-Mail-Templates. Solange nur GreyCareers / Tiefbau über dieses
 > Projekt läuft, ist das ok. Sobald das **grüne** Portal (Green/GaLaBau) denselben
 > Supabase-Auth nutzt, bekommen dessen Nutzer ebenfalls die orange Grey-Mail.
 > Sauberer Multi-Brand-Versand geht nur über **eigenes SMTP + Custom-Logik**
@@ -22,7 +22,7 @@ zum Testen gedacht.
 
 **Supabase Dashboard → Project `tfoopogxaqvfwbonabpi` → Authentication → Emails → SMTP Settings:**
 - *Enable Custom SMTP* einschalten
-- Sender name: **Grey Careers OS**
+- Sender name: **GreyCareers OS**
 - Sender email: z. B. `noreply@green-careers.de` (Domain muss verifiziert sein)
 - Host / Port / User / Passwort: vom Mailprovider (z. B. Resend SMTP, Brevo,
   Postmark, Mailgun, AWS SES). Empfehlung: ein Provider, dessen Domain bereits
@@ -43,7 +43,7 @@ der Bestätigungs-/Reset-Link führt ins Leere.
 
 **Authentication → Emails → Templates → „Confirm signup"**
 
-- **Subject:** `Bestätige deine E-Mail – Grey Careers OS`
+- **Subject:** `Bestätige deine E-Mail – GreyCareers OS`
 - **Message body (HTML):**
 
 ```html
@@ -55,13 +55,13 @@ der Bestätigungs-/Reset-Link führt ins Leere.
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:480px;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #ececec;">
         <!-- Header -->
         <tr><td style="background:linear-gradient(135deg,#EA580C,#C2410C);padding:26px 32px;">
-          <span style="font-size:21px;font-weight:700;color:#ffffff;letter-spacing:-.01em;">Grey Careers<span style="color:#FFD9C2;"> OS</span></span>
+          <span style="font-size:21px;font-weight:700;color:#ffffff;letter-spacing:-.01em;">GreyCareers<span style="color:#FFD9C2;"> OS</span></span>
         </td></tr>
         <!-- Body -->
         <tr><td style="padding:32px 32px 8px;">
           <h1 style="margin:0 0 14px;font-size:22px;font-weight:700;color:#18181b;letter-spacing:-.01em;">Nur noch ein Klick</h1>
           <p style="margin:0 0 22px;font-size:15px;line-height:1.6;color:#3f3f46;">
-            Willkommen bei Grey Careers OS. Bitte bestätige deine E-Mail-Adresse,
+            Willkommen bei GreyCareers OS. Bitte bestätige deine E-Mail-Adresse,
             damit wir dein Konto freischalten und du dein Cockpit einrichten kannst.
           </p>
           <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 24px;">
@@ -82,7 +82,7 @@ der Bestätigungs-/Reset-Link führt ins Leere.
         <!-- Footer -->
         <tr><td style="padding:22px 32px 28px;border-top:1px solid #f0f0f0;">
           <p style="margin:0;font-size:12px;line-height:1.6;color:#a1a1aa;">
-            Grey Careers ist eine Marke der <strong style="color:#71717a;">Green Careers GmbH</strong>.<br>
+            GreyCareers ist eine Marke der <strong style="color:#71717a;">Green Careers GmbH</strong>.<br>
             Diese Nachricht wurde automatisch versendet.
           </p>
         </td></tr>
@@ -99,7 +99,7 @@ der Bestätigungs-/Reset-Link führt ins Leere.
 
 **Authentication → Emails → Templates → „Reset password"**
 
-- **Subject:** `Passwort zurücksetzen – Grey Careers OS`
+- **Subject:** `Passwort zurücksetzen – GreyCareers OS`
 - **Message body (HTML):**
 
 ```html
@@ -110,12 +110,12 @@ der Bestätigungs-/Reset-Link führt ins Leere.
     <tr><td align="center">
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:480px;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #ececec;">
         <tr><td style="background:linear-gradient(135deg,#EA580C,#C2410C);padding:26px 32px;">
-          <span style="font-size:21px;font-weight:700;color:#ffffff;letter-spacing:-.01em;">Grey Careers<span style="color:#FFD9C2;"> OS</span></span>
+          <span style="font-size:21px;font-weight:700;color:#ffffff;letter-spacing:-.01em;">GreyCareers<span style="color:#FFD9C2;"> OS</span></span>
         </td></tr>
         <tr><td style="padding:32px 32px 8px;">
           <h1 style="margin:0 0 14px;font-size:22px;font-weight:700;color:#18181b;letter-spacing:-.01em;">Passwort zurücksetzen</h1>
           <p style="margin:0 0 22px;font-size:15px;line-height:1.6;color:#3f3f46;">
-            Du hast ein neues Passwort für dein Grey Careers OS angefordert.
+            Du hast ein neues Passwort für dein GreyCareers OS angefordert.
             Klick auf den Button, um ein neues Passwort zu vergeben – danach bist
             du direkt eingeloggt.
           </p>
@@ -137,7 +137,7 @@ der Bestätigungs-/Reset-Link führt ins Leere.
         </td></tr>
         <tr><td style="padding:22px 32px 28px;border-top:1px solid #f0f0f0;">
           <p style="margin:0;font-size:12px;line-height:1.6;color:#a1a1aa;">
-            Grey Careers ist eine Marke der <strong style="color:#71717a;">Green Careers GmbH</strong>.<br>
+            GreyCareers ist eine Marke der <strong style="color:#71717a;">Green Careers GmbH</strong>.<br>
             Diese Nachricht wurde automatisch versendet.
           </p>
         </td></tr>
@@ -154,7 +154,7 @@ der Bestätigungs-/Reset-Link führt ins Leere.
 
 **Authentication → Emails → Templates → „Magic Link"**
 
-- **Subject:** `Dein Anmelde-Link – Grey Careers OS`
+- **Subject:** `Dein Anmelde-Link – GreyCareers OS`
 - **Message body (HTML):**
 
 ```html
@@ -165,12 +165,12 @@ der Bestätigungs-/Reset-Link führt ins Leere.
     <tr><td align="center">
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:480px;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #ececec;">
         <tr><td style="background:linear-gradient(135deg,#EA580C,#C2410C);padding:26px 32px;">
-          <span style="font-size:21px;font-weight:700;color:#ffffff;letter-spacing:-.01em;">Grey Careers<span style="color:#FFD9C2;"> OS</span></span>
+          <span style="font-size:21px;font-weight:700;color:#ffffff;letter-spacing:-.01em;">GreyCareers<span style="color:#FFD9C2;"> OS</span></span>
         </td></tr>
         <tr><td style="padding:32px 32px 8px;">
           <h1 style="margin:0 0 14px;font-size:22px;font-weight:700;color:#18181b;letter-spacing:-.01em;">Dein Anmelde-Link</h1>
           <p style="margin:0 0 22px;font-size:15px;line-height:1.6;color:#3f3f46;">
-            Klick auf den Button, um dich ohne Passwort bei Grey Careers OS
+            Klick auf den Button, um dich ohne Passwort bei GreyCareers OS
             anzumelden. Der Link ist nur kurze Zeit gültig.
           </p>
           <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 24px;">
@@ -190,7 +190,7 @@ der Bestätigungs-/Reset-Link führt ins Leere.
         </td></tr>
         <tr><td style="padding:22px 32px 28px;border-top:1px solid #f0f0f0;">
           <p style="margin:0;font-size:12px;line-height:1.6;color:#a1a1aa;">
-            Grey Careers ist eine Marke der <strong style="color:#71717a;">Green Careers GmbH</strong>.<br>
+            GreyCareers ist eine Marke der <strong style="color:#71717a;">Green Careers GmbH</strong>.<br>
             Diese Nachricht wurde automatisch versendet.
           </p>
         </td></tr>
@@ -207,7 +207,7 @@ der Bestätigungs-/Reset-Link führt ins Leere.
 
 **Authentication → Emails → Templates → „Invite user"**
 
-- **Subject:** `Du wurdest zu Grey Careers OS eingeladen`
+- **Subject:** `Du wurdest zu GreyCareers OS eingeladen`
 - **Message body (HTML):**
 
 ```html
@@ -218,12 +218,12 @@ der Bestätigungs-/Reset-Link führt ins Leere.
     <tr><td align="center">
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:480px;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #ececec;">
         <tr><td style="background:linear-gradient(135deg,#EA580C,#C2410C);padding:26px 32px;">
-          <span style="font-size:21px;font-weight:700;color:#ffffff;letter-spacing:-.01em;">Grey Careers<span style="color:#FFD9C2;"> OS</span></span>
+          <span style="font-size:21px;font-weight:700;color:#ffffff;letter-spacing:-.01em;">GreyCareers<span style="color:#FFD9C2;"> OS</span></span>
         </td></tr>
         <tr><td style="padding:32px 32px 8px;">
           <h1 style="margin:0 0 14px;font-size:22px;font-weight:700;color:#18181b;letter-spacing:-.01em;">Du bist eingeladen</h1>
           <p style="margin:0 0 22px;font-size:15px;line-height:1.6;color:#3f3f46;">
-            Dein Betrieb arbeitet mit Grey Careers OS – dem Tool für Bewerber,
+            Dein Betrieb arbeitet mit GreyCareers OS – dem Tool für Bewerber,
             Team und Baustellen. Richte jetzt deinen Zugang ein und leg los.
           </p>
           <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 24px;">
@@ -243,7 +243,7 @@ der Bestätigungs-/Reset-Link führt ins Leere.
         </td></tr>
         <tr><td style="padding:22px 32px 28px;border-top:1px solid #f0f0f0;">
           <p style="margin:0;font-size:12px;line-height:1.6;color:#a1a1aa;">
-            Grey Careers ist eine Marke der <strong style="color:#71717a;">Green Careers GmbH</strong>.<br>
+            GreyCareers ist eine Marke der <strong style="color:#71717a;">Green Careers GmbH</strong>.<br>
             Diese Nachricht wurde automatisch versendet.
           </p>
         </td></tr>
@@ -260,7 +260,7 @@ der Bestätigungs-/Reset-Link führt ins Leere.
 
 **Authentication → Emails → Templates → „Change Email Address"**
 
-- **Subject:** `Bestätige deine neue E-Mail – Grey Careers OS`
+- **Subject:** `Bestätige deine neue E-Mail – GreyCareers OS`
 - **Message body (HTML):**
 
 ```html
@@ -271,7 +271,7 @@ der Bestätigungs-/Reset-Link führt ins Leere.
     <tr><td align="center">
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:480px;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #ececec;">
         <tr><td style="background:linear-gradient(135deg,#EA580C,#C2410C);padding:26px 32px;">
-          <span style="font-size:21px;font-weight:700;color:#ffffff;letter-spacing:-.01em;">Grey Careers<span style="color:#FFD9C2;"> OS</span></span>
+          <span style="font-size:21px;font-weight:700;color:#ffffff;letter-spacing:-.01em;">GreyCareers<span style="color:#FFD9C2;"> OS</span></span>
         </td></tr>
         <tr><td style="padding:32px 32px 8px;">
           <h1 style="margin:0 0 14px;font-size:22px;font-weight:700;color:#18181b;letter-spacing:-.01em;">Neue E-Mail bestätigen</h1>
@@ -298,7 +298,7 @@ der Bestätigungs-/Reset-Link führt ins Leere.
         </td></tr>
         <tr><td style="padding:22px 32px 28px;border-top:1px solid #f0f0f0;">
           <p style="margin:0;font-size:12px;line-height:1.6;color:#a1a1aa;">
-            Grey Careers ist eine Marke der <strong style="color:#71717a;">Green Careers GmbH</strong>.<br>
+            GreyCareers ist eine Marke der <strong style="color:#71717a;">Green Careers GmbH</strong>.<br>
             Diese Nachricht wurde automatisch versendet.
           </p>
         </td></tr>
@@ -317,7 +317,7 @@ der Bestätigungs-/Reset-Link führt ins Leere.
 
 > Diese Mail nutzt **keinen** Link, sondern den 6-stelligen Code `{{ .Token }}`.
 
-- **Subject:** `Dein Bestätigungscode – Grey Careers OS`
+- **Subject:** `Dein Bestätigungscode – GreyCareers OS`
 - **Message body (HTML):**
 
 ```html
@@ -328,7 +328,7 @@ der Bestätigungs-/Reset-Link führt ins Leere.
     <tr><td align="center">
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:480px;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #ececec;">
         <tr><td style="background:linear-gradient(135deg,#EA580C,#C2410C);padding:26px 32px;">
-          <span style="font-size:21px;font-weight:700;color:#ffffff;letter-spacing:-.01em;">Grey Careers<span style="color:#FFD9C2;"> OS</span></span>
+          <span style="font-size:21px;font-weight:700;color:#ffffff;letter-spacing:-.01em;">GreyCareers<span style="color:#FFD9C2;"> OS</span></span>
         </td></tr>
         <tr><td style="padding:32px 32px 8px;">
           <h1 style="margin:0 0 14px;font-size:22px;font-weight:700;color:#18181b;letter-spacing:-.01em;">Dein Bestätigungscode</h1>
@@ -344,7 +344,7 @@ der Bestätigungs-/Reset-Link führt ins Leere.
         </td></tr>
         <tr><td style="padding:22px 32px 28px;border-top:1px solid #f0f0f0;">
           <p style="margin:0;font-size:12px;line-height:1.6;color:#a1a1aa;">
-            Grey Careers ist eine Marke der <strong style="color:#71717a;">Green Careers GmbH</strong>.<br>
+            GreyCareers ist eine Marke der <strong style="color:#71717a;">Green Careers GmbH</strong>.<br>
             Diese Nachricht wurde automatisch versendet.
           </p>
         </td></tr>

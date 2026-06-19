@@ -129,7 +129,12 @@ Deno.serve(async (req) => {
 
   // Personalisierter CTA-Button -> Betrieb im OS einrichten.
   // brand wird mitgegeben, damit das OS direkt grey/green-gebrandet startet.
-  const osUrl = `https://os.green-careers.de/?brand=${encodeURIComponent(String(r.brand || 'grey'))}`;
+  // welcome=1 löst im OS den warmen Erst-Empfang aus (einmalig); pkg/mode nur fürs freundliche Label.
+  // KEIN flow=buy: die Zahlung lief bereits über das Portal – im OS soll NICHT erneut kassiert werden.
+  const osQ = new URLSearchParams({ brand: String(r.brand || 'grey'), welcome: '1' });
+  if (r.paket) osQ.set('pkg', String(r.paket));
+  if (r.mode)  osQ.set('mode', String(r.mode));
+  const osUrl = `https://os.green-careers.de/?${osQ.toString()}`;
   const firmaLabel = r.kunde_firma ? ` für ${esc(r.kunde_firma)}` : '';
   const ctaBlock = `
     <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin:6px 0 12px">

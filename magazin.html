@@ -36,7 +36,7 @@
   .nav{display:flex;align-items:center;gap:14px;height:64px}
   .brand{display:flex;align-items:center;gap:11px;cursor:pointer}
   .logo{width:40px;height:40px;border-radius:11px;background:var(--grad);display:grid;place-items:center;
-        color:#fff;font-weight:800;font-size:19px;box-shadow:0 4px 12px rgba(255,107,26,.35)}
+        color:#fff;font-weight:800;font-size:19px;box-shadow:0 4px 12px rgba(234,88,12,.35)}
   .bname{font-weight:800;font-size:16px;letter-spacing:-.2px;line-height:1.05}
   .bname small{display:block;font-weight:600;font-size:11.5px;color:var(--muted);letter-spacing:.3px;text-transform:uppercase}
   .nav .sp{flex:1}
@@ -71,15 +71,15 @@
   .drawer-sub a{font-size:15px;font-weight:600;color:var(--ink2);padding:11px 14px 11px 26px}
   .drawer-sub a:hover{background:var(--bg);color:var(--o-dark)}
   .drawer-cta{margin:8px 14px 4px;display:block;text-align:center;background:var(--grad);color:#fff;font-weight:740;
-        font-size:15.5px;padding:15px;border-radius:12px;box-shadow:0 6px 18px rgba(255,107,26,.3)}
+        font-size:15.5px;padding:15px;border-radius:12px;box-shadow:0 6px 18px rgba(234,88,12,.3)}
 
   /* ---------- Magazin Hero ---------- */
   .mhero{background:var(--dark);color:#fff;position:relative;overflow:hidden}
-  .mhero::after{content:"";position:absolute;inset:0;background:radial-gradient(720px 320px at 86% -20%,rgba(255,107,26,.32),transparent 62%);pointer-events:none}
+  .mhero::after{content:"";position:absolute;inset:0;background:radial-gradient(720px 320px at 86% -20%,rgba(234,88,12,.32),transparent 62%);pointer-events:none}
   .mhero .wrap{position:relative;z-index:2;padding:56px 22px 50px}
-  .kicker{display:inline-flex;align-items:center;gap:8px;background:rgba(255,107,26,.16);
+  .kicker{display:inline-flex;align-items:center;gap:8px;background:rgba(234,88,12,.16);
           color:var(--o-glow);font-weight:700;font-size:12.5px;letter-spacing:.5px;text-transform:uppercase;
-          padding:7px 14px;border-radius:100px;border:1px solid rgba(255,107,26,.28)}
+          padding:7px 14px;border-radius:100px;border:1px solid rgba(234,88,12,.28)}
   .mhero h1{font-size:clamp(28px,4.6vw,44px);line-height:1.08;letter-spacing:-.8px;margin:18px 0 14px;font-weight:830}
   .mhero p{font-size:clamp(15.5px,2vw,18px);color:#C7CDD4;max-width:640px}
 
@@ -150,12 +150,12 @@
   /* ---------- Article CTA ---------- */
   .art-cta{max-width:760px;margin:44px auto 0;padding:0 22px}
   .art-cta-box{background:var(--dark);border-radius:18px;padding:34px 32px;color:#fff;position:relative;overflow:hidden}
-  .art-cta-box::after{content:"";position:absolute;inset:0;background:radial-gradient(420px 200px at 90% -30%,rgba(255,107,26,.4),transparent 60%);pointer-events:none}
+  .art-cta-box::after{content:"";position:absolute;inset:0;background:radial-gradient(420px 200px at 90% -30%,rgba(234,88,12,.4),transparent 60%);pointer-events:none}
   .art-cta-box .in{position:relative;z-index:2}
   .art-cta-box h3{font-size:22px;font-weight:820;letter-spacing:-.4px;margin-bottom:8px}
   .art-cta-box p{color:#C7CDD4;font-size:15px;margin-bottom:18px;max-width:520px}
   .btn-o{display:inline-flex;align-items:center;gap:9px;background:var(--grad);color:#fff;font-weight:740;font-size:15.5px;
-        padding:13px 24px;border-radius:11px;box-shadow:0 8px 22px rgba(255,107,26,.34);cursor:pointer}
+        padding:13px 24px;border-radius:11px;box-shadow:0 8px 22px rgba(234,88,12,.34);cursor:pointer}
   .btn-o:hover{transform:translateY(-1px)}
 
   /* related */
@@ -318,7 +318,7 @@ const IMG={
   weiterbildung:'assets/magazin/weiterbildung.jpg',
   recht:'assets/magazin/recht.jpg'
 };
-const IMG_OVERLAY='linear-gradient(140deg,rgba(20,25,29,.62) 0%,rgba(20,25,29,.30) 55%,rgba(229,90,10,.50) 100%)';
+const IMG_OVERLAY='linear-gradient(140deg,rgba(20,25,29,.62) 0%,rgba(20,25,29,.30) 55%,rgba(196,65,12,.50) 100%)';
 const catLabel=k=>(CATS.find(c=>c.key===k)||{}).label||k;
 
 /* ---------- Articles ---------- */

@@ -80,6 +80,10 @@ Deno.serve(async (req) => {
   const qty    = Math.min(Math.max(parseInt(p.qty, 10) || 1, 1), 4);
   const method = String(p.method || 'card');
   const ref    = String(p.ref || '').slice(0, 40);
+  // Eintritts-Marke: 'grey' (GreyCareers/Tiefbau) | 'green' (GreenCareers/GaLaBau).
+  // Wird in Bestellung + Stripe-Metadaten mitgeführt, damit Make/Webhook
+  // marken-richtig branden können (Grey-Mails vs. Green-Mails).
+  const brand  = String(p.brand || '').toLowerCase() === 'green' ? 'green' : 'grey';
   const c      = p.customer || {};
   // Option B: Account existiert bereits -> Bestellung mit Account verknüpfen
   const customerId = p.customerId ? String(p.customerId) : null;   // customers.id (aus create_my_company)
@@ -110,7 +114,7 @@ Deno.serve(async (req) => {
 
   const label = `${pkgName} ${mode === 'abo' ? 'Recruiting-Abo' : 'Stellen-Kontingent'} · ${qty} Stelle(n)`;
   const meta = {
-    mode, pkg: pkgKey, qty: String(qty), term: p.term || '', ref,
+    mode, pkg: pkgKey, qty: String(qty), term: p.term || '', ref, brand, method,
     qty_pct: String(qtyPct), code_pct: String(codePct),
     net_per_unit: finalNet.toFixed(2), firma: c.firma, name: c.name, email: c.email,
     customer_id: customerId || '', auth_user_id: authUserId || '',   // Account-Verknüpfung (für Webhook-Auto-Freigabe)
@@ -122,7 +126,7 @@ Deno.serve(async (req) => {
       mode, paket: pkgKey, anzahl: qty, laufzeit: p.term || null,
       netto_pro_einheit: finalNet, monate: months,
       gesamt_netto: mode === 'abo' ? finalNet * months : finalNet,
-      qty_rabatt_pct: qtyPct, code_rabatt_pct: codePct, ref,
+      qty_rabatt_pct: qtyPct, code_rabatt_pct: codePct, ref, brand,
       zahlungsart: 'rechnung', status: 'wartet_zahlung',
       kunde_name: c.name, kunde_firma: c.firma, kunde_email: c.email,
       kunde_tel: c.tel || null, kunde_ustid: c.vat || null,

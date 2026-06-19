@@ -1,6 +1,6 @@
 :root{
-  --o:#FF6B1A; --o-dark:#E55A0A; --o-pale:#FFF1E8;
-  --grad:linear-gradient(135deg,#FF6B1A 0%,#E55A0A 100%);
+  --o:#EA580C; --o-dark:#C2410C; --o-pale:#FFF1E8;
+  --grad:linear-gradient(135deg,#EA580C 0%,#C2410C 100%);
   --ink:#16191D; --ink2:#3A4047; --muted:#6B7480;
   --bg:#F6F5F2; --card:#FFFFFF; --line:#E6E3DD; --dark:#16191D;
   --ok:#1e8449; --shadow:0 1px 2px rgba(20,25,29,.04),0 8px 28px rgba(20,25,29,.06);

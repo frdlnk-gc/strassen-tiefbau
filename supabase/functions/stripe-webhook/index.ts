@@ -111,6 +111,23 @@ Deno.serve(async (req) => {
     return new Response('DB: ' + error.message, { status: 500 });
   }
 
+  // ---- Kontingent in `customers` sofort freischalten (v13-RPC) --------------
+  // Setzt produkt/kauftyp/zahlungsart/betrag/laufzeit/stellen_kontingent/
+  // kontingent_frei/kontingent_bis. Ein Fehler hier blockt die Bestellung NICHT.
+  if (order.customer_id) {
+    const laufzeit = mode === 'abo' ? (m.term === '12m' ? '12' : '6') : null;
+    const { error: rpcErr } = await supa.rpc('apply_purchase_contingent', {
+      p_customer_id: order.customer_id,
+      p_produkt:     pkg,                                   // smart | premium | exzellenz
+      p_kauftyp:     mode === 'abo' ? 'abo' : 'einmalzahlung',
+      p_zahlungsart: order.zahlungsart,                    // hier nie 'rechnung' -> frei=true
+      p_betrag:      Number(session.amount_total ?? 0) / 100,
+      p_laufzeit:    laufzeit,                              // '6' | '12' (nur Abo)
+      p_stellen:     qty,
+    });
+    if (rpcErr) console.error('apply_purchase_contingent:', rpcErr.message);
+  }
+
   return new Response(JSON.stringify({ received: true, created: true }), {
     status: 200, headers: { 'Content-Type': 'application/json' },
   });

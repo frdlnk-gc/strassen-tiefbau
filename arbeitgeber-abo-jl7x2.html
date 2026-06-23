@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>GreyCareers Abo · Planbar Fachkräfte gewinnen – monatlicher Festpreis</title>
+<meta name="description" content="Das GreyCareers-Abo: kontinuierlich qualifizierte Fachkräfte für Ihren Straßen-, Tief- und Kanalbau-Betrieb zum monatlichen Festpreis – statt einmaliger Kampagne dauerhaft sichtbar.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<style>
+  :root{
+    --o:#EA580C; --o-dark:#C2410C; --o-glow:#FF8533; --o-pale:#FFF1E8;
+    --grad:linear-gradient(135deg,#EA580C 0%,#C2410C 100%);
+    --ink:#16191D; --ink2:#3A4047; --muted:#6B7480;
+    --bg:#F6F5F2; --card:#FFFFFF; --line:#E6E3DD; --line2:#EFEDE8;
+    --dark:#16191D; --dark2:#1F242A;
+    --ok:#1e8449; --ok-bg:#e8f8ef;
+    --radius:16px; --shadow:0 1px 2px rgba(20,25,29,.04),0 8px 28px rgba(20,25,29,.06);
+    --maxw:1140px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  img{max-width:100%}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:50;background:rgba(246,245,242,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;gap:14px;height:64px}
+  .brand{display:flex;align-items:center;gap:11px;cursor:pointer}
+  .logo{width:40px;height:40px;border-radius:11px;background:var(--grad);display:grid;place-items:center;
+        color:#fff;font-weight:800;font-size:19px;box-shadow:0 4px 12px rgba(234,88,12,.35)}
+  .bname{font-weight:800;font-size:16px;letter-spacing:-.2px;line-height:1.05}
+  .bname small{display:block;font-weight:600;font-size:11.5px;color:var(--muted);letter-spacing:.3px;text-transform:uppercase}
+  .nav .sp{flex:1}
+  .nav-link{font-weight:650;font-size:14.5px;color:var(--ink2);padding:9px 13px;border-radius:9px;transition:.14s}
+  .nav-link:hover{color:var(--ink);background:rgba(20,25,29,.05)}
+  .nav-tel{font-weight:700;font-size:14.5px;color:var(--ink2)}
+  .nav-tel:hover{color:var(--o-dark)}
+  .nav-cta{background:var(--ink);color:#fff;font-weight:700;font-size:14px;padding:10px 18px;border-radius:10px;transition:.15s;white-space:nowrap}
+  .nav-cta:hover{background:#000}
+
+  /* Hero */
+  .hero{background:var(--dark) url('assets/hero.jpg') center/cover no-repeat;color:#fff;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:0;z-index:1;background:
+    radial-gradient(820px 380px at 84% -10%,rgba(234,88,12,.30),transparent 60%),
+    radial-gradient(620px 320px at 6% 110%,rgba(234,88,12,.14),transparent 60%),
+    linear-gradient(180deg,rgba(16,19,22,.78),rgba(16,19,22,.88));pointer-events:none}
+  .hero .wrap{position:relative;z-index:2;padding:70px 22px 66px}
+  .kicker{display:inline-flex;align-items:center;gap:8px;background:rgba(234,88,12,.16);
+          color:var(--o-glow);font-weight:700;font-size:12.5px;letter-spacing:.5px;text-transform:uppercase;
+          padding:7px 14px;border-radius:100px;border:1px solid rgba(234,88,12,.28)}
+  .hero h1{font-size:clamp(30px,5vw,50px);line-height:1.1;letter-spacing:-1px;margin:20px 0 18px;font-weight:830;max-width:880px}
+  .hero h1 .h1-lead,.hero h1 .h1-line2,.hero h1 .h1-rest{display:block}
+  .hero h1 .h1-line2{white-space:nowrap}
+  .hero h1 b{color:var(--o-glow)}
+  .hero h1 .tw{color:var(--o-glow)}
+  .hero h1 .caret{display:inline-block;width:3px;height:.86em;background:var(--o-glow);margin:0 1px 0 2px;
+        border-radius:2px;vertical-align:-.04em;animation:twblink 1s steps(1) infinite}
+  @keyframes twblink{50%{opacity:0}}
+  .hero .sub{font-size:clamp(16px,2.2vw,19px);color:#C7CDD4;max-width:680px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px;align-items:center}
+  .btn-o{background:var(--grad);color:#fff;font-weight:740;font-size:15.5px;padding:15px 26px;border-radius:12px;
+        box-shadow:0 8px 22px rgba(234,88,12,.34);transition:.15s}
+  .btn-o:hover{filter:brightness(1.05)}
+  .btn-ghost-d{color:#fff;font-weight:700;font-size:15px;padding:15px 12px;border-bottom:2px solid transparent}
+  .btn-ghost-d:hover{border-bottom-color:var(--o-glow)}
+  .hero-stats{display:flex;gap:36px;margin-top:42px;flex-wrap:wrap}
+  .hs b{display:block;font-size:28px;font-weight:830;color:#fff;letter-spacing:-.4px}
+  .hs span{font-size:13px;color:#9AA2AB}
+
+  /* Trust logos strip */
+  .lstrip{background:#fff;border-bottom:1px solid var(--line);padding:18px 0}
+  .lstrip .wrap{display:flex;align-items:center;justify-content:center;gap:14px 30px;flex-wrap:wrap}
+  .lstrip .l{font-weight:730;color:var(--muted);font-size:14.5px;opacity:.8}
+  .lstrip .sep{color:var(--line);font-weight:400}
+
+  /* Section base */
+  section.s{padding:66px 0}
+  .sh{text-align:center;max-width:680px;margin:0 auto 42px}
+  .sh .tag{display:inline-block;background:var(--o-pale);color:var(--o-dark);font-weight:800;font-size:11.5px;
+        letter-spacing:.5px;text-transform:uppercase;padding:5px 13px;border-radius:100px;border:1px solid #FAD9C2;margin-bottom:14px}
+  .sh h2{font-size:clamp(25px,3.8vw,36px);font-weight:830;letter-spacing:-.7px;line-height:1.13}
+  .sh h2 b{color:var(--o-dark)}
+  .sh p{color:var(--muted);font-size:16.5px;margin-top:12px}
+
+  /* Pain row */
+  .pain{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+  .pcard{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:24px}
+  .pcard .n{font-size:30px;font-weight:830;color:var(--o-dark);letter-spacing:-.5px}
+  .pcard h3{font-size:16px;font-weight:760;margin:8px 0 6px}
+  .pcard p{color:var(--ink2);font-size:14.5px;line-height:1.6}
+
+  /* USP */
+  .usp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(265px,1fr));gap:18px}
+  .ucard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 24px;box-shadow:var(--shadow);position:relative}
+  .ucard .uic{width:50px;height:50px;border-radius:13px;background:var(--o-pale);display:grid;place-items:center;font-size:24px;margin-bottom:14px}
+  .ucard .ubadge{display:inline-block;background:var(--o-pale);color:var(--o-dark);font-weight:800;font-size:11.5px;
+        letter-spacing:.3px;padding:4px 11px;border-radius:100px;border:1px solid #FAD9C2;margin-bottom:10px}
+  .ucard h3{font-size:18px;font-weight:800;letter-spacing:-.3px;margin-bottom:8px;line-height:1.2}
+  .ucard p{color:var(--ink2);font-size:14.5px;line-height:1.62}
+  .ucard p b{color:var(--ink)}
+  .usp-out{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px 26px;margin-top:20px;
+        background:var(--dark);border-radius:16px;padding:24px 26px;color:#fff}
+  .uo{display:flex;flex-direction:column;gap:3px;padding:4px 2px}
+  .uo b{font-size:16px;font-weight:820;color:var(--o-glow);letter-spacing:-.2px}
+  .uo span{font-size:13.5px;color:#A8B0B9;line-height:1.5}
+
+  /* Steps */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 22px;box-shadow:var(--shadow);position:relative}
+  .step .num{width:40px;height:40px;border-radius:11px;background:var(--grad);color:#fff;font-weight:830;font-size:18px;
+        display:grid;place-items:center;box-shadow:0 5px 14px rgba(234,88,12,.3);margin-bottom:15px}
+  .step h3{font-size:17px;font-weight:780;margin-bottom:7px;letter-spacing:-.2px}
+  .step p{color:var(--ink2);font-size:14.5px;line-height:1.6}
+
+  /* Why grid */
+  .why{background:var(--dark2);color:#fff}
+  .why .sh h2{color:#fff}.why .sh p{color:#A8B0B9}
+  .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+  .wcard{background:#23292F;border:1px solid #2E353C;border-radius:16px;padding:26px 24px}
+  .wcard .ic{width:46px;height:46px;border-radius:12px;background:rgba(234,88,12,.16);color:var(--o-glow);
+        display:grid;place-items:center;font-size:22px;margin-bottom:14px}
+  .wcard h3{font-size:17px;font-weight:780;margin-bottom:8px;letter-spacing:-.2px}
+  .wcard p{color:#A8B0B9;font-size:14.5px;line-height:1.6}
+  .wcard p b{color:#fff;font-weight:700}
+
+  /* Term toggle */
+  .term-toggle{display:flex;align-items:center;justify-content:center;gap:0;margin:0 auto 34px;width:fit-content;
+        background:#fff;border:1px solid var(--line);border-radius:100px;padding:5px;box-shadow:var(--shadow)}
+  .term-toggle button{border:none;background:transparent;cursor:pointer;font-family:inherit;font-weight:760;
+        font-size:14px;color:var(--ink2);padding:10px 20px;border-radius:100px;transition:.16s;display:flex;align-items:center;gap:8px}
+  .term-toggle button.on{background:var(--grad);color:#fff;box-shadow:0 5px 14px rgba(234,88,12,.3)}
+  .term-toggle .save{font-size:11px;font-weight:800;background:var(--o-pale);color:var(--o-dark);
+        padding:2px 8px;border-radius:100px;letter-spacing:.2px}
+  .term-toggle button.on .save{background:rgba(255,255,255,.24);color:#fff}
+
+  /* Pricing */
+  .price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;align-items:stretch}
+  .pl{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px 26px;display:flex;flex-direction:column;
+        box-shadow:var(--shadow);position:relative}
+  .pl.best{border-color:var(--o);border-width:2px;background:linear-gradient(180deg,#FFF8F3 0%,var(--card) 38%);box-shadow:0 16px 44px rgba(234,88,12,.18);transform:translateY(-6px)}
+  .pl .pop{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--grad);color:#fff;
+        font-weight:800;font-size:11.5px;letter-spacing:.4px;text-transform:uppercase;padding:5px 15px;border-radius:100px;
+        box-shadow:0 5px 14px rgba(234,88,12,.34);white-space:nowrap}
+  .pl .pname{font-size:14px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--o-dark)}
+  .pl .pprice{font-size:38px;font-weight:840;letter-spacing:-1px;margin:10px 0 2px}
+  .pl .pprice small{font-size:15px;font-weight:600;color:var(--muted);letter-spacing:0}
+  .pl .pwas{font-size:14px;color:var(--muted);text-decoration:line-through;height:18px;margin-bottom:2px}
+  .pl .pnote{font-size:13px;color:var(--muted);margin-bottom:18px}
+  .pl ul{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:24px;flex:1}
+  .pl li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:var(--ink2);line-height:1.45}
+  .pl li .ck{flex:none;width:20px;height:20px;border-radius:6px;background:var(--o-pale);color:var(--o-dark);
+        display:grid;place-items:center;font-size:11px;font-weight:800;margin-top:1px}
+  .pl .pbtn{display:block;text-align:center;font-weight:740;font-size:15px;padding:14px;border-radius:11px;transition:.15s}
+  .pl .pbtn.solid{background:var(--grad);color:#fff;box-shadow:0 6px 18px rgba(234,88,12,.3)}
+  .pl .pbtn.solid:hover{filter:brightness(1.05)}
+  .pl .pbtn.outline{border:1px solid var(--line);color:var(--ink2)}
+  .pl .pbtn.outline:hover{border-color:var(--o);color:var(--o-dark)}
+  .price-note{text-align:center;color:var(--muted);font-size:13.5px;margin-top:22px}
+  .qty-note{max-width:680px;margin:14px auto 0;background:#fff;border:1px solid var(--line);border-radius:14px;
+        padding:18px 22px;text-align:center}
+  .qty-note b{color:var(--o-dark)}
+  .qty-ladder{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;margin-top:12px}
+  .qty-ladder .q{background:var(--o-pale);color:var(--o-dark);border:1px solid #FAD9C2;border-radius:100px;
+        padding:5px 13px;font-size:13px;font-weight:760}
+  .pay-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:9px;margin-top:16px}
+  .pay-label{color:var(--muted);font-size:13px;font-weight:600;margin-right:4px}
+  .pay{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:12.5px;
+       font-weight:700;color:var(--ink2);box-shadow:0 1px 2px rgba(20,25,29,.04)}
+  .pay.logo{display:inline-flex;align-items:center;justify-content:center;padding:6px 11px;line-height:0;min-height:32px}
+  .pay.logo svg{display:block;flex:none}
+
+  /* Einmal vs Abo compare */
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:860px;margin:0 auto}
+  .cmp .cc{border:1px solid var(--line);border-radius:16px;padding:24px;background:var(--card)}
+  .cmp .cc.hl{border-color:var(--o);border-width:2px;background:linear-gradient(180deg,#FFF8F3,var(--card) 40%)}
+  .cmp .cc h3{font-size:18px;font-weight:820;margin-bottom:4px}
+  .cmp .cc .lbl{font-size:11.5px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+  .cmp .cc.hl .lbl{color:var(--o-dark)}
+  .cmp ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .cmp li{display:flex;gap:9px;align-items:flex-start;font-size:14.5px;color:var(--ink2);line-height:1.45}
+  .cmp li .ck{flex:none;width:19px;height:19px;border-radius:6px;background:var(--o-pale);color:var(--o-dark);
+        display:grid;place-items:center;font-size:11px;font-weight:800;margin-top:1px}
+
+  /* Testimonials */
+  .tg{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px}
+  .tcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px;box-shadow:var(--shadow)}
+  .tcard .q{font-size:15.5px;color:var(--ink);line-height:1.6;font-weight:500}
+  .tcard .who{display:flex;align-items:center;gap:12px;margin-top:18px}
+  .tcard .av{width:44px;height:44px;border-radius:50%;background:var(--o-pale);color:var(--o-dark);font-weight:800;
+        display:grid;place-items:center;font-size:16px}
+  .tcard .who b{display:block;font-size:14.5px;font-weight:760}
+  .tcard .who span{font-size:13px;color:var(--muted)}
+
+  /* CTA band */
+  .cta-band{background:var(--grad);color:#fff;border-radius:22px;padding:54px 40px;text-align:center;position:relative;overflow:hidden}
+  .cta-band::after{content:"";position:absolute;inset:0;background:radial-gradient(500px 240px at 80% -30%,rgba(255,255,255,.22),transparent 60%)}
+  .cta-band>*{position:relative;z-index:2}
+  .cta-band h2{font-size:clamp(24px,3.6vw,34px);font-weight:830;letter-spacing:-.6px;line-height:1.15;max-width:680px;margin:0 auto}
+  .cta-band p{font-size:17px;opacity:.95;margin:14px auto 26px;max-width:560px}
+  .cta-band .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn-w{background:#fff;color:var(--o-dark);font-weight:760;font-size:15.5px;padding:15px 28px;border-radius:12px;transition:.15s}
+  .btn-w:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.2)}
+  .btn-dk{background:rgba(0,0,0,.18);color:#fff;font-weight:740;font-size:15.5px;padding:15px 28px;border-radius:12px;border:1px solid rgba(255,255,255,.3)}
+  .btn-dk:hover{background:rgba(0,0,0,.28)}
+
+  /* Kontakt-Formular */
+  .kontakt-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}
+  .kontakt-info h3{font-size:22px;font-weight:820;letter-spacing:-.4px;margin-bottom:8px}
+  .kontakt-info p{color:var(--ink2);font-size:15.5px;line-height:1.65;margin-bottom:18px}
+  .kontakt-info .row{display:flex;align-items:center;gap:11px;font-size:15.5px;color:var(--ink2);margin-bottom:12px}
+  .kontakt-info .row .d{width:38px;height:38px;border-radius:10px;background:var(--o-pale);color:var(--o-dark);
+        display:grid;place-items:center;font-size:17px;flex:none}
+  .kontakt-info .row a{font-weight:700;color:var(--ink)}
+  .kontakt-info .row a:hover{color:var(--o-dark)}
+  .kform{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:var(--shadow)}
+  .kfield{margin-bottom:14px}
+  .kfield label{display:block;font-size:13px;font-weight:650;color:var(--ink2);margin-bottom:6px}
+  .kfield input,.kfield textarea,.kfield select{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+        font-size:15px;font-family:inherit;color:var(--ink);background:#fff;outline:none;transition:.14s}
+  .kfield input:focus,.kfield textarea:focus,.kfield select:focus{border-color:var(--o);box-shadow:0 0 0 3px rgba(234,88,12,.12)}
+  .kfield textarea{min-height:90px;resize:vertical}
+  .krow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .kbtn{width:100%;background:var(--grad);color:#fff;font-weight:760;font-size:15.5px;border:0;border-radius:12px;
+        padding:15px;cursor:pointer;transition:.15s;box-shadow:0 6px 18px rgba(234,88,12,.3)}
+  .kbtn:hover{filter:brightness(1.05)}
+  .kconsent{font-size:11.5px;color:var(--muted);margin-top:12px;line-height:1.5}
+  .kconsent a{color:var(--o-dark);text-decoration:underline}
+
+  /* FAQ */
+  .faq-list{max-width:780px;margin:0 auto}
+  .faq-item{border:1px solid var(--line);border-radius:14px;margin-bottom:11px;overflow:hidden;background:var(--card);transition:.16s}
+  .faq-item.open{border-color:var(--o);box-shadow:0 6px 22px rgba(234,88,12,.1)}
+  .faq-q{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 20px;cursor:pointer;
+        font-weight:730;font-size:16px;color:var(--ink);user-select:none}
+  .faq-q .pm{flex:none;width:26px;height:26px;border-radius:8px;background:var(--o-pale);color:var(--o-dark);
+        display:grid;place-items:center;font-size:18px;font-weight:700;transition:.2s}
+  .faq-item.open .faq-q .pm{transform:rotate(45deg)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease}
+  .faq-a .inner{padding:0 20px 18px;color:var(--ink2);font-size:15px;line-height:1.65}
+
+  /* Footer */
+  footer{background:var(--dark);color:#9AA2AB;padding:40px 0;font-size:13.5px}
+  footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+  footer .fbrand{display:flex;align-items:center;gap:10px;color:#fff;font-weight:700}
+  footer .flinks{display:flex;gap:20px;flex-wrap:wrap}
+  footer .flinks a:hover{color:#fff}
+  .powered{font-size:12px;color:#6B7480;margin-top:6px}
+
+  @media(max-width:760px){
+    .nav-link,.nav-tel{display:none}
+    .kontakt-grid{grid-template-columns:1fr}
+    .cmp{grid-template-columns:1fr}
+    .cta-band{padding:42px 24px}
+  }
+  @media(max-width:480px){
+    .krow{grid-template-columns:1fr}
+    .hero-stats{gap:24px}
+    .hero h1{font-size:25px;letter-spacing:-.5px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html">
+      <div class="logo">GC</div>
+      <div class="bname">GreyCareers<small>Straßen- &amp; Tiefbau</small></div>
+    </a>
+    <div class="sp"></div>
+    <a class="nav-link" href="index.html">Stellenportal ansehen</a>
+    <a class="nav-tel" href="tel:+4922196882408">+49 221 9688 2408</a>
+    <a class="nav-cta" href="#pakete">Abo-Pakete ansehen</a>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="wrap">
+    <span class="kicker">● GreyCareers Abo · Für Betriebe im Straßen-, Tief- &amp; Kanalbau</span>
+    <h1><span class="h1-lead">Dauerhaft sichtbar für Fachkräfte im</span><span class="h1-line2"><span class="tw" id="twWord">Straßenbau</span><span class="caret"></span>betrieb</span><span class="h1-rest">– <b>monatlicher Festpreis</b> statt Einmal-Kampagne.</span></h1>
+    <p class="sub">Mit dem GreyCareers-Abo bleibt Ihr Betrieb durchgehend im Karrierenetzwerk präsent – kontinuierlich neue, passende Bewerbungen statt einer einzelnen Kampagne. Planbarer monatlicher Festpreis, jederzeit weitere Stellen dazubuchbar.</p>
+    <div class="hero-cta">
+      <a class="btn-o" href="#pakete">Abo-Pakete &amp; Preise ansehen ↓</a>
+      <a class="btn-ghost-d" href="#kontakt">Erstgespräch sichern</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hs"><b>42.000+</b><span>monatliche Nutzer</span></div>
+      <div class="hs"><b>1.100+</b><span>Partnerbetriebe</span></div>
+      <div class="hs"><b>1.600+</b><span>neue Fachkräfte / Monat</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="lstrip">
+  <div class="wrap">
+    <span class="l">Straßenbau</span><span class="sep">·</span>
+    <span class="l">Tiefbau</span><span class="sep">·</span>
+    <span class="l">Kanalbau</span><span class="sep">·</span>
+    <span class="l">Rohrleitungsbau</span><span class="sep">·</span>
+    <span class="l">Hochbau</span><span class="sep">·</span>
+    <span class="l">Erdbau</span>
+  </div>
+</div>
+
+<!-- Warum Abo -->
+<section class="s">
+  <div class="wrap">
+    <div class="sh">
+      <span class="tag">Warum das Abo</span>
+      <h2>Personalgewinnung ist kein Projekt – sondern ein <b>Dauerlauf</b>.</h2>
+      <p>Fachkräftebedarf hört nach einer Stelle nicht auf. Das Abo hält Ihren Betrieb durchgehend sichtbar – und liefert kontinuierlich passende Kandidaten, statt nur einmal.</p>
+    </div>
+    <div class="usp-grid">
+      <div class="ucard">
+        <div class="uic">🔁</div>
+        <span class="ubadge">Durchgehende Präsenz</span>
+        <h3>Immer sichtbar, nicht nur einmal</h3>
+        <p>Statt einer befristeten Einmal-Kampagne bleibt Ihr Betrieb <b>dauerhaft im Karrierenetzwerk</b> präsent. Fachkräfte, die heute noch nicht wechseln, finden Sie genau dann, wenn sie soweit sind.</p>
+      </div>
+      <div class="ucard">
+        <div class="uic">📅</div>
+        <span class="ubadge">Planbarer Festpreis</span>
+        <h3>Ein fester Monatsbetrag – kalkulierbar</h3>
+        <p>Ein <b>fester monatlicher Preis</b> pro Paket, keine Provision pro Einstellung, keine Überraschungen. Sie wissen vom ersten Tag an, was Personalgewinnung Sie im Monat kostet.</p>
+      </div>
+      <div class="ucard">
+        <div class="uic">➕</div>
+        <span class="ubadge">Skaliert mit Ihnen</span>
+        <h3>Mehrere Stellen, Mengenrabatt</h3>
+        <p>Sie besetzen mehr als eine Position? Buchen Sie <b>weitere Stellen mit Mengenrabatt</b> dazu – bis zu 30 %. Das Abo wächst mit Ihrem Betrieb, ohne dass Sie jedes Mal neu verhandeln.</p>
+      </div>
+    </div>
+    <div class="usp-out">
+      <div class="uo"><b>Kontinuierlicher Bewerberstrom</b><span>Neue passende Profile über die gesamte Laufzeit – nicht nur in den ersten Wochen.</span></div>
+      <div class="uo"><b>Niedrigere Cost-per-Hire</b><span>Ein Monatsbeitrag statt 25–30 % Jahresgehalt pro Kopf wie bei Agenturen.</span></div>
+      <div class="uo"><b>Volle Planungssicherheit</b><span>Fester Preis, feste Laufzeit (6 oder 12 Monate) – Personalbudget ohne Schwankungen.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Pain -->
+<section class="s pain">
+  <div class="wrap">
+    <div class="sh">
+      <span class="tag">Die Ausgangslage</span>
+      <h2>Der strukturelle Fachkräftemangel kostet Ihren Betrieb <b>jeden Monat</b> Geld.</h2>
+      <p>Unbesetzte Stellen bremsen Baustellen aus, überlasten das Team und verschieben Aufträge. Eine einmalige Kampagne verpufft – der Bedarf bleibt.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pcard"><div class="n">90 Tage</div><h3>Durchschnittliche Vakanzzeit</h3><p>So lange bleibt eine Facharbeiter- oder Polierstelle im Bau oft unbesetzt – mit laufenden Kosten und verschobenen Projekten.</p></div>
+      <div class="pcard"><div class="n">5-stellig</div><h3>Vakanzkosten pro Stelle</h3><p>Eine offene Schlüsselposition kann pro Monat einen fünfstelligen Betrag an entgangener Wertschöpfung verursachen.</p></div>
+      <div class="pcard"><div class="n">Einmal ≠ genug</div><h3>Das Kampagnen-Problem</h3><p>Wer nur einmal ausschreibt, ist nach Ablauf wieder unsichtbar. Personalgewinnung wirkt dann, wenn sie kontinuierlich läuft.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Steps -->
+<section class="s">
+  <div class="wrap">
+    <div class="sh">
+      <span class="tag">So funktioniert das Abo</span>
+      <h2>In vier Schritten dauerhaft sichtbar.</h2>
+      <p>Einmal einrichten – dann läuft Ihre Personalgewinnung kontinuierlich im Hintergrund.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><h3>Paket &amp; Laufzeit wählen</h3><p>Sie wählen Smart, Premium oder Exzellenz und die Laufzeit (6 oder 12 Monate). Mehrere Stellen? Einfach mit Mengenrabatt dazubuchen.</p></div>
+      <div class="step"><div class="num">2</div><h3>Stelle(n) anlegen</h3><p>Ihre Stellen erscheinen im Karrierenetzwerk und auf dem Straßen- &amp; Tiefbau-Portal – durchgehend sichtbar über die gesamte Laufzeit.</p></div>
+      <div class="step"><div class="num">3</div><h3>Laufend passende Bewerbungen</h3><p>Unser KI-Matching spielt Ihre Stelle kontinuierlich passenden Fachkräften aus. Sie erhalten dauerhaft vorgefilterte Bewerbungen in Ihren Bewerber-Bereich.</p></div>
+      <div class="step"><div class="num">4</div><h3>Einstellen &amp; nachbesetzen</h3><p>Position besetzt? Die nächste ist im selben Abo schon ausgeschrieben. Auf Wunsch übernehmen wir die telefonische Vorqualifizierung.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Why -->
+<section class="s why">
+  <div class="wrap">
+    <div class="sh">
+      <span class="tag">Warum GreyCareers</span>
+      <h2>Spezialisierung schlägt Reichweite.</h2>
+      <p>Ein strukturell anderer Ansatz als generische Portale oder teure Agenturen.</p>
+    </div>
+    <div class="why-grid">
+      <div class="wcard"><div class="ic">🎯</div><h3>Auf die Branche fokussiert</h3><p>Kein fachfremdes Streuen. Auf GreyCareers suchen Menschen <b>genau Ihre Gewerke</b> – vom Baugeräteführer bis zum Bauleiter.</p></div>
+      <div class="wcard"><div class="ic">📍</div><h3>Regional ausgespielt</h3><p>Stellen werden nach Postleitzahl sortiert. <b>Fachkräfte aus Ihrer Region</b> sehen Ihren Betrieb zuerst.</p></div>
+      <div class="wcard"><div class="ic">🔁</div><h3>Durchgehend statt einmalig</h3><p>Das Abo hält Ihre Stellen <b>über die gesamte Laufzeit live</b> – Sie sind auch dann sichtbar, wenn der nächste Wechselwillige soweit ist.</p></div>
+      <div class="wcard"><div class="ic">💶</div><h3>Monatlicher Festpreis</h3><p>Keine 25–30 % vom Jahresgehalt wie bei Agenturen. <b>Ein planbarer Monatsbeitrag</b>, ohne versteckte Kosten.</p></div>
+      <div class="wcard"><div class="ic">⚡</div><h3>Bewerbung in 2 Minuten</h3><p>Ohne Anschreiben-Marathon. Weniger Hürden für Fachkräfte bedeuten <b>mehr echte Bewerbungen</b> für Sie.</p></div>
+      <div class="wcard"><div class="ic">🛠️</div><h3>Eigener Bewerber-Bereich</h3><p>Alle Bewerbungen gebündelt in Ihrem GreyCareers-OS-Account – <b>übersichtlich verwalten</b> statt im Postfach suchen.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="s" id="pakete">
+  <div class="wrap">
+    <div class="sh">
+      <span class="tag">Abo-Pakete &amp; Preise</span>
+      <h2>Monatlicher Festpreis – <b>dauerhaft sichtbar, jederzeit erweiterbar.</b></h2>
+      <p>Drei Pakete für jede Betriebsgröße. Wählen Sie die Laufzeit – 12 Monate sparen 20 %.</p>
+    </div>
+
+    <div class="term-toggle" role="tablist" aria-label="Laufzeit wählen">
+      <button id="t6" class="on" role="tab" aria-selected="true" onclick="setTerm('6m')">6 Monate</button>
+      <button id="t12" role="tab" aria-selected="false" onclick="setTerm('12m')">12 Monate <span class="save">−20 %</span></button>
+    </div>
+
+    <div class="price-grid">
+      <div class="pl">
+        <div class="pname">Smart</div>
+        <div class="pwas" data-was="smart"></div>
+        <div class="pprice"><span data-price="smart">399</span> €<small> / Monat netto</small></div>
+        <div class="pnote">Der solide Einstieg – dauerhaft sichtbar für einzelne Vakanzen.</div>
+        <ul>
+          <li><span class="ck">✓</span> <b>Durchgehende Sichtbarkeit</b> über die gesamte Laufzeit</li>
+          <li><span class="ck">✓</span> Zugang zu über <b>42.000 Fachkräften</b> im Netzwerk</li>
+          <li><span class="ck">✓</span> Visuelle Darstellung mit Bildern &amp; Videos</li>
+          <li><span class="ck">✓</span> KI-gestützte Vorfilterung der Bewerbungen</li>
+          <li><span class="ck">✓</span> Bewerbung per Kontaktformular in 30 Sekunden</li>
+        </ul>
+        <a class="pbtn outline" data-pkg="smart" href="kaufen-abo.html?pkg=smart&term=6m">Smart-Abo starten</a>
+      </div>
+
+      <div class="pl best">
+        <div class="pop">Beliebteste Wahl</div>
+        <div class="pname">Premium</div>
+        <div class="pwas" data-was="premium"></div>
+        <div class="pprice"><span data-price="premium">599</span> €<small> / Monat netto</small></div>
+        <div class="pnote">Mehr Sichtbarkeit, mehr passende Fachkräfte – dauerhaft.</div>
+        <ul>
+          <li><span class="ck">✓</span> Alles aus <b>Smart</b></li>
+          <li><span class="ck">✓</span> <b>Premium-Platzierung</b> ganz oben</li>
+          <li><span class="ck">✓</span> Bis zu <b>3× höhere Sichtbarkeit</b></li>
+          <li><span class="ck">✓</span> Hervorgehobene Premium-Darstellung</li>
+          <li><span class="ck">✓</span> Einbindung Ihrer Karriereseite</li>
+          <li><span class="ck">✓</span> Einbindung in Social-Media-Kampagnen</li>
+        </ul>
+        <a class="pbtn solid" data-pkg="premium" href="kaufen-abo.html?pkg=premium&term=6m">Premium-Abo starten</a>
+      </div>
+
+      <div class="pl exc">
+        <div class="pname">Exzellenz</div>
+        <div class="pwas" data-was="exzellenz"></div>
+        <div class="pprice"><span data-price="exzellenz">799</span> €<small> / Monat netto</small></div>
+        <div class="pnote">Maximale Sichtbarkeit &amp; volle Betreuung – kontinuierlich.</div>
+        <ul>
+          <li><span class="ck">✓</span> Alles aus <b>Premium</b></li>
+          <li><span class="ck">✓</span> <b>Direkte Bewerberansprache</b> auf Premium-Karrierenetzwerken im Namen Ihres Unternehmens</li>
+          <li><span class="ck">✓</span> Kooperation mit unseren Recruiting-Partnern</li>
+          <li><span class="ck">✓</span> <b>Vorqualifizierung aller Bewerber</b></li>
+          <li><span class="ck">✓</span> Persönlicher Ansprechpartner</li>
+        </ul>
+        <a class="pbtn outline" data-pkg="exzellenz" href="kaufen-abo.html?pkg=exzellenz&term=6m">Exzellenz-Abo starten</a>
+      </div>
+    </div>
+
+    <div class="qty-note">
+      <b>Mehrere Stellen gleichzeitig?</b> Buchen Sie weitere Positionen mit Mengenrabatt dazu:
+      <div class="qty-ladder">
+        <span class="q">2 Stellen · −10 %</span>
+        <span class="q">3 Stellen · −20 %</span>
+        <span class="q">ab 4 Stellen · −30 %</span>
+      </div>
+    </div>
+
+    <p class="price-note">Alle Preise pro Monat, netto zzgl. MwSt. · 12-Monats-Laufzeit spart 20 % gegenüber 6 Monaten · Mengenrabatt im Checkout wählbar.</p>
+    <div class="pay-row">
+      <span class="pay-label">Zahlungsarten:</span>
+      <span class="pay logo" title="Visa"><svg width="46" height="16" viewBox="0 0 46 16" role="img" aria-label="Visa"><text x="0" y="14" font-family="Arial,Helvetica,sans-serif" font-style="italic" font-weight="800" font-size="16" letter-spacing="-0.5" fill="#1434CB">VISA</text></svg></span>
+      <span class="pay logo" title="Mastercard"><svg width="26" height="16" viewBox="0 0 36 24" role="img" aria-label="Mastercard"><circle cx="14" cy="12" r="9" fill="#EB001B"/><circle cx="22" cy="12" r="9" fill="#F79E1B"/><path d="M18 5.2a9 9 0 0 0 0 13.6 9 9 0 0 0 0-13.6z" fill="#FF5F00"/></svg></span>
+      <span class="pay logo" title="American Express"><svg width="28" height="16" viewBox="0 0 40 24" role="img" aria-label="American Express"><rect width="40" height="24" rx="3" fill="#006FCF"/><text x="20" y="10.5" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="6" fill="#fff" text-anchor="middle" letter-spacing="0.2">AMERICAN</text><text x="20" y="18.5" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="6" fill="#fff" text-anchor="middle" letter-spacing="0.2">EXPRESS</text></svg></span>
+      <span class="pay logo" title="PayPal"><svg width="56" height="16" viewBox="0 0 58 16" role="img" aria-label="PayPal"><text x="0" y="13" font-family="Arial,Helvetica,sans-serif" font-style="italic" font-weight="800" font-size="15" letter-spacing="-0.5"><tspan fill="#003087">Pay</tspan><tspan fill="#009CDE">Pal</tspan></text></svg></span>
+      <span class="pay">Lastschrift</span>
+    </div>
+  </div>
+</section>
+
+<!-- Einmal vs Abo -->
+<section class="s pain">
+  <div class="wrap">
+    <div class="sh">
+      <span class="tag">Einmalkauf oder Abo?</span>
+      <h2>Wann sich das Abo lohnt.</h2>
+      <p>Beide Modelle nutzen dasselbe Netzwerk und KI-Matching. Der Unterschied liegt in Dauer und Planbarkeit.</p>
+    </div>
+    <div class="cmp">
+      <div class="cc">
+        <div class="lbl">Einmalkauf</div>
+        <h3>Für eine konkrete Vakanz</h3>
+        <ul>
+          <li><span class="ck">✓</span> Eine einzelne Stelle, befristete Laufzeit (60–90 Tage)</li>
+          <li><span class="ck">✓</span> Einmaliger Festpreis, danach beendet</li>
+          <li><span class="ck">✓</span> Ideal, wenn Sie aktuell <b>genau eine</b> Position besetzen</li>
+        </ul>
+      </div>
+      <div class="cc hl">
+        <div class="lbl">Abo</div>
+        <h3>Für durchgehenden Personalbedarf</h3>
+        <ul>
+          <li><span class="ck">✓</span> <b>Dauerhaft sichtbar</b> über 6 oder 12 Monate</li>
+          <li><span class="ck">✓</span> Monatlicher Festpreis – planbares Budget</li>
+          <li><span class="ck">✓</span> Position besetzt? <b>Nächste im selben Abo</b> nachbesetzen</li>
+          <li><span class="ck">✓</span> Mehrere Stellen mit Mengenrabatt (bis −30 %)</li>
+          <li><span class="ck">✓</span> 12 Monate sparen 20 %</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="s">
+  <div class="wrap">
+    <div class="sh">
+      <span class="tag">Aus der Praxis</span>
+      <h2>Betriebe, die mit System einstellen.</h2>
+    </div>
+    <div class="tg">
+      <div class="tcard"><div class="q">„Wir besetzen über das Jahr immer wieder Stellen. Das Abo nimmt uns die Sorge ab, ständig neu auszuschreiben – wir sind einfach durchgehend sichtbar."</div><div class="who"><div class="av">MB</div><div><b>Marc B.</b><span>Geschäftsführer, Tiefbau-Betrieb</span></div></div></div>
+      <div class="tcard"><div class="q">„Fester Monatsbeitrag, fertig. Endlich ein Personalbudget, das ich kalkulieren kann – ohne Provision pro Kopf wie bei der Agentur."</div><div class="who"><div class="av">DH</div><div><b>Dirk H.</b><span>Bauleiter, Straßen- &amp; Kanalbau</span></div></div></div>
+      <div class="tcard"><div class="q">„Die regionale Ausspielung ist Gold wert. Über die Laufzeit kommen kontinuierlich passende Bewerbungen rein – nicht nur in der ersten Woche."</div><div class="who"><div class="av">JA</div><div><b>Julia A.</b><span>Personalleitung, Bauunternehmen</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="s">
+  <div class="wrap">
+    <div class="sh">
+      <span class="tag">Häufige Fragen</span>
+      <h2>Was Betriebe vor dem Abo-Start wissen wollen.</h2>
+    </div>
+    <div class="faq-list" id="faqList"></div>
+  </div>
+</section>
+
+<!-- Kontakt -->
+<section class="s pain" id="kontakt">
+  <div class="wrap">
+    <div class="kontakt-grid">
+      <div class="kontakt-info">
+        <span class="tag" style="display:inline-block;background:var(--o-pale);color:var(--o-dark);font-weight:800;font-size:11.5px;letter-spacing:.5px;text-transform:uppercase;padding:5px 13px;border-radius:100px;border:1px solid #FAD9C2;margin-bottom:14px">Kostenloses Erstgespräch</span>
+        <h3>Lassen Sie uns über Ihren laufenden Personalbedarf sprechen.</h3>
+        <p>In 15 Minuten zeigen wir Ihnen, wie das GreyCareers-Abo Ihren Betrieb dauerhaft sichtbar macht und kontinuierlich passende Fachkräfte liefert – unverbindlich und konkret auf Ihre offenen Stellen bezogen.</p>
+        <div class="row"><span class="d">📞</span> <a href="tel:+4922196882408">+49 221 9688 2408</a></div>
+        <div class="row"><span class="d">✉️</span> <a href="mailto:hello@green-careers.de">hello@green-careers.de</a></div>
+        <div class="row"><span class="d">🌐</span> <a href="index.html">strassen-tiefbau.green-careers.de</a></div>
+      </div>
+      <form class="kform" id="kform" onsubmit="return sendKontakt(event)">
+        <div class="krow">
+          <div class="kfield"><label>Ihr Name *</label><input id="k-name" required placeholder="Vor- und Nachname"></div>
+          <div class="kfield"><label>Betrieb *</label><input id="k-firma" required placeholder="Firmenname"></div>
+        </div>
+        <div class="krow">
+          <div class="kfield"><label>E-Mail *</label><input id="k-email" type="email" required placeholder="name@betrieb.de"></div>
+          <div class="kfield"><label>Telefon</label><input id="k-tel" type="tel" placeholder="0221 …"></div>
+        </div>
+        <div class="kfield"><label>Welches Abo-Paket interessiert Sie?</label>
+          <select id="k-paket">
+            <option value="">Noch unsicher – bitte beraten</option>
+            <option>Smart-Abo (ab 319 €/Mt)</option>
+            <option>Premium-Abo (ab 479 €/Mt)</option>
+            <option>Exzellenz-Abo (ab 639 €/Mt)</option>
+          </select>
+        </div>
+        <div class="kfield"><label>Ihre offene(n) Stelle(n) / Nachricht</label><textarea id="k-msg" placeholder="Welche Position(en) möchten Sie besetzen?"></textarea></div>
+        <button class="kbtn" type="submit">Erstgespräch anfragen</button>
+        <div class="kconsent">Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Angaben zur Kontaktaufnahme zu. Details in der <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CTA band -->
+<section class="s">
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Personalgewinnung, die nicht nach 60 Tagen aufhört.</h2>
+      <p>Über 1.100 Betriebe gewinnen mit GreyCareers planbar Fachkräfte für den Straßen-, Tief- und Kanalbau.</p>
+      <div class="btns">
+        <a class="btn-w" href="#pakete">Abo-Paket wählen</a>
+        <a class="btn-dk" href="#kontakt">Kostenloses Erstgespräch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="fbrand"><div class="logo" style="width:32px;height:32px;font-size:15px">GC</div> GreyCareers · Straßen- &amp; Tiefbau</div>
+      <div class="powered">Ein Angebot der GreenCareers GmbH</div>
+    </div>
+    <div class="flinks">
+      <a href="index.html">Stellenportal</a>
+      <a href="magazin.html">Magazin</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+      <a href="agb.html">AGB</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const $=id=>document.getElementById(id);
+
+/* ---- Abo-Preise (netto / Monat). 6m = Basispreis, 12m = -20% ---- */
+const ABO_BASE={smart:399, premium:599, exzellenz:799};
+const TERM_DISC={'6m':0,'12m':20};
+let CUR_TERM='6m';
+function eur(n){return Math.round(n).toLocaleString('de-DE');}
+function setTerm(term){
+  CUR_TERM=term;
+  $('t6').classList.toggle('on', term==='6m');
+  $('t6').setAttribute('aria-selected', term==='6m');
+  $('t12').classList.toggle('on', term==='12m');
+  $('t12').setAttribute('aria-selected', term==='12m');
+  const disc=TERM_DISC[term]||0;
+  document.querySelectorAll('[data-price]').forEach(el=>{
+    const pkg=el.getAttribute('data-price');
+    el.textContent=eur(ABO_BASE[pkg]*(1-disc/100));
+  });
+  document.querySelectorAll('[data-was]').forEach(el=>{
+    const pkg=el.getAttribute('data-was');
+    el.textContent = disc>0 ? ('statt '+eur(ABO_BASE[pkg])+' € / Monat') : '';
+  });
+  document.querySelectorAll('[data-pkg]').forEach(a=>{
+    const pkg=a.getAttribute('data-pkg');
+    a.href='kaufen-abo.html?pkg='+pkg+'&term='+term;
+  });
+}
+
+/* FAQ (Abo) */
+const FAQ_DATA=[
+  {q:'Was kostet das GreyCareers-Abo?',a:'Sie zahlen einen festen Monatspreis pro Paket: Smart ab 319 €, Premium ab 479 €, Exzellenz ab 639 € pro Monat (netto, 12-Monats-Laufzeit). Bei 6-Monats-Laufzeit liegen die Preise bei 399 / 599 / 799 € pro Monat. Keine Provision pro Einstellung, keine versteckten Kosten. Zahlung per Visa, Mastercard, American Express, PayPal oder Lastschrift.'},
+  {q:'Was ist der Unterschied zum Einmalkauf?',a:'Der Einmalkauf schaltet eine einzelne Stelle befristet (60–90 Tage) frei. Das Abo hält Ihren Betrieb über 6 oder 12 Monate durchgehend sichtbar, liefert kontinuierlich passende Bewerbungen und lässt Sie besetzte Stellen im selben Abo nachbesetzen – zum planbaren Monatsbeitrag.'},
+  {q:'Welche Laufzeiten gibt es?',a:'Sie wählen zwischen 6 und 12 Monaten. Bei 12 Monaten sparen Sie 20 % gegenüber der 6-Monats-Laufzeit. Die Laufzeit legen Sie beim Checkout fest.'},
+  {q:'Kann ich mehrere Stellen gleichzeitig ausschreiben?',a:'Ja. Sie buchen weitere Stellen direkt mit Mengenrabatt dazu: 2 Stellen −10 %, 3 Stellen −20 %, ab 4 Stellen −30 %. Die Menge wählen Sie im Checkout.'},
+  {q:'Für welche Berufe funktioniert das?',a:'Für alle Gewerke im Straßen-, Tief-, Kanal-, Rohrleitungs- und Hochbau: vom Baugeräteführer, Rohrleger und Facharbeiter über Vorarbeiter und Polier bis zu Bauleiter und Bauzeichner.'},
+  {q:'Was bedeutet „telefonische Vorqualifizierung" im Exzellenz-Abo?',a:'Auf Wunsch sprechen wir die eingehenden Kandidaten vorab telefonisch, prüfen Verfügbarkeit und Eignung und reichen Ihnen nur die relevanten Profile weiter. So sparen Sie zusätzlich Zeit in der Vorauswahl.'},
+  {q:'Wie schnell sind meine Stellen online?',a:'Nach Abschluss richten Sie Ihre Stellen direkt im GreyCareers-OS-Account ein und veröffentlichen sie – sie erscheinen zeitnah im Karrierenetzwerk und auf dem Straßen- & Tiefbau-Portal.'}
+];
+function renderFaq(){
+  $('faqList').innerHTML=FAQ_DATA.map((f,i)=>`
+    <div class="faq-item" id="faq${i}">
+      <div class="faq-q" onclick="toggleFaq(${i})"><span>${f.q}</span><span class="pm">+</span></div>
+      <div class="faq-a"><div class="inner">${f.a}</div></div>
+    </div>`).join('');
+}
+function toggleFaq(i){
+  const item=$('faq'+i),a=item.querySelector('.faq-a');
+  const open=item.classList.toggle('open');
+  a.style.maxHeight=open?a.scrollHeight+'px':'0';
+}
+
+/* Kontakt-Formular -> öffnet vorbefüllte E-Mail an hello@green-careers.de */
+function sendKontakt(e){
+  e.preventDefault();
+  const name=$('k-name').value.trim(), firma=$('k-firma').value.trim();
+  const email=$('k-email').value.trim(), tel=$('k-tel').value.trim();
+  const paket=$('k-paket').value, msg=$('k-msg').value.trim();
+  const body=
+    `Name: ${name}\nBetrieb: ${firma}\nE-Mail: ${email}\nTelefon: ${tel}\n`+
+    `Interesse (Abo): ${paket||'Beratung'}\n\nNachricht:\n${msg}`;
+  const href='mailto:hello@green-careers.de'+
+    '?subject='+encodeURIComponent('Anfrage Abo-Erstgespräch · '+firma)+
+    '&body='+encodeURIComponent(body);
+  window.location.href=href;
+  return false;
+}
+
+renderFaq();
+setTerm('6m');
+
+/* Typewriter im Hero-H1: rotierende Branche vor „betrieb" */
+(function(){
+  const WORDS=['Straßenbau','Tiefbau','Kanalbau','Rohrleitungsbau','Erdbau','Hochbau'];
+  const el=$('twWord'); if(!el) return;
+  let wi=0,pos=0,del=false;
+  (function tick(){
+    const w=WORDS[wi%WORDS.length];
+    if(!del){ pos++; el.textContent=w.slice(0,pos);
+      if(pos===w.length){del=true;return setTimeout(tick,1600);} return setTimeout(tick,80); }
+    else{ pos--; el.textContent=w.slice(0,pos);
+      if(pos===0){del=false;wi++;return setTimeout(tick,260);} return setTimeout(tick,42); }
+  })();
+})();
+</script>
+
+<!-- ===================== MAYA · KI-Beratung für Arbeitgeber ===================== -->
+<style>
+  #maya-fab{position:fixed;right:20px;bottom:20px;z-index:900;display:flex;align-items:center;gap:9px;
+    background:linear-gradient(135deg,var(--o),var(--o-dark));color:#fff;border:none;cursor:pointer;
+    padding:13px 18px 13px 15px;border-radius:100px;font-weight:760;font-size:14.5px;font-family:inherit;
+    box-shadow:0 10px 30px rgba(234,88,12,.42);transition:transform .15s,box-shadow .15s}
+  #maya-fab:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(234,88,12,.5)}
+  #maya-fab svg{flex:none}
+  #maya-fab.hide{display:none}
+  #maya-panel{position:fixed;right:20px;bottom:20px;z-index:901;width:380px;max-width:calc(100vw - 32px);
+    height:580px;max-height:calc(100vh - 40px);background:#fff;border:1px solid var(--line,#EAE6E1);
+    border-radius:20px;box-shadow:0 24px 70px rgba(20,12,4,.28);display:none;flex-direction:column;overflow:hidden}
+  #maya-panel.open{display:flex}
+  .maya-head{display:flex;align-items:center;gap:11px;padding:15px 16px;
+    background:linear-gradient(135deg,var(--o),var(--o-dark));color:#fff}
+  .maya-av{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.2);display:grid;place-items:center;
+    font-weight:800;font-size:16px;flex:none;border:2px solid rgba(255,255,255,.5)}
+  .maya-ht b{font-size:15px;font-weight:800;display:block;line-height:1.1}
+  .maya-ht span{font-size:11.5px;opacity:.92}
+  .maya-x{margin-left:auto;background:rgba(255,255,255,.18);border:none;color:#fff;width:30px;height:30px;
+    border-radius:9px;cursor:pointer;font-size:18px;line-height:1;transition:.15s}
+  .maya-x:hover{background:rgba(255,255,255,.32)}
+  .maya-body{flex:1;overflow-y:auto;padding:16px;background:#FBF9F7;display:flex;flex-direction:column;gap:11px}
+  .maya-msg{max-width:84%;padding:10px 13px;border-radius:14px;font-size:14px;line-height:1.5;white-space:pre-wrap;word-wrap:break-word}
+  .maya-msg.bot{align-self:flex-start;background:#fff;border:1px solid var(--line,#EAE6E1);color:#2A2622;border-bottom-left-radius:5px}
+  .maya-msg.user{align-self:flex-end;background:linear-gradient(135deg,var(--o),var(--o-dark));color:#fff;border-bottom-right-radius:5px}
+  .maya-typing{align-self:flex-start;display:flex;gap:4px;padding:12px 14px;background:#fff;border:1px solid var(--line,#EAE6E1);border-radius:14px}
+  .maya-typing span{width:7px;height:7px;border-radius:50%;background:#C9C2BA;animation:mayaBlink 1.2s infinite}
+  .maya-typing span:nth-child(2){animation-delay:.2s}.maya-typing span:nth-child(3){animation-delay:.4s}
+  @keyframes mayaBlink{0%,60%,100%{opacity:.3}30%{opacity:1}}
+  .maya-foot{padding:11px;border-top:1px solid var(--line,#EAE6E1);background:#fff;display:flex;gap:8px;align-items:flex-end}
+  .maya-foot textarea{flex:1;resize:none;border:1px solid var(--line,#EAE6E1);border-radius:12px;padding:10px 12px;
+    font-family:inherit;font-size:14px;max-height:96px;line-height:1.4;outline:none;transition:border-color .15s}
+  .maya-foot textarea:focus{border-color:var(--o)}
+  .maya-send{flex:none;width:42px;height:42px;border-radius:12px;border:none;cursor:pointer;
+    background:linear-gradient(135deg,var(--o),var(--o-dark));color:#fff;display:grid;place-items:center;transition:.15s}
+  .maya-send:disabled{opacity:.45;cursor:default}
+  .maya-disc{font-size:10.5px;color:#A89E94;text-align:center;padding:0 12px 9px;background:#fff}
+  @media(max-width:480px){#maya-panel{right:8px;bottom:8px;height:calc(100vh - 16px)}#maya-fab{right:14px;bottom:14px}}
+</style>
+
+<button id="maya-fab" onclick="mayaOpen()" aria-label="Beratungs-Chat öffnen">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3C6.9 3 3 6.4 3 10.7c0 2.3 1.2 4.4 3.1 5.8-.1.9-.5 2.1-1.4 3.2 1.6-.2 3-.8 4-1.6 1 .3 2.1.5 3.3.5 5.1 0 9-3.4 9-7.6S17.1 3 12 3Z" fill="#fff"/></svg>
+  <span>Fragen? Maya berät Sie</span>
+</button>
+
+<div id="maya-panel" role="dialog" aria-label="Maya Beratung">
+  <div class="maya-head">
+    <div class="maya-av">M</div>
+    <div class="maya-ht"><b>Maya</b><span>Arbeitgeber-Beratung · GreyCareers</span></div>
+    <button class="maya-x" onclick="mayaClose()" aria-label="Schließen">×</button>
+  </div>
+  <div class="maya-body" id="maya-body"></div>
+  <div class="maya-foot">
+    <textarea id="maya-in" rows="1" placeholder="Ihre Frage an Maya …" oninput="mayaGrow(this)" onkeydown="mayaKey(event)"></textarea>
+    <button class="maya-send" id="maya-send" onclick="mayaSend()" aria-label="Senden">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 12 20 4l-4 16-4-7-8-1Z" fill="#fff"/></svg>
+    </button>
+  </div>
+  <div class="maya-disc">KI-Assistentin · Für verbindliche Angebote: +49 221 9688 2408</div>
+</div>
+
+<script>
+const MAYA_FN  = 'https://tfoopogxaqvfwbonabpi.supabase.co/functions/v1/smooth-endpoint';
+const MAYA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRmb29wb2d4YXF2Zndib25hYnBpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEyNTQzMjQsImV4cCI6MjA5NjgzMDMyNH0.udWRPszXVOj7EG4bspmsU9HXbZYFRDn8QO9kZi2tw8M';
+let MAYA_HIST=[], MAYA_BUSY=false, MAYA_GREETED=false;
+const mayaB=()=>document.getElementById('maya-body');
+
+function mayaOpen(){
+  document.getElementById('maya-panel').classList.add('open');
+  document.getElementById('maya-fab').classList.add('hide');
+  if(!MAYA_GREETED){
+    MAYA_GREETED=true;
+    mayaPush('bot','Guten Tag, ich bin Maya von GreyCareers. Ich berate Bau- und Tiefbau-Betriebe, die dauerhaft an qualifizierte Fachkräfte kommen möchten. Suchen Sie laufend Personal oder aktuell eine konkrete Stelle?');
+  }
+  setTimeout(()=>document.getElementById('maya-in').focus(),120);
+}
+function mayaClose(){
+  document.getElementById('maya-panel').classList.remove('open');
+  document.getElementById('maya-fab').classList.remove('hide');
+}
+function mayaGrow(t){t.style.height='auto';t.style.height=Math.min(t.scrollHeight,96)+'px';}
+function mayaKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();mayaSend();}}
+function mayaPush(role,text){
+  const d=document.createElement('div');
+  d.className='maya-msg '+(role==='user'?'user':'bot');
+  d.textContent=text;
+  mayaB().appendChild(d); mayaB().scrollTop=mayaB().scrollHeight;
+}
+function mayaTyping(on){
+  let t=document.getElementById('maya-typing');
+  if(on){ if(!t){t=document.createElement('div');t.id='maya-typing';t.className='maya-typing';
+    t.innerHTML='<span></span><span></span><span></span>';mayaB().appendChild(t);mayaB().scrollTop=mayaB().scrollHeight;} }
+  else if(t){t.remove();}
+}
+async function mayaSend(){
+  if(MAYA_BUSY)return;
+  const inp=document.getElementById('maya-in');
+  const msg=inp.value.trim(); if(!msg)return;
+  inp.value=''; mayaGrow(inp);
+  mayaPush('user',msg); MAYA_HIST.push({role:'user',content:msg});
+  MAYA_BUSY=true; document.getElementById('maya-send').disabled=true; mayaTyping(true);
+  try{
+    const r=await fetch(MAYA_FN,{method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+MAYA_KEY,'apikey':MAYA_KEY},
+      body:JSON.stringify({messages:MAYA_HIST})});
+    const data=await r.json().catch(()=>({}));
+    mayaTyping(false);
+    if(!r.ok||!data.reply){
+      mayaPush('bot','Entschuldigen Sie, gerade ist die Verbindung gestört. Rufen Sie uns gern direkt an: +49 221 9688 2408 oder schreiben Sie an hello@green-careers.de.');
+    }else{
+      mayaPush('bot',data.reply); MAYA_HIST.push({role:'assistant',content:data.reply});
+    }
+  }catch(err){
+    mayaTyping(false);
+    mayaPush('bot','Entschuldigen Sie, gerade ist die Verbindung gestört. Rufen Sie uns gern direkt an: +49 221 9688 2408 oder schreiben Sie an hello@green-careers.de.');
+  }finally{
+    MAYA_BUSY=false; document.getElementById('maya-send').disabled=false;
+    document.getElementById('maya-in').focus();
+  }
+}
+</script>
+<script src="assets/cookie-consent.js" data-accent="#EA580C" data-metapixel="634469765867935"></script>
+</body>
+</html>

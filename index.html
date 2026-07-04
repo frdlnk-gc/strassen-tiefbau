@@ -1428,9 +1428,20 @@ function renderList(rows){
 }
 
 /* ---------- Routing ---------- */
+function portalNotice(msg){
+  try{ const d=document.createElement('div'); d.textContent=msg;
+    d.style.cssText='position:fixed;left:50%;top:16px;transform:translateX(-50%);z-index:9999;background:#1f2937;color:#fff;padding:12px 18px;border-radius:10px;font-size:14px;line-height:1.4;max-width:90%;box-shadow:0 8px 24px rgba(0,0,0,.25);text-align:center';
+    document.body.appendChild(d);
+    setTimeout(()=>{d.style.transition='opacity .4s';d.style.opacity='0';setTimeout(()=>d.remove(),400);},4200);
+  }catch(e){}
+}
 function route(){
   const slug=new URLSearchParams(location.search).get('job');
-  if(slug){const j=JOBS.find(x=>x.slug===slug); if(j){return renderDetail(j);}}
+  if(slug){const j=JOBS.find(x=>x.slug===slug); if(j){return renderDetail(j);}
+    // Stelle offline/abgelaufen: Hinweis geben und den toten ?job= aus der URL nehmen, statt wortlos auf Home zu fallen.
+    portalNotice('Diese Stelle ist nicht mehr online – hier findest du alle aktuellen Stellen.');
+    history.replaceState({},'',location.pathname);
+  }
   showHome();
 }
 function openJob(slug){

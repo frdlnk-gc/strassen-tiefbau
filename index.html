@@ -1253,7 +1253,10 @@ async function load(){
     $('resultInfo').textContent='';
     return;
   }
-  JOBS = data||[];
+  // HARTE Branchen-Sperre: dieses Portal (GreyCareers) zeigt ausschliesslich Tiefbau-Stellen.
+  // Quelle ist der geteilte public_jobs-Pool (galabau + tiefbau + landwirtschaft);
+  // wir lassen nur Betriebe mit theme='tiefbau' durch -> NIE GaLaBau-/Landwirtschaft-Inserate.
+  JOBS = (data||[]).filter(j => (j.firma_theme||'').toLowerCase()==='tiefbau');
   // Firmen-PLZ vorab geocoden (klein, einmalig)
   await Promise.all([...new Set(JOBS.map(j=>j.firma_plz).filter(Boolean))].map(geo));
   buildFilters();

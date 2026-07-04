@@ -270,7 +270,7 @@
 
         <label class="agb">
           <input type="checkbox" id="agb">
-          <span>Ich akzeptiere die <a href="agb.html" target="_blank" rel="noopener">AGB</a> und die <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a> der Green Careers GmbH.</span>
+          <span>Ich akzeptiere die <a href="agb.html" target="_blank" rel="noopener">AGB</a> und die <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a> der GreenCareers GmbH.</span>
         </label>
 
         <button class="buybtn" id="buyBtn" disabled>
@@ -296,7 +296,7 @@
 const MODE = 'einmal';
 
 // Vertriebs-Rabattcodes (Julian/Liam): "Sale <Prozent>" – Groß-/Kleinschreibung egal.
-// Gültig sind NUR ganze 5er-Stufen bis 50 % (Sale 5, Sale 10 … Sale 50). Server validiert final.
+// Gültig sind NUR Sale 10, 20, 30, 40, 50 (Vorgabe Freddy). Server validiert final.
 const RABATT_PREFIX = 'Sale';
 
 // Supabase Edge Function, die Stripe-Checkout erstellt bzw. Rechnung-Bestellung
@@ -402,15 +402,15 @@ function applyPromo(){
   const raw=$('promoInput').value.trim();
   const msg=$('promoMsg');
   if(!raw){state.codePct=0;state.codeRaw='';msg.className='promo-msg';msg.textContent='';update();return;}
-  // Geheimwort + ganze Zahl (Leerzeichen optional), z. B. "Sale 15". Nur 5er-Stufen bis 50 %.
+  // Geheimwort + ganze Zahl (Leerzeichen optional), z. B. "Sale 30". Nur 10er-Stufen bis 50.
   const re=new RegExp('^\\s*'+RABATT_PREFIX+'\\s*([0-9]{1,2})\\s*$','i');
   const m=raw.match(re);
   if(m){
     const pct=parseInt(m[1],10);
-    if(pct>=5 && pct<=50 && pct%5===0){
+    if(pct>=10 && pct<=50 && pct%10===0){
       state.codePct=pct;state.codeRaw=raw;
       msg.className='promo-msg ok';msg.textContent='✓ Rabattcode gültig – '+fmt(pct)+' % werden abgezogen.';
-    }else{state.codePct=0;state.codeRaw='';msg.className='promo-msg err';msg.textContent='✕ Ungültiger Rabatt – gültig sind 5-%-Stufen bis 50 % (z. B. Sale 15).';}
+    }else{state.codePct=0;state.codeRaw='';msg.className='promo-msg err';msg.textContent='✕ Ungültiger Rabatt – gültig sind Sale 10, 20, 30, 40 oder 50.';}
   }else{
     state.codePct=0;state.codeRaw='';
     msg.className='promo-msg err';msg.textContent='✕ Code ungültig.';

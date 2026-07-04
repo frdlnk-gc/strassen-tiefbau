@@ -270,7 +270,7 @@
 
         <label class="agb">
           <input type="checkbox" id="agb">
-          <span>Ich akzeptiere die <a href="agb.html" target="_blank" rel="noopener">AGB</a> und die <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a> der Green Careers GmbH.</span>
+          <span>Ich akzeptiere die <a href="agb.html" target="_blank" rel="noopener">AGB</a> und die <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a> der GreenCareers GmbH.</span>
         </label>
 
         <button class="buybtn" id="buyBtn" disabled>
@@ -395,8 +395,8 @@ function applyPromo(){
   const m=raw.match(re);
   if(m){
     const pct=parseInt(m[1],10);
-    if(pct>=5&&pct<=50&&pct%5===0){state.codePct=pct;state.codeRaw=raw;msg.className='promo-msg ok';msg.textContent='✓ Rabattcode gültig – '+fmt(pct)+' % werden abgezogen.';}
-    else{state.codePct=0;state.codeRaw='';msg.className='promo-msg err';msg.textContent='✕ Ungültiger Rabatt – gültig sind 5-%-Stufen bis 50 % (z. B. Sale 15).';}
+    if(pct>=10&&pct<=50&&pct%10===0){state.codePct=pct;state.codeRaw=raw;msg.className='promo-msg ok';msg.textContent='✓ Rabattcode gültig – '+fmt(pct)+' % werden abgezogen.';}
+    else{state.codePct=0;state.codeRaw='';msg.className='promo-msg err';msg.textContent='✕ Ungültiger Rabatt – gültig sind Sale 10, 20, 30, 40 oder 50.';}
   }else{state.codePct=0;state.codeRaw='';msg.className='promo-msg err';msg.textContent='✕ Code ungültig.';}
   update();
 }

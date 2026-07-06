@@ -372,6 +372,8 @@
   .cf-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
         filter:blur(22px) brightness(.55) saturate(1.15);transform:scale(1.18);z-index:0}
   .cf-fg{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:1}
+  /* Karten-Cover: Bild fuellt die Kachel (kein Passepartout) - nur der Detail-Banner zeigt das ganze Bild via contain+Blur */
+  .jcover .cf-fg{object-fit:cover}
   .pbadge{position:absolute;top:10px;right:10px;z-index:2;background:#FFB020;color:#3a2600;font-weight:800;font-size:11px;
         letter-spacing:.3px;padding:4px 10px;border-radius:100px;display:flex;align-items:center;gap:4px;box-shadow:0 3px 10px rgba(0,0,0,.2)}
   .pbadge.exc{background:linear-gradient(135deg,#9A3412,#7C2D12);color:#fff}
@@ -478,7 +480,7 @@
   .rel-card.tier-prem::before{background:var(--grad)}
   .rel-cover{height:108px;position:relative;display:grid;place-items:center;background:var(--dark);color:#fff;font-weight:800;font-size:24px;overflow:hidden}
   .rel-cover.noimg{background:var(--grad)}
-  .rel-cover img{width:100%;height:100%;object-fit:cover}
+  .rel-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
   .rel-cover .pbadge{position:absolute;top:9px;left:9px;z-index:4}
   .rel-body{padding:13px 15px 15px}
   .rel-body h3{font-size:15.5px;font-weight:780;letter-spacing:-.2px;line-height:1.25;margin-bottom:3px}
@@ -500,7 +502,9 @@
        box-shadow:0 8px 22px rgba(0,0,0,.30)}
   .dt-head .ht{padding-bottom:3px;min-width:0}
   .dt-head h1{font-size:27px;font-weight:820;letter-spacing:-.5px;line-height:1.15;color:#fff;
+       overflow-wrap:anywhere;hyphens:auto;
        text-shadow:0 1px 16px rgba(0,0,0,.55),0 1px 2px rgba(0,0,0,.4)}
+  @media(max-width:560px){.dt-head h1{font-size:21px}.dt-head .fav{width:56px;height:56px}}
   .dt-head .firma{color:rgba(255,255,255,.94);font-weight:600;margin-top:5px;font-size:14.5px;
        text-shadow:0 1px 10px rgba(0,0,0,.5)}
   .dt-inner{padding:22px 30px 30px}
@@ -1872,6 +1876,8 @@ function renderDetail(j){
     ? `<img class="ap-foto" src="${esc(j.ansprechpartner_foto)}" alt="">`
     : `<div class="ap-foto">${esc(initials(j.ansprechpartner||j.firma))}</div>`;
 
+  // Banner: Firmen-Titelbild, sonst erstes Stellen-Bild (nie grundlos leerer Verlauf)
+  const bannerImg = j.firma_titelbild || (Array.isArray(j.stellen_bilder)?j.stellen_bilder.filter(Boolean)[0]:'') || '';
   $('detailInner').innerHTML=`
     <div class="dt-topbar">
       <div class="back" onclick="goHome()">← Alle Stellen</div>
@@ -1883,7 +1889,7 @@ function renderDetail(j){
     </div>
     <div class="dt-grid">
       <div class="dt-main">
-        <div class="dt-banner ${j.firma_titelbild?'':'noimg'}">${j.firma_titelbild?`<img class="cf-bg" src="${esc(j.firma_titelbild)}" alt="" aria-hidden="true"><img class="cf-fg" src="${esc(j.firma_titelbild)}" alt="">`:''}
+        <div class="dt-banner ${bannerImg?'':'noimg'}">${bannerImg?`<img class="cf-bg" src="${esc(bannerImg)}" alt="" aria-hidden="true"><img class="cf-fg" src="${esc(bannerImg)}" alt="">`:''}
           ${tm.label?`<span class="dt-tier ${tm.cls}">★ ${tm.label}</span>`:''}
           <div class="dt-head">
             ${fav(j)}

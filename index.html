@@ -1106,16 +1106,20 @@ function fav(j){
 }
 function coverUrl(j){
   const arr=Array.isArray(j.stellen_bilder)?j.stellen_bilder.filter(Boolean):[];
-  return arr[0] || j.firma_titelbild || '';
+  return arr[0] || j.cover_bild || j.firma_titelbild || '';
 }
+// Platzierungs-Stufe: primär der Stellen-Tier (s.tier), sonst das Firmen-Produkt.
+// DB/OS führen 'exzellenz' (deutsch); 'excellence' (alt/englisch) als Fallback mitnehmen.
 function tier(j){
-  const p=(j.firma_produkt||'').toLowerCase();
-  return (p==='premium'||p==='excellence')?p:'';
+  const p=(j.tier||j.firma_produkt||'').toLowerCase();
+  if(p==='exzellenz'||p==='excellence') return 'excellence';
+  if(p==='premium') return 'premium';
+  return '';
 }
-/* Stufe IMMER bestimmbar – Smart ist die Basis ohne firma_produkt. */
+/* Stufe IMMER bestimmbar – Smart ist die Basis. */
 function tierLevel(j){
-  const p=(j.firma_produkt||'').toLowerCase();
-  if(p==='excellence') return 'excellence';
+  const p=(j.tier||j.firma_produkt||'').toLowerCase();
+  if(p==='exzellenz'||p==='excellence') return 'excellence';
   if(p==='premium')    return 'premium';
   return 'smart';
 }
@@ -1250,8 +1254,21 @@ function haversine(a,b){
   return Math.round(2*R*Math.asin(Math.sqrt(s)));
 }
 
+// Perf: In der LISTE NUR die Karten-Felder + EIN Cover-Bild laden (cover_bild), nicht die
+// vollen Base64-Galerien (stellen_bilder/firma_bilder/ansprechpartner_foto = ~2 MB). Die
+// schweren Bilder werden erst beim Öffnen einer Stelle per slug nachgeladen (ensureJobDetail).
+// Zusätzlich server-seitig auf firma_theme='tiefbau' filtern -> keine GaLaBau-Bytes laden.
+const LIST_COLS = 'id,slug,titel,branche,ort,beschaeftigungsart,vertragsart,gehalt,eintritt,beschreibung,aufgaben,profil,benefits,benefits_list,ansprechpartner,ansprechpartner_rolle,kontakt_email,kontakt_telefon,published_at,firma_id,firma,firma_logo,firma_website,firma_karriere_url,firma_ort,firma_theme,firma_ueber_uns,firma_mitarbeiter,firma_gruendung,firma_titelbild,firma_social,tier,firma_produkt,cover_bild';
+async function ensureJobDetail(j){
+  if(!j || j._full) return j;
+  try{
+    const {data} = await sb.from('public_jobs').select('stellen_bilder,firma_bilder,ansprechpartner_foto').eq('slug', j.slug).maybeSingle();
+    if(data){ j.stellen_bilder=data.stellen_bilder; j.firma_bilder=data.firma_bilder; j.ansprechpartner_foto=data.ansprechpartner_foto; }
+  }catch(_){}
+  j._full = true; return j;
+}
 async function load(){
-  const {data,error} = await sb.from('public_jobs').select('*').order('published_at',{ascending:false});
+  const {data,error} = await sb.from('public_jobs').select(LIST_COLS).eq('firma_theme','tiefbau').order('published_at',{ascending:false});
   if(error){
     $('list').innerHTML='<div class="empty"><div class="ico">⚠️</div>Stellen konnten nicht geladen werden.<br><small>'+esc(error.message)+'</small></div>';
     $('resultInfo').textContent='';
@@ -1439,19 +1456,19 @@ function portalNotice(msg){
     setTimeout(()=>{d.style.transition='opacity .4s';d.style.opacity='0';setTimeout(()=>d.remove(),400);},4200);
   }catch(e){}
 }
-function route(){
+async function route(){
   const slug=new URLSearchParams(location.search).get('job');
-  if(slug){const j=JOBS.find(x=>x.slug===slug); if(j){return renderDetail(j);}
+  if(slug){const j=JOBS.find(x=>x.slug===slug); if(j){ await ensureJobDetail(j); return renderDetail(j);}
     // Stelle offline/abgelaufen: Hinweis geben und den toten ?job= aus der URL nehmen, statt wortlos auf Home zu fallen.
     portalNotice('Diese Stelle ist nicht mehr online – hier findest du alle aktuellen Stellen.');
     history.replaceState({},'',location.pathname);
   }
   showHome();
 }
-function openJob(slug){
+async function openJob(slug){
   history.pushState({},'', '?job='+encodeURIComponent(slug));
   const j=JOBS.find(x=>x.slug===slug);
-  if(j) renderDetail(j); window.scrollTo(0,0);
+  if(j){ await ensureJobDetail(j); renderDetail(j); } window.scrollTo(0,0);
 }
 function goHome(){history.pushState({},'',location.pathname);showHome();}
 function showHome(){$('detail').style.display='none';$('home').style.display='';resetSeo();applyFilter();}

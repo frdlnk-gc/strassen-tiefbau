@@ -1,11 +1,11 @@
 // =============================================================================
-// Supabase Edge Function: create-checkout
+// Supabase Edge Function: create-checkout (dynamic-responder)
 // Sichere Server-Logik für den Arbeitgeber-Checkout (kaufen-einmal.html / kaufen-abo.html)
 //
 // Aufgaben:
 //  1. Preis SERVER-SEITIG neu berechnen (Client-Werte sind nur Anzeige – nie vertrauen).
-//  2. Rabattcode validieren (Geheimwort-Prefix + Dezimal-Prozent, gedeckelt).
-//  3. Sofortzahlung (Karte/PayPal/SEPA) -> Stripe-Checkout-Session -> checkoutUrl zurück.
+//  2. Rabattcode validieren (Geheimwort-Prefix + Prozent in 10er-Stufen, gedeckelt).
+//  3. Sofortzahlung (Karte/PayPal) -> Stripe-Checkout-Session -> checkoutUrl zurück.
 //  4. Kauf auf Rechnung -> Bestellung mit status 'wartet_zahlung' speichern
 //     -> { pending:true } zurück. Benachrichtigung an Freddy läuft über Make,
 //        das die Tabelle `bestellungen` beobachtet (kein Resend/E-Mail-Dienst hier).
@@ -21,7 +21,8 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
 // ---- KONFIG (muss zu den Frontend-Seiten passen) ---------------------------
 const RABATT_PREFIX = 'Sale';            // Geheimwort vor dem Rabatt-Prozentwert (case-insensitive)
-const CODE_MAX_PCT  = 60;                // Maximal erlaubter Code-Rabatt
+const CODE_MAX_PCT  = 50;                // Maximal erlaubter Code-Rabatt (Vertriebs-Nachlässe)
+const CODE_STEP_PCT = 10;                // Nur 10er-Stufen gültig: Sale 10, 20, 30, 40, 50 (Vorgabe Freddy 2026-07-04)
 const VAT           = 0.19;              // 19 % USt. – auf Netto aufgeschlagen
 const SITE          = 'https://strassen-tiefbau.green-careers.de';
 const OS            = 'https://os.green-careers.de';   // Rückkehr-Ziel nach Zahlung (Option B: Kauf läuft im OS)
@@ -36,7 +37,7 @@ const PKG_EINMAL: Record<string, { name: string; price: number; days: number }> 
 const PKG_ABO: Record<string, { name: string; price: number }> = {
   smart:     { name: 'Smart',     price: 399 },
   premium:   { name: 'Premium',   price: 599 },
-  exzellenz: { name: 'Exzellenz', price: 799 },
+  exzellenz: { name: 'Exzellenz', price: 899 },
 };
 const QTY_DISCOUNT: Record<number, number>  = { 1: 0, 2: 10, 3: 20, 4: 30 };
 const TERM_DISCOUNT: Record<string, number> = { '6m': 0, '12m': 20 };
@@ -56,17 +57,23 @@ const supa = createClient(
   Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
 );
 
-// Rabattcode "SALE40,7" -> 40.7 ; sonst 0 (Geheimwort case-insensitive, Leerzeichen optional)
+// Rabattcode "Sale 30" -> 30 ; sonst 0. Regeln (Vertrieb Julian/Liam):
+//  - Geheimwort case-insensitive, Leerzeichen optional ("sale30", "SALE 30", "Sale 30")
+//  - NUR ganze 10er-Stufen: 10, 20, 30, 40, 50. "Sale 15" oder "Sale 60" sind ungültig.
 function parseCodePct(raw: string): number {
   if (!raw) return 0;
-  const re = new RegExp('^\\s*' + RABATT_PREFIX + '\\s*([0-9]{1,2}(?:[.,][0-9]{1,2})?)\\s*$', 'i');
+  const re = new RegExp('^\\s*' + RABATT_PREFIX + '\\s*([0-9]{1,2})\\s*$', 'i');
   const m = raw.match(re);
   if (!m) return 0;
-  const pct = parseFloat(m[1].replace(',', '.'));
-  return pct > 0 && pct <= CODE_MAX_PCT ? pct : 0;
+  const pct = parseInt(m[1], 10);
+  return pct >= CODE_STEP_PCT && pct <= CODE_MAX_PCT && pct % CODE_STEP_PCT === 0 ? pct : 0;
 }
 
-const STRIPE_METHOD: Record<string, string> = { card: 'card', paypal: 'paypal', sepa: 'sepa_debit' };
+// SEPA-Lastschrift bewusst NICHT anbieten: Stripe verbucht sie verzögert (payment_status
+// beim Redirect noch 'unpaid'), unser confirm-checkout schaltet aber nur bei bezahlter Session
+// frei. Ohne Webhook für 'checkout.session.async_payment_succeeded' bliebe die Zahlung ewig
+// unverbucht (Geld kassiert, kein Kontingent). Erst wieder aufnehmen, wenn der Webhook steht.
+const STRIPE_METHOD: Record<string, string> = { card: 'card', paypal: 'paypal' };
 
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: cors });
@@ -146,11 +153,16 @@ Deno.serve(async (req) => {
   if (!pmType) return json({ error: 'Unbekannte Zahlungsart' }, 400);
 
   try {
+    // §312j Abs. 3 BGB (Button-Lösung): Zahlungspflicht direkt über dem Bezahl-Button klarstellen.
+    const submitMsg = mode === 'abo'
+      ? 'Mit Abschluss startest du ein kostenpflichtiges Abo (monatliche Zahlung).'
+      : 'Mit Abschluss dieser Bestellung gehst du eine Zahlungsverpflichtung ein.';
     const common = {
       customer_email: c.email,
       payment_method_types: [pmType] as any,
       client_reference_id: ref || undefined,
       metadata: meta,
+      custom_text: { submit: { message: submitMsg } },
       success_url: `${OS}/?paid=1&session_id={CHECKOUT_SESSION_ID}`,   // zurück ins OS -> Erfolgs-View + Einrichtung
       cancel_url: `${OS}/?flow=buy`,                                   // Abbruch -> OS zeigt Checkout erneut
     };

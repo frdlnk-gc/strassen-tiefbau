@@ -373,7 +373,9 @@
         filter:blur(22px) brightness(.55) saturate(1.15);transform:scale(1.18);z-index:0}
   .cf-fg{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:1}
   /* Karten-Cover: Bild fuellt die Kachel (kein Passepartout) - nur der Detail-Banner zeigt das ganze Bild via contain+Blur */
-  .jcover .cf-fg{object-fit:cover}
+  /* Karte zeigt das GANZE Titelbild (contain) auf geblurtem Fill – nichts wird hart abgeschnitten,
+     auch wenn der Betrieb ein Bild im „falschen" Seitenverhältnis hochlädt. */
+  .jcover .cf-fg{object-fit:contain}
   .pbadge{position:absolute;top:10px;right:10px;z-index:2;background:#FFB020;color:#3a2600;font-weight:800;font-size:11px;
         letter-spacing:.3px;padding:4px 10px;border-radius:100px;display:flex;align-items:center;gap:4px;box-shadow:0 3px 10px rgba(0,0,0,.2)}
   .pbadge.exc{background:linear-gradient(135deg,#9A3412,#7C2D12);color:#fff}
@@ -428,7 +430,7 @@
   .job{position:relative}
   .job.tier-exc::before{background:linear-gradient(90deg,#9A3412,#7C2D12)}
   .job.tier-prem::before{background:var(--grad)}
-  .jcover{position:relative;height:190px;background:var(--dark)}
+  .jcover{position:relative;height:220px;background:var(--dark)}
   .jcover.noimg{background:var(--grad);display:grid;place-items:center;color:#fff;font-weight:820;font-size:24px}
   .jbody{padding:16px 18px 18px;display:flex;flex-direction:column;gap:11px;flex:1}
   .job-top{display:flex;align-items:center;gap:12px}
@@ -491,7 +493,7 @@
   .dt-grid>.aside{grid-column:2;grid-row:1 / span 2}
   .dt-grid>.related{grid-column:1;grid-row:2;margin-top:6px}
   .dt-main{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
-  .dt-banner{height:230px;background:var(--dark);position:relative;overflow:hidden}
+  .dt-banner{height:270px;background:var(--dark);position:relative;overflow:hidden}
   .dt-banner::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
        background:linear-gradient(180deg,rgba(22,25,29,.12) 0%,rgba(22,25,29,.30) 42%,rgba(22,25,29,.82) 100%)}
   .dt-banner.noimg{background:var(--grad)}
@@ -1893,8 +1895,9 @@ function renderDetail(j){
     ? `<img class="ap-foto" src="${esc(j.ansprechpartner_foto)}" alt="">`
     : `<div class="ap-foto">${esc(initials(j.ansprechpartner||j.firma))}</div>`;
 
-  // Banner: Firmen-Titelbild, sonst erstes Stellen-Bild (nie grundlos leerer Verlauf)
-  const bannerImg = j.firma_titelbild || (Array.isArray(j.stellen_bilder)?j.stellen_bilder.filter(Boolean)[0]:'') || '';
+  // Banner = GENAU dasselbe Cover wie in der Stellen-Übersicht (Konsistenz): das vom Betrieb
+  // als Titelbild gewählte Stellen-Bild zuerst, Firmen-Titelbild nur als Fallback.
+  const bannerImg = coverUrl(j) || j.firma_titelbild || '';
   $('detailInner').innerHTML=`
     <div class="dt-topbar">
       <div class="back" onclick="goHome()">← Alle Stellen</div>

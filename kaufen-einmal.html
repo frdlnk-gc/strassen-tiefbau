@@ -410,7 +410,7 @@ function applyPromo(){
     if(pct>=10 && pct<=50 && pct%10===0){
       state.codePct=pct;state.codeRaw=raw;
       msg.className='promo-msg ok';msg.textContent='✓ Rabattcode gültig – '+fmt(pct)+' % werden abgezogen.';
-    }else{state.codePct=0;state.codeRaw='';msg.className='promo-msg err';msg.textContent='✕ Ungültiger Rabatt – gültig sind Sale 10, 20, 30, 40 oder 50.';}
+    }else{state.codePct=0;state.codeRaw='';msg.className='promo-msg err';msg.textContent='✕ Dieser Code ist ungültig oder abgelaufen.';}
   }else{
     state.codePct=0;state.codeRaw='';
     msg.className='promo-msg err';msg.textContent='✕ Code ungültig.';

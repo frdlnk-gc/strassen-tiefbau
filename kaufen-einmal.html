@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stellen-Kontingent kaufen · Einmalzahlung · GreyCareers Straßen- &amp; Tiefbau</title>
-<meta name="description" content="Stellen-Kontingent für Ihren Straßen-, Tief- &amp; Kanalbau-Betrieb – einmalig zahlen, feste Laufzeit von 60 Tagen (Exzellenz 90) plus 30 Tage Zufriedenheitsgarantie. Mengenrabatt ab 2 Stellen. Zahlung per Karte, PayPal, SEPA-Lastschrift oder Kauf auf Rechnung.">
+<meta name="description" content="Stellen-Kontingent für Ihren Straßen-, Tief- &amp; Kanalbau-Betrieb – einmalig zahlen, feste Laufzeit von 60 Tagen (Exzellenz 90) plus 30 Tage Zufriedenheitsgarantie. Mengenrabatt ab 2 Stellen. Zahlung per Karte, PayPal oder Kauf auf Rechnung.">
 <meta name="robots" content="noindex">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,25 +40,22 @@
   .nav .sp{flex:1}
   .nav-tel{font-weight:700;font-size:14px;color:var(--ink2)}
   .nav-tel:hover{color:var(--o-dark)}
-  .modeswitch{display:flex;gap:4px;background:#ECEAE5;border:1px solid var(--line);border-radius:11px;padding:4px}
-  .modeswitch a{font-weight:700;font-size:13px;padding:7px 13px;border-radius:8px;color:var(--ink2);white-space:nowrap}
-  .modeswitch a.active{background:#fff;color:var(--o-dark);box-shadow:0 1px 3px rgba(20,25,29,.1)}
 
   /* Hero */
   .top{padding:34px 0 8px;text-align:center}
   .kicker{display:inline-flex;align-items:center;gap:8px;background:var(--o-pale);color:var(--o-dark);
           font-weight:800;font-size:11.5px;letter-spacing:.5px;text-transform:uppercase;
-          padding:6px 14px;border-radius:100px;border:1px solid #FAD9C2}
+          padding:6px 14px;border-radius:100px;border:1px solid #FFF1E8}
   .top h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(28px,4.2vw,40px);font-weight:600;letter-spacing:-.02em;line-height:1.1;margin:16px 0 10px}
   .top h1 b{color:var(--o-dark)}
   .top p{color:var(--muted);font-size:16px;max-width:560px;margin:0 auto}
 
   /* Referral banner */
   .refbar{max-width:var(--maxw);margin:18px auto 0;padding:0 22px}
-  .refbar .inner{display:none;align-items:center;gap:10px;background:#EAF7EE;border:1px solid #BCE3C6;
-        color:#1B6B33;border-radius:12px;padding:11px 15px;font-size:14px;font-weight:600}
+  .refbar .inner{display:none;align-items:center;gap:10px;background:#FFF1E8;border:1px solid #FDBA8C;
+        color:#C2410C;border-radius:12px;padding:11px 15px;font-size:14px;font-weight:600}
   .refbar .inner.show{display:flex}
-  .refbar .inner .x{margin-left:auto;cursor:pointer;color:#5A8C68;font-weight:700;padding:0 4px}
+  .refbar .inner .x{margin-left:auto;cursor:pointer;color:#C08457;font-weight:700;padding:0 4px}
 
   /* Layout */
   .grid{display:grid;grid-template-columns:1fr 360px;gap:26px;align-items:start;padding:26px 0 64px}
@@ -70,7 +67,7 @@
 
   .pkgs{display:flex;flex-direction:column;gap:12px}
   .pk{border:2px solid var(--line);border-radius:14px;padding:18px 18px 18px 16px;cursor:pointer;transition:.14s;position:relative;display:block}
-  .pk:hover{border-color:#F4C5A3}
+  .pk:hover{border-color:#FDBA8C}
   .pk.sel{border-color:var(--o);background:var(--o-pale)}
   .pk .pk-top{display:flex;align-items:flex-start;gap:13px}
   .pk .radio{flex:none;width:22px;height:22px;border-radius:50%;border:2px solid #CFC9C0;margin-top:2px;display:grid;place-items:center;transition:.14s}
@@ -88,10 +85,10 @@
         display:none;flex-direction:column;gap:7px}
   .pk.sel .pk-feats{display:flex}
   .pk .pk-feats li{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;color:var(--ink2);line-height:1.45}
-  .pk .pk-feats .ck{flex:none;width:18px;height:18px;border-radius:6px;background:#fff;border:1px solid #F4C5A3;color:var(--o-dark);
+  .pk .pk-feats .ck{flex:none;width:18px;height:18px;border-radius:6px;background:#fff;border:1px solid #FDBA8C;color:var(--o-dark);
         display:grid;place-items:center;font-size:10px;font-weight:800;margin-top:1px}
 
-  /* Quantity */
+  /* Quantity + Sparen-Staffel */
   .qty-row{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
   .qty-row .ql{font-size:14.5px;color:var(--ink2)}
   .qty-row .ql b{color:var(--ink);font-weight:760}
@@ -100,49 +97,24 @@
   .stepper button:hover:not(:disabled){background:var(--o-pale);color:var(--o-dark)}
   .stepper button:disabled{opacity:.35;cursor:default}
   .stepper .val{width:54px;text-align:center;font-size:17px;font-weight:800;border-left:1px solid var(--line);border-right:1px solid var(--line);line-height:42px}
-  .qty-disc{margin-top:13px;display:none;align-items:center;gap:8px;background:#EAF7EE;border:1px solid #BCE3C6;color:#1B6B33;
+  .qty-disc{margin-top:13px;display:none;align-items:center;gap:8px;background:#FFF1E8;border:1px solid #FDBA8C;color:#C2410C;
         border-radius:10px;padding:9px 13px;font-size:13.5px;font-weight:650}
   .qty-disc.show{display:flex}
-  .qty-ladder{margin-top:11px;font-size:12px;color:var(--muted);line-height:1.6}
-  .qty-ladder b{color:var(--ink2)}
-
-  /* Promo */
-  .promo-line{display:flex;gap:9px;flex-wrap:wrap}
-  .promo-line input{flex:1;min-width:160px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:15px;font-family:inherit;outline:none;transition:.14s}
-  .promo-line input:focus{border-color:var(--o);box-shadow:0 0 0 3px rgba(234,88,12,.12)}
-  .promo-line button{background:var(--ink);color:#fff;font-weight:700;font-size:14px;border:none;border-radius:10px;padding:0 20px;cursor:pointer;transition:.14s}
-  .promo-line button:hover{background:#000}
-  .promo-msg{font-size:13px;font-weight:650;margin-top:9px;min-height:1px}
-  .promo-msg.ok{color:#1B6B33}.promo-msg.err{color:#C0392B}
-
-  /* Payment method */
-  .pm-grid{display:flex;flex-direction:column;gap:10px}
-  .pm{display:flex;align-items:center;gap:12px;border:2px solid var(--line);border-radius:12px;padding:14px 16px;cursor:pointer;transition:.14s}
-  .pm:hover{border-color:#F4C5A3}
-  .pm.sel{border-color:var(--o);background:var(--o-pale)}
-  .pm .radio{flex:none;width:20px;height:20px;border-radius:50%;border:2px solid #CFC9C0;display:grid;place-items:center;transition:.14s}
-  .pm.sel .radio{border-color:var(--o);background:var(--o)}
-  .pm.sel .radio::after{content:"";width:8px;height:8px;border-radius:50%;background:#fff}
-  .pm .pm-main{flex:1}
-  .pm .pm-name{font-size:14.5px;font-weight:760}
-  .pm .pm-note{font-size:12.5px;color:var(--muted)}
-  .pm .pm-badge{flex:none;font-size:10.5px;font-weight:800;letter-spacing:.3px;text-transform:uppercase;padding:4px 9px;border-radius:100px}
-  .pm .pm-badge.fast{background:#EAF7EE;color:#1B6B33;border:1px solid #BCE3C6}
-  .pm .pm-badge.check{background:#FEF6E7;color:#A66400;border:1px solid #F4D9A0}
-
-  /* Contact fields */
-  .fields{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-  .field{display:flex;flex-direction:column;gap:6px}
-  .field.full{grid-column:1 / -1}
-  .field label{font-size:12.5px;font-weight:650;color:var(--ink2)}
-  .field input{border:1px solid var(--line);border-radius:10px;padding:11px 13px;font-size:15px;font-family:inherit;outline:none;transition:.14s}
-  .field input:focus{border-color:var(--o);box-shadow:0 0 0 3px rgba(234,88,12,.12)}
+  /* Staffel-Chips: Anzahl 1–4 mit Sparen-Badge (wie altes GC) */
+  .qty-steps{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+  .qstep{flex:1;min-width:64px;border:1.5px solid var(--line);border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;transition:.14s;background:#fff}
+  .qstep:hover{border-color:#FDBA8C}
+  .qstep.on{border-color:var(--o);background:var(--o-pale)}
+  .qstep .qn{font-size:17px;font-weight:840;color:var(--ink);line-height:1}
+  .qstep .qs{display:block;margin-top:5px;font-size:10.5px;font-weight:800;letter-spacing:.2px;padding:2px 0;border-radius:100px}
+  .qstep .qs.save{background:#FEF6E7;color:#A66400}
+  .qstep .qs.none{color:var(--muted)}
 
   /* Summary (sticky) */
   .summary{position:sticky;top:80px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:var(--shadow)}
   .summary h3{font-size:13px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--o-dark);margin-bottom:16px}
   .sum-row{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:var(--ink2);padding:8px 0}
-  .sum-row.disc{color:#1B6B33;font-weight:650}
+  .sum-row.disc{color:#C2410C;font-weight:650}
   .sum-row b{color:var(--ink);font-weight:760}
   .sum-div{height:1px;background:var(--line);margin:8px 0}
   .sum-total{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-top:6px}
@@ -150,21 +122,24 @@
   .sum-total b{font-size:27px;font-weight:840;letter-spacing:-.6px}
   .sum-vat{font-size:11.5px;color:var(--muted);text-align:right;margin-top:2px}
   .sum-strike{text-decoration:line-through;color:var(--muted);font-weight:600;margin-right:7px}
-  .agb{display:flex;align-items:flex-start;gap:9px;margin:18px 0 14px;font-size:12px;color:var(--ink2);line-height:1.5}
-  .agb input{margin-top:2px;flex:none;width:16px;height:16px;accent-color:var(--o)}
-  .agb a{color:var(--o-dark);text-decoration:underline}
+
+  /* Zwei Zahl-Buttons */
+  .paybtns{display:flex;flex-direction:column;gap:10px;margin-top:18px}
   .buybtn{width:100%;background:var(--grad);color:#fff;font-weight:780;font-size:15.5px;border:none;border-radius:13px;
-        padding:16px;cursor:pointer;transition:.15s;box-shadow:0 8px 22px rgba(234,88,12,.32);display:flex;align-items:center;justify-content:center;gap:9px}
+        padding:15px;cursor:pointer;transition:.15s;box-shadow:0 8px 22px rgba(234,88,12,.32);display:flex;align-items:center;justify-content:center;gap:10px}
   .buybtn:hover:not(:disabled){filter:brightness(1.05)}
   .buybtn:disabled{opacity:.5;cursor:default;box-shadow:none}
-  .buy-legal{font-size:11px;color:var(--muted);text-align:center;margin-top:11px;line-height:1.5}
-  .trust-mini{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:14px;font-size:11.5px;color:var(--muted);flex-wrap:wrap}
-  .trust-mini .pay{background:#fff;border:1px solid var(--line);border-radius:6px;padding:3px 8px;font-weight:700;font-size:10.5px;color:var(--ink2)}
+  .buybtn .pm-ic{display:inline-flex;gap:5px;align-items:center}
+  .buybtn .pm-ic svg{display:block}
+  .buybtn.invoice{background:#fff;color:var(--ink);border:1.5px solid var(--line);box-shadow:none;font-size:14.5px;padding:13px}
+  .buybtn.invoice:hover:not(:disabled){border-color:var(--o);color:var(--o-dark);background:var(--o-pale);filter:none}
+  .paylogos{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:12px;flex-wrap:wrap}
+  .paylogos .pay{background:#fff;border:1px solid var(--line);border-radius:6px;padding:3px 9px;font-weight:800;font-size:10.5px;color:var(--ink2);letter-spacing:.2px}
+  .buy-legal{font-size:11px;color:var(--muted);text-align:center;margin-top:13px;line-height:1.5}
 
-  /* Pending / error notice */
+  /* Error notice */
   .notice{display:none;border-radius:12px;padding:14px 16px;font-size:13.5px;line-height:1.55;margin-top:14px}
   .notice.show{display:block}
-  .notice.pend{background:#FEF6E7;border:1px solid #F4D9A0;color:#7a4e00}
   .notice.err{background:#FDEDEC;border:1px solid #F5B7B1;color:#943126}
   .notice b{font-weight:760}
 
@@ -174,8 +149,8 @@
     .nav-tel{display:none}
   }
   @media(max-width:480px){
-    .fields{grid-template-columns:1fr}
     .pk .pk-top{flex-wrap:wrap}
+    .qstep{min-width:0}
   }
 </style>
 </head>
@@ -229,27 +204,14 @@
             <button id="qPlus" aria-label="Mehr">+</button>
           </div>
         </div>
+        <div class="qty-steps" id="qtySteps"></div>
         <div class="qty-disc" id="qtyDisc">✓ <span id="qtyDiscTxt"></span></div>
-        <div class="qty-ladder">
-          <b>Staffel:</b> 1 Stelle = Normalpreis · 2 Stellen = <b>−10 %</b> · 3 Stellen = <b>−20 %</b> · 4 Stellen = <b>−30 %</b>
-        </div>
       </div>
 
-      <!-- 3. Rabattcode -->
+      <!-- 3. Nächster Schritt -->
       <div class="block">
-        <h2>3 · Rabattcode <span style="color:var(--muted);font-weight:600;text-transform:none;letter-spacing:0">(optional)</span></h2>
-        <div class="bsub">Haben Sie von unserem Vertrieb einen Code erhalten? Hier eingeben.</div>
-        <div class="promo-line">
-          <input type="text" id="promoInput" placeholder="Code eingeben" autocomplete="off" spellcheck="false">
-          <button id="promoApply">Anwenden</button>
-        </div>
-        <div class="promo-msg" id="promoMsg"></div>
-      </div>
-
-      <!-- 4. Nächster Schritt: kurzer Hinweis -->
-      <div class="block">
-        <h2>4 · Nächster Schritt</h2>
-        <div class="bsub">Sie werden jetzt zur Registrierung weitergeleitet und wählen dort Ihre Zahlungsart – Ihr Paket ist bereits vorausgewählt. In rund 5 Minuten sind Sie durch.</div>
+        <h2>3 · Nächster Schritt</h2>
+        <div class="bsub">Sie legen jetzt in rund 5 Minuten Ihr Arbeitgeber-Konto an, bestätigen Ihre E-Mail und schließen die Zahlung ab – Ihr Paket ist bereits vorausgewählt.</div>
       </div>
     </div>
 
@@ -258,9 +220,8 @@
       <div class="summary">
         <h3>Ihre Bestellung</h3>
         <div class="sum-row"><span id="sumPkgName">Paket</span><b id="sumPkgBase">–</b></div>
-        <div class="sum-row"><span id="sumQtyLbl">Anzahl</span><b id="sumQty">1×</b></div>
+        <div class="sum-row"><span id="sumQtyLbl">Anzahl Stellen</span><b id="sumQty">1×</b></div>
         <div class="sum-row disc" id="sumQtyDiscRow" style="display:none"><span>Mengenrabatt</span><b id="sumQtyDisc">–</b></div>
-        <div class="sum-row disc" id="sumCodeRow" style="display:none"><span id="sumCodeLbl">Rabattcode</span><b id="sumCodeDisc">–</b></div>
         <div class="sum-div"></div>
         <div class="sum-total">
           <span>Gesamt (netto)</span>
@@ -268,20 +229,24 @@
         </div>
         <div class="sum-vat" id="sumVat"></div>
 
-        <label class="agb">
-          <input type="checkbox" id="agb">
-          <span>Ich akzeptiere die <a href="agb.html" target="_blank" rel="noopener">AGB</a> und die <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a> der GreenCareers GmbH.</span>
-        </label>
+        <div class="paybtns">
+          <button class="buybtn" id="buyCard">
+            <span>Zahlung per</span>
+            <span class="pm-ic">
+              <svg width="34" height="16" viewBox="0 0 34 16" aria-hidden="true"><rect width="34" height="16" rx="3" fill="#fff" opacity=".18"/><text x="17" y="12" text-anchor="middle" font-family="Arial" font-weight="800" font-size="9" fill="#fff">Karte</text></svg>
+              <svg width="46" height="16" viewBox="0 0 46 16" aria-hidden="true"><rect width="46" height="16" rx="3" fill="#fff" opacity=".18"/><text x="23" y="12" text-anchor="middle" font-family="Arial" font-weight="800" font-size="9" fill="#fff">PayPal</text></svg>
+            </span>
+          </button>
+          <button class="buybtn invoice" id="buyInvoice">Auf Rechnung zahlen</button>
+        </div>
 
-        <button class="buybtn" id="buyBtn" disabled>
-          <span id="buyLabel">Zahlungspflichtig bestellen</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </button>
+        <div class="paylogos">
+          <span class="pay">VISA</span><span class="pay">Mastercard</span><span class="pay">Amex</span><span class="pay">PayPal</span>
+        </div>
 
-        <div class="notice pend" id="notePend"></div>
         <div class="notice err" id="noteErr"></div>
 
-        <div class="buy-legal">Sichere Zahlungsabwicklung · SSL-verschlüsselt · zzgl. 19 % USt.</div>
+        <div class="buy-legal">Sichere Zahlung · SSL-verschlüsselt · alle Preise zzgl. 19 % USt.</div>
         <div class="buy-legal" style="margin-top:6px"><a href="impressum.html" target="_blank" rel="noopener" style="color:inherit">Impressum</a> · <a href="datenschutz.html" target="_blank" rel="noopener" style="color:inherit">Datenschutz</a> · <a href="agb.html" target="_blank" rel="noopener" style="color:inherit">AGB</a></div>
       </div>
     </div>
@@ -291,77 +256,50 @@
 
 <script>
 /* =================================================================
-   KONFIGURATION  ·  >>> FREDDY: DIESE WERTE ANPASSEN <<<
+   Portal-Kaufseite (Einmal) · sammelt Paket + Anzahl + Zahlungsweg
+   und reicht sie ans OS weiter. KEIN Rabattcode-Feld (Nachlässe legt
+   nur der Vertrieb im Backend an), KEINE AGB hier (nur bei der
+   Registrierung). Zahlungsweg: Direkt (Karte/PayPal) ODER Rechnung.
    ================================================================= */
 const MODE = 'einmal';
+const BRAND = 'grey';                       // GreyCareers / Straßen- & Tiefbau
+const OS_BASE = 'https://os.green-careers.de/';
 
-// Vertriebs-Rabattcodes (Julian/Liam): "Sale <Prozent>" – Groß-/Kleinschreibung egal.
-// Gültig sind NUR Sale 10, 20, 30, 40, 50 (Vorgabe Freddy). Server validiert final.
-const RABATT_PREFIX = 'Sale';
-
-// Supabase Edge Function, die Stripe-Checkout erstellt bzw. Rechnung-Bestellung
-// (mit Freigabe-Mail an frederik.linke@greenfield-digital.de) anlegt.
-const CHECKOUT_FN = 'https://tfoopogxaqvfwbonabpi.supabase.co/functions/v1/dynamic-responder';
-const SUPA_ANON   = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRmb29wb2d4YXF2Zndib25hYnBpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEyNTQzMjQsImV4cCI6MjA5NjgzMDMyNH0.udWRPszXVOj7EG4bspmsU9HXbZYFRDn8QO9kZi2tw8M';
-
-// Pakete (Einmalpreise netto). Preise = aktuelle arbeitgeber.html-Preise.
+// Pakete (Einmalpreise netto).
 const PACKAGES = {
   smart: {
-    name:'Smart', price:2190, days:60, best:false, accent:'#C2410C',
+    name:'Smart', price:2190, days:60, best:false,
     desc:'Solider Einstieg für einzelne Vakanzen.',
     feats:['30-Tage-Zufriedenheitsgarantie','Zugang zu über 42.000 Fachkräften','Bilder &amp; Videos in der Anzeige','KI-gestützte Vorfilterung','Bewerbung per Formular in 30 Sekunden']
   },
   premium: {
-    name:'Premium', price:3190, days:60, best:true, accent:'#C2410C',
+    name:'Premium', price:3190, days:60, best:true,
     desc:'Mehr Sichtbarkeit, mehr passende Fachkräfte.',
     feats:['Alles aus Smart','Premium-Platzierung ganz oben','Bis zu 3× höhere Sichtbarkeit','Hervorgehobene Darstellung','Einbindung Ihrer Karriereseite','Einbindung in Social-Media-Kampagnen']
   },
   exzellenz: {
-    name:'Exzellenz', price:5490, days:90, best:false, accent:'#9A3412',
+    name:'Exzellenz', price:5490, days:90, best:false,
     desc:'Maximale Sichtbarkeit &amp; volle Betreuung.',
     feats:['Alles aus Premium','Grundlaufzeit 3 Monate','Direkte Bewerberansprache im Namen Ihres Betriebs','Kooperation mit Recruiting-Partnern','Vorqualifizierung aller Bewerber']
   }
 };
 
-// Mengenrabatt: Anzahl Stellen -> Prozent
 const QTY_DISCOUNT = {1:0, 2:10, 3:20, 4:30};
 const QTY_MAX = 4;
 
-// Zahlungsarten. fast=true -> Kontingent sofort frei; rechnung -> Freigabe-Prozess.
-const PAYMENT_METHODS = [
-  {id:'card',   name:'Kreditkarte', note:'Visa, Mastercard, American Express', fast:true},
-  {id:'paypal', name:'PayPal',      note:'Zahlung über Ihr PayPal-Konto',      fast:true},
-  {id:'sepa',   name:'SEPA-Lastschrift', note:'Lastschrift von Ihrem Geschäftskonto', fast:true},
-  {id:'rechnung', name:'Kauf auf Rechnung', note:'Zahlungsziel 14 Tage · Freischaltung nach Zahlungseingang', fast:false}
-];
-
-/* =================================================================
-   LOGIK
-   ================================================================= */
 const $=id=>document.getElementById(id);
 const fmt=n=>n.toLocaleString('de-DE',{minimumFractionDigits:n%1?2:0,maximumFractionDigits:2});
-
-const state = { pkg:'premium', qty:1, codePct:0, codeRaw:'', method:'card', ref:'' };
+const state = { pkg:'premium', qty:1, ref:'' };
 
 /* --- Paket-Vorauswahl aus URL (?pkg=smart) --- */
-(function(){
-  const pk=new URLSearchParams(location.search).get('pkg');
-  if(pk && PACKAGES[pk]) state.pkg=pk;
-})();
+(function(){ const pk=new URLSearchParams(location.search).get('pkg'); if(pk && PACKAGES[pk]) state.pkg=pk; })();
 
 /* --- Referral aus URL (?ref=julian) --- */
 (function(){
   const ref=new URLSearchParams(location.search).get('ref');
-  if(ref){
-    state.ref=ref.trim().slice(0,40);
-    try{localStorage.setItem('gc_ref',state.ref);}catch(e){}
-  } else {
-    try{state.ref=localStorage.getItem('gc_ref')||'';}catch(e){}
-  }
-  if(state.ref){
-    $('refName').textContent=state.ref.charAt(0).toUpperCase()+state.ref.slice(1);
-    $('refInner').classList.add('show');
-  }
+  if(ref){ state.ref=ref.trim().slice(0,40); try{localStorage.setItem('gc_ref',state.ref);}catch(e){} }
+  else { try{state.ref=localStorage.getItem('gc_ref')||'';}catch(e){} }
+  if(state.ref){ $('refName').textContent=state.ref.charAt(0).toUpperCase()+state.ref.slice(1); $('refInner').classList.add('show'); }
 })();
 $('refX').onclick=()=>$('refInner').classList.remove('show');
 
@@ -382,100 +320,65 @@ function renderPkgs(){
   document.querySelectorAll('.pk').forEach(el=>el.onclick=()=>{state.pkg=el.dataset.k;renderPkgs();update();});
 }
 
-/* --- Zahlarten rendern --- */
-function renderPM(){
-  $('pmGrid').innerHTML=PAYMENT_METHODS.map(m=>`
-    <div class="pm ${m.id===state.method?'sel':''}" data-id="${m.id}">
-      <div class="radio"></div>
-      <div class="pm-main"><div class="pm-name">${m.name}</div><div class="pm-note">${m.note}</div></div>
-      <div class="pm-badge ${m.fast?'fast':'check'}">${m.fast?'Sofort frei':'Nach Prüfung'}</div>
-    </div>`).join('');
-  document.querySelectorAll('.pm').forEach(el=>el.onclick=()=>{state.method=el.dataset.id;renderPM();update();});
+/* --- Anzahl-Staffel (1–4 mit Sparen-Badge) rendern --- */
+function renderSteps(){
+  $('qtySteps').innerHTML=[1,2,3,4].map(n=>{
+    const pct=QTY_DISCOUNT[n]||0;
+    return `<div class="qstep ${n===state.qty?'on':''}" data-n="${n}">
+      <div class="qn">${n}</div>
+      <span class="qs ${pct?'save':'none'}">${pct?('−'+pct+' %'):'Basis'}</span>
+    </div>`;
+  }).join('');
+  document.querySelectorAll('.qstep').forEach(el=>el.onclick=()=>{state.qty=parseInt(el.dataset.n,10);update();});
 }
 
-/* --- Menge --- */
+/* --- Menge (Stepper) --- */
 $('qMinus').onclick=()=>{if(state.qty>1){state.qty--;update();}};
 $('qPlus').onclick =()=>{if(state.qty<QTY_MAX){state.qty++;update();}};
-
-/* --- Rabattcode prüfen (Anzeige; Server validiert final) --- */
-function applyPromo(){
-  const raw=$('promoInput').value.trim();
-  const msg=$('promoMsg');
-  if(!raw){state.codePct=0;state.codeRaw='';msg.className='promo-msg';msg.textContent='';update();return;}
-  // Geheimwort + ganze Zahl (Leerzeichen optional), z. B. "Sale 30". Nur 10er-Stufen bis 50.
-  const re=new RegExp('^\\s*'+RABATT_PREFIX+'\\s*([0-9]{1,2})\\s*$','i');
-  const m=raw.match(re);
-  if(m){
-    const pct=parseInt(m[1],10);
-    if(pct>=10 && pct<=50 && pct%10===0){
-      state.codePct=pct;state.codeRaw=raw;
-      msg.className='promo-msg ok';msg.textContent='✓ Rabattcode gültig – '+fmt(pct)+' % werden abgezogen.';
-    }else{state.codePct=0;state.codeRaw='';msg.className='promo-msg err';msg.textContent='✕ Dieser Code ist ungültig oder abgelaufen.';}
-  }else{
-    state.codePct=0;state.codeRaw='';
-    msg.className='promo-msg err';msg.textContent='✕ Code ungültig.';
-  }
-  update();
-}
-$('promoApply').onclick=applyPromo;
-$('promoInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();applyPromo();}});
 
 /* --- Preisberechnung + Zusammenfassung --- */
 function calc(){
   const p=PACKAGES[state.pkg];
   const base=p.price*state.qty;
   const qPct=QTY_DISCOUNT[state.qty]||0;
-  const afterQty=base*(1-qPct/100);
-  const codeAmt=afterQty*(state.codePct/100);
-  const total=afterQty-codeAmt;
-  return {p,base,qPct,qtyDiscAmt:base-afterQty,codeAmt,total};
+  const total=base*(1-qPct/100);
+  return {p,base,qPct,qtyDiscAmt:base-total,total};
 }
 function update(){
   const c=calc();
-  // Mengen-Wort + Disc-Box
   $('qVal').textContent=state.qty;
   $('qtyWord').textContent=state.qty+(state.qty===1?' Stelle':' Stellen');
   $('qMinus').disabled=state.qty<=1;$('qPlus').disabled=state.qty>=QTY_MAX;
+  renderSteps();
   if(c.qPct>0){$('qtyDisc').classList.add('show');$('qtyDiscTxt').textContent=c.qPct+' % Mengenrabatt – Sie sparen '+fmt(c.qtyDiscAmt)+' € netto.';}
   else $('qtyDisc').classList.remove('show');
-  // Summary
   $('sumPkgName').textContent=c.p.name+' ('+c.p.days+' Tage)';
   $('sumPkgBase').textContent=fmt(c.p.price)+' €';
-  $('sumQtyLbl').textContent='Anzahl Stellen';
   $('sumQty').textContent=state.qty+'×';
   if(c.qPct>0){$('sumQtyDiscRow').style.display='flex';$('sumQtyDisc').textContent='−'+fmt(c.qtyDiscAmt)+' €';}
   else $('sumQtyDiscRow').style.display='none';
-  if(state.codePct>0){$('sumCodeRow').style.display='flex';$('sumCodeLbl').textContent='Rabattcode ('+fmt(state.codePct)+' %)';$('sumCodeDisc').textContent='−'+fmt(c.codeAmt)+' €';}
-  else $('sumCodeRow').style.display='none';
-  const saved=c.qtyDiscAmt+c.codeAmt;
-  $('sumTotal').innerHTML=(saved>0?'<span class="sum-strike">'+fmt(c.base)+' €</span>':'')+fmt(c.total)+' €';
+  $('sumTotal').innerHTML=(c.qtyDiscAmt>0?'<span class="sum-strike">'+fmt(c.base)+' €</span>':'')+fmt(c.total)+' €';
   const vat=c.total*0.19;
   $('sumVat').textContent='zzgl. '+fmt(vat)+' € USt. · Brutto '+fmt(c.total+vat)+' €';
-  $('buyLabel').textContent='Weiter zur Registrierung';
 }
 
-/* --- AGB schaltet Button --- */
-$('agb').addEventListener('change',e=>{$('buyBtn').disabled=!e.target.checked;});
-
-/* --- Weiter zur Registrierung im GreyCareers OS --------------------------
-   Option B: Erst Konto + Registrierung, dann Zahlung. Das Portal sammelt nur
-   die Paket-Konfiguration und reicht sie per URL ans OS weiter (?brand=grey&flow=buy…).
-   Zahlart + Betriebsdaten + Abschluss laufen anschließend IM OS. */
-const OS_BASE = 'https://os.green-careers.de/';
-$('buyBtn').addEventListener('click',goToRegistration);
-function goToRegistration(){
-  if(!$('agb').checked){ showErr('Bitte bestätigen Sie AGB und Datenschutz.'); return; }
+/* --- Weiter ins OS: erst Konto + E-Mail-Bestätigung, dann Zahlung -----------
+   Zwei Wege: 'direct' (Karte/PayPal via Stripe) oder 'rechnung' (Kauf auf
+   Rechnung, Freischaltung nach Zahlungseingang). Der gewählte Weg wird ans
+   OS durchgereicht (?method=). KEIN Rabattcode im Frontend. */
+function goToRegistration(method){
   const q=new URLSearchParams();
-  q.set('brand','grey');
+  q.set('brand',BRAND);
   q.set('flow','buy');
   q.set('pkg',state.pkg);
   q.set('mode',MODE);
   q.set('qty',String(state.qty));
-  if(state.codeRaw) q.set('code',state.codeRaw);
-  if(state.ref)     q.set('ref',state.ref);
+  q.set('method',method);           // 'direct' | 'rechnung'
+  if(state.ref) q.set('ref',state.ref);
   location.href = OS_BASE + '?' + q.toString();
 }
-function showErr(t){$('noteErr').textContent=t;$('noteErr').classList.add('show');}
+$('buyCard').addEventListener('click',()=>goToRegistration('direct'));
+$('buyInvoice').addEventListener('click',()=>goToRegistration('rechnung'));
 
 renderPkgs();update();
 </script>

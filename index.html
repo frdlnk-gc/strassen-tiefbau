@@ -2018,7 +2018,7 @@ async function submitApply(slug){
   const btn=$('apBtn'); btn.disabled=true; btn.textContent='Wird gesendet…';
   const {error}=await sb.rpc('apply_to_job',{p_slug:slug,p_name:name,p_email:email,p_telefon:tel,p_nachricht:msg});
   if(error){btn.disabled=false;btn.textContent='Bewerbung absenden';return showErr(error.message);}
-  $('applyCard').innerHTML='<div class="applied"><div class="big">✓</div><h3>Bewerbung gesendet!</h3><p>Der Betrieb hat deine Bewerbung erhalten und meldet sich bei dir. Viel Erfolg!</p></div>';
+  const _apBox = $('ndApply') || $('applyCard'); if(_apBox) _apBox.innerHTML='<div class="applied"><div class="big">✓</div><h3>Bewerbung gesendet!</h3><p>Der Betrieb hat deine Bewerbung erhalten und meldet sich bei dir. Viel Erfolg!</p></div>';
 }
 function showErr(m){const e=$('applyErr');e.textContent=m;e.style.display='block';}
 

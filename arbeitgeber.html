@@ -148,6 +148,14 @@
   .pl .pbtn.solid:hover{filter:brightness(1.05)}
   .pl .pbtn.outline{border:1px solid var(--line);color:var(--ink2)}
   .pl .pbtn.outline:hover{border-color:var(--o);color:var(--o-dark)}
+  /* Kauf-Block je Karte: Anzahl-Regler (Sparen) + zwei Buttons -> direkt zur Registrierung */
+  .pl .pbuy{display:flex;flex-direction:column;gap:9px}
+  .pl .pqty{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--o-pale);border:1px solid var(--line);border-radius:11px;padding:10px 14px;margin-bottom:3px}
+  .pl .pqty > span{font-size:13px;font-weight:700;color:var(--ink2)}
+  .pl .pqty select{border:none;background:transparent;font-family:inherit;font-size:14px;font-weight:800;color:var(--o-dark);cursor:pointer;outline:none}
+  .pl button.pbtn{border:none;cursor:pointer;font-family:inherit;width:100%;line-height:1.25}
+  .pl .pbtn.invoice{background:#fff;border:1px solid var(--line);color:var(--ink2)}
+  .pl .pbtn.invoice:hover{border-color:var(--o);color:var(--o-dark);background:var(--o-pale)}
   .price-note{text-align:center;color:var(--muted);font-size:13.5px;margin-top:22px}
   .pay-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:9px;margin-top:16px}
   .pay-label{color:var(--muted);font-size:13px;font-weight:600;margin-right:4px}
@@ -385,7 +393,18 @@
           <li><span class="ck">✓</span> KI-gestützte Vorfilterung der Bewerbungen</li>
           <li><span class="ck">✓</span> Bewerbung per Kontaktformular in 30 Sekunden</li>
         </ul>
-        <a class="pbtn outline" href="kaufen-einmal.html?pkg=smart">Smart kaufen</a>
+        <div class="pbuy">
+          <label class="pqty"><span>Anzahl Stellen</span>
+            <select data-pkg="smart" aria-label="Anzahl Stellen Smart">
+              <option value="1">1 Stelle</option>
+              <option value="2">2 · 10 % sparen</option>
+              <option value="3">3 · 20 % sparen</option>
+              <option value="4">4 · 30 % sparen</option>
+            </select>
+          </label>
+          <button type="button" class="pbtn solid" data-pkg="smart" data-method="direct">Zahlung per Karte / PayPal</button>
+          <button type="button" class="pbtn invoice" data-pkg="smart" data-method="rechnung">Auf Rechnung zahlen</button>
+        </div>
       </div>
 
       <div class="pl best">
@@ -401,7 +420,18 @@
           <li><span class="ck">✓</span> Einbindung Ihrer Karriereseite</li>
           <li><span class="ck">✓</span> Einbindung in Social-Media-Kampagnen</li>
         </ul>
-        <a class="pbtn solid" href="kaufen-einmal.html?pkg=premium">Premium kaufen</a>
+        <div class="pbuy">
+          <label class="pqty"><span>Anzahl Stellen</span>
+            <select data-pkg="premium" aria-label="Anzahl Stellen Premium">
+              <option value="1">1 Stelle</option>
+              <option value="2">2 · 10 % sparen</option>
+              <option value="3">3 · 20 % sparen</option>
+              <option value="4">4 · 30 % sparen</option>
+            </select>
+          </label>
+          <button type="button" class="pbtn solid" data-pkg="premium" data-method="direct">Zahlung per Karte / PayPal</button>
+          <button type="button" class="pbtn invoice" data-pkg="premium" data-method="rechnung">Auf Rechnung zahlen</button>
+        </div>
       </div>
 
       <div class="pl exc">
@@ -415,7 +445,18 @@
           <li><span class="ck">✓</span> Kooperation mit unseren Recruiting-Partnern</li>
           <li><span class="ck">✓</span> <b>Vorqualifizierung aller Bewerber</b></li>
         </ul>
-        <a class="pbtn outline" href="kaufen-einmal.html?pkg=exzellenz">Exzellenz kaufen</a>
+        <div class="pbuy">
+          <label class="pqty"><span>Anzahl Stellen</span>
+            <select data-pkg="exzellenz" aria-label="Anzahl Stellen Exzellenz">
+              <option value="1">1 Stelle</option>
+              <option value="2">2 · 10 % sparen</option>
+              <option value="3">3 · 20 % sparen</option>
+              <option value="4">4 · 30 % sparen</option>
+            </select>
+          </label>
+          <button type="button" class="pbtn solid" data-pkg="exzellenz" data-method="direct">Zahlung per Karte / PayPal</button>
+          <button type="button" class="pbtn invoice" data-pkg="exzellenz" data-method="rechnung">Auf Rechnung zahlen</button>
+        </div>
       </div>
     </div>
     <p class="price-note">Alle Preise zzgl. MwSt. · Individuelle Kontingente für mehrere Stellen auf Anfrage.</p>
@@ -711,6 +752,23 @@ async function mayaSend(){
     document.getElementById('maya-in').focus();
   }
 }
+</script>
+<script>
+/* Kauf-Buttons auf den Paketkarten -> direkt zur Registrierung im OS.
+   Anzahl + Zahlungsweg (direct/rechnung) werden HIER gewählt – KEINE Zwischenseite. */
+(function(){
+  const OS_BASE='https://os.green-careers.de/';
+  const BRAND='grey';
+  let ref=''; try{ ref=(new URLSearchParams(location.search).get('ref'))||localStorage.getItem('gc_ref')||''; if(ref)localStorage.setItem('gc_ref',ref); }catch(e){}
+  const qtyFor=pkg=>{ const s=document.querySelector('.pqty select[data-pkg="'+pkg+'"]'); return s?s.value:'1'; };
+  function go(pkg,method){
+    const q=new URLSearchParams();
+    q.set('brand',BRAND); q.set('flow','buy'); q.set('pkg',pkg); q.set('mode','einmal'); q.set('qty',qtyFor(pkg)); q.set('method',method);
+    if(ref) q.set('ref',ref);
+    location.href=OS_BASE+'?'+q.toString();
+  }
+  document.querySelectorAll('button.pbtn[data-pkg]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.pkg,b.dataset.method)));
+})();
 </script>
 <script src="assets/cookie-consent.js" data-accent="#EA580C" data-metapixel="634469765867935"></script>
 </body>

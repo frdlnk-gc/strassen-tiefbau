@@ -558,6 +558,52 @@
   .karriere-btn:hover{background:#000}
   .dt-map{margin-top:14px;border-radius:12px;overflow:hidden;border:1px solid var(--line2);height:240px}
   .dt-map iframe{width:100%;height:100%;border:0;display:block}
+
+  /* ===== Editorial-Detailseite (altes GC-Design: 1-spaltig, spielerisch) ===== */
+  .nd{max-width:900px;margin:0 auto;padding:4px 0 10px}
+  .nd-hero{position:relative;border-radius:20px;overflow:hidden;background:var(--dark);aspect-ratio:16/8;box-shadow:var(--shadow)}
+  .nd-hero.noimg{background:var(--grad)}
+  .nd-tier{position:absolute;top:14px;left:14px;z-index:2;font-size:12px;font-weight:800;color:#fff;background:rgba(0,0,0,.42);backdrop-filter:blur(6px);border-radius:999px;padding:6px 13px}
+  .nd-idbar{display:flex;align-items:flex-start;gap:14px;margin:-34px 22px 0;position:relative;z-index:3}
+  .nd-logo{width:70px;height:70px;flex:none;border-radius:16px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .nd-logo img{width:100%;height:100%;object-fit:contain;padding:8px}
+  .nd-logo span{font-weight:800;color:var(--o-dark);font-size:24px}
+  .nd-firma{padding-top:34px;min-width:0;flex:1}
+  .nd-firma b{display:block;font-size:18px;font-weight:800;letter-spacing:-.3px;color:var(--ink);line-height:1.2}
+  .nd-firma .loc{font-size:13.5px;color:var(--muted);font-weight:600}
+  .nd-tabs{display:flex;justify-content:center;gap:8px;margin:26px 0 0;flex-wrap:wrap}
+  .nd-tab{background:var(--card);border:1px solid var(--line);border-radius:999px;font-family:inherit;font-size:14px;font-weight:700;color:var(--muted);padding:9px 20px;cursor:pointer;transition:.15s}
+  .nd-tab:hover{border-color:var(--o);color:var(--o-dark)}
+  .nd-tab.on{background:var(--o);border-color:var(--o);color:#fff}
+  .nd-cta{display:block;width:100%;max-width:420px;margin:20px auto 4px;background:var(--o-dark);color:#fff;border:0;border-radius:14px;font-family:inherit;font-size:15px;font-weight:800;letter-spacing:.3px;padding:16px;cursor:pointer;box-shadow:0 6px 18px rgba(234,88,12,.28);transition:.15s}
+  .nd-cta:hover{background:var(--o);transform:translateY(-1px)}
+  .nd .tabpane{display:none;padding-top:8px}
+  .nd .tabpane.on{display:block;animation:fade .2s ease}
+  .nd-info{display:flex;gap:12px;flex-wrap:wrap;margin:22px 0 4px}
+  .nd-infocard{flex:1;min-width:150px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center;box-shadow:var(--shadow)}
+  .nd-ic{display:flex;width:38px;height:38px;margin:0 auto 8px;align-items:center;justify-content:center;border-radius:11px;background:var(--o-pale);font-size:18px}
+  .nd-il{display:block;font-size:12px;color:var(--muted);font-weight:600}
+  .nd-iv{display:block;font-size:14.5px;font-weight:800;color:var(--ink);margin-top:2px}
+  .nd-sec{font-size:22px;font-weight:820;letter-spacing:-.4px;margin:26px 0 6px;color:var(--ink)}
+  .nd-sec::after{content:"";display:block;width:44px;height:3px;border-radius:3px;background:var(--grad);margin-top:8px}
+  .nd-sub{font-size:16px;font-weight:780;margin:24px 0 10px}
+  .nd-lead{color:var(--o-dark);font-weight:800;font-size:15px;margin:2px 0 14px}
+  .nd-body{color:var(--ink2);font-size:15px;line-height:1.65;white-space:pre-line;margin-bottom:6px}
+  .nd-apply{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--shadow);margin:30px auto 0;max-width:560px}
+  .nd-apply h3{font-size:20px;font-weight:820;text-align:center}
+  .nd-apply .sub{color:var(--muted);font-size:13.5px;margin:5px 0 16px;text-align:center}
+  .nd-fragen{text-align:center;margin:34px 0 6px}
+  .nd-fragen-h{font-size:20px;font-weight:820;margin-bottom:16px}
+  .nd-ap{display:inline-flex;gap:16px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 26px;box-shadow:var(--shadow);text-align:left;flex-wrap:wrap;justify-content:center}
+  .nd-apfoto{width:64px;height:64px;border-radius:50%;object-fit:cover;flex:none;background:var(--o-pale);color:var(--o-dark);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:22px}
+  .nd-ap-lbl{font-size:11.5px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--muted)}
+  .nd-ap-name{font-size:17px;font-weight:800;color:var(--o-dark);margin-top:2px}
+  .nd-ap-rolle{font-size:13px;color:var(--muted);font-weight:600}
+  .nd-ap-btns{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+  .nd-ap-btn{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;border-radius:10px;padding:9px 14px;text-decoration:none}
+  .nd-ap-btn.solid{background:var(--o-dark);color:#fff}
+  .nd-ap-btn.ghost{background:var(--o-pale);color:var(--o-dark);border:1px solid var(--line)}
+  @media(max-width:560px){.nd-hero{aspect-ratio:16/10}.nd-sec{font-size:19px}.nd-infocard{min-width:120px}.nd-firma b{font-size:16px}}
   .lb{position:fixed;inset:0;background:rgba(10,12,14,.88);display:none;align-items:center;justify-content:center;
       z-index:100;padding:30px;cursor:zoom-out}
   .lb.on{display:flex}
@@ -1847,9 +1893,12 @@ function carGo(id,i){const t=carTrack(id);if(t)t.scrollTo({left:i*t.clientWidth,
 function carSync(id){const t=carTrack(id);if(!t)return;const i=Math.round(t.scrollLeft/t.clientWidth);
   const dots=$(id+'-dots');if(dots)[...dots.children].forEach((d,k)=>d.classList.toggle('on',k===i));}
 function switchTab(name){
-  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.tab===name));
+  document.querySelectorAll('.nd-tab').forEach(t=>t.classList.toggle('on',t.dataset.tab===name));
   document.querySelectorAll('.tabpane').forEach(p=>p.classList.toggle('on',p.dataset.tab===name));
 }
+function clistOnly(v){const items=asList(v);if(!items.length)return '';
+  return '<ul class="clist">'+items.map(t=>'<li><span class="ck">✓</span><span>'+esc(t)+'</span></li>').join('')+'</ul>';}
+function scrollToApply(){const el=$('ndApply');if(el){el.scrollIntoView({behavior:'smooth',block:'center'});const n=$('ap-name');if(n)setTimeout(()=>n.focus(),380);}}
 function openLb(src){$('lbImg').src=src;$('lb').classList.add('on');}
 function closeLb(){$('lb').classList.remove('on');}
 
@@ -1858,46 +1907,64 @@ function renderDetail(j){
   $('detail').style.display='block';
   applyJobSeo(j);
 
-  const lvl=tierLevel(j), tm=TIER_META[lvl], perks=TIER_PERKS[lvl]||[];
-  const perksHtml=`<div class="perk-card ${tm.cls}">
-      ${tm.label?`<div class="perk-tier">★ ${tm.label}</div>`:'<div class="perk-tier basis">Geprüfter Betrieb</div>'}
-      <div class="perk-h">Was dich hier erwartet</div>
-      <ul class="perk-list">
-        ${perks.map(p=>`<li><span class="pk-i">${p[0]}</span><div><b>${p[1]}</b><span>${p[2]}</span></div></li>`).join('')}
-      </ul>
-    </div>`;
-  const stepperHtml=`<div class="proc-card">
-      <div class="perk-h">So läuft deine Bewerbung</div>
-      <ol class="proc-list">
-        <li><span class="ps-n">1</span><div><b>Formular absenden</b><span>Name &amp; Kontakt genügen – kein Anschreiben, keine Uploads.</span></div></li>
-        <li><span class="ps-n">2</span><div><b>${lvl==='excellence'?'Persönlicher Rückruf':'Betrieb erhält deine Bewerbung'}</b><span>${lvl==='excellence'?'Unser Team meldet sich, qualifiziert vor und stellt dich vor.':'Deine Bewerbung liegt sofort beim Bauunternehmen.'}</span></div></li>
-        <li><span class="ps-n">3</span><div><b>Direkter Kontakt</b><span>Der Betrieb meldet sich bei dir – oft schon am nächsten Werktag.</span></div></li>
-      </ol>
-    </div>`;
+  const lvl=tierLevel(j), tm=TIER_META[lvl];
+  const logo = j.firma_logo ? `<img src="${esc(j.firma_logo)}" alt="${esc(j.firma)}">` : `<span>${esc(initials(j.firma))}</span>`;
+  const heroImg = coverUrl(j) || j.firma_titelbild || '';
+  const mapQuery = encodeURIComponent((j.firma||'')+' '+(j.firma_ort||j.ort||''));
 
-  const benefitsHtml = (asList(j.benefits_list).length? blockList('Das bieten wir dir',j.benefits_list) : blockList('Das bieten wir dir',j.benefits))
-    || '<div class="block"><div class="body" style="color:var(--muted)">Keine Benefits hinterlegt.</div></div>';
+  // Info-Kacheln (altes GC: Pensum / Vertrag / Verfügbar ab / Gehalt)
+  const infoCards = [
+    j.beschaeftigungsart ? ['⏱','Pensum', j.beschaeftigungsart] : null,
+    j.vertragsart ? ['📄','Vertrag', j.vertragsart] : null,
+    j.eintritt ? ['📅','Verfügbar ab', j.eintritt] : null,
+    j.gehalt ? ['💶','Gehalt', fmtGehalt(j.gehalt)] : null
+  ].filter(Boolean);
+  const infoHtml = infoCards.length ? `<div class="nd-info">${infoCards.map(c=>
+      `<div class="nd-infocard"><span class="nd-ic">${c[0]}</span><span class="nd-il">${c[1]}</span><b class="nd-iv">${esc(c[2])}</b></div>`).join('')}</div>` : '';
+
+  const jobHtml = `
+    ${infoHtml}
+    <h2 class="nd-sec">${esc(j.titel)}</h2>
+    ${j.beschreibung?`<div class="nd-body">${esc(j.beschreibung)}</div>`:''}
+    ${carousel(j.stellen_bilder)}
+    ${blockList('Deine Aufgaben', j.aufgaben)}
+    ${blockList('Dein Profil', j.profil)}
+    ${(!j.beschreibung && !asList(j.aufgaben).length && !asList(j.profil).length)?'<div class="nd-body" style="color:var(--muted)">Keine Beschreibung hinterlegt.</div>':''}`;
+
+  const benefitsHtml = `<h2 class="nd-sec">Benefits</h2><p class="nd-lead">Was wir dir bieten:</p>`
+    + (clistOnly(asList(j.benefits_list).length ? j.benefits_list : j.benefits) || '<div class="nd-body" style="color:var(--muted)">Keine Benefits hinterlegt.</div>');
 
   const hasUeber = j.firma_ueber_uns || j.firma_mitarbeiter || j.firma_gruendung || (Array.isArray(j.firma_bilder)&&j.firma_bilder.length);
-  const mapQuery = encodeURIComponent((j.firma||'')+' '+(j.firma_ort||j.ort||''));
   const ueberHtml = `
+    <h2 class="nd-sec">Über uns</h2>
+    <p class="nd-lead">${esc(j.firma)}</p>
     ${carousel(j.firma_bilder)}
     ${(j.firma_mitarbeiter||j.firma_gruendung)?`<div class="ustats">
         ${j.firma_mitarbeiter?`<div class="ustat"><b>${esc(j.firma_mitarbeiter)}</b><span>Mitarbeitende</span></div>`:''}
         ${j.firma_gruendung?`<div class="ustat"><b>${esc(j.firma_gruendung)}</b><span>gegründet</span></div>`:''}
-        ${j.firma_ort?`<div class="ustat"><b>${esc(j.firma_ort)}</b><span>Standort</span></div>`:''}
       </div>`:''}
-    ${blockText('Über '+(j.firma||'das Unternehmen'),j.firma_ueber_uns)}
-    ${j.firma_karriere_url?`<a class="karriere-btn" href="${esc(j.firma_karriere_url)}" target="_blank" rel="noopener">Zur Karriereseite →</a>`:''}
-    ${(j.firma_ort||j.ort)?`<div class="dt-map"><iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=${mapQuery}&output=embed"></iframe></div>`:''}`;
+    ${j.firma_ueber_uns?`<div class="nd-body">${esc(j.firma_ueber_uns)}</div>`:''}
+    ${j.firma_karriere_url?`<a class="karriere-btn" href="${esc(j.firma_karriere_url)}" target="_blank" rel="noopener">Unsere Karriereseite →</a>`:''}
+    ${(j.firma_ort||j.ort)?`<h3 class="nd-sub">Hier findest du uns</h3><div class="dt-map"><iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=${mapQuery}&output=embed"></iframe></div>`:''}`;
 
-  const apFoto = j.ansprechpartner_foto
-    ? `<img class="ap-foto" src="${esc(j.ansprechpartner_foto)}" alt="">`
-    : `<div class="ap-foto">${esc(initials(j.ansprechpartner||j.firma))}</div>`;
+  const apName = j.ansprechpartner || j.firma;
+  const apFoto = j.ansprechpartner_foto ? `<img class="nd-apfoto" src="${esc(j.ansprechpartner_foto)}" alt="">` : `<div class="nd-apfoto">${esc(initials(apName))}</div>`;
+  const fragenHtml = (j.ansprechpartner||j.kontakt_email||j.kontakt_telefon)?`
+    <div class="nd-fragen">
+      <h3 class="nd-fragen-h">Hast du noch Fragen?</h3>
+      <div class="nd-ap">${apFoto}
+        <div class="nd-ap-info">
+          <div class="nd-ap-lbl">Dein Ansprechpartner</div>
+          <div class="nd-ap-name">${esc(apName)}</div>
+          ${j.ansprechpartner_rolle?`<div class="nd-ap-rolle">${esc(j.ansprechpartner_rolle)}</div>`:''}
+          <div class="nd-ap-btns">
+            ${j.kontakt_telefon?`<a class="nd-ap-btn solid" href="tel:${esc(j.kontakt_telefon)}">📞 ${esc(j.kontakt_telefon)}</a>`:''}
+            ${j.kontakt_email?`<a class="nd-ap-btn ghost" href="mailto:${esc(j.kontakt_email)}">✉️ E-Mail senden</a>`:''}
+          </div>
+        </div>
+      </div>
+    </div>`:'';
 
-  // Banner = GENAU dasselbe Cover wie in der Stellen-Übersicht (Konsistenz): das vom Betrieb
-  // als Titelbild gewählte Stellen-Bild zuerst, Firmen-Titelbild nur als Fallback.
-  const bannerImg = coverUrl(j) || j.firma_titelbild || '';
   $('detailInner').innerHTML=`
     <div class="dt-topbar">
       <div class="back" onclick="goHome()">← Alle Stellen</div>
@@ -1907,73 +1974,37 @@ function renderDetail(j){
         <button class="share-btn wa" onclick="shareWhatsApp('${esc(j.slug)}')" title="Per WhatsApp teilen">WhatsApp</button>
       </div>
     </div>
-    <div class="dt-grid">
-      <div class="dt-main">
-        <div class="dt-banner ${bannerImg?'':'noimg'}">${bannerImg?`<img class="cf-bg" src="${esc(bannerImg)}" alt="" aria-hidden="true"><img class="cf-fg" src="${esc(bannerImg)}" alt="">`:''}
-          ${tm.label?`<span class="dt-tier ${tm.cls}">★ ${tm.label}</span>`:''}
-          <div class="dt-head">
-            ${fav(j)}
-            <div class="ht"><h1>${esc(j.titel)}</h1><div class="firma">${esc(j.firma)}${j.ort?' · '+esc(j.ort):''}</div></div>
-          </div>
-        </div>
-        <div class="dt-inner">
-          <div class="dt-tags">
-            ${j.beschaeftigungsart?`<span class="tag">🕒 ${esc(j.beschaeftigungsart)}</span>`:''}
-            ${j.vertragsart?`<span class="tag">📄 ${esc(j.vertragsart)}</span>`:''}
-            ${j.eintritt?`<span class="tag">📅 ${esc(j.eintritt)}</span>`:''}
-            ${j.gehalt?`<span class="tag sal">💶 ${esc(fmtGehalt(j.gehalt))}</span>`:''}
-          </div>
-
-          <div class="tabs">
-            <button class="tab on" data-tab="job" onclick="switchTab('job')">Jobbeschreibung</button>
-            <button class="tab" data-tab="benefits" onclick="switchTab('benefits')">Benefits</button>
-            ${hasUeber?`<button class="tab" data-tab="ueber" onclick="switchTab('ueber')">Über uns</button>`:''}
-          </div>
-
-          <div class="tabpane on" data-tab="job">
-            ${blockText('Über die Stelle',j.beschreibung)}
-            ${blockList('Deine Aufgaben',j.aufgaben)}
-            ${blockList('Dein Profil',j.profil)}
-            ${carousel(j.stellen_bilder)}
-            ${(!j.beschreibung&&!asList(j.aufgaben).length&&!asList(j.profil).length)?'<div class="block"><div class="body" style="color:var(--muted)">Keine Beschreibung hinterlegt.</div></div>':''}
-          </div>
-          <div class="tabpane" data-tab="benefits">${benefitsHtml}</div>
-          ${hasUeber?`<div class="tabpane" data-tab="ueber">${ueberHtml}</div>`:''}
-        </div>
+    <div class="nd">
+      <div class="nd-hero ${heroImg?'':'noimg'}">${heroImg?`<img class="cf-bg" src="${esc(heroImg)}" alt="" aria-hidden="true"><img class="cf-fg" src="${esc(heroImg)}" alt="${esc(j.firma)}">`:''}
+        ${tm.label?`<span class="nd-tier ${tm.cls}">★ ${tm.label}</span>`:''}
       </div>
-
-      <div class="aside">
-        <div class="apply-card" id="applyCard">
-          <h3>Jetzt bewerben</h3>
-          <div class="sub">${tm.sub}</div>
-          <div class="err" id="applyErr"></div>
-          <div class="field"><label>Name *</label><input id="ap-name" placeholder="Vor- und Nachname"></div>
-          <div class="field"><label>E-Mail</label><input id="ap-email" type="email" placeholder="dein@email.de"></div>
-          <div class="field"><label>Telefon</label><input id="ap-tel" type="tel" placeholder="0151 …"></div>
-          <div class="field"><label>Nachricht (optional)</label><textarea id="ap-msg" placeholder="Kurz: Warum passt du? Wann verfügbar?"></textarea></div>
-          <button class="btn-apply" id="apBtn" onclick="submitApply('${esc(j.slug)}')">Bewerbung absenden</button>
-          <div class="consent">Mit dem Absenden stimmst du der Verarbeitung deiner Daten zur Bearbeitung der Bewerbung zu. Details in der <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.</div>
-        </div>
-        ${(j.ansprechpartner||j.kontakt_email||j.kontakt_telefon)?`
-        <div class="ap-card">
-          <div class="ap-h">Dein Ansprechpartner</div>
-          <div class="ap-top">${apFoto}
-            <div>${j.ansprechpartner?`<div class="ap-name">${esc(j.ansprechpartner)}</div>`:`<div class="ap-name">${esc(j.firma)}</div>`}
-            ${j.ansprechpartner_rolle?`<div class="ap-rolle">${esc(j.ansprechpartner_rolle)}</div>`:''}</div>
-          </div>
-          ${j.kontakt_telefon?`<div class="row"><span class="d">📞</span> <a href="tel:${esc(j.kontakt_telefon)}">${esc(j.kontakt_telefon)}</a></div>`:''}
-          ${j.kontakt_email?`<div class="row"><span class="d">✉️</span> <a href="mailto:${esc(j.kontakt_email)}">${esc(j.kontakt_email)}</a></div>`:''}
-        </div>`:''}
-        ${perksHtml}
-        ${stepperHtml}
-        <div class="firma-card">
-          <b>${esc(j.firma)}</b>
-          ${j.firma_ort?`<div class="row"><span class="d">📍</span> ${esc(j.firma_ort)}</div>`:''}
-          ${j.firma_website?`<div class="row"><span class="d">🔗</span> <a href="${esc(j.firma_website)}" target="_blank" rel="noopener" style="color:var(--o-dark)">Website</a></div>`:''}
-        </div>
+      <div class="nd-idbar">
+        <span class="nd-logo">${logo}</span>
+        <div class="nd-firma"><b>${esc(j.firma)}</b>${(j.firma_ort||j.ort)?`<span class="loc">📍 ${esc(j.firma_ort||j.ort)}</span>`:''}</div>
       </div>
-      ${relatedHtml(j)}
-    </div>`;
+      <div class="nd-tabs">
+        <button class="nd-tab on" data-tab="job" onclick="switchTab('job')">Jobbeschreibung</button>
+        <button class="nd-tab" data-tab="benefits" onclick="switchTab('benefits')">Benefits</button>
+        ${hasUeber?`<button class="nd-tab" data-tab="ueber" onclick="switchTab('ueber')">Über uns</button>`:''}
+      </div>
+      <button class="nd-cta" onclick="scrollToApply()">Bewirb dich jetzt</button>
+      <div class="tabpane on" data-tab="job">${jobHtml}</div>
+      <div class="tabpane" data-tab="benefits">${benefitsHtml}</div>
+      ${hasUeber?`<div class="tabpane" data-tab="ueber">${ueberHtml}</div>`:''}
+      <div class="nd-apply" id="ndApply">
+        <h3>Jetzt bewerben</h3>
+        <div class="sub">${tm.sub||'Name &amp; Kontakt genügen – kein Anschreiben, keine Uploads.'}</div>
+        <div class="err" id="applyErr"></div>
+        <div class="field"><label>Name *</label><input id="ap-name" placeholder="Vor- und Nachname"></div>
+        <div class="field"><label>E-Mail</label><input id="ap-email" type="email" placeholder="dein@email.de"></div>
+        <div class="field"><label>Telefon</label><input id="ap-tel" type="tel" placeholder="0151 …"></div>
+        <div class="field"><label>Nachricht (optional)</label><textarea id="ap-msg" placeholder="Kurz: Warum passt du? Wann verfügbar?"></textarea></div>
+        <button class="btn-apply" id="apBtn" onclick="submitApply('${esc(j.slug)}')">Bewerbung absenden</button>
+        <div class="consent">Mit dem Absenden stimmst du der Verarbeitung deiner Daten zu. Details in der <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.</div>
+      </div>
+      ${fragenHtml}
+    </div>
+    ${relatedHtml(j)}`;
 }
 
 async function submitApply(slug){

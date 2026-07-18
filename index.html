@@ -521,8 +521,8 @@
   @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
   .block{margin-top:24px}
   .block:first-child{margin-top:14px}
-  .block h4{font-size:16px;font-weight:780;margin-bottom:11px;display:flex;align-items:center;gap:9px}
-  .block h4::before{content:"";width:4px;height:18px;border-radius:3px;background:var(--grad)}
+  .block h4{font-size:17px;font-weight:800;letter-spacing:-.2px;margin-bottom:12px;display:flex;align-items:center;gap:9px}
+  .block h4::before{content:"";width:4px;height:20px;border-radius:3px;background:var(--grad)}
   .block .body{color:var(--ink2);font-size:15px;white-space:pre-wrap;line-height:1.6}
   .block .body ul{margin:0;padding-left:20px}
   .clist{list-style:none;display:flex;flex-direction:column;gap:10px}
@@ -550,12 +550,12 @@
   @media(hover:none){.carousel-arrow{display:none}}
   @media(max-width:560px){.carousel-track img{height:220px}}
   .ustats{display:flex;gap:12px;flex-wrap:wrap;margin:4px 0 6px}
-  .ustat{flex:1;min-width:130px;background:var(--bg);border:1px solid var(--line2);border-radius:12px;padding:14px 16px}
+  .ustat{flex:1;min-width:130px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center;box-shadow:var(--shadow)}
   .ustat b{display:block;font-size:21px;font-weight:820;color:var(--ink);letter-spacing:-.3px}
   .ustat span{font-size:12.5px;color:var(--muted);font-weight:600}
-  .karriere-btn{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;font-weight:700;
+  .karriere-btn{display:inline-flex;align-items:center;gap:8px;background:var(--o-dark);color:#fff;font-weight:700;
        font-size:14px;padding:11px 18px;border-radius:10px;margin-top:8px;transition:.15s}
-  .karriere-btn:hover{background:#000}
+  .karriere-btn:hover{background:var(--o)}
   .dt-map{margin-top:14px;border-radius:12px;overflow:hidden;border:1px solid var(--line2);height:240px}
   .dt-map iframe{width:100%;height:100%;border:0;display:block}
 
@@ -584,10 +584,10 @@
   .nd-ic{display:flex;width:38px;height:38px;margin:0 auto 8px;align-items:center;justify-content:center;border-radius:11px;background:var(--o-pale);font-size:18px}
   .nd-il{display:block;font-size:12px;color:var(--muted);font-weight:600}
   .nd-iv{display:block;font-size:14.5px;font-weight:800;color:var(--ink);margin-top:2px}
-  .nd-sec{font-size:22px;font-weight:820;letter-spacing:-.4px;margin:26px 0 6px;color:var(--ink)}
+  .nd-sec{font-size:22px;font-weight:820;letter-spacing:-.4px;margin:30px 0 8px;color:var(--ink)}
   .nd-sec::after{content:"";display:block;width:44px;height:3px;border-radius:3px;background:var(--grad);margin-top:8px}
   .nd-sub{font-size:16px;font-weight:780;margin:24px 0 10px}
-  .nd-lead{color:var(--o-dark);font-weight:800;font-size:15px;margin:2px 0 14px}
+  .nd-lead{color:var(--muted);font-weight:600;font-size:15px;margin:6px 0 16px}
   .nd-body{color:var(--ink2);font-size:15px;line-height:1.65;white-space:pre-line;margin-bottom:6px}
   .nd-apply{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--shadow);margin:30px auto 0;max-width:560px}
   .nd-apply h3{font-size:20px;font-weight:820;text-align:center}
@@ -603,6 +603,13 @@
   .nd-ap-btn{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;border-radius:10px;padding:9px 14px;text-decoration:none}
   .nd-ap-btn.solid{background:var(--o-dark);color:#fff}
   .nd-ap-btn.ghost{background:var(--o-pale);color:var(--o-dark);border:1px solid var(--line)}
+  .nd-kick{font-size:11.5px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--o-dark);margin:30px 0 0}
+  .nd-kick+.nd-sec{margin-top:4px}
+  .bgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:16px}
+  .bitem{display:flex;align-items:center;gap:11px;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:13px 15px;font-weight:650;font-size:14px;color:var(--ink2);box-shadow:var(--shadow)}
+  .bitem .ck{flex:none;width:22px;height:22px;border-radius:7px;background:var(--o-pale);color:var(--o-dark);display:grid;place-items:center;font-size:12px;font-weight:800}
+  .jbr{position:absolute;left:10px;bottom:10px;z-index:3;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.94);color:var(--ink);font-size:11.5px;font-weight:800;padding:5px 11px;border-radius:999px;border:1px solid var(--line);backdrop-filter:blur(4px)}
+  .nd-hero .jbr{left:auto;right:14px;bottom:14px}
   @media(max-width:560px){.nd-hero{aspect-ratio:16/10}.nd-sec{font-size:19px}.nd-infocard{min-width:120px}.nd-firma b{font-size:16px}}
   .lb{position:fixed;inset:0;background:rgba(10,12,14,.88);display:none;align-items:center;justify-content:center;
       z-index:100;padding:30px;cursor:zoom-out}
@@ -1152,9 +1159,30 @@ function fav(j){
     ? '<div class="fav"><img src="'+esc(j.firma_logo)+'" alt=""></div>'
     : '<div class="fav">'+esc(initials(j.firma))+'</div>';
 }
+// Berufs-Bildpool (bewährtes green-careers-Prinzip): Stellen ohne eigene Fotos
+// bekommen ein zum Beruf passendes Branchenbild statt eines leeren Platzhalters.
+const BERUF_BILDER=[
+  [['bagger','baumaschin','baugerät','baugeraet','radlader','kranführer','kranfuehrer'],'assets/berufe/baumaschinenfuehrer.jpg'],
+  [['kraftfahrer','lkw','berufskraft'],'assets/berufe/kraftfahrer.jpg'],
+  [['polier','vorarbeiter','kolonn'],'assets/berufe/polier.jpg'],
+  [['bauleiter','meister','techniker','ingenieur','bauzeichner','abrechnung','vermessung','kalkulat'],'assets/berufe/bauleiter.jpg'],
+  [['straßenbau','strassenbau','asphalt','pflaster'],'assets/berufe/strassenbauer.jpg'],
+  [['rohr','kanal','leitung'],'assets/berufe/tiefbauer.jpg'],
+];
+const BERUF_DEFAULT='assets/berufe/tiefbauer.jpg';
+function berufsBild(j){
+  const hay=((j.titel||'')+' '+(j.branche||'')).toLowerCase();
+  for(const [keys,img] of BERUF_BILDER){ if(keys.some(k=>hay.includes(k))) return img; }
+  return BERUF_DEFAULT;
+}
 function coverUrl(j){
   const arr=Array.isArray(j.stellen_bilder)?j.stellen_bilder.filter(Boolean):[];
-  return arr[0] || j.cover_bild || j.firma_titelbild || '';
+  return arr[0] || j.cover_bild || j.firma_titelbild || berufsBild(j);
+}
+const PORTAL_BR_ICON='🚧', PORTAL_BR_NAME='Straßen- & Tiefbau';
+function brChip(j){
+  const b=BRANCHE_STD.find(x=>jobMatchesBranche(j,x))||PORTAL_BR_NAME;
+  return '<span class="jbr">'+PORTAL_BR_ICON+' '+esc(b)+'</span>';
 }
 // Platzierungs-Stufe: primär der Stellen-Tier (s.tier), sonst das Firmen-Produkt.
 // DB/OS führen 'exzellenz' (deutsch); 'excellence' (alt/englisch) als Fallback mitnehmen.
@@ -1452,7 +1480,7 @@ function renderFeatured(){
     return `<div class="fcard" onclick="openJob('${esc(j.slug)}')">
       <div class="fcover ${cov?'':'noimg'}">
         ${cov?`<img class="cf-bg" src="${esc(cov)}" alt="" aria-hidden="true"><img class="cf-fg" src="${esc(cov)}" alt="" loading="lazy">`:esc(initials(j.firma))}
-        ${tierBadge(j)}
+        ${tierBadge(j)}${brChip(j)}
         <span class="datebadge">${ago(j.published_at)}</span>
       </div>
       <div class="fbody">
@@ -1480,7 +1508,7 @@ function renderList(rows){
     return `<div class="job ${lv==='excellence'?'tier-exc':lv==='premium'?'tier-prem':''}" onclick="openJob('${esc(j.slug)}')">
       <div class="jcover ${cov?'':'noimg'}">
         ${cov?`<img class="cf-bg" src="${esc(cov)}" alt="" aria-hidden="true"><img class="cf-fg" src="${esc(cov)}" alt="" loading="lazy">`:esc(initials(j.firma))}
-        ${tierBadge(j)}
+        ${tierBadge(j)}${brChip(j)}
         <span class="datebadge">${ago(j.published_at)}</span>
       </div>
       <div class="jbody">
@@ -1853,7 +1881,7 @@ function relatedJobs(j){
 }
 function relatedHtml(j){
   const rel=relatedJobs(j); if(!rel.length) return '';
-  return `<div class="related"><h2 class="rel-h">Ähnliche Stellen</h2><div class="rel-grid">`+
+  return `<div class="related"><div class="nd-kick">Könnte auch passen</div><h2 class="rel-h">Ähnliche Stellen</h2><div class="rel-grid">`+
     rel.map(x=>{ const cov=coverUrl(x), lv=tierLevel(x);
       return `<div class="rel-card ${lv==='excellence'?'tier-exc':lv==='premium'?'tier-prem':''}" onclick="openJob('${esc(x.slug)}')">
         <div class="rel-cover ${cov?'':'noimg'}">${cov?`<img src="${esc(cov)}" alt="" loading="lazy">`:esc(initials(x.firma))}${tierBadge(x)}</div>
@@ -1898,6 +1926,8 @@ function switchTab(name){
 }
 function clistOnly(v){const items=asList(v);if(!items.length)return '';
   return '<ul class="clist">'+items.map(t=>'<li><span class="ck">✓</span><span>'+esc(t)+'</span></li>').join('')+'</ul>';}
+function bgridHtml(v){const items=asList(v);if(!items.length)return '';
+  return '<div class="bgrid">'+items.map(t=>'<div class="bitem"><span class="ck">✓</span><span>'+esc(t)+'</span></div>').join('')+'</div>';}
 function scrollToApply(){const el=$('ndApply');if(el){el.scrollIntoView({behavior:'smooth',block:'center'});const n=$('ap-name');if(n)setTimeout(()=>n.focus(),380);}}
 function openLb(src){$('lbImg').src=src;$('lb').classList.add('on');}
 function closeLb(){$('lb').classList.remove('on');}
@@ -1909,7 +1939,8 @@ function renderDetail(j){
 
   const lvl=tierLevel(j), tm=TIER_META[lvl];
   const logo = j.firma_logo ? `<img src="${esc(j.firma_logo)}" alt="${esc(j.firma)}">` : `<span>${esc(initials(j.firma))}</span>`;
-  const heroImg = coverUrl(j) || j.firma_titelbild || '';
+  const _sb = Array.isArray(j.stellen_bilder)?j.stellen_bilder.filter(Boolean):[];
+  const heroImg = _sb.length ? (j.firma_titelbild || _sb[1] || _sb[0]) : coverUrl(j);
   const mapQuery = encodeURIComponent((j.firma||'')+' '+(j.firma_ort||j.ort||''));
 
   // Info-Kacheln (altes GC: Pensum / Vertrag / Verfügbar ab / Gehalt)
@@ -1924,6 +1955,7 @@ function renderDetail(j){
 
   const jobHtml = `
     ${infoHtml}
+    <div class="nd-kick">Deine Baustelle</div>
     <h2 class="nd-sec">${esc(j.titel)}</h2>
     ${j.beschreibung?`<div class="nd-body">${esc(j.beschreibung)}</div>`:''}
     ${carousel(j.stellen_bilder)}
@@ -1931,13 +1963,13 @@ function renderDetail(j){
     ${blockList('Dein Profil', j.profil)}
     ${(!j.beschreibung && !asList(j.aufgaben).length && !asList(j.profil).length)?'<div class="nd-body" style="color:var(--muted)">Keine Beschreibung hinterlegt.</div>':''}`;
 
-  const benefitsHtml = `<h2 class="nd-sec">Benefits</h2><p class="nd-lead">Was wir dir bieten:</p>`
-    + (clistOnly(asList(j.benefits_list).length ? j.benefits_list : j.benefits) || '<div class="nd-body" style="color:var(--muted)">Keine Benefits hinterlegt.</div>');
+  const benefitsHtml = `<div class="nd-kick">Das ist für dich drin</div><h2 class="nd-sec">Deine Vorteile</h2>`
+    + (bgridHtml(asList(j.benefits_list).length ? j.benefits_list : j.benefits) || '<div class="nd-body" style="color:var(--muted)">Keine Benefits hinterlegt.</div>');
 
   const hasUeber = j.firma_ueber_uns || j.firma_mitarbeiter || j.firma_gruendung || (Array.isArray(j.firma_bilder)&&j.firma_bilder.length);
   const ueberHtml = `
-    <h2 class="nd-sec">Über uns</h2>
-    <p class="nd-lead">${esc(j.firma)}</p>
+    <div class="nd-kick">Der Betrieb dahinter</div>
+    <h2 class="nd-sec">${esc(j.firma)}</h2>
     ${carousel(j.firma_bilder)}
     ${(j.firma_mitarbeiter||j.firma_gruendung)?`<div class="ustats">
         ${j.firma_mitarbeiter?`<div class="ustat"><b>${esc(j.firma_mitarbeiter)}</b><span>Mitarbeitende</span></div>`:''}
@@ -1945,7 +1977,7 @@ function renderDetail(j){
       </div>`:''}
     ${j.firma_ueber_uns?`<div class="nd-body">${esc(j.firma_ueber_uns)}</div>`:''}
     ${j.firma_karriere_url?`<a class="karriere-btn" href="${esc(j.firma_karriere_url)}" target="_blank" rel="noopener">Unsere Karriereseite →</a>`:''}
-    ${(j.firma_ort||j.ort)?`<h3 class="nd-sub">Hier findest du uns</h3><div class="dt-map"><iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=${mapQuery}&output=embed"></iframe></div>`:''}`;
+    ${(j.firma_ort||j.ort)?`<div class="block"><h4>Hier findest du uns</h4><div class="dt-map"><iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=${mapQuery}&output=embed"></iframe></div></div>`:''}`;
 
   const apName = j.ansprechpartner || j.firma;
   const apFoto = j.ansprechpartner_foto ? `<img class="nd-apfoto" src="${esc(j.ansprechpartner_foto)}" alt="">` : `<div class="nd-apfoto">${esc(initials(apName))}</div>`;
@@ -1976,7 +2008,7 @@ function renderDetail(j){
     </div>
     <div class="nd">
       <div class="nd-hero ${heroImg?'':'noimg'}">${heroImg?`<img class="cf-bg" src="${esc(heroImg)}" alt="" aria-hidden="true"><img class="cf-fg" src="${esc(heroImg)}" alt="${esc(j.firma)}">`:''}
-        ${tm.label?`<span class="nd-tier ${tm.cls}">★ ${tm.label}</span>`:''}
+        ${tm.label?`<span class="nd-tier ${tm.cls}">★ ${tm.label}</span>`:''}${brChip(j)}
       </div>
       <div class="nd-idbar">
         <span class="nd-logo">${logo}</span>

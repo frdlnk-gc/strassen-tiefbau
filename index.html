@@ -1529,7 +1529,7 @@ function portalNotice(msg){
   try{ const d=document.createElement('div'); d.textContent=msg;
     d.style.cssText='position:fixed;left:50%;top:16px;transform:translateX(-50%);z-index:9999;background:#1f2937;color:#fff;padding:12px 18px;border-radius:10px;font-size:14px;line-height:1.4;max-width:90%;box-shadow:0 8px 24px rgba(0,0,0,.25);text-align:center';
     document.body.appendChild(d);
-    setTimeout(()=>{d.style.transition='opacity .4s';d.style.opacity='0';setTimeout(()=>d.remove(),400);},4200);
+    setTimeout(()=>{d.style.transition='opacity .4s';d.style.opacity='0';setTimeout(()=>d.remove(),400);},8000);
   }catch(e){}
 }
 async function route(){
@@ -1542,9 +1542,10 @@ async function route(){
   showHome();
 }
 async function openJob(slug){
-  history.pushState({},'', '?job='+encodeURIComponent(slug));
   const j=JOBS.find(x=>x.slug===slug);
-  if(j){ await ensureJobDetail(j); renderDetail(j); } window.scrollTo(0,0);
+  if(!j){ portalNotice('Diese Stelle ist nicht mehr online – hier findest du alle aktuellen Stellen.'); return; }
+  history.pushState({},'', '?job='+encodeURIComponent(slug));
+  await ensureJobDetail(j); renderDetail(j); window.scrollTo(0,0);
 }
 function goHome(){history.pushState({},'',location.pathname);showHome();}
 function showHome(){$('detail').style.display='none';$('home').style.display='';resetSeo();applyFilter();}
@@ -1764,8 +1765,11 @@ function applyJobSeo(j){
   const title=`${plain(j.titel)} bei ${plain(j.firma)}${loc?' · '+plain(loc):''} · GreyCareers`;
   const body=plain(j.beschreibung||j.aufgaben||'',150);
   const desc=plain(`${plain(j.titel)} bei ${plain(j.firma)}${loc?' in '+plain(loc):''}.${body?' '+body:''} Jetzt direkt bewerben – ohne Anschreiben.`,300);
-  // WhatsApp/OG-Vorschau zeigt das Titelbild des Betriebs (wie im Banner), nicht ein zufälliges Stellenbild
-  const img=j.firma_titelbild||coverUrl(j)||SITE+'/assets/hero.jpg';
+  // WhatsApp/OG-Vorschau zeigt das Titelbild des Betriebs (wie im Banner), nicht ein zufälliges Stellenbild.
+  // data:-URIs (Base64-Uploads) taugen nicht als OG-Bild und relative Pfade müssen absolut sein.
+  let img=j.firma_titelbild||coverUrl(j)||'';
+  if(!img || img.startsWith('data:')) img=SITE+'/'+berufsBild(j);
+  else if(!/^https?:/i.test(img)) img=SITE+'/'+img.replace(/^\//,'');
   document.title=title;
   setMeta('meta[name="description"]','content',desc);
   setMeta('#canonical','href',url);
@@ -1947,7 +1951,7 @@ function renderDetail(j){
   const infoCards = [
     j.beschaeftigungsart ? ['⏱','Pensum', j.beschaeftigungsart] : null,
     j.vertragsart ? ['📄','Vertrag', j.vertragsart] : null,
-    j.eintritt ? ['📅','Verfügbar ab', j.eintritt] : null,
+    j.eintritt ? ['📅','Verfügbar ab', String(j.eintritt).replace(/^ab\s+/i,'')] : null,
     j.gehalt ? ['💶','Gehalt', fmtGehalt(j.gehalt)] : null
   ].filter(Boolean);
   const infoHtml = infoCards.length ? `<div class="nd-info">${infoCards.map(c=>
@@ -1963,6 +1967,7 @@ function renderDetail(j){
     ${blockList('Dein Profil', j.profil)}
     ${(!j.beschreibung && !asList(j.aufgaben).length && !asList(j.profil).length)?'<div class="nd-body" style="color:var(--muted)">Keine Beschreibung hinterlegt.</div>':''}`;
 
+  const hasBenefits = !!(asList(j.benefits_list).length || asList(j.benefits).length);
   const benefitsHtml = `<div class="nd-kick">Das ist für dich drin</div><h2 class="nd-sec">Deine Vorteile</h2>`
     + (bgridHtml(asList(j.benefits_list).length ? j.benefits_list : j.benefits) || '<div class="nd-body" style="color:var(--muted)">Keine Benefits hinterlegt.</div>');
 
@@ -2016,12 +2021,12 @@ function renderDetail(j){
       </div>
       <div class="nd-tabs">
         <button class="nd-tab on" data-tab="job" onclick="switchTab('job')">Jobbeschreibung</button>
-        <button class="nd-tab" data-tab="benefits" onclick="switchTab('benefits')">Benefits</button>
+        ${hasBenefits?`<button class="nd-tab" data-tab="benefits" onclick="switchTab('benefits')">Benefits</button>`:''}
         ${hasUeber?`<button class="nd-tab" data-tab="ueber" onclick="switchTab('ueber')">Über uns</button>`:''}
       </div>
       <button class="nd-cta" onclick="scrollToApply()">Bewirb dich jetzt</button>
       <div class="tabpane on" data-tab="job">${jobHtml}</div>
-      <div class="tabpane" data-tab="benefits">${benefitsHtml}</div>
+      ${hasBenefits?`<div class="tabpane" data-tab="benefits">${benefitsHtml}</div>`:''}
       ${hasUeber?`<div class="tabpane" data-tab="ueber">${ueberHtml}</div>`:''}
       <div class="nd-apply" id="ndApply">
         <h3>Jetzt bewerben</h3>

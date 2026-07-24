@@ -377,7 +377,7 @@
      auch wenn der Betrieb ein Bild im „falschen" Seitenverhältnis hochlädt. */
   .jcover .cf-fg{object-fit:contain}
   .pbadge{position:absolute;top:10px;right:10px;z-index:2;background:#FFB020;color:#3a2600;font-weight:800;font-size:11px;
-        letter-spacing:.3px;padding:4px 10px;border-radius:100px;display:flex;align-items:center;gap:4px;box-shadow:0 3px 10px rgba(0,0,0,.2)}
+        letter-spacing:.3px;padding:4px 10px;border-radius:100px;display:inline-flex;width:max-content;max-width:calc(100% - 20px);align-items:center;gap:4px;box-shadow:0 3px 10px rgba(0,0,0,.2)}
   .pbadge.exc{background:linear-gradient(135deg,#9A3412,#7C2D12);color:#fff}
   .datebadge{position:absolute;top:10px;left:10px;z-index:2;background:rgba(255,255,255,.92);color:var(--ink2);font-weight:700;
         font-size:11.5px;padding:4px 10px;border-radius:8px}
@@ -483,7 +483,7 @@
   .rel-cover{height:108px;position:relative;display:grid;place-items:center;background:var(--dark);color:#fff;font-weight:800;font-size:24px;overflow:hidden}
   .rel-cover.noimg{background:var(--grad)}
   .rel-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  .rel-cover .pbadge{position:absolute;top:9px;left:9px;z-index:4}
+  .rel-cover .pbadge{position:absolute;top:9px;left:9px;right:auto;z-index:4}
   .rel-body{padding:13px 15px 15px}
   .rel-body h3{font-size:15.5px;font-weight:780;letter-spacing:-.2px;line-height:1.25;margin-bottom:3px}
   .rel-body .firma{font-size:13px;color:var(--muted);font-weight:600;margin-bottom:9px}
@@ -537,8 +537,9 @@
   .carousel-track{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
         -webkit-overflow-scrolling:touch;scrollbar-width:none;border-radius:14px}
   .carousel-track::-webkit-scrollbar{display:none}
-  .carousel-track img{flex:0 0 100%;width:100%;height:300px;object-fit:cover;border-radius:14px;border:1px solid var(--line2);
-        scroll-snap-align:center;cursor:zoom-in}
+  .carousel-track .cslide{flex:0 0 100%;width:100%;height:340px;position:relative;border-radius:14px;overflow:hidden;
+        border:1px solid var(--line2);scroll-snap-align:center;background:var(--dark)}
+  .carousel-track .cslide .cf-fg{cursor:zoom-in}
   .carousel-arrow{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;
         background:rgba(255,255,255,.95);border:1px solid var(--line);box-shadow:0 4px 14px rgba(0,0,0,.18);
         display:grid;place-items:center;cursor:pointer;font-size:22px;line-height:1;color:var(--ink);z-index:3;transition:.14s}
@@ -548,7 +549,7 @@
   .carousel-dots .dot{width:7px;height:7px;border-radius:50%;background:var(--line);transition:.18s;cursor:pointer}
   .carousel-dots .dot.on{background:var(--o);width:20px;border-radius:4px}
   @media(hover:none){.carousel-arrow{display:none}}
-  @media(max-width:560px){.carousel-track img{height:220px}}
+  @media(max-width:560px){.carousel-track .cslide{height:240px}}
   .ustats{display:flex;gap:12px;flex-wrap:wrap;margin:4px 0 6px}
   .ustat{flex:1;min-width:130px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center;box-shadow:var(--shadow)}
   .ustat b{display:block;font-size:21px;font-weight:820;color:var(--ink);letter-spacing:-.3px}
@@ -556,7 +557,9 @@
   .karriere-btn{display:inline-flex;align-items:center;gap:8px;background:var(--o-dark);color:#fff;font-weight:700;
        font-size:14px;padding:11px 18px;border-radius:10px;margin-top:8px;transition:.15s}
   .karriere-btn:hover{background:var(--o)}
-  .dt-map{margin-top:14px;border-radius:12px;overflow:hidden;border:1px solid var(--line2);height:240px}
+  .dt-map{position:relative;margin-top:14px;border-radius:12px;overflow:hidden;border:1px solid var(--line2);height:240px;background:var(--bg)}
+  .dt-map::before{content:'📍 Standort auf der Karte';position:absolute;inset:0;z-index:0;display:grid;place-items:center;color:var(--muted);font-weight:600;font-size:14px;letter-spacing:.2px}
+  .dt-map iframe{position:relative;z-index:1}
   .dt-map iframe{width:100%;height:100%;border:0;display:block}
 
   /* ===== Editorial-Detailseite (altes GC-Design: 1-spaltig, spielerisch) ===== */
@@ -1796,6 +1799,22 @@ function resetSeo(){
 const EMP_MAP={vollzeit:'FULL_TIME',teilzeit:'PART_TIME',minijob:'PART_TIME',aushilfe:'PART_TIME',ausbildung:'INTERN',praktikum:'INTERN',werkstudent:'PART_TIME',freelance:'CONTRACTOR'};
 function empType(s){ const k=(s||'').toLowerCase(); for(const key in EMP_MAP){ if(k.includes(key)) return EMP_MAP[key]; } return 'FULL_TIME'; }
 // Einheitliche Gehalts-Darstellung (defensiv, falls Alt-Daten ungrouped/ohne € ankommen).
+function fmtTel(raw){
+  let d=String(raw==null?'':raw).trim().replace(/[^\d+]/g,'');
+  if(!d) return '';
+  let nsn;
+  if(d.startsWith('+49')) nsn=d.slice(3);
+  else if(d.startsWith('0049')) nsn=d.slice(4);
+  else if(d.startsWith('+')) return d;            // auslaendische Nummer unangetastet
+  else if(d.startsWith('0')) nsn=d.slice(1);
+  else nsn=d;
+  nsn=nsn.replace(/\D/g,'');
+  if(!nsn) return d;
+  const mobil=/^1[5-7]/.test(nsn);               // 015x/016x/017x
+  const alen=mobil?3:4;                            // Handy: 3er-Vorwahl, sonst 4er-Ortsblock
+  const area=nsn.slice(0,alen), rest=nsn.slice(alen);
+  return '+49 '+area+(rest?' '+rest:'');
+}
 function fmtGehalt(raw){
   if(raw==null) return '';
   let s=String(raw).trim(); if(!s) return '';
@@ -1911,7 +1930,7 @@ function carousel(arr){
   const id='car'+(++CAR_ID), single=imgs.length===1;
   return `<div class="carousel" id="${id}">
     <div class="carousel-track" onscroll="carSync('${id}')">
-      ${imgs.map(u=>`<img src="${esc(u)}" alt="" loading="lazy" onclick="openLb('${esc(u).replace(/'/g,"\\'")}')">`).join('')}
+      ${imgs.map(u=>`<div class="cslide"><img class="cf-bg" src="${esc(u)}" alt="" aria-hidden="true"><img class="cf-fg" src="${esc(u)}" alt="" loading="lazy" onclick="openLb('${esc(u).replace(/'/g,"\\'")}')"></div>`).join('')}
     </div>
     ${single?'':`
       <button class="carousel-arrow prev" onclick="carMove('${id}',-1)" aria-label="Vorheriges Bild">‹</button>
@@ -1995,7 +2014,7 @@ function renderDetail(j){
           <div class="nd-ap-name">${esc(apName)}</div>
           ${j.ansprechpartner_rolle?`<div class="nd-ap-rolle">${esc(j.ansprechpartner_rolle)}</div>`:''}
           <div class="nd-ap-btns">
-            ${j.kontakt_telefon?`<a class="nd-ap-btn solid" href="tel:${esc(j.kontakt_telefon)}">📞 ${esc(j.kontakt_telefon)}</a>`:''}
+            ${j.kontakt_telefon?`<a class="nd-ap-btn solid" href="tel:${esc(String(j.kontakt_telefon).replace(/[^\d+]/g,''))}">📞 ${esc(fmtTel(j.kontakt_telefon))}</a>`:''}
             ${j.kontakt_email?`<a class="nd-ap-btn ghost" href="mailto:${esc(j.kontakt_email)}">✉️ E-Mail senden</a>`:''}
           </div>
         </div>

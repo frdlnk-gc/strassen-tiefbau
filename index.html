@@ -1149,6 +1149,16 @@ function jobMatchesBranche(j,b){
 }
 
 const esc = s => (s==null?'':String(s)).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+// Bilder aus dem Supabase-Storage ueber den Bild-Transformer ausliefern. Die Originale
+// aus dem Alt-System sind bis 9 MB gross; skaliert liegen sie bei 30-200 KB. Fremde
+// URLs und lokale assets/ bleiben unveraendert.
+const BILD_HOST='tfoopogxaqvfwbonabpi.supabase.co';
+function bild(u,w){
+  if(!u||typeof u!=='string') return u;
+  if(u.indexOf(BILD_HOST)<0||u.indexOf('/storage/v1/object/public/')<0) return u;
+  return u.replace('/storage/v1/object/public/','/storage/v1/render/image/public/')
+        + (u.indexOf('?')<0?'?':'&') + 'width='+w+'&resize=contain&quality=72';
+}
 const $  = id => document.getElementById(id);
 
 function initials(name){return (name||'?').trim().split(/\s+/).slice(0,2).map(w=>w[0]).join('').toUpperCase();}
@@ -1163,7 +1173,7 @@ function ago(ts){
 }
 function fav(j){
   return j.firma_logo
-    ? '<div class="fav"><img src="'+esc(j.firma_logo)+'" alt=""></div>'
+    ? '<div class="fav"><img src="'+esc(bild(j.firma_logo,120))+'" alt="" loading="lazy"></div>'
     : '<div class="fav">'+esc(initials(j.firma))+'</div>';
 }
 // Berufs-Bildpool (bewährtes green-careers-Prinzip): Stellen ohne eigene Fotos
@@ -1244,7 +1254,7 @@ function renderPartners(){
   JOBS.forEach(j=>{
     const key=j.firma_id||j.firma;
     if(!key||seen.has(key)) return; seen.add(key);
-    if(j.firma_logo) items.push('<div class="plogo"><img src="'+esc(j.firma_logo)+'" alt="'+esc(j.firma)+'" loading="lazy"></div>');
+    if(j.firma_logo) items.push('<div class="plogo"><img src="'+esc(bild(j.firma_logo,340))+'" alt="'+esc(j.firma)+'" loading="lazy"></div>');
     else if(j.firma) items.push('<div class="plogo"><span class="pname">'+esc(j.firma)+'</span></div>');
   });
   if(items.length<2){ $('pslider').style.display='none'; return; }
@@ -1486,7 +1496,7 @@ function renderFeatured(){
     const cov=coverUrl(j);
     return `<div class="fcard" onclick="openJob('${esc(j.slug)}')">
       <div class="fcover ${cov?'':'noimg'}">
-        ${cov?`<img class="cf-bg" src="${esc(cov)}" alt="" aria-hidden="true"><img class="cf-fg" src="${esc(cov)}" alt="" loading="lazy">`:esc(initials(j.firma))}
+        ${cov?`<img class="cf-bg" src="${esc(bild(cov,48))}" alt="" aria-hidden="true" loading="lazy"><img class="cf-fg" src="${esc(bild(cov,640))}" alt="" loading="lazy">`:esc(initials(j.firma))}
         ${tierBadge(j)}${brChip(j)}
         <span class="datebadge">${ago(j.published_at)}</span>
       </div>
@@ -1514,7 +1524,7 @@ function renderList(rows){
     const lv=tierLevel(j);
     return `<div class="job ${lv==='excellence'?'tier-exc':lv==='premium'?'tier-prem':''}" onclick="openJob('${esc(j.slug)}')">
       <div class="jcover ${cov?'':'noimg'}">
-        ${cov?`<img class="cf-bg" src="${esc(cov)}" alt="" aria-hidden="true"><img class="cf-fg" src="${esc(cov)}" alt="" loading="lazy">`:esc(initials(j.firma))}
+        ${cov?`<img class="cf-bg" src="${esc(bild(cov,48))}" alt="" aria-hidden="true" loading="lazy"><img class="cf-fg" src="${esc(bild(cov,640))}" alt="" loading="lazy">`:esc(initials(j.firma))}
         ${tierBadge(j)}${brChip(j)}
         <span class="datebadge">${ago(j.published_at)}</span>
       </div>
@@ -1777,6 +1787,9 @@ function applyJobSeo(j){
   let img=j.firma_titelbild||coverUrl(j)||'';
   if(!img || img.startsWith('data:')) img=SITE+'/'+berufsBild(j);
   else if(!/^https?:/i.test(img)) img=SITE+'/'+img.replace(/^\//,'');
+  // WhatsApp/Facebook holen die OG-Grafik selbst und brechen bei mehreren MB ab -
+  // deshalb auch hier die skalierte Fassung.
+  img=bild(img,1200);
   document.title=title;
   setMeta('meta[name="description"]','content',desc);
   setMeta('#canonical','href',url);
@@ -1911,7 +1924,7 @@ function relatedHtml(j){
   return `<div class="related"><div class="nd-kick">Könnte auch passen</div><h2 class="rel-h">Ähnliche Stellen</h2><div class="rel-grid">`+
     rel.map(x=>{ const cov=coverUrl(x), lv=tierLevel(x);
       return `<div class="rel-card ${lv==='excellence'?'tier-exc':lv==='premium'?'tier-prem':''}" onclick="openJob('${esc(x.slug)}')">
-        <div class="rel-cover ${cov?'':'noimg'}">${cov?`<img src="${esc(cov)}" alt="" loading="lazy">`:esc(initials(x.firma))}${tierBadge(x)}</div>
+        <div class="rel-cover ${cov?'':'noimg'}">${cov?`<img src="${esc(bild(cov,480))}" alt="" loading="lazy">`:esc(initials(x.firma))}${tierBadge(x)}</div>
         <div class="rel-body"><h3>${esc(x.titel)}</h3><div class="firma">${esc(x.firma)}</div>
           <div class="tags">${(x.firma_ort||x.ort)?`<span class="tag">📍 ${esc(x.firma_ort||x.ort)}</span>`:''}${x.beschaeftigungsart?`<span class="tag">🕒 ${esc(x.beschaeftigungsart)}</span>`:''}</div>
         </div>
@@ -1934,7 +1947,7 @@ function carousel(arr){
   const id='car'+(++CAR_ID), single=imgs.length===1;
   return `<div class="carousel" id="${id}">
     <div class="carousel-track" onscroll="carSync('${id}')">
-      ${imgs.map(u=>`<div class="cslide"><img class="cf-bg" src="${esc(u)}" alt="" aria-hidden="true"><img class="cf-fg" src="${esc(u)}" alt="" loading="lazy" onclick="openLb('${esc(u).replace(/'/g,"\\'")}')"></div>`).join('')}
+      ${imgs.map(u=>`<div class="cslide"><img class="cf-bg" src="${esc(bild(u,48))}" alt="" aria-hidden="true" loading="lazy"><img class="cf-fg" src="${esc(bild(u,1200))}" alt="" loading="lazy" onclick="openLb('${esc(u).replace(/'/g,"\\'")}')"></div>`).join('')}
     </div>
     ${single?'':`
       <button class="carousel-arrow prev" onclick="carMove('${id}',-1)" aria-label="Vorheriges Bild">‹</button>
@@ -1956,7 +1969,7 @@ function clistOnly(v){const items=asList(v);if(!items.length)return '';
 function bgridHtml(v){const items=asList(v);if(!items.length)return '';
   return '<div class="bgrid">'+items.map(t=>'<div class="bitem"><span class="ck">✓</span><span>'+esc(t)+'</span></div>').join('')+'</div>';}
 function scrollToApply(){const el=$('ndApply');if(el){el.scrollIntoView({behavior:'smooth',block:'center'});const n=$('ap-name');if(n)setTimeout(()=>n.focus(),380);}}
-function openLb(src){$('lbImg').src=src;$('lb').classList.add('on');}
+function openLb(src){$('lbImg').src=bild(src,1800);$('lb').classList.add('on');}
 function closeLb(){$('lb').classList.remove('on');}
 
 function renderDetail(j){
@@ -1965,7 +1978,7 @@ function renderDetail(j){
   applyJobSeo(j);
 
   const lvl=tierLevel(j), tm=TIER_META[lvl];
-  const logo = j.firma_logo ? `<img src="${esc(j.firma_logo)}" alt="${esc(j.firma)}">` : `<span>${esc(initials(j.firma))}</span>`;
+  const logo = j.firma_logo ? `<img src="${esc(bild(j.firma_logo,200))}" alt="${esc(j.firma)}">` : `<span>${esc(initials(j.firma))}</span>`;
   const _sb = Array.isArray(j.stellen_bilder)?j.stellen_bilder.filter(Boolean):[];
   const heroImg = _sb.length ? (j.firma_titelbild || _sb[1] || _sb[0]) : coverUrl(j);
   const mapQuery = encodeURIComponent((j.firma||'')+' '+(j.firma_ort||j.ort||''));
@@ -2008,7 +2021,7 @@ function renderDetail(j){
     ${(j.firma_ort||j.ort)?`<div class="block"><h4>Hier findest du uns</h4><div class="dt-map"><iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=${mapQuery}&output=embed"></iframe></div></div>`:''}`;
 
   const apName = j.ansprechpartner || j.firma;
-  const apFoto = j.ansprechpartner_foto ? `<img class="nd-apfoto" src="${esc(j.ansprechpartner_foto)}" alt="">` : `<div class="nd-apfoto">${esc(initials(apName))}</div>`;
+  const apFoto = j.ansprechpartner_foto ? `<img class="nd-apfoto" src="${esc(bild(j.ansprechpartner_foto,160))}" alt="" loading="lazy">` : `<div class="nd-apfoto">${esc(initials(apName))}</div>`;
   const fragenHtml = (j.ansprechpartner||j.kontakt_email||j.kontakt_telefon)?`
     <div class="nd-fragen">
       <h3 class="nd-fragen-h">Hast du noch Fragen?</h3>
@@ -2035,7 +2048,7 @@ function renderDetail(j){
       </div>
     </div>
     <div class="nd">
-      <div class="nd-hero ${heroImg?'':'noimg'}">${heroImg?`<img class="cf-bg" src="${esc(heroImg)}" alt="" aria-hidden="true"><img class="cf-fg" src="${esc(heroImg)}" alt="${esc(j.firma)}">`:''}
+      <div class="nd-hero ${heroImg?'':'noimg'}">${heroImg?`<img class="cf-bg" src="${esc(bild(heroImg,48))}" alt="" aria-hidden="true"><img class="cf-fg" src="${esc(bild(heroImg,1400))}" alt="${esc(j.firma)}">`:''}
         ${tm.label?`<span class="nd-tier ${tm.cls}">★ ${tm.label}</span>`:''}${brChip(j)}
       </div>
       <div class="nd-idbar">

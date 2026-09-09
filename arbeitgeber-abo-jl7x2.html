@@ -570,15 +570,7 @@
           <div class="kfield"><label>E-Mail *</label><input id="k-email" type="email" required placeholder="name@betrieb.de"></div>
           <div class="kfield"><label>Telefon</label><input id="k-tel" type="tel" placeholder="0221 …"></div>
         </div>
-        <div class="kfield"><label>Welches Abo-Paket interessiert Sie?</label>
-          <select id="k-paket">
-            <option value="">Noch unsicher – bitte beraten</option>
-            <option>Smart-Abo (ab 319 €/Mt)</option>
-            <option>Premium-Abo (ab 479 €/Mt)</option>
-            <option>Exzellenz-Abo (ab 639 €/Mt)</option>
-          </select>
-        </div>
-        <div class="kfield"><label>Ihre offene(n) Stelle(n) / Nachricht</label><textarea id="k-msg" placeholder="Welche Position(en) möchten Sie besetzen?"></textarea></div>
+        <div class="kfield"><label>Welche Position(en) möchten Sie besetzen?</label><textarea id="k-msg" placeholder="Welche Position(en) möchten Sie besetzen?"></textarea></div>
         <input id="k-website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
         <button class="kbtn" type="submit">Erstgespräch anfragen</button>
         <div class="kconsent">Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Angaben zur Kontaktaufnahme zu. Details in der <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.</div>
@@ -681,7 +673,7 @@ async function sendKontakt(e){
   const daten={
     name:$('k-name').value.trim(), firma:$('k-firma').value.trim(),
     email:$('k-email').value.trim(), telefon:$('k-tel').value.trim(),
-    paket:$('k-paket').value, nachricht:$('k-msg').value.trim(),
+    nachricht:$('k-msg').value.trim(),
     quelle:'strassen-tiefbau-portal', marke:'grey',
     seite:location.href, referrer:document.referrer||''
   };

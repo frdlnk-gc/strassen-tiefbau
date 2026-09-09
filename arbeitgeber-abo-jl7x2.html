@@ -6,7 +6,8 @@
 <meta name="robots" content="noindex,nofollow">
 <title>GreyCareers Abo · Planbar Fachkräfte gewinnen – monatlicher Festpreis</title>
 <meta name="description" content="Das GreyCareers-Abo: kontinuierlich qualifizierte Fachkräfte für Ihren Straßen-, Tief- und Kanalbau-Betrieb zum monatlichen Festpreis – statt einmaliger Kampagne dauerhaft sichtbar.">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-64.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <style>
   :root{
     --o:#EA580C; --o-dark:#C2410C; --o-glow:#FF8533; --o-pale:#FFF1E8;
@@ -262,6 +263,15 @@
     .hero-stats{gap:24px}
     .hero h1{font-size:25px;letter-spacing:-.5px}
   }
+  /* Bestaetigung + Fehlerhinweis im Kontaktformular */
+  .kdanke{background:#fff;border:1px solid var(--line);border-radius:16px;padding:38px 30px;text-align:center;box-shadow:var(--shadow)}
+  .kdanke-i{width:52px;height:52px;border-radius:50%;margin:0 auto 16px;display:grid;place-items:center;
+            background:var(--o-pale);color:var(--o-dark);font-size:26px;font-weight:800}
+  .kdanke h4{margin:0 0 8px;font-size:21px;letter-spacing:-.3px}
+  .kdanke p{margin:0 0 6px;color:var(--ink2);font-size:15.5px}
+  .kdanke .kdanke-s{margin-top:14px;font-size:14px;color:var(--muted)}
+  .kfehler{margin-top:12px;background:#FEF2F2;border:1px solid #FECACA;color:#B91C1C;
+           border-radius:10px;padding:11px 14px;font-size:14px}
 </style>
 </head>
 <body>
@@ -269,7 +279,7 @@
 <header>
   <div class="wrap nav">
     <a class="brand" href="index.html">
-      <div class="logo">GC</div>
+      <img class="logo" src="assets/greycareers-mark.png" alt="GreyCareers">
       <div class="bname">GreyCareers<small>Straßen- &amp; Tiefbau</small></div>
     </a>
     <div class="sp"></div>
@@ -569,6 +579,7 @@
           </select>
         </div>
         <div class="kfield"><label>Ihre offene(n) Stelle(n) / Nachricht</label><textarea id="k-msg" placeholder="Welche Position(en) möchten Sie besetzen?"></textarea></div>
+        <input id="k-website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
         <button class="kbtn" type="submit">Erstgespräch anfragen</button>
         <div class="kconsent">Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Angaben zur Kontaktaufnahme zu. Details in der <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.</div>
       </form>
@@ -593,7 +604,7 @@
 <footer>
   <div class="wrap">
     <div>
-      <div class="fbrand"><div class="logo" style="width:32px;height:32px;font-size:15px">GC</div> GreyCareers · Straßen- &amp; Tiefbau</div>
+      <div class="fbrand"><img class="logo" src="assets/greycareers-mark.png" alt="GreyCareers" style="width:32px;height:32px;font-size:15px"> GreyCareers · Straßen- &amp; Tiefbau</div>
       <div class="powered">Ein Angebot der GreenCareers GmbH</div>
     </div>
     <div class="flinks">
@@ -658,19 +669,42 @@ function toggleFaq(i){
   a.style.maxHeight=open?a.scrollHeight+'px':'0';
 }
 
-/* Kontakt-Formular -> öffnet vorbefüllte E-Mail an hello@green-careers.de */
-function sendKontakt(e){
+/* Kontakt-Formular -> Edge Function portal-anfrage:
+   legt die Anfrage in Supabase ab, meldet sie in Slack (#inbounds-gc) und
+   schickt eine interne Mail. Kein mailto mehr - der Absender soll nichts
+   installiert haben muessen, und die Anfrage muss bei uns ankommen. */
+const ANFRAGE_URL='https://tfoopogxaqvfwbonabpi.supabase.co/functions/v1/portal-anfrage';
+async function sendKontakt(e){
   e.preventDefault();
-  const name=$('k-name').value.trim(), firma=$('k-firma').value.trim();
-  const email=$('k-email').value.trim(), tel=$('k-tel').value.trim();
-  const paket=$('k-paket').value, msg=$('k-msg').value.trim();
-  const body=
-    `Name: ${name}\nBetrieb: ${firma}\nE-Mail: ${email}\nTelefon: ${tel}\n`+
-    `Interesse (Abo): ${paket||'Beratung'}\n\nNachricht:\n${msg}`;
-  const href='mailto:hello@green-careers.de'+
-    '?subject='+encodeURIComponent('Anfrage Abo-Erstgespräch · '+firma)+
-    '&body='+encodeURIComponent(body);
-  window.location.href=href;
+  const btn=document.querySelector('#kform .kbtn');
+  const hp=$('k-website'); if(hp&&hp.value) return false;
+  const daten={
+    name:$('k-name').value.trim(), firma:$('k-firma').value.trim(),
+    email:$('k-email').value.trim(), telefon:$('k-tel').value.trim(),
+    paket:$('k-paket').value, nachricht:$('k-msg').value.trim(),
+    quelle:'strassen-tiefbau-portal', marke:'grey',
+    seite:location.href, referrer:document.referrer||''
+  };
+  const alt=btn.textContent; btn.disabled=true; btn.textContent='Wird gesendet \u2026';
+  try{
+    const r=await fetch(ANFRAGE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(daten)});
+    const d=await r.json().catch(function(){return {};});
+    if(!r.ok||!d.ok) throw new Error(d.error||('HTTP '+r.status));
+    document.getElementById('kform').outerHTML=
+      '<div class="kdanke" role="status">'+
+      '<div class="kdanke-i">\u2713</div>'+
+      '<h4>Vielen Dank f\u00fcr Ihre Anfrage.</h4>'+
+      '<p>Wir melden uns zeitnah bei Ihnen.</p>'+
+      '<p class="kdanke-s">Wenn es eilig ist, erreichen Sie uns direkt unter '+
+      '<a href="tel:+4922196882408">+49 221 9688 2408</a>.</p></div>';
+  }catch(err){
+    btn.disabled=false; btn.textContent=alt;
+    let box=document.getElementById('kfehler');
+    if(!box){ box=document.createElement('div'); box.id='kfehler'; box.className='kfehler';
+      btn.parentNode.insertBefore(box,btn.nextSibling); }
+    box.innerHTML='Das hat gerade nicht geklappt. Bitte versuchen Sie es noch einmal \u2013 '+
+      'oder rufen Sie uns an: <a href="tel:+4922196882408">+49 221 9688 2408</a>.';
+  }
   return false;
 }
 

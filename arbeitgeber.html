@@ -413,8 +413,7 @@
               <option value="4">4 · 30 % sparen</option>
             </select>
           </label>
-          <button type="button" class="pbtn solid" data-pkg="smart" data-method="direct">Zahlung per Karte / PayPal</button>
-          <button type="button" class="pbtn invoice" data-pkg="smart" data-method="rechnung">Auf Rechnung zahlen</button>
+          <button type="button" class="pbtn solid" data-pkg="smart">Paket anfragen</button>
         </div>
       </div>
 
@@ -440,8 +439,7 @@
               <option value="4">4 · 30 % sparen</option>
             </select>
           </label>
-          <button type="button" class="pbtn solid" data-pkg="premium" data-method="direct">Zahlung per Karte / PayPal</button>
-          <button type="button" class="pbtn invoice" data-pkg="premium" data-method="rechnung">Auf Rechnung zahlen</button>
+          <button type="button" class="pbtn solid" data-pkg="premium">Paket anfragen</button>
         </div>
       </div>
 
@@ -465,8 +463,7 @@
               <option value="4">4 · 30 % sparen</option>
             </select>
           </label>
-          <button type="button" class="pbtn solid" data-pkg="exzellenz" data-method="direct">Zahlung per Karte / PayPal</button>
-          <button type="button" class="pbtn invoice" data-pkg="exzellenz" data-method="rechnung">Auf Rechnung zahlen</button>
+          <button type="button" class="pbtn solid" data-pkg="exzellenz">Paket anfragen</button>
         </div>
       </div>
     </div>
@@ -609,7 +606,8 @@ async function sendKontakt(e){
     name:$('k-name').value.trim(), firma:$('k-firma').value.trim(),
     email:$('k-email').value.trim(), telefon:$('k-tel').value.trim(),
     nachricht:$('k-msg').value.trim(),
-    quelle:'strassen-tiefbau-portal', marke:'grey',
+    paket:window.gcPaketInteresse||'',
+    quelle:'strassen-tiefbau-portal'+(window.gcRef?' · ref '+window.gcRef:''), marke:'grey',
     seite:location.href, referrer:document.referrer||''
   };
   const alt=btn.textContent; btn.disabled=true; btn.textContent='Wird gesendet \u2026';
@@ -778,20 +776,34 @@ async function mayaSend(){
 }
 </script>
 <script>
-/* Kauf-Buttons auf den Paketkarten -> direkt zur Registrierung im OS.
-   Anzahl + Zahlungsweg (direct/rechnung) werden HIER gewählt – KEINE Zwischenseite. */
+/* Paket-Buttons -> Kontaktformular (Erstgespräch). Einen Online-Checkout gibt es
+   derzeit nicht: os.green-careers.de ist das neue Kundenfrontend ohne Kaufstrecke.
+   Paket + Anzahl Stellen gehen als "paket" an portal-anfrage (Slack/Mail: "Interesse"),
+   ein Referral-Code (?ref=) hängt an der Quelle. kaufen-abo.html schickt seine
+   Konfiguration als ?anfrage= hierher. */
 (function(){
-  const OS_BASE='https://os.green-careers.de/';
-  const BRAND='grey';
-  let ref=''; try{ ref=(new URLSearchParams(location.search).get('ref'))||localStorage.getItem('gc_ref')||''; if(ref)localStorage.setItem('gc_ref',ref); }catch(e){}
+  const NAMEN={smart:'Smart',premium:'Premium',exzellenz:'Exzellenz'};
+  const url=new URLSearchParams(location.search);
+  try{ const ref=url.get('ref')||localStorage.getItem('gc_ref')||''; if(ref){ window.gcRef=ref.trim().slice(0,40); localStorage.setItem('gc_ref',window.gcRef); } }catch(e){}
   const qtyFor=pkg=>{ const s=document.querySelector('.pqty select[data-pkg="'+pkg+'"]'); return s?s.value:'1'; };
-  function go(pkg,method){
-    const q=new URLSearchParams();
-    q.set('brand',BRAND); q.set('flow','buy'); q.set('pkg',pkg); q.set('mode','einmal'); q.set('qty',qtyFor(pkg)); q.set('method',method);
-    if(ref) q.set('ref',ref);
-    location.href=OS_BASE+'?'+q.toString();
+  function vorbelegen(){
+    const msg=document.getElementById('k-msg');
+    if(msg && (!msg.value.trim() || msg.value===msg.dataset.vorbelegt)){
+      msg.value='Interesse: '+window.gcPaketInteresse+'\nGesuchte Position(en): ';
+      msg.dataset.vorbelegt=msg.value;
+    }
   }
-  document.querySelectorAll('button.pbtn[data-pkg]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.pkg,b.dataset.method)));
+  if(url.get('anfrage')){ window.gcPaketInteresse=url.get('anfrage').trim().slice(0,80); vorbelegen(); }
+  function anfragen(pkg){
+    const n=parseInt(qtyFor(pkg),10)||1;
+    window.gcPaketInteresse='Paket '+NAMEN[pkg]+' · '+n+' '+(n===1?'Stelle':'Stellen');
+    vorbelegen();
+    const ziel=document.getElementById('kontakt');
+    if(ziel) ziel.scrollIntoView({behavior:'smooth',block:'start'});
+    const feld=document.getElementById('k-name');
+    if(feld) setTimeout(()=>{ try{ feld.focus({preventScroll:true}); }catch(e){ feld.focus(); } },500);
+  }
+  document.querySelectorAll('button.pbtn[data-pkg]').forEach(b=>b.addEventListener('click',()=>anfragen(b.dataset.pkg)));
 })();
 </script>
 <script src="assets/cookie-consent.js" data-accent="#EA580C" data-metapixel="634469765867935"></script>

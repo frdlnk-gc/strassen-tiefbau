@@ -248,7 +248,7 @@
       <!-- 4. Nächster Schritt: kurzer Hinweis -->
       <div class="block">
         <h2>4 · Nächster Schritt</h2>
-        <div class="bsub">Sie werden jetzt zur Registrierung weitergeleitet und wählen dort Ihre Zahlungsart – Ihr Paket ist bereits vorausgewählt. In rund 5 Minuten sind Sie durch.</div>
+        <div class="bsub">Sie senden uns Ihre Abo-Konfiguration als unverbindliche Anfrage – Paket, Laufzeit und Anzahl Stellen sind bereits eingetragen. Wir melden uns zeitnah und richten Ihr Abo gemeinsam mit Ihnen ein.</div>
       </div>
     </div>
 
@@ -269,13 +269,8 @@
         <div class="sum-vat" id="sumVat"></div>
         <div class="sum-row" style="margin-top:4px"><span>Gesamt über Laufzeit</span><b id="sumTotal">–</b></div>
 
-        <label class="agb">
-          <input type="checkbox" id="agb">
-          <span>Ich akzeptiere die <a href="agb.html" target="_blank" rel="noopener">AGB</a> und die <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a> der GreenCareers GmbH.</span>
-        </label>
-
-        <button class="buybtn" id="buyBtn" disabled>
-          <span id="buyLabel">Abo kostenpflichtig starten</span>
+        <button class="buybtn" id="buyBtn">
+          <span id="buyLabel">Abo anfragen</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </button>
 
@@ -441,29 +436,22 @@ function update(){
   $('sumVat').textContent='zzgl. '+fmt(vat)+' € USt. / Monat';
   $('sumTotal').textContent=fmt(c.total)+' € netto';
 
-  $('buyLabel').textContent='Weiter zur Registrierung';
+  $('buyLabel').textContent='Abo anfragen';
 }
 
-$('agb').addEventListener('change',e=>{$('buyBtn').disabled=!e.target.checked;});
-
-/* --- Weiter zur Registrierung im GreyCareers OS --------------------------
-   Option B: Erst Konto + Registrierung, dann Zahlung. Das Portal reicht nur die
-   Paket-Konfiguration per URL ans OS weiter (?brand=grey&flow=buy…). Zahlart +
-   Betriebsdaten + Abschluss laufen anschließend IM OS. */
-const OS_BASE = 'https://os.green-careers.de/';
-$('buyBtn').addEventListener('click',goToRegistration);
-function goToRegistration(){
-  if(!$('agb').checked){ showErr('Bitte bestätigen Sie AGB und Datenschutz.'); return; }
+/* --- Weiter zur Anfrage ---------------------------------------------------
+   Einen Online-Abschluss gibt es derzeit nicht: os.green-careers.de ist das neue
+   Kundenfrontend ohne Kaufstrecke. Die Abo-Konfiguration geht deshalb als
+   Anfrage ans Kontaktformular (arbeitgeber.html liest ?anfrage= und füllt vor). */
+$('buyBtn').addEventListener('click',goToAnfrage);
+function goToAnfrage(){
+  const n=state.qty;
+  let t='Abo '+PACKAGES[state.pkg].name+' · '+TERM_MONTHS[state.term]+' Monate · '+n+' '+(n===1?'Stelle':'Stellen');
+  if(state.codeRaw) t+=' · Code '+state.codeRaw;
   const q=new URLSearchParams();
-  q.set('brand','grey');
-  q.set('flow','buy');
-  q.set('pkg',state.pkg);
-  q.set('mode',MODE);
-  q.set('qty',String(state.qty));
-  q.set('term',state.term);
-  if(state.codeRaw) q.set('code',state.codeRaw);
-  if(state.ref)     q.set('ref',state.ref);
-  location.href = OS_BASE + '?' + q.toString();
+  q.set('anfrage',t);
+  if(state.ref) q.set('ref',state.ref);
+  location.href = 'arbeitgeber.html?' + q.toString() + '#kontakt';
 }
 function showErr(t){$('noteErr').textContent=t;$('noteErr').classList.add('show');}
 

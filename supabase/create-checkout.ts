@@ -28,9 +28,9 @@ const OS            = 'https://os.green-careers.de';   // Rückkehr-Ziel nach Za
 
 // Einmal-Pakete: Netto-Einmalpreis
 const PKG_EINMAL: Record<string, { name: string; price: number; days: number }> = {
-  smart:     { name: 'Smart',     price: 2190, days: 60 },
-  premium:   { name: 'Premium',   price: 3190, days: 60 },
-  exzellenz: { name: 'Exzellenz', price: 5490, days: 90 },
+  smart:     { name: 'Smart',     price: 2590, days: 60 },
+  premium:   { name: 'Premium',   price: 3690, days: 60 },
+  exzellenz: { name: 'Exzellenz', price: 6490, days: 90 },
 };
 // Abo-Pakete: Netto-Monatspreis (6-Monats-Basistarif). Identisch zu abo.green-careers.de.
 const PKG_ABO: Record<string, { name: string; price: number }> = {

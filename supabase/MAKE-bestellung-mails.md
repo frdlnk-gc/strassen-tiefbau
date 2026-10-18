@@ -119,3 +119,41 @@ Hänge hinter den Trigger einen **Router**. Er teilt in zwei Pfade:
 | `id` | Bestell-ID |
 
 > **Hinweis zu E-Mails & Marke:** Die Supabase **Auth-Mails** (Bestätigungslink, Passwort-Reset) sind projektweit und können NICHT je Marke umschalten. Marken-Branding läuft deshalb über DIESE Make-Mails. Auth-Mails neutral halten (Absender „GreenCareers GmbH").
+
+---
+
+## ⚠️ BAUPHASE-STOPP (31.08.2026, Anweisung Freddy)
+
+**Vorfall:** Der pg_cron `reconcile-checkout` (alle 15 min) sammelte ALLE bezahlten Stripe-Sessions
+des gemeinsamen GC-Stripe-Accounts ein – auch die Abo-Checkouts von abo.green-careers.de.
+`confirm-checkout` legte daraus Phantom-Bestellungen an (Paket leer, 0 €, brand-Default grey,
+zahlungsart-Default card) → `bestellung-mails` schickte GreyCareers-Bestellbestätigungen über
+0,00 € an echte Abo-Kunden (KLYMA 17.07., Malzkorn 31.07., Ahrens 05.08., Garten Linke 25.08.,
+Langheinrich 28.08.).
+
+**Abgestellt am 31.08.2026:**
+1. pg_cron `reconcile-checkout` entfernt (`select cron.unschedule('reconcile-checkout');`).
+2. `confirm-checkout` v4 + `stripe-webhook` v8: Fremd-Session-Guard – ohne `metadata.pkg`
+   wird KEINE Bestellung angelegt (echte Portal-Checkouts setzen pkg immer).
+3. `bestellung-mails` v7: Kunden-Mail (Mail B) per `SEND_KUNDEN_MAIL = false` deaktiviert,
+   nur die interne Mail an Freddy bleibt. **Beim OS-Launch wieder auf `true` setzen.**
+
+**Cron-Wiederanlage beim OS-Launch** (im Projekt tfoopogxaqvfwbonabpi ausführen –
+dank Guards dann ungefährlich):
+
+```sql
+select cron.schedule('reconcile-checkout', '*/15 * * * *', $$
+  select net.http_post(
+    url := 'https://tfoopogxaqvfwbonabpi.supabase.co/functions/v1/reconcile-checkout',
+    headers := jsonb_build_object(
+      'Content-Type','application/json',
+      'x-reconcile-token', (select value from public.app_config where key='reconcile_token')
+    ),
+    body := '{}'::jsonb,
+    timeout_milliseconds := 30000
+  );
+$$);
+```
+
+Zusätzlich sollte `reconcile-checkout/index.ts` vor Reaktivierung auf `session.status === 'complete'`
++ `metadata.pkg` filtern (Function ist deployt, aber ohne Cron ohne Wirkung).

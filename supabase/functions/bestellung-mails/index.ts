@@ -30,6 +30,12 @@ const WEBHOOK_SECRET  = Deno.env.get('WEBHOOK_SECRET') ?? '';
 const FROM_EMAIL      = Deno.env.get('MAIL_FROM_EMAIL') ?? 'hello@green-careers.de';
 const MAIL_INTERN     = Deno.env.get('MAIL_INTERN') ?? 'frederik.linke@greenfield-digital.de';
 
+// BAUPHASE (31.08.2026, Anweisung Freddy): Das OS ist noch nicht live – Kunden dürfen
+// KEINE Bestell-/Bestätigungsmails vom OS erhalten (Vorfall: Phantom-0€-Bestellungen
+// aus fremden Stripe-Sessions lösten GreyCareers-Mails an Abo-Kunden aus).
+// Nur die interne Mail an Freddy bleibt aktiv. Beim OS-Launch wieder auf true setzen.
+const SEND_KUNDEN_MAIL = false;
+
 const esc = (s: unknown) =>
   String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
@@ -181,11 +187,13 @@ Deno.serve(async (req) => {
       to: MAIL_INTERN, subject: internSubject, html: internHtml,
       replyToEmail: String(r.kunde_email), replyToName: String(r.kunde_name || ''),
     });
-    await sendMail({
-      fromEmail: FROM_EMAIL, fromName: marke,
-      to: String(r.kunde_email), subject: kundeSubject, html: kundeHtml,
-      replyToEmail: FROM_EMAIL, replyToName: marke,
-    });
+    if (SEND_KUNDEN_MAIL) {
+      await sendMail({
+        fromEmail: FROM_EMAIL, fromName: marke,
+        to: String(r.kunde_email), subject: kundeSubject, html: kundeHtml,
+        replyToEmail: FROM_EMAIL, replyToName: marke,
+      });
+    }
   } catch (e) {
     // 500 -> Supabase-Webhook kann später erneut zustellen.
     return new Response('Mailversand: ' + (e as Error).message, { status: 500 });

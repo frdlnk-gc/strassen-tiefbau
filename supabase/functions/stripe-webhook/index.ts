@@ -72,6 +72,17 @@ Deno.serve(async (req) => {
   const m = (session.metadata || {}) as Record<string, string>;
   const sessionId = session.id;
 
+  // FREMD-SESSION-GUARD (31.08.2026): Im gemeinsamen GC-Stripe-Account laufen auch
+  // die Abo-/Upsell-Checkouts von abo.green-careers.de – deren Sessions gehören NICHT
+  // ins OS. Echte Portal-/OS-Checkouts setzen immer metadata.pkg (create-checkout).
+  // Ohne pkg: Event quittieren, aber KEINE Bestellung anlegen (verhindert die
+  // Phantom-0€-Bestellungen samt Mails an Kunden).
+  if (!m.pkg) {
+    return new Response(JSON.stringify({ received: true, foreign: true }), {
+      status: 200, headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
   // ---- Idempotenz: existiert die Bestellung schon? -------------------------
   try {
     const { data: exists } = await supa

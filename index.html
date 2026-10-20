@@ -1149,16 +1149,30 @@ function jobMatchesBranche(j,b){
 }
 
 const esc = s => (s==null?'':String(s)).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-// Bilder aus dem Supabase-Storage ueber den Bild-Transformer ausliefern. Die Originale
-// aus dem Alt-System sind bis 9 MB gross; skaliert liegen sie bei 30-200 KB. Fremde
-// URLs und lokale assets/ bleiben unveraendert.
+// Bilder aus dem Supabase-Storage in fertig gespeicherten Groessen ausliefern (kein
+// Bild-Transformer mehr, der kostet je Bild). Varianten liegen unter
+// portal-media/v/<160|400|800|1600>/<pfad>.webp und v/og/<pfad>.jpg. Fehlt eine Variante
+// (neu hochgeladenes Bild), laedt der Fehler-Handler unten das Original.
+// Fremde URLs und lokale assets/ bleiben unveraendert.
 const BILD_HOST='tfoopogxaqvfwbonabpi.supabase.co';
+const BILD_PFAD='/storage/v1/object/public/portal-media/';
+const BILD_STUFEN=[160,400,800,1600];
 function bild(u,w){
   if(!u||typeof u!=='string') return u;
-  if(u.indexOf(BILD_HOST)<0||u.indexOf('/storage/v1/object/public/')<0) return u;
-  return u.replace('/storage/v1/object/public/','/storage/v1/render/image/public/')
-        + (u.indexOf('?')<0?'?':'&') + 'width='+w+'&resize=contain&quality=72';
+  const i=u.indexOf(BILD_PFAD);
+  if(u.indexOf(BILD_HOST)<0||i<0) return u;
+  const rest=u.slice(i+BILD_PFAD.length).split('?')[0];
+  if(!rest||rest.indexOf('v/')===0) return u;
+  const basis=u.slice(0,i+BILD_PFAD.length);
+  if(w==='og') return basis+'v/og/'+rest+'.jpg';
+  const s=BILD_STUFEN.find(x=>x>=w)||BILD_STUFEN[BILD_STUFEN.length-1];
+  return basis+'v/'+s+'/'+rest+'.webp';
 }
+document.addEventListener('error',e=>{
+  const t=e.target; if(!t||t.tagName!=='IMG') return;
+  const m=/\/portal-media\/v\/(?:\d+|og)\/(.+)\.(?:webp|jpg)$/.exec(t.src||'');
+  if(m) t.src=t.src.slice(0,t.src.indexOf('/portal-media/v/'))+'/portal-media/'+m[1];
+},true);
 const $  = id => document.getElementById(id);
 
 function initials(name){return (name||'?').trim().split(/\s+/).slice(0,2).map(w=>w[0]).join('').toUpperCase();}
@@ -1788,8 +1802,8 @@ function applyJobSeo(j){
   if(!img || img.startsWith('data:')) img=SITE+'/'+berufsBild(j);
   else if(!/^https?:/i.test(img)) img=SITE+'/'+img.replace(/^\//,'');
   // WhatsApp/Facebook holen die OG-Grafik selbst und brechen bei mehreren MB ab -
-  // deshalb auch hier die skalierte Fassung.
-  img=bild(img,1200);
+  // deshalb auch hier die skalierte Fassung (JPEG, weil nicht jeder Crawler WebP liest).
+  img=bild(img,'og');
   document.title=title;
   setMeta('meta[name="description"]','content',desc);
   setMeta('#canonical','href',url);
